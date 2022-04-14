@@ -696,7 +696,9 @@ malicious processes that attempt to delete log files to conceal their presence.
   <td xml:lang="en-US">
 To capture kernel module unloading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F auid>=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <tt>auditd</tt> daemon is configured. If it is configured
 to use the <tt>augenrules</tt> program (the default), add the line to a file with suffix
@@ -721,12 +723,14 @@ If the <tt>auditd</tt> daemon is configured to use the <tt>augenrules</tt> progr
 to read audit rules during daemon startup (the default), add the following lines to a file
 with suffix <tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt> to capture kernel module
 loading and unloading events, setting ARCH to either b32 or b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt> utility to read audit
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid>=1000 -F auid!=unset -F key=modules</pre>
+    If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt> utility to read audit
 rules during daemon startup, add the following lines to <tt>/etc/audit/audit.rules</tt> file
 in order to capture kernel module loading and unloading events, setting ARCH to either b32 or
 b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid>=1000 -F auid!=unset -F key=modules</pre>
   </td>
   <td xml:lang="en-US">
 The addition/removal of kernel modules can be used to alter the behavior of
@@ -742,7 +746,9 @@ to have an audit trail of modules that have been introduced into the kernel.
   <td xml:lang="en-US">
 To capture kernel module loading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F auid>=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <tt>auditd</tt> daemon is configured. If it is configured
 to use the <tt>augenrules</tt> program (the default), add the line to a file with suffix
@@ -3593,7 +3599,7 @@ Detailed information on encrypting partitions using LUKS or LUKS ciphers can be 
 the Oracle Linux 8 Documentation web site:<br />
 
     
-    <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.oracle.com/en/operating-systems/oracle-linux/8/install/ol8-install-basic.html#install-storage-network'>https://docs.oracle.com/en/operating-systems/oracle-linux/8/install/ol8-install-basic.html#install-storage-network</a>.
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.oracle.com/en/operating-systems/oracle-linux/8/install/install-InstallingOracleLinuxManually.html#install-storage-network'>https://docs.oracle.com/en/operating-systems/oracle-linux/8/install/install-InstallingOracleLinuxManually.html#install-storage-network</a>.
   </td>
   <td xml:lang="en-US">
 The risk of a system's physical compromise, particularly mobile systems such as
@@ -3766,7 +3772,7 @@ To improve the kernel capacity to queue all log events, even those which occurre
 prior to the audit daemon, add the argument <tt>audit_backlog_limit=8192</tt> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <tt>audit_backlog_limit=8192</tt> is added as a kernel command line
-argument to newly installed kernels, ad <tt>audit_backlog_limit=8192</tt> to the
+argument to newly installed kernels, add <tt>audit_backlog_limit=8192</tt> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <tt>/etc/default/grub</tt> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... audit_backlog_limit=8192 ..."</pre>
@@ -3789,7 +3795,7 @@ To enable poisoning of free pages,
 add the argument <tt>page_poison=1</tt> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <tt>page_poison=1</tt> is added as a kernel command line
-argument to newly installed kernels, ad <tt>page_poison=1</tt> to the
+argument to newly installed kernels, add <tt>page_poison=1</tt> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <tt>/etc/default/grub</tt> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... page_poison=1 ..."</pre>
@@ -3837,7 +3843,7 @@ To enable poisoning of SLUB/SLAB objects,
 add the argument <tt>slub_debug=P</tt> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <tt>slub_debug=P</tt> is added as a kernel command line
-argument to newly installed kernels, ad <tt>slub_debug=P</tt> to the
+argument to newly installed kernels, add <tt>slub_debug=P</tt> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <tt>/etc/default/grub</tt> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... slub_debug=P ..."</pre>
@@ -4886,7 +4892,7 @@ To disable use of virtual syscalls,
 add the argument <tt>vsyscall=none</tt> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <tt>vsyscall=none</tt> is added as a kernel command line
-argument to newly installed kernels, ad <tt>vsyscall=none</tt> to the
+argument to newly installed kernels, add <tt>vsyscall=none</tt> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <tt>/etc/default/grub</tt> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... vsyscall=none ..."</pre>
@@ -5360,6 +5366,28 @@ The audit package should be installed.
   </td>
   <td xml:lang="en-US">
 The auditd service is an access monitoring and accounting daemon, watching system calls to audit any access, in comparison with potential local access control policy such as SELinux policy.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>IA-7<br/>IA-7.1</td>
+  <td>N/A</td>
+  <td>Remove the Kerberos Server Package</td>
+  <td xml:lang="en-US">
+The <tt>krb5-server</tt> package should be removed if not in use.
+Is this system the Kerberos server? If not, remove the package.
+The <code>krb5-server</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase krb5-server</pre>
+The krb5-server RPM is not installed by default on a Oracle Linux 8
+system. It is needed only by the Kerberos servers, not by the
+clients which use Kerberos for authentication. If the system is not
+intended for use as a Kerberos Server it should be removed.
+  </td>
+  <td xml:lang="en-US">
+Unnecessary packages should not be installed to decrease the attack
+surface of the system.  While this software is clearly essential on an KDC
+server, it is not necessary on typical desktop or workstation systems.
   </td>
   <td></td>
 </tr>
@@ -6448,7 +6476,7 @@ Kerberos is supported by crypto policy, but it's configuration may be
 set up to ignore it.
 To check that Crypto Policies settings for Kerberos are configured correctly, examine that there is a symlink at
 /etc/krb5.conf.d/crypto-policies targeting /etc/cypto-policies/back-ends/krb5.config.
-If the symlink exists, kerberos is configured to use the system-wide crypto policy settings.
+If the symlink exists, Kerberos is configured to use the system-wide crypto policy settings.
   </td>
   <td xml:lang="en-US">
 Overriding the system crypto policy makes the behavior of Kerberos violate expectations,
@@ -6465,7 +6493,7 @@ To enable Kernel page-table isolation,
 add the argument <tt>pti=on</tt> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <tt>pti=on</tt> is added as a kernel command line
-argument to newly installed kernels, ad <tt>pti=on</tt> to the
+argument to newly installed kernels, add <tt>pti=on</tt> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <tt>/etc/default/grub</tt> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... pti=on ..."</pre>
@@ -6689,7 +6717,7 @@ To ensure all processes can be audited, even those which start
 prior to the audit daemon, add the argument <tt>audit=1</tt> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <tt>audit=1</tt> is added as a kernel command line
-argument to newly installed kernels, ad <tt>audit=1</tt> to the
+argument to newly installed kernels, add <tt>audit=1</tt> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <tt>/etc/default/grub</tt> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... audit=1 ..."</pre>
@@ -8032,7 +8060,7 @@ By decreasing the limit based on the amount of data and enabling
 time-based limit, effects of potential attacks against
 encryption keys are limited.
   </td>
-  <td>var_rekey_limit_time=1hour<br/>var_rekey_limit_size=1G</td>
+  <td>var_rekey_limit_size=1G<br/>var_rekey_limit_time=1hour</td>
 </tr>
 <tr>
   <td></td>

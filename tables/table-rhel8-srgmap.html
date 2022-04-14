@@ -822,7 +822,7 @@ The <code>auditd</code> service can be enabled with the following command:
 prior to the audit daemon, add the argument <code>audit=1</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>audit=1</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>audit=1</code> to the
+argument to newly installed kernels, add <code>audit=1</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... audit=1 ..."</pre>
@@ -1562,7 +1562,9 @@ If the system is 64 bit then also add the following lines:
 <td>Ensure auditd Collects Information on Kernel Module Unloading - delete_module</td>
 <td>To capture kernel module unloading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -1577,19 +1579,23 @@ add the line to file <code>/etc/audit/audit.rules</code>.</td>
 to read audit rules during daemon startup (the default), add the following lines to a file
 with suffix <code>.rules</code> in the directory <code>/etc/audit/rules.d</code> to capture kernel module
 loading and unloading events, setting ARCH to either b32 or b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+    If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
 rules during daemon startup, add the following lines to <code>/etc/audit/audit.rules</code> file
 in order to capture kernel module loading and unloading events, setting ARCH to either b32 or
 b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
 </td>
 </tr></table>
 <table><tr>
 <td>Ensure auditd Collects Information on Kernel Module Loading - init_module</td>
 <td>To capture kernel module loading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -2008,7 +2014,7 @@ At a minimum, the organization must audit the full-text recording of privileged 
 prior to the audit daemon, add the argument <code>audit=1</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>audit=1</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>audit=1</code> to the
+argument to newly installed kernels, add <code>audit=1</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... audit=1 ..."</pre>
@@ -2748,7 +2754,9 @@ If the system is 64 bit then also add the following lines:
 <td>Ensure auditd Collects Information on Kernel Module Unloading - delete_module</td>
 <td>To capture kernel module unloading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -2763,19 +2771,23 @@ add the line to file <code>/etc/audit/audit.rules</code>.</td>
 to read audit rules during daemon startup (the default), add the following lines to a file
 with suffix <code>.rules</code> in the directory <code>/etc/audit/rules.d</code> to capture kernel module
 loading and unloading events, setting ARCH to either b32 or b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+    If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
 rules during daemon startup, add the following lines to <code>/etc/audit/audit.rules</code> file
 in order to capture kernel module loading and unloading events, setting ARCH to either b32 or
 b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
 </td>
 </tr></table>
 <table><tr>
 <td>Ensure auditd Collects Information on Kernel Module Loading - init_module</td>
 <td>To capture kernel module loading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -3601,7 +3613,7 @@ The <code>auditd</code> service can be enabled with the following command:
 prior to the audit daemon, add the argument <code>audit=1</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>audit=1</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>audit=1</code> to the
+argument to newly installed kernels, add <code>audit=1</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... audit=1 ..."</pre>
@@ -4341,7 +4353,9 @@ If the system is 64 bit then also add the following lines:
 <td>Ensure auditd Collects Information on Kernel Module Unloading - delete_module</td>
 <td>To capture kernel module unloading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -4356,19 +4370,23 @@ add the line to file <code>/etc/audit/audit.rules</code>.</td>
 to read audit rules during daemon startup (the default), add the following lines to a file
 with suffix <code>.rules</code> in the directory <code>/etc/audit/rules.d</code> to capture kernel module
 loading and unloading events, setting ARCH to either b32 or b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+    If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
 rules during daemon startup, add the following lines to <code>/etc/audit/audit.rules</code> file
 in order to capture kernel module loading and unloading events, setting ARCH to either b32 or
 b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
 </td>
 </tr></table>
 <table><tr>
 <td>Ensure auditd Collects Information on Kernel Module Loading - init_module</td>
 <td>To capture kernel module loading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -5720,7 +5738,7 @@ $ sudo yum erase tuned</pre>
 add the argument <code>pti=on</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>pti=on</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>pti=on</code> to the
+argument to newly installed kernels, add <code>pti=on</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... pti=on ..."</pre>
@@ -6186,7 +6204,7 @@ Kerberos is supported by crypto policy, but it's configuration may be
 set up to ignore it.
 To check that Crypto Policies settings for Kerberos are configured correctly, examine that there is a symlink at
 /etc/krb5.conf.d/crypto-policies targeting /etc/cypto-policies/back-ends/krb5.config.
-If the symlink exists, kerberos is configured to use the system-wide crypto policy settings.</td>
+If the symlink exists, Kerberos is configured to use the system-wide crypto policy settings.</td>
 </tr></table>
 <table><tr>
 <td>Uninstall krb5-workstation Package</td>
@@ -6226,6 +6244,18 @@ The <code>rsyslog-gnutls</code> package can be installed with the following comm
 <pre>
 $ sudo yum install rsyslog-gnutls</pre>
 </td>
+</tr></table>
+<table><tr>
+<td>Remove the Kerberos Server Package</td>
+<td>The <code>krb5-server</code> package should be removed if not in use.
+Is this system the Kerberos server? If not, remove the package.
+The <code>krb5-server</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase krb5-server</pre>
+The krb5-server RPM is not installed by default on a Red Hat Enterprise Linux 8
+system. It is needed only by the Kerberos servers, not by the
+clients which use Kerberos for authentication. If the system is not
+intended for use as a Kerberos Server it should be removed.</td>
 </tr></table>
 <table><tr>
 <td>Disable Kerberos by removing host keytab</td>
@@ -6413,7 +6443,7 @@ Developers and implementers can increase the assurance in security functions by 
 add the argument <code>vsyscall=none</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>vsyscall=none</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>vsyscall=none</code> to the
+argument to newly installed kernels, add <code>vsyscall=none</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... vsyscall=none ..."</pre>
@@ -6426,7 +6456,7 @@ Run the following command to update command line for already installed kernels:<
 add the argument <code>page_poison=1</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>page_poison=1</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>page_poison=1</code> to the
+argument to newly installed kernels, add <code>page_poison=1</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... page_poison=1 ..."</pre>
@@ -6439,11 +6469,26 @@ Run the following command to update command line for already installed kernels:<
 add the argument <code>slub_debug=P</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>slub_debug=P</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>slub_debug=P</code> to the
+argument to newly installed kernels, add <code>slub_debug=P</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... slub_debug=P ..."</pre>
 Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="slub_debug=P"</pre>
+</td>
+</tr></table>
+<table><tr>
+<td>Install policycoreutils Package</td>
+<td>The <code>policycoreutils</code> package can be installed with the following command:
+<pre>
+$ sudo yum install policycoreutils</pre>
+</td>
+</tr></table>
+<table><tr>
+<td>Ensure SELinux State is Enforcing</td>
+<td>The SELinux state should be set to <code><xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_selinux_state"></xccdf-1.1:sub></code> at
+system boot time.  In the file <code>/etc/selinux/config</code>, add or correct the
+following line to configure the system to boot into enforcing mode:
+<pre>SELINUX=<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_selinux_state"></xccdf-1.1:sub></pre>
 </td>
 </tr></table>
 </td>
@@ -7312,7 +7357,7 @@ The <code>auditd</code> service can be enabled with the following command:
 prior to the audit daemon, add the argument <code>audit=1</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>audit=1</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>audit=1</code> to the
+argument to newly installed kernels, add <code>audit=1</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... audit=1 ..."</pre>
@@ -7325,7 +7370,7 @@ Run the following command to update command line for already installed kernels:<
 prior to the audit daemon, add the argument <code>audit_backlog_limit=8192</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>audit_backlog_limit=8192</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>audit_backlog_limit=8192</code> to the
+argument to newly installed kernels, add <code>audit_backlog_limit=8192</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... audit_backlog_limit=8192 ..."</pre>
@@ -8507,7 +8552,7 @@ audit logs that will be created by the auditing daemon.</td>
 prior to the audit daemon, add the argument <code>audit_backlog_limit=8192</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>audit_backlog_limit=8192</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>audit_backlog_limit=8192</code> to the
+argument to newly installed kernels, add <code>audit_backlog_limit=8192</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... audit_backlog_limit=8192 ..."</pre>
@@ -8748,6 +8793,16 @@ This requirement is specific to operating systems with audit reduction capabilit
 <table><tr>
 <td>Ensure the audit Subsystem is Installed</td>
 <td>The audit package should be installed.</td>
+</tr></table>
+<table><tr>
+<td>Enable auditd Service</td>
+<td>The <code>auditd</code> service is an essential userspace component of
+the Linux Auditing System, as it is responsible for writing audit records to
+disk.
+
+The <code>auditd</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable auditd.service</pre>
+</td>
 </tr></table>
 <table><tr>
 <td>Record Events When Privileged Executables Are Run</td>
@@ -9792,7 +9847,7 @@ The <code>auditd</code> service can be enabled with the following command:
 prior to the audit daemon, add the argument <code>audit=1</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>audit=1</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>audit=1</code> to the
+argument to newly installed kernels, add <code>audit=1</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... audit=1 ..."</pre>
@@ -10532,7 +10587,9 @@ If the system is 64 bit then also add the following lines:
 <td>Ensure auditd Collects Information on Kernel Module Unloading - delete_module</td>
 <td>To capture kernel module unloading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -10547,19 +10604,23 @@ add the line to file <code>/etc/audit/audit.rules</code>.</td>
 to read audit rules during daemon startup (the default), add the following lines to a file
 with suffix <code>.rules</code> in the directory <code>/etc/audit/rules.d</code> to capture kernel module
 loading and unloading events, setting ARCH to either b32 or b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+    If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
 rules during daemon startup, add the following lines to <code>/etc/audit/audit.rules</code> file
 in order to capture kernel module loading and unloading events, setting ARCH to either b32 or
 b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
 </td>
 </tr></table>
 <table><tr>
 <td>Ensure auditd Collects Information on Kernel Module Loading - init_module</td>
 <td>To capture kernel module loading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -11248,7 +11309,7 @@ on AMD-based systems.</td>
 add the argument <code>slub_debug=P</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>slub_debug=P</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>slub_debug=P</code> to the
+argument to newly installed kernels, add <code>slub_debug=P</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... slub_debug=P ..."</pre>
@@ -11272,7 +11333,7 @@ Examples of attacks are buffer overflow attacks.</td>
 add the argument <code>pti=on</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>pti=on</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>pti=on</code> to the
+argument to newly installed kernels, add <code>pti=on</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... pti=on ..."</pre>
@@ -12001,7 +12062,7 @@ Audit records can be generated from various components within the information sy
 prior to the audit daemon, add the argument <code>audit=1</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>audit=1</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>audit=1</code> to the
+argument to newly installed kernels, add <code>audit=1</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... audit=1 ..."</pre>
@@ -12741,7 +12802,9 @@ If the system is 64 bit then also add the following lines:
 <td>Ensure auditd Collects Information on Kernel Module Unloading - delete_module</td>
 <td>To capture kernel module unloading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -12756,19 +12819,23 @@ add the line to file <code>/etc/audit/audit.rules</code>.</td>
 to read audit rules during daemon startup (the default), add the following lines to a file
 with suffix <code>.rules</code> in the directory <code>/etc/audit/rules.d</code> to capture kernel module
 loading and unloading events, setting ARCH to either b32 or b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+    If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
 rules during daemon startup, add the following lines to <code>/etc/audit/audit.rules</code> file
 in order to capture kernel module loading and unloading events, setting ARCH to either b32 or
 b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
 </td>
 </tr></table>
 <table><tr>
 <td>Ensure auditd Collects Information on Kernel Module Loading - init_module</td>
 <td>To capture kernel module loading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -14268,7 +14335,7 @@ Audit records can be generated from various components within the information sy
 prior to the audit daemon, add the argument <code>audit=1</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>audit=1</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>audit=1</code> to the
+argument to newly installed kernels, add <code>audit=1</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... audit=1 ..."</pre>
@@ -15008,7 +15075,9 @@ If the system is 64 bit then also add the following lines:
 <td>Ensure auditd Collects Information on Kernel Module Unloading - delete_module</td>
 <td>To capture kernel module unloading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -15023,19 +15092,23 @@ add the line to file <code>/etc/audit/audit.rules</code>.</td>
 to read audit rules during daemon startup (the default), add the following lines to a file
 with suffix <code>.rules</code> in the directory <code>/etc/audit/rules.d</code> to capture kernel module
 loading and unloading events, setting ARCH to either b32 or b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+    If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
 rules during daemon startup, add the following lines to <code>/etc/audit/audit.rules</code> file
 in order to capture kernel module loading and unloading events, setting ARCH to either b32 or
 b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
 </td>
 </tr></table>
 <table><tr>
 <td>Ensure auditd Collects Information on Kernel Module Loading - init_module</td>
 <td>To capture kernel module loading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -15343,7 +15416,9 @@ Audit records can be generated from various components within the information sy
 <td>Ensure auditd Collects Information on Kernel Module Unloading - delete_module</td>
 <td>To capture kernel module unloading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -15358,19 +15433,23 @@ add the line to file <code>/etc/audit/audit.rules</code>.</td>
 to read audit rules during daemon startup (the default), add the following lines to a file
 with suffix <code>.rules</code> in the directory <code>/etc/audit/rules.d</code> to capture kernel module
 loading and unloading events, setting ARCH to either b32 or b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+    If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
 rules during daemon startup, add the following lines to <code>/etc/audit/audit.rules</code> file
 in order to capture kernel module loading and unloading events, setting ARCH to either b32 or
 b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
 </td>
 </tr></table>
 <table><tr>
 <td>Ensure auditd Collects Information on Kernel Module Loading - init_module</td>
 <td>To capture kernel module loading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -15420,7 +15499,7 @@ Audit records can be generated from various components within the information sy
 prior to the audit daemon, add the argument <code>audit=1</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>audit=1</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>audit=1</code> to the
+argument to newly installed kernels, add <code>audit=1</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... audit=1 ..."</pre>
@@ -15836,7 +15915,9 @@ Audit records can be generated from various components within the information sy
 <td>Ensure auditd Collects Information on Kernel Module Unloading - delete_module</td>
 <td>To capture kernel module unloading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -15851,19 +15932,23 @@ add the line to file <code>/etc/audit/audit.rules</code>.</td>
 to read audit rules during daemon startup (the default), add the following lines to a file
 with suffix <code>.rules</code> in the directory <code>/etc/audit/rules.d</code> to capture kernel module
 loading and unloading events, setting ARCH to either b32 or b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+    If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
 rules during daemon startup, add the following lines to <code>/etc/audit/audit.rules</code> file
 in order to capture kernel module loading and unloading events, setting ARCH to either b32 or
 b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
 </td>
 </tr></table>
 <table><tr>
 <td>Ensure auditd Collects Information on Kernel Module Loading - init_module</td>
 <td>To capture kernel module loading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -16458,7 +16543,7 @@ in <code>/etc/audit/auditd.conf</code>.</td>
 add the argument <code>vsyscall=none</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>vsyscall=none</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>vsyscall=none</code> to the
+argument to newly installed kernels, add <code>vsyscall=none</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... vsyscall=none ..."</pre>
@@ -16890,7 +16975,7 @@ To make sure that the setting is persistent, add the following line to a file in
 add the argument <code>page_poison=1</code> to the default
 GRUB 2 command line for the Linux operating system.
 To ensure that <code>page_poison=1</code> is added as a kernel command line
-argument to newly installed kernels, ad <code>page_poison=1</code> to the
+argument to newly installed kernels, add <code>page_poison=1</code> to the
 default Grub2 command line for Linux operating systems.  Modify the line within
 <code>/etc/default/grub</code> as shown below:
 <pre>GRUB_CMDLINE_LINUX="... page_poison=1 ..."</pre>
