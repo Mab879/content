@@ -353,6 +353,7 @@ no_host_based_files
 no_legacy_plus_entries_etc_group
 no_legacy_plus_entries_etc_passwd
 no_legacy_plus_entries_etc_shadow
+no_rsh_trust_files
 no_user_host_based_files
 package_aide_installed
 package_audit-audispd-plugins_installed
@@ -424,6 +425,7 @@ sebool_selinuxuser_execmod
 sebool_selinuxuser_execstack
 securetty_root_login_console_only
 security_patches_up_to_date
+selinux_policytype
 service_auditd_enabled
 service_autofs_disabled
 service_avahi-daemon_disabled
