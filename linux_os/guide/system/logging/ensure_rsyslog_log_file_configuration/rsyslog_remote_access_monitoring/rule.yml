@@ -45,7 +45,9 @@ ocil: |-
     pointing to a log file.
 
 fixtext: |-
-    add or update the following lines to the "/etc/rsyslog.conf" file:
+    Configure {{{ full_name }}} to monitor all remote access methods.
+    
+    Add or update the following lines to the "/etc/rsyslog.conf" file:
 
     auth.*;authpriv.*;daemon.* /var/log/secure
 
