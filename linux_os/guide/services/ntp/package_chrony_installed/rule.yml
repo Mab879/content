@@ -36,6 +36,11 @@ ocil_clause: 'the package is not installed'
 
 ocil: '{{{ ocil_package(package="chrony") }}}'
 
+fixtext: |-
+    Ensure that chrony package is installed.
+    
+    {{{ describe_package_install(package="chrony") }}}
+
 template:
     name: package_installed
     vars:
