@@ -24,6 +24,7 @@ severity: medium
 
 identifiers:
     cce@rhel7: CCE-80538-2
+    cce@rhel9: CCE-85939-7
     cce@sle12: CCE-83115-6
     cce@sle15: CCE-85705-2
 
@@ -37,7 +38,7 @@ references:
     stigid@sle12: SLES-12-020100
     stigid@sle15: SLES-15-030790
 
-ocil_clause: 'the system is not configured to switch to single user mode for corrective action'
+ocil_clause: 'there is no evidence that the system is configured to off-load audit logs to a different system or storage media, or if the configuration does not take appropriate action if there is an error sending audit records to the remote system'
 
 ocil: |-
     Inspect <tt>/etc/audisp/audisp-remote.conf</tt> and locate the following line to
@@ -45,3 +46,12 @@ ocil: |-
     <pre>grep -i network_failure_action /etc/audisp/audisp-remote.conf</pre>
     The output should return:
     <pre>network_failure_action = {{{ xccdf_value("var_audispd_network_failure_action") }}}</pre>
+    
+    If the value of the "network_failure_action" option is not "syslog", "single", or "halt", or the line is commented out, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or storage media, and to indicate the action taken if there is an error sending audit records to the remote system.
+
+fixtext: |-
+    Configure the action {{{ full_name }}} takes if there is an error sending audit records to a remote system.
+
+    Uncomment the "network_failure_action" option in "/etc/audisp/audisp-remote.conf" and set it to "syslog", "single", or "halt".
+
+    network_failure_action = {{{ xccdf_value("var_audispd_network_failure_action") }}}
