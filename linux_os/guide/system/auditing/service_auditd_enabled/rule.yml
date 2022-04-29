@@ -67,6 +67,8 @@ ocil: |-
     {{{ ocil_service_enabled(service="auditd") }}}
 
 fixtext: |-
+    Configure the audit service to produce audit records containing the information needed to establish when (date and time) an event occurred with the following commands:
+
     {{{ fixtext_service_enabled("auditd") }}}
 
 platform: audit
