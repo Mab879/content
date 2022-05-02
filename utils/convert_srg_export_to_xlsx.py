@@ -55,7 +55,8 @@ def setup_row(sheet: openpyxl.worksheet.worksheet.Worksheet, row: dict, row_num:
     for column, header in create_srg_export.COLUMN_MAPPINGS.items():
         sheet[f'{column}{row_num}'] = row[header]
     sheet.row_dimensions[row_num].height = 130
-    if row_num > 1 and ('Fix' not in row or not row['Fix']):
+    if row_num > 1 and ('Fix' not in row or not row['Fix']) and \
+            row['Status'] == create_srg_export.DisaStatus.AUTOMATED:
         highlight_row(sheet, row_num, 23)
 
     # freeze header row represented by A1
