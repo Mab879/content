@@ -275,7 +275,7 @@ of the information system but does not want to logout because of the temporary n
 
 $ gsettings get org.gnome.desktop.screensaver lock-enabled
 If properly configured, the output should be true.
-To ensure that users cannot change how long until the the screensaver locks, run the following:
+To ensure that users cannot change how long until the screensaver locks, run the following:
 $ grep lock-enabled /etc/dconf/db/local.d/locks/*
 If properly configured, the output for lock-enabled should be /org/gnome/desktop/screensaver/lock-enabled
       Is it the case that screensaver locking is not enabled and/or has not been set or configured correctly?
@@ -336,7 +336,7 @@ After the settings have been set, run <code>dconf update</code>.</pre></td>
 <td>SRG-OS-ID</td>
 <td><pre>A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity
 of the information system but does not want to logout because of the temporary nature of the absense.</pre></td>
-<td><pre>To ensure that users cannot change how long until the the screensaver locks, run the following:
+<td><pre>To ensure that users cannot change how long until the screensaver locks, run the following:
 $ grep lock-enabled /etc/dconf/db/local.d/locks/*
 If properly configured, the output for lock-enabled should be /org/gnome/desktop/screensaver/lock-enabled
       Is it the case that screensaver locking is not locked?
@@ -367,7 +367,7 @@ If properly configured, the output should be 'uint32 '.
 To ensure that users cannot change the screensaver inactivity timeout setting, run the following:
 $ grep idle-delay /etc/dconf/db/local.d/locks/*
 If properly configured, the output should be /org/gnome/desktop/session/idle-delay
-      Is it the case that idle-delay is not equal to or less than the expected value?
+      Is it the case that idle-delay is set to 0 or a value greater than &lt;sub idref="inactivity_timeout_value" /&gt;?
       </pre></td>
 <td><pre>The idle time-out value for inactivity in the GNOME3 desktop is configured via the <code>idle-delay</code>
 setting must be set under an appropriate configuration file(s) in the <code>/etc/dconf/db/local.d</code> directory
@@ -376,12 +376,7 @@ and locked in <code>/etc/dconf/db/local.d/locks</code> directory to prevent user
 For example, to configure the system for a 15 minute delay, add the following to
 <code>/etc/dconf/db/local.d/00-security-settings</code>:
 <pre>[org/gnome/desktop/session]
-idle-delay=uint32 900</pre>
-Once the setting has been added, add a lock to
-<code>/etc/dconf/db/local.d/locks/00-security-settings-lock</code> to prevent user modification.
-For example:
-<pre>/org/gnome/desktop/session/idle-delay</pre>
-After the settings have been set, run <code>dconf update</code>.</pre></td>
+idle-delay=uint32 900</pre></pre></td>
 <td>RHEL-07-010070</td>
 <td>dconf_gnome_screensaver_idle_delay</td>
 </tr>
@@ -426,7 +421,7 @@ session lock. As such, users should not be allowed to change session settings.</
 $ grep 'idle-delay' /etc/dconf/db/local.d/locks/*
 If properly configured, the output should return:
 /org/gnome/desktop/session/idle-delay
-      Is it the case that GNOME3 session settings are not locked or configured properly?
+      Is it the case that idle-delay is not locked?
       </pre></td>
 <td><pre>If not already configured, ensure that users cannot change GNOME3 session idle settings
 by adding <code>/org/gnome/desktop/session/idle-delay</code>
@@ -508,11 +503,7 @@ of the information system but does not want to logout because of the temporary n
 <td><pre>To check that the screen locks immediately when activated, run the following command:
 $ gsettings get org.gnome.desktop.screensaver lock-delay
 If properly configured, the output should be 'uint32 '.
-
-To ensure that users cannot change how long until the the screensaver locks, run the following:
-$ grep lock-delay /etc/dconf/db/local.d/locks/*
-If properly configured, the output for lock-delay should be /org/gnome/desktop/screensaver/lock-delay
-      Is it the case that the screensaver lock delay is missing, or is set to a value greater than 5?
+      Is it the case that the screensaver lock delay is missing, or is set to a value greater than &lt;sub idref="var_screensaver_lock_delay" /&gt;?
       </pre></td>
 <td><pre>To activate the locking delay of the screensaver in the GNOME3 desktop when
 the screensaver is activated, add or set <code>lock-delay</code> to <code>uint32 <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_screensaver_lock_delay"></xccdf-1.1:sub></code> in
@@ -520,10 +511,6 @@ the screensaver is activated, add or set <code>lock-delay</code> to <code>uint32
 <pre>[org/gnome/desktop/screensaver]
 lock-delay=uint32 <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_screensaver_lock_delay"></xccdf-1.1:sub>
 </pre>
-Once the setting has been added, add a lock to
-<code>/etc/dconf/db/local.d/locks/00-security-settings-lock</code> to prevent user modification.
-For example:
-<pre>/org/gnome/desktop/screensaver/lock-delay</pre>
 After the settings have been set, run <code>dconf update</code>.</pre></td>
 <td>RHEL-07-010110</td>
 <td>dconf_gnome_screensaver_lock_delay</td>
@@ -558,7 +545,7 @@ $ grep pam_pwquality /etc/pam.d/system-auth
 
 The retry parameter will indicate how many attempts are permitted.
 The DoD required value is less than or equal to 3.
-This would appear as retry=3, or a lower value.
+This would appear as retry=, or a lower value.
       Is it the case that it is not the required value?
       </pre></td>
 <td><pre>To configure the number of retry prompts that are permitted per-session:
@@ -675,15 +662,16 @@ attacks.
 <br><br>
 Password complexity is one factor of several that determines how long it takes
 to crack a password. The more complex the password, the greater the number of
-possble combinations that need to be tested before the password is compromised.
+possible combinations that need to be tested before the password is compromised.
 Requiring a minimum number of special characters makes password guessing attacks
 more difficult by ensuring a larger search space.</pre></td>
 <td><pre>To check how many special characters are required in a password, run the following command:
 $ grep ocredit /etc/security/pwquality.conf
-The ocredit parameter (as a negative number) will indicate how many special characters are required.
+The ocredit parameter (as a negative number) will indicate how many special
+characters are required.
 The DoD and FISMA require at least one special character in a password.
 This would appear as ocredit = -1.
-      Is it the case that ocredit is not found or not equal to or less than the required value?
+      Is it the case that value of "ocredit" is a positive number or is commented out?
       </pre></td>
 <td><pre>The pam_pwquality module's <code>ocredit=</code> parameter controls requirements for
 usage of special (or "other") characters in a password. When set to a negative number,
@@ -1207,7 +1195,7 @@ draws appropriate attention to such situations.</pre></td>
 $ grep pam_faillock /etc/pam.d/system-auth /etc/pam.d/password-auth
 For each file, the output should show unlock_time=&lt;interval-in-seconds&gt; where interval-in-seconds is  or greater.
 
-It can also be 0 for never.
+It can also be 0 or never.
       Is it the case that unlock_time is less than the expected value?
       </pre></td>
 <td><pre>This rule configures the system to lock out accounts during a specified time period after a
@@ -1286,7 +1274,7 @@ is critical that the user re-authenticate.</pre></td>
 <td><pre>To determine if NOPASSWD has been configured for sudo, run the following command:
 $ sudo grep -ri nopasswd /etc/sudoers /etc/sudoers.d/
 The command should return no output.
-      Is it the case that nopasswd is enabled in sudo?
+      Is it the case that nopasswd is specified in the sudo config files?
       </pre></td>
 <td><pre>The sudo <code>NOPASSWD</code> tag, when specified, allows a user to execute
 commands using sudo without having to authenticate. This should be disabled
@@ -1403,7 +1391,7 @@ is critical that the user re-authenticate.</pre></td>
 <td><pre>To determine if !authenticate has not been configured for sudo, run the following command:
 $ sudo grep -r \!authenticate /etc/sudoers /etc/sudoers.d/
 The command should return no output.
-      Is it the case that !authenticate is enabled in sudo?
+      Is it the case that !authenticate is specified in the sudo config files?
       </pre></td>
 <td><pre>The sudo <code>!authenticate</code> option, when specified, allows a user to execute commands using
 sudo without having to authenticate. This should be disabled by making sure that the
@@ -1977,7 +1965,7 @@ The output should return something similar to the following:
 
 
 NOTE: The usage of special cron times, such as @daily or @weekly, is acceptable.
-      Is it the case that AIDE is not configured to periodicly scan?
+      Is it the case that AIDE is not configured to scan periodically?
       </pre></td>
 <td><pre>At a minimum, AIDE should be configured to run a weekly scan.
 To implement a daily execution of AIDE at 4:05am using cron, add the following line to <code>/etc/crontab</code>:
@@ -2107,7 +2095,7 @@ $ grep -r usb-storage /etc/modprobe.conf /etc/modprobe.d
 to prevent automatic loading of the USB storage driver.
 
 To configure the system to prevent the <code>usb-storage</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/usb-storage.conf</code>:
 <pre>install usb-storage /bin/true</pre>
 This will prevent the <code>modprobe</code> program from loading the <code>usb-storage</code>
 module, but will not prevent an administrator (or another program) from using the
@@ -2136,7 +2124,7 @@ relatively new transport layer protocol, designed to support
 streaming media and telephony.
 
 To configure the system to prevent the <code>dccp</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/dccp.conf</code>:
 <pre>install dccp /bin/true</pre></pre></td>
 <td>RHEL-07-020101</td>
 <td>kernel_module_dccp_disabled</td>
@@ -2174,7 +2162,7 @@ If the service is masked the command will return the following outputs:
 LoadState=masked
 
 UnitFileState=masked
-      Is it the case that ?
+      Is it the case that the autofs service is not disabled?
       </pre></td>
 <td><pre>The <code>autofs</code> daemon mounts and unmounts filesystems, such as user
 home directories shared via NFS, on demand. In addition, autofs can be used to handle
@@ -2196,7 +2184,8 @@ The <code>autofs</code> service can be disabled with the following command:
 <td>medium</td>
 <td>The Red Hat Enterprise Linux operating system must disable the graphical user interface automounter unless required.</td>
 <td>SRG-OS-ID</td>
-<td><pre>Disabling automatic mount running in GNOME3 can prevent
+<td><pre>Automatically mounting file systems permits easy introduction of unknown devices, thereby facilitating malicious activity.
+Disabling automatic mount running in GNOME3 can prevent
 the introduction of malware via removable media.
 It will, however, also prevent desktop users from legitimate use
 of removable media.</pre></td>
@@ -2393,11 +2382,10 @@ A misconfigured umask value could result in files with excessive permissions tha
 written to by unauthorized users.</pre></td>
 <td><pre>Verify the UMASK setting is configured correctly in the /etc/login.defs file by
 running the following command:
-# grep -i "UMASK" /etc/login.defs
-All output must show the value of umask set as shown in the below:
-# grep -i "UMASK" /etc/login.defs
-umask 
-      Is it the case that the above command returns no output, or if the umask is configured incorrectly?
+$ sudo grep "UMASK" /etc/login.defs
+All output must show the value of UMASK set as shown in the below:
+UMASK 
+      Is it the case that the above command returns no output, or the umask is configured incorrectly?
       </pre></td>
 <td><pre>To ensure the default umask controlled by <code>/etc/login.defs</code> is set properly,
 add or correct the <code>UMASK</code> setting in <code>/etc/login.defs</code> to read as follows:
@@ -3166,7 +3154,7 @@ run the command:
 $ ls -lL /etc/cron.allow
 If properly configured, the output should indicate the following owner:
 root
-      Is it the case that /etc/cron.allow has owner root?
+      Is it the case that /etc/cron.allow does not have an owner of root?
       </pre></td>
 <td><pre>If <code>/etc/cron.allow</code> exists, it must be owned by <code>root</code>.
 
@@ -3188,7 +3176,7 @@ run the command:
 $ ls -lL /etc/cron.allow
 If properly configured, the output should indicate the following group-owner:
 root
-      Is it the case that /etc/cron.allow has group owner root?
+      Is it the case that /etc/cron.allow does not have a group owner of root?
       </pre></td>
 <td><pre>If <code>/etc/cron.allow</code> exists, it must be group-owned by <code>root</code>.
 
@@ -3846,7 +3834,7 @@ risk from insider threats and the advanced persistent threat.</pre></td>
 The audit daemon must be restarted for the changes to take effect.
 
 # sudo systemctl restart auditd.service
-      Is it the case that it is not the case?
+      Is it the case that the lines are commented out or do not exist?
       </pre></td>
 <td><pre>Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
@@ -4156,7 +4144,7 @@ utility to read audit rules during daemon startup, add the following lines to
 as an attacker attempting to remove evidence of an intrusion.</pre></td>
 <td><pre>To verify that auditing is configured for system administrator actions, run the following command:
 $ sudo auditctl -l | grep "watch=/var/run/faillock\|-w /var/run/faillock"
-      Is it the case that there is not output?
+      Is it the case that there is no output?
       </pre></td>
 <td><pre>The audit system already collects login information for all users
 and root. If the <code>auditd</code> daemon is configured to use the
@@ -5238,13 +5226,7 @@ services to have access to the system. To configure <code>firewalld</code>
 to open ports, run the following command:
 <pre>$ sudo firewall-cmd --permanent --add-port=<i>port_number</i>/tcp</pre>
 or
-<pre>$ sudo firewall-cmd --permanent --add-port=<i>service_name</i></pre>
-Run the command list above for each of the ports listed below:
-
-To configure <code>firewalld</code> to allow access, run the following command(s):
-
-
-<code>firewall-cmd --permanent --add-service=ssh</code></pre></td>
+<pre>$ sudo firewall-cmd --permanent --add-port=<i>service_name</i></pre></pre></td>
 <td>RHEL-07-040100</td>
 <td>configure_firewalld_ports</td>
 </tr>
@@ -5494,7 +5476,7 @@ Run the following command to determine the current status of the
 sshd service:
 $ systemctl is-active sshd
 If the service is running, it should return the following: active
-      Is it the case that ?
+      Is it the case that sshd service is disabled?
       </pre></td>
 <td><pre>The SSH server service, sshd, is commonly needed.
 
@@ -6998,7 +6980,7 @@ log_file=/var/log/audit/audit.log
 $ sudo stat -c "%n %a" /var/log/audit/*
 $ sudo ls -l /var/log/audit
 Audit logs must be mode 0640 or less permissive.
-      Is it the case that any are more permissive?
+      Is it the case that any permissions are more permissive?
       </pre></td>
 <td><pre>If <code>log_group</code> in <code>/etc/audit/auditd.conf</code> is set to a group other than the <code>root</code>
 group account, change the mode of the audit log files with the following command:

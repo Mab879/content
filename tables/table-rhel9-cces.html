@@ -314,6 +314,19 @@ The rule checks if settings for selected crypto policy are configured as expecte
 Crypto policies may be customized by crypto policy modules, in which case it is delimited from the base policy using a colon.</td>
 </tr>
 <tr>
+<td>CCE-86860-4</td>
+<td>Configure GnuTLS library to use DoD-approved TLS Encryption</td>
+<td>Crypto Policies provide a centralized control over crypto algorithms usage of many packages.
+GnuTLS is supported by system crypto policy, but the GnuTLS configuration may be
+set up to ignore it.
+
+To check that Crypto Policies settings are configured correctly, ensure that
+<code>/etc/crypto-policies/back-ends/gnutls.config</code> contains the following
+line and is not commented out:
+<code>+VERS-ALL:-VERS-DTLS0.9:-VERS-SSL3.0:-VERS-TLS1.0:-VERS-TLS1.1:-VERS-DTLS1.0</code>
+</td>
+</tr>
+<tr>
 <td>CCE-83449-9</td>
 <td>Configure Kerberos to use System Crypto Policy</td>
 <td>Crypto Policies provide a centralized control over crypto algorithms usage of many packages.
@@ -485,9 +498,9 @@ sessions which may become compromised.</td>
 which is provided for DoD systems and uses signatures to search for the
 presence of viruses on the filesystem.
 
-The <code>mcafeetp</code> package can be installed with the following command:
+The <code>McAfeeTP</code> package can be installed with the following command:
 <pre>
-$ sudo dnf install mcafeetp</pre>
+$ sudo dnf install McAfeeTP</pre>
 </td>
 </tr>
 <tr>
@@ -919,11 +932,7 @@ For example, to configure the system for a 15 minute delay, add the following to
 <code>/etc/dconf/db/local.d/00-security-settings</code>:
 <pre>[org/gnome/desktop/session]
 idle-delay=uint32 900</pre>
-Once the setting has been added, add a lock to
-<code>/etc/dconf/db/local.d/locks/00-security-settings-lock</code> to prevent user modification.
-For example:
-<pre>/org/gnome/desktop/session/idle-delay</pre>
-After the settings have been set, run <code>dconf update</code>.</td>
+</td>
 </tr>
 <tr>
 <td>CCE-86954-5</td>
@@ -934,10 +943,6 @@ the screensaver is activated, add or set <code>lock-delay</code> to <code>uint32
 <pre>[org/gnome/desktop/screensaver]
 lock-delay=uint32 <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_screensaver_lock_delay"></xccdf-1.1:sub>
 </pre>
-Once the setting has been added, add a lock to
-<code>/etc/dconf/db/local.d/locks/00-security-settings-lock</code> to prevent user modification.
-For example:
-<pre>/org/gnome/desktop/screensaver/lock-delay</pre>
 After the settings have been set, run <code>dconf update</code>.</td>
 </tr>
 <tr>
@@ -1982,9 +1987,14 @@ system, interactive boot can be enabled by providing a <code>1</code>,
 <code>yes</code>, <code>true</code>, or <code>on</code> value to the
 <code>systemd.confirm_spawn</code> kernel argument in <code>/etc/default/grub</code>.
 Remove any instance of <pre>systemd.confirm_spawn=(1|yes|true|on)</pre> from
-the kernel arguments in that file to disable interactive boot. It is also
-required to change the runtime configuration, run:
+the kernel arguments in that file to disable interactive boot.
+Recovery booting must also be disabled. Confirm that
+<code>GRUB_DISABLE_RECOVERY=true</code> is set in  <code>/etc/default/grub</code>.
+It is also required to change the runtime configuration, run:
+
 <pre>/sbin/grubby --update-kernel=ALL --remove-args="systemd.confirm_spawn"</pre>
+
+<pre>grub2-mkconfig -o /boot/grub2/grub.cfg</pre>
 </td>
 </tr>
 <tr>
@@ -6797,7 +6807,7 @@ Load new Audit rules into kernel by running:
 Note: This rule utilizes a file provided by <code>Audit</code> package to comply with OSPP 4.2.1. You may reuse this rule in different profiles. If you decide to do so, it is recommended that you inspect contents of the file closely and make sure that they are alligned with your needs.</td>
 </tr>
 <tr>
-<td></td>
+<td>CCE-85991-8</td>
 <td>Configure audit according to OSPP requirements</td>
 <td>Configure audit to meet requirements for Operating System Protection Profile (OSPP) v4.2.1.
 
@@ -7169,10 +7179,10 @@ When prompted, enter the password that was selected.
 <tr>
 <td>CCE-85925-6</td>
 <td>Verify the UEFI Boot Loader grub.cfg Permissions</td>
-<td>File permissions for <code>/boot/efi/EFI/redhat/grub.cfg</code> should be set to 700.
+<td>File permissions for <code>/boot/grub2/grub.cfg</code> should be set to 700.
 
-To properly set the permissions of <code>/boot/efi/EFI/redhat/grub.cfg</code>, run the command:
-<pre>$ sudo chmod 700 /boot/efi/EFI/redhat/grub.cfg</pre>
+To properly set the permissions of <code>/boot/grub2/grub.cfg</code>, run the command:
+<pre>$ sudo chmod 700 /boot/grub2/grub.cfg</pre>
 </td>
 </tr>
 <tr>
@@ -8638,12 +8648,6 @@ to open ports, run the following command:
 <pre>$ sudo firewall-cmd --permanent --add-port=<i>port_number</i>/tcp</pre>
 or
 <pre>$ sudo firewall-cmd --permanent --add-port=<i>service_name</i></pre>
-Run the command list above for each of the ports listed below:
-
-To configure <code>firewalld</code> to allow access, run the following command(s):
-
-
-<code>firewall-cmd --permanent --add-service=ssh</code>
 </td>
 </tr>
 <tr>
@@ -9042,7 +9046,7 @@ To make sure that the setting is persistent, add the following line to a file in
 </td>
 </tr>
 <tr>
-<td></td>
+<td>CCE-86394-4</td>
 <td>Configure Kernel to Rate Limit Sending of Duplicate TCP Acknowledgments</td>
 <td>Make sure that the system is configured to limit the maximal rate for sending
 duplicate acknowledgments in response to incoming TCP packets that are for
@@ -9102,7 +9106,7 @@ network, data link, and physical layers, based on virtual circuits
 and virtual paths.
 
 To configure the system to prevent the <code>atm</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/atm.conf</code>:
 <pre>install atm /bin/true</pre>
 </td>
 </tr>
@@ -9114,7 +9118,7 @@ protocol which was initially developed for automotive and
 is now also used in marine, industrial, and medical applications.
 
 To configure the system to prevent the <code>can</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/can.conf</code>:
 <pre>install can /bin/true</pre>
 </td>
 </tr>
@@ -9126,7 +9130,7 @@ relatively new transport layer protocol, designed to support
 streaming media and telephony.
 
 To configure the system to prevent the <code>dccp</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/dccp.conf</code>:
 <pre>install dccp /bin/true</pre>
 </td>
 </tr>
@@ -9137,7 +9141,7 @@ kernel module from being loaded, add the following line to a file in the directo
 high-speed real-time communication.
 
 To configure the system to prevent the <code>firewire-core</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/firewire-core.conf</code>:
 <pre>install firewire-core /bin/true</pre>
 </td>
 </tr>
@@ -9149,7 +9153,7 @@ layer protocol designed to provide reliable high-bandwidth,
 low-latency communications between nodes in a cluster.
 
 To configure the system to prevent the <code>rds</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/rds.conf</code>:
 <pre>install rds /bin/true</pre>
 </td>
 </tr>
@@ -9162,7 +9166,7 @@ message-oriented communication, with several streams of messages
 within one connection.
 
 To configure the system to prevent the <code>sctp</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/sctp.conf</code>:
 <pre>install sctp /bin/true</pre>
 </td>
 </tr>
@@ -9174,7 +9178,7 @@ is designed to provide communications between nodes in a
 cluster.
 
 To configure the system to prevent the <code>tipc</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/tipc.conf</code>:
 <pre>install tipc /bin/true</pre>
 </td>
 </tr>
@@ -9193,7 +9197,7 @@ to prevent the loading of the Bluetooth module:
 <td>Disable Kernel cfg80211 Module</td>
 <td>
 To configure the system to prevent the <code>cfg80211</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/cfg80211.conf</code>:
 <pre>install cfg80211 /bin/true</pre>
 </td>
 </tr>
@@ -9202,7 +9206,7 @@ kernel module from being loaded, add the following line to a file in the directo
 <td>Disable Kernel iwlmvm Module</td>
 <td>
 To configure the system to prevent the <code>iwlmvm</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/iwlmvm.conf</code>:
 <pre>install iwlmvm /bin/true</pre>
 </td>
 </tr>
@@ -9211,7 +9215,7 @@ kernel module from being loaded, add the following line to a file in the directo
 <td>Disable Kernel iwlwifi Module</td>
 <td>
 To configure the system to prevent the <code>iwlwifi</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/iwlwifi.conf</code>:
 <pre>install iwlwifi /bin/true</pre>
 </td>
 </tr>
@@ -9220,7 +9224,7 @@ kernel module from being loaded, add the following line to a file in the directo
 <td>Disable Kernel mac80211 Module</td>
 <td>
 To configure the system to prevent the <code>mac80211</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/mac80211.conf</code>:
 <pre>install mac80211 /bin/true</pre>
 </td>
 </tr>
@@ -9823,7 +9827,7 @@ The <code>autofs</code> service can be disabled with the following command:
 <td>Disable Mounting of cramfs</td>
 <td>
 To configure the system to prevent the <code>cramfs</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/cramfs.conf</code>:
 <pre>install cramfs /bin/true</pre>
 This effectively prevents usage of this uncommon filesystem.
 
@@ -9837,7 +9841,7 @@ decompress the image.</td>
 <td>Disable Mounting of freevxfs</td>
 <td>
 To configure the system to prevent the <code>freevxfs</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/freevxfs.conf</code>:
 <pre>install freevxfs /bin/true</pre>
 This effectively prevents usage of this uncommon filesystem.</td>
 </tr>
@@ -9846,7 +9850,7 @@ This effectively prevents usage of this uncommon filesystem.</td>
 <td>Disable Mounting of hfs</td>
 <td>
 To configure the system to prevent the <code>hfs</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/hfs.conf</code>:
 <pre>install hfs /bin/true</pre>
 This effectively prevents usage of this uncommon filesystem.</td>
 </tr>
@@ -9855,7 +9859,7 @@ This effectively prevents usage of this uncommon filesystem.</td>
 <td>Disable Mounting of hfsplus</td>
 <td>
 To configure the system to prevent the <code>hfsplus</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/hfsplus.conf</code>:
 <pre>install hfsplus /bin/true</pre>
 This effectively prevents usage of this uncommon filesystem.</td>
 </tr>
@@ -9864,7 +9868,7 @@ This effectively prevents usage of this uncommon filesystem.</td>
 <td>Disable Mounting of jffs2</td>
 <td>
 To configure the system to prevent the <code>jffs2</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/jffs2.conf</code>:
 <pre>install jffs2 /bin/true</pre>
 This effectively prevents usage of this uncommon filesystem.</td>
 </tr>
@@ -9873,7 +9877,7 @@ This effectively prevents usage of this uncommon filesystem.</td>
 <td>Disable Mounting of squashfs</td>
 <td>
 To configure the system to prevent the <code>squashfs</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/squashfs.conf</code>:
 <pre>install squashfs /bin/true</pre>
 This effectively prevents usage of this uncommon filesystem.
 
@@ -9887,7 +9891,7 @@ to first decompress the image.</td>
 <td>Disable Mounting of udf</td>
 <td>
 To configure the system to prevent the <code>udf</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/udf.conf</code>:
 <pre>install udf /bin/true</pre>
 This effectively prevents usage of this uncommon filesystem.
 
@@ -9904,7 +9908,7 @@ writing DVDs and newer optical disc formats.</td>
 to prevent automatic loading of the USB storage driver.
 
 To configure the system to prevent the <code>usb-storage</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/usb-storage.conf</code>:
 <pre>install usb-storage /bin/true</pre>
 This will prevent the <code>modprobe</code> program from loading the <code>usb-storage</code>
 module, but will not prevent an administrator (or another program) from using the
@@ -9915,7 +9919,7 @@ module, but will not prevent an administrator (or another program) from using th
 <td>Disable Mounting of vFAT filesystems</td>
 <td>
 To configure the system to prevent the <code>vfat</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/vfat.conf</code>:
 <pre>install vfat /bin/true</pre>
 This effectively prevents usage of this uncommon filesystem.
 
@@ -15439,10 +15443,10 @@ the following line in
 </tr>
 <tr>
 <td>CCE-87088-1</td>
-<td>Certificate certificate status checking in SSSD</td>
+<td>Certificate status checking in SSSD</td>
 <td>Multifactor solutions that require devices separate from information systems gaining access include,
 for example, hardware tokens providing time-based or challenge-response authenticators and smart cards.
-By configuring <code>certificate_verification</code> to <code>ocsp_dgst=sha1</code> sures that certificates for
+Configuring <code>certificate_verification</code> to <code>ocsp_dgst=<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_sssd_certificate_verification_digest_function"></xccdf-1.1:sub></code> ensures that certificates for
 multifactor solutions are checked via Online Certificate Status Protocol (OCSP).</td>
 </tr>
 <tr>
@@ -15510,7 +15514,7 @@ The <code>usbguard</code> service can be enabled with the following command:
 needs to be set to <code>LinuxAudit</code>.</td>
 </tr>
 <tr>
-<td></td>
+<td>CCE-85990-0</td>
 <td>Authorize Human Interface Devices in USBGuard daemon</td>
 <td>To allow authorization of Human Interface Devices (keyboard, mouse)
 by USBGuard daemon,

@@ -573,7 +573,7 @@ depending on the OS version.</td>
 $ grep pam_faillock /etc/pam.d/system-auth /etc/pam.d/password-auth
 For each file, the output should show unlock_time=&lt;interval-in-seconds&gt; where interval-in-seconds is  or greater.
 
-It can also be 0 for never.
+It can also be 0 or never.
       Is it the case that unlock_time is less than the expected value?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3719r557039_fix">Configure the operating system to enforce the limit of three consecutive invalid logon attempts by a user during a 15-minute time period.</fixtext></td>
@@ -1178,7 +1178,7 @@ After the settings have been set, run <code>dconf update</code>.</td>
 
 $ gsettings get org.gnome.desktop.screensaver lock-enabled
 If properly configured, the output should be true.
-To ensure that users cannot change how long until the the screensaver locks, run the following:
+To ensure that users cannot change how long until the screensaver locks, run the following:
 $ grep lock-enabled /etc/dconf/db/local.d/locks/*
 If properly configured, the output for lock-enabled should be /org/gnome/desktop/screensaver/lock-enabled
       Is it the case that screensaver locking is not enabled and/or has not been set or configured correctly?
@@ -1193,6 +1193,42 @@ lock-enabled=true
 
 Once the settings have been added, add a lock to
 /etc/dconf/db/local.d/locks/00-security-settings-lock to prevent user modification.
+For example:
+/org/gnome/desktop/screensaver/lock-enabled
+After the settings have been set, run dconf update.</td>
+<td>medium</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SV-70891</td>
+<td>SRG-OS-000028-GPOS-00009</td>
+<td><i>TBD - Assigned by DISA after STIG release</i></td>
+<td>The operating system must retain a users session lock until that user reestablishes access using established identification and authentication procedures.</td>
+<td>CCE-80563-0:Ensure Users Cannot Change GNOME3 Screensaver Lock After Idle Period</td>
+<td>A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not want to log out because of the temporary nature of the absence.
+
+The session lock is implemented at the point where session activity can be determined.
+
+Regardless of where the session lock is determined and implemented, once invoked, the session lock shall remain in place until the user re-authenticates. No other activity aside from re-authentication shall unlock the system.</td>
+<td>If not already configured, ensure that users cannot change GNOME3 screensaver lock settings
+by adding <pre>/org/gnome/desktop/screensaver/lock-enabled</pre>
+to <code>/etc/dconf/db/local.d/00-security-settings</code>.
+For example:
+<pre>/org/gnome/desktop/screensaver/lock-enabled</pre>
+After the settings have been set, run <code>dconf update</code>.</td>
+<td>Applicable - Configurable</td>
+<td>Verify the operating system retains a user's session lock until that user reestablishes access using established identification and authentication procedures. If it does not, this is a finding.</td>
+<td>To ensure that users cannot change how long until the screensaver locks, run the following:
+$ grep lock-enabled /etc/dconf/db/local.d/locks/*
+If properly configured, the output for lock-enabled should be /org/gnome/desktop/screensaver/lock-enabled
+      Is it the case that screensaver locking is not locked?
+      </td>
+<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3723r557051_fix">Configure the operating system to retain a user's session lock until that user reestablishes access using established identification and authentication procedures.</fixtext></td>
+<td>If not already configured, ensure that users cannot change GNOME3 screensaver lock settings
+by adding /org/gnome/desktop/screensaver/lock-enabled
+to /etc/dconf/db/local.d/00-security-settings.
 For example:
 /org/gnome/desktop/screensaver/lock-enabled
 After the settings have been set, run dconf update.</td>
@@ -1297,11 +1333,7 @@ For example, to configure the system for a 15 minute delay, add the following to
 <code>/etc/dconf/db/local.d/00-security-settings</code>:
 <pre>[org/gnome/desktop/session]
 idle-delay=uint32 900</pre>
-Once the setting has been added, add a lock to
-<code>/etc/dconf/db/local.d/locks/00-security-settings-lock</code> to prevent user modification.
-For example:
-<pre>/org/gnome/desktop/session/idle-delay</pre>
-After the settings have been set, run <code>dconf update</code>.</td>
+</td>
 <td>Applicable - Configurable</td>
 <td>Verify the operating system initiates a session lock after a 15-minute period of inactivity for all connection types. If it does not, this is a finding.</td>
 <td>To check the current idle time-out value, run the following command:
@@ -1310,7 +1342,7 @@ If properly configured, the output should be 'uint32 '.
 To ensure that users cannot change the screensaver inactivity timeout setting, run the following:
 $ grep idle-delay /etc/dconf/db/local.d/locks/*
 If properly configured, the output should be /org/gnome/desktop/session/idle-delay
-      Is it the case that idle-delay is not equal to or less than the expected value?
+      Is it the case that idle-delay is set to 0 or a value greater than &lt;sub idref="inactivity_timeout_value" /&gt;?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3724r557054_fix">Configure the operating system to initiate a session lock after a 15-minute period of inactivity for all connection types.</fixtext></td>
 <td>The idle time-out value for inactivity in the GNOME3 desktop is configured via the idle-delay
@@ -1320,12 +1352,7 @@ and locked in /etc/dconf/db/local.d/locks directory to prevent user modification
 For example, to configure the system for a 15 minute delay, add the following to
 /etc/dconf/db/local.d/00-security-settings:
 [org/gnome/desktop/session]
-idle-delay=uint32 900
-Once the setting has been added, add a lock to
-/etc/dconf/db/local.d/locks/00-security-settings-lock to prevent user modification.
-For example:
-/org/gnome/desktop/session/idle-delay
-After the settings have been set, run dconf update.</td>
+idle-delay=uint32 900</td>
 <td>medium</td>
 <td></td>
 <td></td>
@@ -1346,21 +1373,13 @@ the screensaver is activated, add or set <code>lock-delay</code> to <code>uint32
 <pre>[org/gnome/desktop/screensaver]
 lock-delay=uint32 <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_screensaver_lock_delay"></xccdf-1.1:sub>
 </pre>
-Once the setting has been added, add a lock to
-<code>/etc/dconf/db/local.d/locks/00-security-settings-lock</code> to prevent user modification.
-For example:
-<pre>/org/gnome/desktop/screensaver/lock-delay</pre>
 After the settings have been set, run <code>dconf update</code>.</td>
 <td>Applicable - Configurable</td>
 <td>Verify the operating system initiates a session lock after a 15-minute period of inactivity for all connection types. If it does not, this is a finding.</td>
 <td>To check that the screen locks immediately when activated, run the following command:
 $ gsettings get org.gnome.desktop.screensaver lock-delay
 If properly configured, the output should be 'uint32 '.
-
-To ensure that users cannot change how long until the the screensaver locks, run the following:
-$ grep lock-delay /etc/dconf/db/local.d/locks/*
-If properly configured, the output for lock-delay should be /org/gnome/desktop/screensaver/lock-delay
-      Is it the case that the screensaver lock delay is missing, or is set to a value greater than 5?
+      Is it the case that the screensaver lock delay is missing, or is set to a value greater than &lt;sub idref="var_screensaver_lock_delay" /&gt;?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3724r557054_fix">Configure the operating system to initiate a session lock after a 15-minute period of inactivity for all connection types.</fixtext></td>
 <td>To activate the locking delay of the screensaver in the GNOME3 desktop when
@@ -1369,44 +1388,6 @@ the screensaver is activated, add or set lock-delay to uint32  in
 [org/gnome/desktop/screensaver]
 lock-delay=uint32 
 
-Once the setting has been added, add a lock to
-/etc/dconf/db/local.d/locks/00-security-settings-lock to prevent user modification.
-For example:
-/org/gnome/desktop/screensaver/lock-delay
-After the settings have been set, run dconf update.</td>
-<td>medium</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>V-56633</td>
-<td>SRG-OS-000029-GPOS-00010</td>
-<td><i>TBD - Assigned by DISA after STIG release</i></td>
-<td>The operating system must initiate a session lock after a 15-minute period of inactivity for all connection types.</td>
-<td>CCE-80563-0:Ensure Users Cannot Change GNOME3 Screensaver Lock After Idle Period</td>
-<td>A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, operating systems need to be able to identify when a user's session has idled and take action to initiate the session lock.
-
-The session lock is implemented at the point where session activity can be determined and/or controlled.</td>
-<td>If not already configured, ensure that users cannot change GNOME3 screensaver lock settings
-by adding <pre>/org/gnome/desktop/screensaver/lock-enabled</pre>
-to <code>/etc/dconf/db/local.d/00-security-settings</code>.
-For example:
-<pre>/org/gnome/desktop/screensaver/lock-enabled</pre>
-After the settings have been set, run <code>dconf update</code>.</td>
-<td>Applicable - Configurable</td>
-<td>Verify the operating system initiates a session lock after a 15-minute period of inactivity for all connection types. If it does not, this is a finding.</td>
-<td>To ensure that users cannot change how long until the the screensaver locks, run the following:
-$ grep lock-enabled /etc/dconf/db/local.d/locks/*
-If properly configured, the output for lock-enabled should be /org/gnome/desktop/screensaver/lock-enabled
-      Is it the case that screensaver locking is not locked?
-      </td>
-<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3724r557054_fix">Configure the operating system to initiate a session lock after a 15-minute period of inactivity for all connection types.</fixtext></td>
-<td>If not already configured, ensure that users cannot change GNOME3 screensaver lock settings
-by adding /org/gnome/desktop/screensaver/lock-enabled
-to /etc/dconf/db/local.d/00-security-settings.
-For example:
-/org/gnome/desktop/screensaver/lock-enabled
 After the settings have been set, run dconf update.</td>
 <td>medium</td>
 <td></td>
@@ -1469,7 +1450,7 @@ After the settings have been set, run <code>dconf update</code>.</td>
 $ grep 'idle-delay' /etc/dconf/db/local.d/locks/*
 If properly configured, the output should return:
 /org/gnome/desktop/session/idle-delay
-      Is it the case that GNOME3 session settings are not locked or configured properly?
+      Is it the case that idle-delay is not locked?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3724r557054_fix">Configure the operating system to initiate a session lock after a 15-minute period of inactivity for all connection types.</fixtext></td>
 <td>If not already configured, ensure that users cannot change GNOME3 session idle settings
@@ -1549,7 +1530,7 @@ After the settings have been set, run <code>dconf update</code>.</td>
 
 $ gsettings get org.gnome.desktop.screensaver lock-enabled
 If properly configured, the output should be true.
-To ensure that users cannot change how long until the the screensaver locks, run the following:
+To ensure that users cannot change how long until the screensaver locks, run the following:
 $ grep lock-enabled /etc/dconf/db/local.d/locks/*
 If properly configured, the output for lock-enabled should be /org/gnome/desktop/screensaver/lock-enabled
       Is it the case that screensaver locking is not enabled and/or has not been set or configured correctly?
@@ -1573,27 +1554,119 @@ After the settings have been set, run dconf update.</td>
 <td></td>
 </tr>
 <tr>
+<td>V-56635</td>
+<td>SRG-OS-000030-GPOS-00011</td>
+<td><i>TBD - Assigned by DISA after STIG release</i></td>
+<td>The operating system must provide the capability for users to directly initiate a session lock for all connection types.</td>
+<td>CCE-80563-0:Ensure Users Cannot Change GNOME3 Screensaver Lock After Idle Period</td>
+<td>A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not want to log out because of the temporary nature of the absence.
+
+The session lock is implemented at the point where session activity can be determined. Rather than be forced to wait for a period of time to expire before the user session can be locked, operating systems need to provide users with the ability to manually invoke a session lock so users may secure their session should the need arise for them to temporarily vacate the immediate physical vicinity.</td>
+<td>If not already configured, ensure that users cannot change GNOME3 screensaver lock settings
+by adding <pre>/org/gnome/desktop/screensaver/lock-enabled</pre>
+to <code>/etc/dconf/db/local.d/00-security-settings</code>.
+For example:
+<pre>/org/gnome/desktop/screensaver/lock-enabled</pre>
+After the settings have been set, run <code>dconf update</code>.</td>
+<td>Applicable - Configurable</td>
+<td>Verify the operating system provides the capability for users to directly initiate a session lock for all connection types. If it does not, this is a finding.</td>
+<td>To ensure that users cannot change how long until the screensaver locks, run the following:
+$ grep lock-enabled /etc/dconf/db/local.d/locks/*
+If properly configured, the output for lock-enabled should be /org/gnome/desktop/screensaver/lock-enabled
+      Is it the case that screensaver locking is not locked?
+      </td>
+<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3725r557057_fix">Configure the operating system to provide the capability for users to directly initiate a session lock for all connection types.</fixtext></td>
+<td>If not already configured, ensure that users cannot change GNOME3 screensaver lock settings
+by adding /org/gnome/desktop/screensaver/lock-enabled
+to /etc/dconf/db/local.d/00-security-settings.
+For example:
+/org/gnome/desktop/screensaver/lock-enabled
+After the settings have been set, run dconf update.</td>
+<td>medium</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>SV-70897</td>
 <td>SRG-OS-000031-GPOS-00012</td>
 <td><i>TBD - Assigned by DISA after STIG release</i></td>
 <td>The operating system must conceal, via the session lock, information previously visible on the display with a publicly viewable image.</td>
-<td></td>
+<td>CCE-80110-0:Set GNOME3 Screensaver Inactivity Timeout</td>
 <td>A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence.
 
 The session lock is implemented at the point where session activity can be determined. The operating system session lock event must include an obfuscation of the display screen so as to prevent other users from reading what was previously displayed.
 
 Publicly viewable images can include static or dynamic images, for example, patterns used with screen savers, photographic images, solid colors, a clock, a battery life indicator, or a blank screen, with the additional caveat that none of the images convey sensitive information.</td>
-<td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>The idle time-out value for inactivity in the GNOME3 desktop is configured via the <code>idle-delay</code>
+setting must be set under an appropriate configuration file(s) in the <code>/etc/dconf/db/local.d</code> directory
+and locked in <code>/etc/dconf/db/local.d/locks</code> directory to prevent user modification.
+<br><br>
+For example, to configure the system for a 15 minute delay, add the following to
+<code>/etc/dconf/db/local.d/00-security-settings</code>:
+<pre>[org/gnome/desktop/session]
+idle-delay=uint32 900</pre>
 </td>
+<td>Applicable - Configurable</td>
+<td>Verify the operating system conceals, via the session lock, information previously visible on the display with a publicly viewable image. If it does not, this is a finding.</td>
+<td>To check the current idle time-out value, run the following command:
+$ gsettings get org.gnome.desktop.session idle-delay
+If properly configured, the output should be 'uint32 '.
+To ensure that users cannot change the screensaver inactivity timeout setting, run the following:
+$ grep idle-delay /etc/dconf/db/local.d/locks/*
+If properly configured, the output should be /org/gnome/desktop/session/idle-delay
+      Is it the case that idle-delay is set to 0 or a value greater than &lt;sub idref="inactivity_timeout_value" /&gt;?
+      </td>
+<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3726r557060_fix">Configure the operating system to conceal, via the session lock, information previously visible on the display with a publicly viewable image.</fixtext></td>
+<td>The idle time-out value for inactivity in the GNOME3 desktop is configured via the idle-delay
+setting must be set under an appropriate configuration file(s) in the /etc/dconf/db/local.d directory
+and locked in /etc/dconf/db/local.d/locks directory to prevent user modification.
+
+For example, to configure the system for a 15 minute delay, add the following to
+/etc/dconf/db/local.d/00-security-settings:
+[org/gnome/desktop/session]
+idle-delay=uint32 900</td>
+<td>medium</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SV-70897</td>
+<td>SRG-OS-000031-GPOS-00012</td>
+<td><i>TBD - Assigned by DISA after STIG release</i></td>
+<td>The operating system must conceal, via the session lock, information previously visible on the display with a publicly viewable image.</td>
+<td>CCE-80544-0:Ensure Users Cannot Change GNOME3 Session Idle Settings</td>
+<td>A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence.
+
+The session lock is implemented at the point where session activity can be determined. The operating system session lock event must include an obfuscation of the display screen so as to prevent other users from reading what was previously displayed.
+
+Publicly viewable images can include static or dynamic images, for example, patterns used with screen savers, photographic images, solid colors, a clock, a battery life indicator, or a blank screen, with the additional caveat that none of the images convey sensitive information.</td>
+<td>If not already configured, ensure that users cannot change GNOME3 session idle settings
+by adding <code>/org/gnome/desktop/session/idle-delay</code>
+to <code>/etc/dconf/db/local.d/locks/00-security-settings-lock</code> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/session/idle-delay</pre>
+After the settings have been set, run <code>dconf update</code>.</td>
+<td>Applicable - Configurable</td>
+<td>Verify the operating system conceals, via the session lock, information previously visible on the display with a publicly viewable image. If it does not, this is a finding.</td>
+<td>To ensure that users cannot change session idle and lock settings, run the following:
+$ grep 'idle-delay' /etc/dconf/db/local.d/locks/*
+If properly configured, the output should return:
+/org/gnome/desktop/session/idle-delay
+      Is it the case that idle-delay is not locked?
+      </td>
+<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3726r557060_fix">Configure the operating system to conceal, via the session lock, information previously visible on the display with a publicly viewable image.</fixtext></td>
+<td>If not already configured, ensure that users cannot change GNOME3 session idle settings
+by adding /org/gnome/desktop/session/idle-delay
+to /etc/dconf/db/local.d/locks/00-security-settings-lock to prevent user modification.
+For example:
+/org/gnome/desktop/session/idle-delay
+After the settings have been set, run dconf update.</td>
+<td>medium</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>V-56639</td>
@@ -8033,7 +8106,7 @@ log_file=/var/log/audit/audit.log
 $ sudo stat -c "%n %a" /var/log/audit/*
 $ sudo ls -l /var/log/audit
 Audit logs must be mode 0640 or less permissive.
-      Is it the case that any are more permissive?
+      Is it the case that any permissions are more permissive?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3741r557573_fix">Configure the operating system to protect audit information from unauthorized read access.</fixtext></td>
 <td>If log_group in /etc/audit/auditd.conf is set to a group other than the root
@@ -8115,7 +8188,7 @@ log_file=/var/log/audit/audit.log
 $ sudo stat -c "%n %a" /var/log/audit/*
 $ sudo ls -l /var/log/audit
 Audit logs must be mode 0640 or less permissive.
-      Is it the case that any are more permissive?
+      Is it the case that any permissions are more permissive?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3742r557576_fix">Configure the operating system to protect audit information from unauthorized modification.</fixtext></td>
 <td>If log_group in /etc/audit/auditd.conf is set to a group other than the root
@@ -8197,7 +8270,7 @@ log_file=/var/log/audit/audit.log
 $ sudo stat -c "%n %a" /var/log/audit/*
 $ sudo ls -l /var/log/audit
 Audit logs must be mode 0640 or less permissive.
-      Is it the case that any are more permissive?
+      Is it the case that any permissions are more permissive?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3743r557579_fix">Configure the operating system to protect audit information from unauthorized deletion.</fixtext></td>
 <td>If log_group in /etc/audit/auditd.conf is set to a group other than the root
@@ -14075,7 +14148,7 @@ $ grep pam_pwquality /etc/pam.d/system-auth
 
 The retry parameter will indicate how many attempts are permitted.
 The DoD required value is less than or equal to 3.
-This would appear as retry=3, or a lower value.
+This would appear as retry=, or a lower value.
       Is it the case that it is not the required value?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3750r557600_fix">Configure the operating system to enforce password complexity by requiring that at least one upper-case character be used.</fixtext></td>
@@ -15195,12 +15268,6 @@ to open ports, run the following command:
 <pre>$ sudo firewall-cmd --permanent --add-port=<i>port_number</i>/tcp</pre>
 or
 <pre>$ sudo firewall-cmd --permanent --add-port=<i>service_name</i></pre>
-Run the command list above for each of the ports listed below:
-
-To configure <code>firewalld</code> to allow access, run the following command(s):
-
-
-<code>firewall-cmd --permanent --add-service=ssh</code>
 </td>
 <td>Applicable - Configurable</td>
 <td>Verify the operating system is configured to prohibit or restrict the use of functions, ports, protocols, and/or services, as defined in the PPSM CAL and vulnerability assessments. If it does not, this is a finding.</td>
@@ -15215,13 +15282,7 @@ services to have access to the system. To configure firewalld
 to open ports, run the following command:
 $ sudo firewall-cmd --permanent --add-port=port_number/tcp
 or
-$ sudo firewall-cmd --permanent --add-port=service_name
-Run the command list above for each of the ports listed below:
-
-To configure firewalld to allow access, run the following command(s):
-
-
-firewall-cmd --permanent --add-service=ssh</td>
+$ sudo firewall-cmd --permanent --add-port=service_name</td>
 <td>medium</td>
 <td></td>
 <td></td>
@@ -15243,7 +15304,7 @@ relatively new transport layer protocol, designed to support
 streaming media and telephony.
 
 To configure the system to prevent the <code>dccp</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/dccp.conf</code>:
 <pre>install dccp /bin/true</pre>
 </td>
 <td>Applicable - Configurable</td>
@@ -15262,7 +15323,7 @@ relatively new transport layer protocol, designed to support
 streaming media and telephony.
 
 To configure the system to prevent the dccp
-kernel module from being loaded, add the following line to a file in the directory /etc/modprobe.d:
+kernel module from being loaded, add the following line to the file /etc/modprobe.d/dccp.conf:
 install dccp /bin/true</td>
 <td>medium</td>
 <td></td>
@@ -15982,7 +16043,7 @@ If the service is masked the command will return the following outputs:
 LoadState=masked
 
 UnitFileState=masked
-      Is it the case that ?
+      Is it the case that the autofs service is not disabled?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3772r557187_fix">Configure the operating system to uniquely identify peripherals before establishing a connection.</fixtext></td>
 <td>The autofs daemon mounts and unmounts filesystems, such as user
@@ -16014,7 +16075,7 @@ Peripherals include, but are not limited to, such devices as flash drives, exter
 to prevent automatic loading of the USB storage driver.
 
 To configure the system to prevent the <code>usb-storage</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/usb-storage.conf</code>:
 <pre>install usb-storage /bin/true</pre>
 This will prevent the <code>modprobe</code> program from loading the <code>usb-storage</code>
 module, but will not prevent an administrator (or another program) from using the
@@ -16034,7 +16095,7 @@ $ grep -r usb-storage /etc/modprobe.conf /etc/modprobe.d
 to prevent automatic loading of the USB storage driver.
 
 To configure the system to prevent the usb-storage
-kernel module from being loaded, add the following line to a file in the directory /etc/modprobe.d:
+kernel module from being loaded, add the following line to the file /etc/modprobe.d/usb-storage.conf:
 install usb-storage /bin/true
 This will prevent the modprobe program from loading the usb-storage
 module, but will not prevent an administrator (or another program) from using the
@@ -16681,15 +16742,15 @@ To support this requirement, the operating system may have an integrated solutio
 which is provided for DoD systems and uses signatures to search for the
 presence of viruses on the filesystem.
 
-The <code>mcafeetp</code> package can be installed with the following command:
+The <code>McAfeeTP</code> package can be installed with the following command:
 <pre>
-$ sudo yum install mcafeetp</pre>
+$ sudo yum install McAfeeTP</pre>
 </td>
 <td>Applicable - Configurable</td>
 <td>Verify the operating system employs automated mechanisms to determine the state of system components with regard to flaw remediation using the following frequency: continuously, where ESS is used; 30 days, for any additional internal network scans not covered by ESS; and annually, for external scans by CNDSP.
 
 If it does not, this is a finding.</td>
-<td>Run the following command to determine if the mcafeetp package is installed: $ rpm -q mcafeetp
+<td>Run the following command to determine if the McAfeeTP package is installed: $ rpm -q McAfeeTP
       Is it the case that the package is not installed?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3787r804655_fix">Configure the operating system to employ automated mechanisms to determine the state of system components with regard to flaw remediation using the following frequency: continuously, where ESS is used; 30 days, for any additional internal network scans not covered by ESS; and annually, for external scans by CNDSP.</fixtext></td>
@@ -16697,9 +16758,9 @@ If it does not, this is a finding.</td>
 which is provided for DoD systems and uses signatures to search for the
 presence of viruses on the filesystem.
 
-The mcafeetp package can be installed with the following command:
+The McAfeeTP package can be installed with the following command:
 
-$ sudo yum install mcafeetp</td>
+$ sudo yum install McAfeeTP</td>
 <td>high</td>
 <td></td>
 <td></td>
@@ -16761,46 +16822,6 @@ Organizations carefully consider the structure/content of error messages. The ex
 <td>SRG-OS-000206-GPOS-00084</td>
 <td><i>TBD - Assigned by DISA after STIG release</i></td>
 <td>The operating system must reveal error messages only to authorized users.</td>
-<td>CCE-80125-8:System Audit Logs Must Be Owned By Root</td>
-<td>Only authorized personnel should be aware of errors and the details of the errors. Error messages are an indicator of an organization's operational state or can identify the operating system or platform. Additionally, Personally Identifiable Information (PII) and operational information must not be revealed through error messages to unauthorized personnel or their designated representatives.
-
-The structure and content of error messages must be carefully considered by the organization and development team. The extent to which the information system is able to identify and handle error conditions is guided by organizational policy and operational requirements.</td>
-<td>All audit logs must be owned by root user and group. By default, the path for audit log is <pre>/var/log/audit/</pre>.
-
-To properly set the owner of <code>/var/log/audit</code>, run the command:
-<pre>$ sudo chown root /var/log/audit </pre>
-
-To properly set the owner of <code>/var/log/audit/*</code>, run the command:
-<pre>$ sudo chown root /var/log/audit/* </pre>
-</td>
-<td>Applicable - Configurable</td>
-<td>Verify the operating system reveals error messages only to authorized users. If it does not, this is a finding.</td>
-<td>
-To properly set the owner of /var/log/audit, run the command:
-$ sudo chown root /var/log/audit 
-
-To properly set the owner of /var/log/audit/*, run the command:
-$ sudo chown root /var/log/audit/* 
-      Is it the case that ?
-      </td>
-<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3789r557238_fix">Configure the operating system to reveal error messages only to authorized users.</fixtext></td>
-<td>All audit logs must be owned by root user and group. By default, the path for audit log is /var/log/audit/.
-
-To properly set the owner of /var/log/audit, run the command:
-$ sudo chown root /var/log/audit 
-
-To properly set the owner of /var/log/audit/*, run the command:
-$ sudo chown root /var/log/audit/* </td>
-<td>medium</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>SV-71163</td>
-<td>SRG-OS-000206-GPOS-00084</td>
-<td><i>TBD - Assigned by DISA after STIG release</i></td>
-<td>The operating system must reveal error messages only to authorized users.</td>
 <td>CCE-27205-4:System Audit Logs Must Have Mode 0640 or Less Permissive</td>
 <td>Only authorized personnel should be aware of errors and the details of the errors. Error messages are an indicator of an organization's operational state or can identify the operating system or platform. Additionally, Personally Identifiable Information (PII) and operational information must not be revealed through error messages to unauthorized personnel or their designated representatives.
 
@@ -16820,7 +16841,7 @@ log_file=/var/log/audit/audit.log
 $ sudo stat -c "%n %a" /var/log/audit/*
 $ sudo ls -l /var/log/audit
 Audit logs must be mode 0640 or less permissive.
-      Is it the case that any are more permissive?
+      Is it the case that any permissions are more permissive?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3789r557238_fix">Configure the operating system to reveal error messages only to authorized users.</fixtext></td>
 <td>If log_group in /etc/audit/auditd.conf is set to a group other than the root
@@ -18887,10 +18908,11 @@ to require use of a special character in passwords.</td>
 <td>Verify the operating system enforces password complexity by requiring that at least one special character be used. If it does not, this is a finding.</td>
 <td>To check how many special characters are required in a password, run the following command:
 $ grep ocredit /etc/security/pwquality.conf
-The ocredit parameter (as a negative number) will indicate how many special characters are required.
+The ocredit parameter (as a negative number) will indicate how many special
+characters are required.
 The DoD and FISMA require at least one special character in a password.
 This would appear as ocredit = -1.
-      Is it the case that ocredit is not found or not equal to or less than the required value?
+      Is it the case that value of "ocredit" is a positive number or is commented out?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3801r374916_fix">Configure the operating system to enforce password complexity by requiring that at least one special character be used.</fixtext></td>
 <td>The pam_pwquality module's ocredit= parameter controls requirements for
@@ -19454,12 +19476,6 @@ to open ports, run the following command:
 <pre>$ sudo firewall-cmd --permanent --add-port=<i>port_number</i>/tcp</pre>
 or
 <pre>$ sudo firewall-cmd --permanent --add-port=<i>service_name</i></pre>
-Run the command list above for each of the ports listed below:
-
-To configure <code>firewalld</code> to allow access, run the following command(s):
-
-
-<code>firewall-cmd --permanent --add-service=ssh</code>
 </td>
 <td>Applicable - Configurable</td>
 <td>Verify the operating system controls remote access methods. If it does not, this is a finding.</td>
@@ -19474,13 +19490,7 @@ services to have access to the system. To configure firewalld
 to open ports, run the following command:
 $ sudo firewall-cmd --permanent --add-port=port_number/tcp
 or
-$ sudo firewall-cmd --permanent --add-port=service_name
-Run the command list above for each of the ports listed below:
-
-To configure firewalld to allow access, run the following command(s):
-
-
-firewall-cmd --permanent --add-service=ssh</td>
+$ sudo firewall-cmd --permanent --add-port=service_name</td>
 <td>medium</td>
 <td></td>
 <td></td>
@@ -20818,7 +20828,7 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 The audit daemon must be restarted for the changes to take effect.
 
 # sudo systemctl restart auditd.service
-      Is it the case that it is not the case?
+      Is it the case that the lines are commented out or do not exist?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3821r375036_fix">Configure the operating system to prevent all software from executing at higher privilege levels than users executing the software.</fixtext></td>
 <td>Verify the system generates an audit record when privileged functions are executed.
@@ -20871,7 +20881,7 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 The audit daemon must be restarted for the changes to take effect.
 
 # sudo systemctl restart auditd.service
-      Is it the case that it is not the case?
+      Is it the case that the lines are commented out or do not exist?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3822r375039_fix">Configure the operating system to audit the execution of privileged functions.</fixtext></td>
 <td>Verify the system generates an audit record when privileged functions are executed.
@@ -21040,7 +21050,7 @@ depending on the OS version.</td>
 $ grep pam_faillock /etc/pam.d/system-auth /etc/pam.d/password-auth
 For each file, the output should show unlock_time=&lt;interval-in-seconds&gt; where interval-in-seconds is  or greater.
 
-It can also be 0 for never.
+It can also be 0 or never.
       Is it the case that unlock_time is less than the expected value?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3823r375042_fix">Configure the operating system to automatically lock an account until the locked account is released by an administrator when three unsuccessful logon attempts in 15 minutes are made.</fixtext></td>
@@ -21061,55 +21071,21 @@ depending on the OS version.</td>
 <td>SRG-OS-000337-GPOS-00129</td>
 <td><i>TBD - Assigned by DISA after STIG release</i></td>
 <td>The operating system must provide the capability for assigned IMOs/ISSOs or designated SAs to change the auditing to be performed on all operating system components, based on all selectable event criteria in near real time.</td>
-<td>CCE-83555-3:Record Events When Privileged Executables Are Run</td>
+<td></td>
 <td>If authorized individuals do not have the ability to modify auditing parameters in response to a changing threat environment, the organization may not be able to effectively respond, and important forensic information may be lost.
 
 This requirement enables organizations to extend or limit auditing as necessary to meet organizational requirements. Auditing that is limited to conserve information system resources may be extended to address certain threat situations. In addition, auditing may be limited to a specific set of events to facilitate audit reduction, analysis, and reporting.</td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-<pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
-
-
-<pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>Applicable - Configurable</td>
-<td>Verify the operating system provides the capability for assigned IMOs/ISSOs or designated SAs to change the auditing to be performed on all operating system components, based on all selectable event criteria in near real time. If it does not, this is a finding.</td>
-<td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-The audit daemon must be restarted for the changes to take effect.
-
-# sudo systemctl restart auditd.service
-      Is it the case that it is not the case?
-      </td>
-<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3824r375045_fix">Configure the operating system to provide the capability for assigned IMOs/ISSOs or designated SAs to change the auditing to be performed on all operating system components, based on all selectable event criteria in near real time.</fixtext></td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-# grep -iw execve /etc/audit/audit.rules
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>medium</td>
+<td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</td>
 </tr>
 <tr>
 <td>SV-71505</td>
@@ -21596,55 +21572,21 @@ Alerts provide organizations with urgent messages. Real-time alerts provide thes
 <td>SRG-OS-000348-GPOS-00136</td>
 <td><i>TBD - Assigned by DISA after STIG release</i></td>
 <td>The operating system must provide an audit reduction capability that supports on-demand audit review and analysis.</td>
-<td>CCE-83555-3:Record Events When Privileged Executables Are Run</td>
+<td></td>
 <td>The ability to perform on-demand audit review and analysis, including after the audit data has been subjected to audit reduction, greatly facilitates the organization's ability to generate incident reports, as needed, to better handle larger-scale or more complex security incidents.
 
 Audit reduction is a technique used to reduce the volume of audit records in order to facilitate a manual review. Audit reduction does not alter original audit records. The report generation capability provided by the application must support on-demand (i.e., customizable, ad hoc, and as-needed) reports.</td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-<pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
-
-
-<pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>Applicable - Configurable</td>
-<td>Verify the operating system provides an audit reduction capability that supports on-demand audit review and analysis. If it does not, this is a finding.</td>
-<td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-The audit daemon must be restarted for the changes to take effect.
-
-# sudo systemctl restart auditd.service
-      Is it the case that it is not the case?
-      </td>
-<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3829r375060_fix">Configure the operating system to provide an audit reduction capability that supports on-demand audit review and analysis.</fixtext></td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-# grep -iw execve /etc/audit/audit.rules
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>medium</td>
+<td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</td>
 </tr>
 <tr>
 <td>V-57255</td>
@@ -21687,340 +21629,113 @@ $ sudo systemctl enable auditd.service</td>
 <td></td>
 </tr>
 <tr>
-<td>V-57255</td>
-<td>SRG-OS-000349-GPOS-00137</td>
-<td><i>TBD - Assigned by DISA after STIG release</i></td>
-<td>The operating system must provide an audit reduction capability that supports after-the-fact investigations of security incidents.</td>
-<td>CCE-83555-3:Record Events When Privileged Executables Are Run</td>
-<td>If the audit reduction capability does not support after-the-fact investigations, it is difficult to establish, correlate, and investigate the events leading up to an outage or attack or identify those responses for one. This capability is also required to comply with applicable Federal laws and DoD policies.
-
-Audit reduction capability must support after-the-fact investigations of security incidents either natively or through the use of third-party tools.
-
-This requirement is specific to operating systems with audit reduction capabilities.</td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-<pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
-
-
-<pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>Applicable - Configurable</td>
-<td>Verify the operating system provides an audit reduction capability that supports after-the-fact investigations of security incidents. If it does not, this is a finding.</td>
-<td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-The audit daemon must be restarted for the changes to take effect.
-
-# sudo systemctl restart auditd.service
-      Is it the case that it is not the case?
-      </td>
-<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3830r375063_fix">Configure the operating system to provide an audit reduction capability that supports after-the-fact investigations of security incidents.</fixtext></td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-# grep -iw execve /etc/audit/audit.rules
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>medium</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td>SV-71517</td>
 <td>SRG-OS-000350-GPOS-00138</td>
 <td><i>TBD - Assigned by DISA after STIG release</i></td>
 <td>The operating system must provide a report generation capability that supports on-demand audit review and analysis.</td>
-<td>CCE-83555-3:Record Events When Privileged Executables Are Run</td>
+<td></td>
 <td>The report generation capability must support on-demand review and analysis in order to facilitate the organization's ability to generate incident reports, as needed, to better handle larger-scale or more complex security incidents.
 
 Report generation must be capable of generating on-demand (i.e., customizable, ad hoc, and as-needed) reports. On-demand reporting allows personnel to report issues more rapidly to more effectively meet reporting requirements. Collecting log data and aggregating it to present the data in a single, consolidated report achieves this objective.</td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-<pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
-
-
-<pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>Applicable - Configurable</td>
-<td>Verify the operating system provides a report generation capability that supports on-demand audit review and analysis. If it does not, this is a finding.</td>
-<td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-The audit daemon must be restarted for the changes to take effect.
-
-# sudo systemctl restart auditd.service
-      Is it the case that it is not the case?
-      </td>
-<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3831r375066_fix">Configure the operating system to provide a report generation capability that supports on-demand audit review and analysis.</fixtext></td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-# grep -iw execve /etc/audit/audit.rules
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>medium</td>
+<td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</td>
 </tr>
 <tr>
 <td>V-57259</td>
 <td>SRG-OS-000351-GPOS-00139</td>
 <td><i>TBD - Assigned by DISA after STIG release</i></td>
 <td>The operating system must provide a report generation capability that supports on-demand reporting requirements.</td>
-<td>CCE-83555-3:Record Events When Privileged Executables Are Run</td>
+<td></td>
 <td>The report generation capability must support on-demand reporting in order to facilitate the organization's ability to generate incident reports, as needed, to better handle larger-scale or more complex security incidents.
 
 Report generation must be capable of generating on-demand (i.e., customizable, ad hoc, and as-needed) reports. On-demand reporting allows personnel to report issues more rapidly to more effectively meet reporting requirements. Collecting log data and aggregating it to present the data in a single, consolidated report achieves this objective.</td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-<pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
-
-
-<pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>Applicable - Configurable</td>
-<td>Verify the operating system provides a report generation capability that supports on-demand reporting requirements. If it does not, this is a finding.</td>
-<td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-The audit daemon must be restarted for the changes to take effect.
-
-# sudo systemctl restart auditd.service
-      Is it the case that it is not the case?
-      </td>
-<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3832r375069_fix">Ensure the operating system provides a report generation capability that supports on-demand reporting requirements.</fixtext></td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-# grep -iw execve /etc/audit/audit.rules
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>medium</td>
+<td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</td>
 </tr>
 <tr>
 <td>V-57261</td>
 <td>SRG-OS-000352-GPOS-00140</td>
 <td><i>TBD - Assigned by DISA after STIG release</i></td>
 <td>The operating system must provide a report generation capability that supports after-the-fact investigations of security incidents.</td>
-<td>CCE-83555-3:Record Events When Privileged Executables Are Run</td>
+<td></td>
 <td>If the report generation capability does not support after-the-fact investigations, it is difficult to establish, correlate, and investigate the events leading up to an outage or attack or identify those responses for one. This capability is also required to comply with applicable Federal laws and DoD policies.
 
 The report generation capability must support after-the-fact investigations of security incidents either natively or through the use of third-party tools.</td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-<pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
-
-
-<pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>Applicable - Configurable</td>
-<td>Verify the operating system provides a report generation capability that supports after-the-fact investigations of security incidents. If it does not, this is a finding.</td>
-<td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-The audit daemon must be restarted for the changes to take effect.
-
-# sudo systemctl restart auditd.service
-      Is it the case that it is not the case?
-      </td>
-<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3833r375072_fix">Ensure the operating system provides a report generation capability that supports after-the-fact investigations of security incidents.</fixtext></td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-# grep -iw execve /etc/audit/audit.rules
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>medium</td>
+<td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</td>
 </tr>
 <tr>
 <td>V-57263</td>
 <td>SRG-OS-000353-GPOS-00141</td>
 <td><i>TBD - Assigned by DISA after STIG release</i></td>
 <td>The operating system must not alter original content or time ordering of audit records when it provides an audit reduction capability.</td>
-<td>CCE-83555-3:Record Events When Privileged Executables Are Run</td>
+<td></td>
 <td>If the audit reduction capability alters the content or time ordering of audit records, the integrity of the audit records is compromised, and the records are no longer usable for forensic analysis.
 
 Audit reduction is a process that manipulates collected audit information and organizes such information in a summary format that is more meaningful to analysts. Time ordering refers to the chronological organization of records based on time stamps. The degree of time stamp precision can affect this.
 
 This requirement is specific to operating systems providing audit reduction capabilities. The audit reduction capability can be met either natively or through the use of third-party tools.</td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-<pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
-
-
-<pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>Applicable - Configurable</td>
-<td>Verify the operating system does not alter original content or time ordering of audit records when it provides an audit reduction capability. If it does not, this is a finding.</td>
-<td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-The audit daemon must be restarted for the changes to take effect.
-
-# sudo systemctl restart auditd.service
-      Is it the case that it is not the case?
-      </td>
-<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3834r375075_fix">Configure the operating system to not alter original content or time ordering of audit records when it provides an audit reduction capability.</fixtext></td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-# grep -iw execve /etc/audit/audit.rules
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>medium</td>
+<td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</td>
 </tr>
 <tr>
 <td>SV-71525</td>
 <td>SRG-OS-000354-GPOS-00142</td>
 <td><i>TBD - Assigned by DISA after STIG release</i></td>
 <td>The operating system must not alter original content or time ordering of audit records when it provides a report generation capability.</td>
-<td>CCE-83555-3:Record Events When Privileged Executables Are Run</td>
+<td></td>
 <td>If the report generation capability alters the content or time ordering of audit records, the integrity of the audit records is compromised, and the records are no longer usable for forensic analysis.
 
 Time ordering refers to the chronological organization of records based on time stamps. The degree of time stamp precision can affect this.
 
 This requirement is specific to operating systems providing report generation capabilities. The report generation capability can be met either natively or through the use of third-party tools.</td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-<pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
-
-
-<pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>Applicable - Configurable</td>
-<td>Verify the operating system does not alter original content or time ordering of audit records when it provides a report generation capability. If it does not, this is a finding.</td>
-<td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-The audit daemon must be restarted for the changes to take effect.
-
-# sudo systemctl restart auditd.service
-      Is it the case that it is not the case?
-      </td>
-<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3835r375078_fix">Configure the operating system to not alter original content or time ordering of audit records when it provides a report generation capability.</fixtext></td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-# grep -iw execve /etc/audit/audit.rules
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>medium</td>
+<td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</td>
 </tr>
 <tr>
 <td>V-57267</td>
@@ -22121,110 +21836,21 @@ to pass.</td>
 <td>SRG-OS-000358-GPOS-00145</td>
 <td><i>TBD - Assigned by DISA after STIG release</i></td>
 <td>The operating system must record time stamps for audit records that meet a minimum granularity of one second for a minimum degree of precision.</td>
-<td>CCE-83555-3:Record Events When Privileged Executables Are Run</td>
+<td></td>
 <td>Without sufficient granularity of time stamps, it is not possible to adequately determine the chronological order of records.
 
 Time stamps generated by the operating system include date and time. Granularity of time measurements refers to the degree of synchronization between information system clocks and reference clocks.</td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-<pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
-
-
-<pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>Applicable - Configurable</td>
-<td>Verify the operating system records time stamps for audit records that meet a minimum granularity of one second for a minimum degree of precision. If it does not, this is a finding.</td>
-<td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-The audit daemon must be restarted for the changes to take effect.
-
-# sudo systemctl restart auditd.service
-      Is it the case that it is not the case?
-      </td>
-<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3838r375147_fix">Configure the operating system to record time stamps for audit records that meet a minimum granularity of one second for a minimum degree of precision.</fixtext></td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-# grep -iw execve /etc/audit/audit.rules
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>medium</td>
+<td>
 <td></td>
 <td></td>
 <td></td>
-</tr>
-<tr>
-<td>V-57189</td>
-<td>SRG-OS-000359-GPOS-00146</td>
-<td><i>TBD - Assigned by DISA after STIG release</i></td>
-<td>The operating system must record time stamps for audit records that can be mapped to Coordinated Universal Time (UTC) or Greenwich Mean Time (GMT).</td>
-<td>CCE-83555-3:Record Events When Privileged Executables Are Run</td>
-<td>If time stamps are not consistently applied and there is no common time reference, it is difficult to perform forensic analysis.
-
-Time stamps generated by the operating system include date and time. Time is commonly expressed in Coordinated Universal Time (UTC), a modern continuation of Greenwich Mean Time (GMT), or local time with an offset from UTC.</td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-<pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
-
-
-<pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>Applicable - Configurable</td>
-<td>Verify the operating system records time stamps for audit records that can be mapped to Coordinated Universal Time (UTC) or Greenwich Mean Time (GMT). If it does not, this is a finding.</td>
-<td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-The audit daemon must be restarted for the changes to take effect.
-
-# sudo systemctl restart auditd.service
-      Is it the case that it is not the case?
-      </td>
-<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3839r375150_fix">Configure the operating system to record time stamps for audit records that can be mapped to Coordinated Universal Time (UTC) or Greenwich Mean Time (GMT).</fixtext></td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-# grep -iw execve /etc/audit/audit.rules
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>medium</td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
+<td></td>
+</td>
 </tr>
 <tr>
 <td>V-57189</td>
@@ -22371,7 +21997,7 @@ The output should return something similar to the following:
 
 
 NOTE: The usage of special cron times, such as @daily or @weekly, is acceptable.
-      Is it the case that AIDE is not configured to periodicly scan?
+      Is it the case that AIDE is not configured to scan periodically?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3842r375159_fix">Configure the operating system to notify designated personnel if baseline configurations are changed in an unauthorized manner.</fixtext></td>
 <td>At a minimum, AIDE should be configured to run a weekly scan.
@@ -22657,61 +22283,6 @@ $ sudo systemctl enable auditd.service</td>
 <td></td>
 </tr>
 <tr>
-<td>SV-71111</td>
-<td>SRG-OS-000365-GPOS-00152</td>
-<td><i>TBD - Assigned by DISA after STIG release</i></td>
-<td>The operating system must audit the enforcement actions used to restrict access associated with changes to the system.</td>
-<td>CCE-83555-3:Record Events When Privileged Executables Are Run</td>
-<td>Without auditing the enforcement of access restrictions against changes to the application configuration, it will be difficult to identify attempted attacks and an audit trail will not be available for forensic investigation for after-the-fact actions.
-
-Enforcement actions are the methods or mechanisms used to prevent unauthorized changes to configuration settings. Enforcement action methods may be as simple as denying access to a file based on the application of file permissions (access restriction). Audit items may consist of lists of actions blocked by access restrictions or changes identified after the fact.</td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-<pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
-
-
-<pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>Applicable - Configurable</td>
-<td>Verify the operating system audits the enforcement actions used to restrict access associated with changes to the system. If it does not, this is a finding.</td>
-<td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-The audit daemon must be restarted for the changes to take effect.
-
-# sudo systemctl restart auditd.service
-      Is it the case that it is not the case?
-      </td>
-<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3844r375165_fix">Configure the operating system to audit the enforcement actions used to restrict access associated with changes to the system.</fixtext></td>
-<td>Verify the system generates an audit record when privileged functions are executed.
-# grep -iw execve /etc/audit/audit.rules
-
-
--a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
--a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
--a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
-
-
-If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
-If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
-<td>medium</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td>V-56849</td>
 <td>SRG-OS-000366-GPOS-00153</td>
 <td><i>TBD - Assigned by DISA after STIG release</i></td>
@@ -22982,7 +22553,7 @@ any sudo configuration snippets in <code>/etc/sudoers.d/</code>.</td>
 <td>To determine if !authenticate has not been configured for sudo, run the following command:
 $ sudo grep -r \!authenticate /etc/sudoers /etc/sudoers.d/
 The command should return no output.
-      Is it the case that !authenticate is enabled in sudo?
+      Is it the case that !authenticate is specified in the sudo config files?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3848r375177_fix">Configure the operating system to require users to re-authenticate for privilege escalation.</fixtext></td>
 <td>The sudo !authenticate option, when specified, allows a user to execute commands using
@@ -23013,7 +22584,7 @@ in <code>/etc/sudoers.d/</code>.</td>
 <td>To determine if NOPASSWD has been configured for sudo, run the following command:
 $ sudo grep -ri nopasswd /etc/sudoers /etc/sudoers.d/
 The command should return no output.
-      Is it the case that nopasswd is enabled in sudo?
+      Is it the case that nopasswd is specified in the sudo config files?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3848r375177_fix">Configure the operating system to require users to re-authenticate for privilege escalation.</fixtext></td>
 <td>The sudo NOPASSWD tag, when specified, allows a user to execute
@@ -23085,7 +22656,7 @@ any sudo configuration snippets in <code>/etc/sudoers.d/</code>.</td>
 <td>To determine if !authenticate has not been configured for sudo, run the following command:
 $ sudo grep -r \!authenticate /etc/sudoers /etc/sudoers.d/
 The command should return no output.
-      Is it the case that !authenticate is enabled in sudo?
+      Is it the case that !authenticate is specified in the sudo config files?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3849r375180_fix">Configure the operating system to require users to re-authenticate when changing roles.</fixtext></td>
 <td>The sudo !authenticate option, when specified, allows a user to execute commands using
@@ -23116,7 +22687,7 @@ in <code>/etc/sudoers.d/</code>.</td>
 <td>To determine if NOPASSWD has been configured for sudo, run the following command:
 $ sudo grep -ri nopasswd /etc/sudoers /etc/sudoers.d/
 The command should return no output.
-      Is it the case that nopasswd is enabled in sudo?
+      Is it the case that nopasswd is specified in the sudo config files?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3849r375180_fix">Configure the operating system to require users to re-authenticate when changing roles.</fixtext></td>
 <td>The sudo NOPASSWD tag, when specified, allows a user to execute
@@ -23147,7 +22718,7 @@ any sudo configuration snippets in <code>/etc/sudoers.d/</code>.</td>
 <td>To determine if !authenticate has not been configured for sudo, run the following command:
 $ sudo grep -r \!authenticate /etc/sudoers /etc/sudoers.d/
 The command should return no output.
-      Is it the case that !authenticate is enabled in sudo?
+      Is it the case that !authenticate is specified in the sudo config files?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3850r375183_fix">Configure the operating system to require users to re-authenticate when changing authenticators.</fixtext></td>
 <td>The sudo !authenticate option, when specified, allows a user to execute commands using
@@ -23178,7 +22749,7 @@ in <code>/etc/sudoers.d/</code>.</td>
 <td>To determine if NOPASSWD has been configured for sudo, run the following command:
 $ sudo grep -ri nopasswd /etc/sudoers /etc/sudoers.d/
 The command should return no output.
-      Is it the case that nopasswd is enabled in sudo?
+      Is it the case that nopasswd is specified in the sudo config files?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3850r375183_fix">Configure the operating system to require users to re-authenticate when changing authenticators.</fixtext></td>
 <td>The sudo NOPASSWD tag, when specified, allows a user to execute
@@ -23943,7 +23514,7 @@ relatively new transport layer protocol, designed to support
 streaming media and telephony.
 
 To configure the system to prevent the <code>dccp</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/dccp.conf</code>:
 <pre>install dccp /bin/true</pre>
 </td>
 <td>Applicable - Configurable</td>
@@ -23962,7 +23533,7 @@ relatively new transport layer protocol, designed to support
 streaming media and telephony.
 
 To configure the system to prevent the dccp
-kernel module from being loaded, add the following line to a file in the directory /etc/modprobe.d:
+kernel module from being loaded, add the following line to the file /etc/modprobe.d/dccp.conf:
 install dccp /bin/true</td>
 <td>medium</td>
 <td></td>
@@ -24014,7 +23585,7 @@ If the service is masked the command will return the following outputs:
 LoadState=masked
 
 UnitFileState=masked
-      Is it the case that ?
+      Is it the case that the autofs service is not disabled?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3855r375198_fix">Configure the operating system to authenticate peripherals before establishing a connection.</fixtext></td>
 <td>The autofs daemon mounts and unmounts filesystems, such as user
@@ -24046,7 +23617,7 @@ Peripherals include, but are not limited to, such devices as flash drives, exter
 to prevent automatic loading of the USB storage driver.
 
 To configure the system to prevent the <code>usb-storage</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/usb-storage.conf</code>:
 <pre>install usb-storage /bin/true</pre>
 This will prevent the <code>modprobe</code> program from loading the <code>usb-storage</code>
 module, but will not prevent an administrator (or another program) from using the
@@ -24066,7 +23637,7 @@ $ grep -r usb-storage /etc/modprobe.conf /etc/modprobe.d
 to prevent automatic loading of the USB storage driver.
 
 To configure the system to prevent the usb-storage
-kernel module from being loaded, add the following line to a file in the directory /etc/modprobe.d:
+kernel module from being loaded, add the following line to the file /etc/modprobe.d/usb-storage.conf:
 install usb-storage /bin/true
 This will prevent the modprobe program from loading the usb-storage
 module, but will not prevent an administrator (or another program) from using the
@@ -26468,7 +26039,7 @@ edits of files involved in storing logon events:
 <td>Verify the operating system audits all activities performed during nonlocal maintenance and diagnostic sessions. If it does not, this is a finding.</td>
 <td>To verify that auditing is configured for system administrator actions, run the following command:
 $ sudo auditctl -l | grep "watch=/var/run/faillock\|-w /var/run/faillock"
-      Is it the case that there is not output?
+      Is it the case that there is no output?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3860r375270_fix">Configure the operating system to audit all activities performed during nonlocal maintenance and diagnostic sessions.</fixtext></td>
 <td>The audit system already collects login information for all users
@@ -27699,7 +27270,7 @@ Run the following command to determine the current status of the
 sshd service:
 $ systemctl is-active sshd
 If the service is running, it should return the following: active
-      Is it the case that ?
+      Is it the case that sshd service is disabled?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3873r375309_fix">Configure the operating system to protect the confidentiality and integrity of transmitted information.</fixtext></td>
 <td>The SSH server service, sshd, is commonly needed.
@@ -27788,6 +27359,44 @@ $ sudo yum install openssh-server</td>
 <td></td>
 </tr>
 <tr>
+<td>V-56733</td>
+<td>SRG-OS-000424-GPOS-00188</td>
+<td><i>TBD - Assigned by DISA after STIG release</i></td>
+<td>The operating system must implement cryptographic mechanisms to prevent unauthorized disclosure of information and/or detect changes to information during transmission unless otherwise protected by alternative physical safeguards, such as, at a minimum, a Protected Distribution System (PDS).</td>
+<td>CCE-80216-5:Enable the OpenSSH Service</td>
+<td>Encrypting information for transmission protects information from unauthorized disclosure and modification. Cryptographic mechanisms implemented to protect information integrity include, for example, cryptographic hash functions which have common application in digital signatures, checksums, and message authentication codes. 
+
+Use of this requirement will be limited to situations where the data owner has a strict requirement for ensuring data integrity and confidentiality is maintained at every step of the data transfer and handling process. When transmitting data, operating systems need to leverage transmission protection mechanisms such as TLS, SSL VPNs, or IPSec.
+
+Alternative physical protection measures include PDS. PDSs are used to transmit unencrypted classified National Security Information (NSI) through an area of lesser classification or control. Since the classified NSI is unencrypted, the PDS must provide adequate electrical, electromagnetic, and physical safeguards to deter exploitation.</td>
+<td>The SSH server service, sshd, is commonly needed.
+
+The <code>sshd</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable sshd.service</pre>
+</td>
+<td>Applicable - Configurable</td>
+<td>Verify the operating system implements cryptographic mechanisms to prevent unauthorized disclosure of information and/or detect changes to information during transmission unless otherwise protected by alternative physical safeguards, such as, at a minimum, a Protected Distribution System (PDS). 
+
+If it does not, this is a finding.</td>
+<td>
+
+Run the following command to determine the current status of the
+sshd service:
+$ systemctl is-active sshd
+If the service is running, it should return the following: active
+      Is it the case that sshd service is disabled?
+      </td>
+<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3874r793158_fix">Configure the operating system to implement cryptographic mechanisms to prevent unauthorized disclosure of information and/or detect changes to information during transmission unless otherwise protected by alternative physical safeguards, such as, at a minimum, a Protected Distribution System (PDS).</fixtext></td>
+<td>The SSH server service, sshd, is commonly needed.
+
+The sshd service can be enabled with the following command:
+$ sudo systemctl enable sshd.service</td>
+<td>medium</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>V-56731</td>
 <td>SRG-OS-000425-GPOS-00189</td>
 <td><i>TBD - Assigned by DISA after STIG release</i></td>
@@ -27819,6 +27428,42 @@ $ sudo yum install openssh-server</td>
 <td></td>
 </tr>
 <tr>
+<td>V-56731</td>
+<td>SRG-OS-000425-GPOS-00189</td>
+<td><i>TBD - Assigned by DISA after STIG release</i></td>
+<td>The operating system must maintain the confidentiality and integrity of information during preparation for transmission.</td>
+<td>CCE-80216-5:Enable the OpenSSH Service</td>
+<td>Information can be either unintentionally or maliciously disclosed or modified during preparation for transmission, for example, during aggregation, at protocol transformation points, and during packing/unpacking. These unauthorized disclosures or modifications compromise the confidentiality or integrity of the information.
+
+Ensuring the confidentiality of transmitted information requires the operating system to take measures in preparing information for transmission. This can be accomplished via access control and encryption.
+
+Use of this requirement will be limited to situations where the data owner has a strict requirement for ensuring data integrity and confidentiality is maintained at every step of the data transfer and handling process. When transmitting data, operating systems need to support transmission protection mechanisms such as TLS, SSL VPNs, or IPSec.</td>
+<td>The SSH server service, sshd, is commonly needed.
+
+The <code>sshd</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable sshd.service</pre>
+</td>
+<td>Applicable - Configurable</td>
+<td>Verify the operating system maintains the confidentiality and integrity of information during preparation for transmission. If it does not, this is a finding.</td>
+<td>
+
+Run the following command to determine the current status of the
+sshd service:
+$ systemctl is-active sshd
+If the service is running, it should return the following: active
+      Is it the case that sshd service is disabled?
+      </td>
+<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3875r375750_fix">Configure the operating system to maintain the confidentiality and integrity of information during preparation for transmission.</fixtext></td>
+<td>The SSH server service, sshd, is commonly needed.
+
+The sshd service can be enabled with the following command:
+$ sudo systemctl enable sshd.service</td>
+<td>medium</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>V-56729</td>
 <td>SRG-OS-000426-GPOS-00190</td>
 <td><i>TBD - Assigned by DISA after STIG release</i></td>
@@ -27844,6 +27489,42 @@ $ sudo yum install openssh-server</pre>
 The openssh-server package can be installed with the following command:
 
 $ sudo yum install openssh-server</td>
+<td>medium</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>V-56729</td>
+<td>SRG-OS-000426-GPOS-00190</td>
+<td><i>TBD - Assigned by DISA after STIG release</i></td>
+<td>The operating system must maintain the confidentiality and integrity of information during reception.</td>
+<td>CCE-80216-5:Enable the OpenSSH Service</td>
+<td>Information can be either unintentionally or maliciously disclosed or modified during reception, including, for example, during aggregation, at protocol transformation points, and during packing/unpacking. These unauthorized disclosures or modifications compromise the confidentiality or integrity of the information.
+
+Ensuring the confidentiality of transmitted information requires the operating system to take measures in preparing information for transmission. This can be accomplished via access control and encryption.
+
+Use of this requirement will be limited to situations where the data owner has a strict requirement for ensuring data integrity and confidentiality is maintained at every step of the data transfer and handling process. When receiving data, operating systems need to leverage protection mechanisms such as TLS, SSL VPNs, or IPSec.</td>
+<td>The SSH server service, sshd, is commonly needed.
+
+The <code>sshd</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable sshd.service</pre>
+</td>
+<td>Applicable - Configurable</td>
+<td>Verify the operating system maintains the confidentiality and integrity of information during reception. If it does not, this is a finding.</td>
+<td>
+
+Run the following command to determine the current status of the
+sshd service:
+$ systemctl is-active sshd
+If the service is running, it should return the following: active
+      Is it the case that sshd service is disabled?
+      </td>
+<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3876r375375_fix">Configure the operating system to maintain the confidentiality and integrity of information during reception.</fixtext></td>
+<td>The SSH server service, sshd, is commonly needed.
+
+The sshd service can be enabled with the following command:
+$ sudo systemctl enable sshd.service</td>
 <td>medium</td>
 <td></td>
 <td></td>
@@ -28107,7 +27788,7 @@ The output should return something similar to the following:
 
 
 NOTE: The usage of special cron times, such as @daily or @weekly, is acceptable.
-      Is it the case that AIDE is not configured to periodicly scan?
+      Is it the case that AIDE is not configured to scan periodically?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3882r375393_fix">Configure the operating system to perform verification of the correct operation of security functions: upon system start-up and/or restart; upon command by a user with privileged access; and/or every 30 days.</fixtext></td>
 <td>At a minimum, AIDE should be configured to run a weekly scan.
@@ -28156,7 +27837,7 @@ The output should return something similar to the following:
 
 
 NOTE: The usage of special cron times, such as @daily or @weekly, is acceptable.
-      Is it the case that AIDE is not configured to periodicly scan?
+      Is it the case that AIDE is not configured to scan periodically?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3883r375396_fix">Configure the operating system to shut down the information system, restart the information system, and/or notify the system administrator when anomalies in the operation of the security functions are discovered.</fixtext></td>
 <td>At a minimum, AIDE should be configured to run a weekly scan.
@@ -35520,7 +35201,7 @@ edits of files involved in storing logon events:
 <td>Verify the operating system generates audit records when successful/unsuccessful logon attempts occur. If it does not, this is a finding.</td>
 <td>To verify that auditing is configured for system administrator actions, run the following command:
 $ sudo auditctl -l | grep "watch=/var/run/faillock\|-w /var/run/faillock"
-      Is it the case that there is not output?
+      Is it the case that there is no output?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3892r375423_fix">Configure the operating system to generate audit records when successful/unsuccessful logon attempts occur.</fixtext></td>
 <td>The audit system already collects login information for all users
@@ -38558,7 +38239,7 @@ edits of files involved in storing logon events:
 <td>Verify the operating system generates audit records when concurrent logons to the same account occur from different sources. If it does not, this is a finding.</td>
 <td>To verify that auditing is configured for system administrator actions, run the following command:
 $ sudo auditctl -l | grep "watch=/var/run/faillock\|-w /var/run/faillock"
-      Is it the case that there is not output?
+      Is it the case that there is no output?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3896r375705_fix">Configure the operating system to generate audit records when concurrent logons to the same account occur from different sources.</fixtext></td>
 <td>The audit system already collects login information for all users
@@ -39984,46 +39665,19 @@ There must be a resolvable DNS CNAME or Alias record set to "" for logs to be se
 <td>SRG-OS-000480-GPOS-00225</td>
 <td><i>TBD - Assigned by DISA after STIG release</i></td>
 <td>The operating system must prevent the use of dictionary words for passwords.</td>
-<td>CCE-27160-1:Ensure PAM Enforces Password Requirements - Authentication Retry Prompts Permitted Per-Session</td>
+<td></td>
 <td>If the operating system allows the user to select passwords based on dictionary words, then this increases the chances of password compromise by increasing the opportunity for successful guesses and brute-force attacks.</td>
-<td>To configure the number of retry prompts that are permitted per-session:
-
-Edit the <code>pam_pwquality.so</code> statement in
-
-<code>/etc/pam.d/system-auth</code> to show
-
-
-<code>retry=<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_password_pam_retry"></xccdf-1.1:sub></code>, or a lower value if site
-policy is more restrictive. The DoD requirement is a maximum of 3 prompts
-per session.</td>
-<td>Applicable - Configurable</td>
-<td>Verify the operating system prevents the use of dictionary words for passwords. If it does not, this is a finding.</td>
-<td>To check how many retry attempts are permitted on a per-session basis, run the following command:
-
-
-$ grep pam_pwquality /etc/pam.d/system-auth
-
-
-The retry parameter will indicate how many attempts are permitted.
-The DoD required value is less than or equal to 3.
-This would appear as retry=3, or a lower value.
-      Is it the case that it is not the required value?
-      </td>
-<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3903r375726_fix">Configure the operating system to prevent the use of dictionary words for passwords.</fixtext></td>
-<td>To configure the number of retry prompts that are permitted per-session:
-
-Edit the pam_pwquality.so statement in
-
-/etc/pam.d/system-auth to show
-
-
-retry=, or a lower value if site
-policy is more restrictive. The DoD requirement is a maximum of 3 prompts
-per session.</td>
-<td>medium</td>
+<td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</td>
 </tr>
 <tr>
 <td>SV-70855</td>
@@ -42613,7 +42267,7 @@ If the service is masked the command will return the following outputs:
 LoadState=masked
 
 UnitFileState=masked
-      Is it the case that ?
+      Is it the case that the autofs service is not disabled?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3905r375732_fix">Configure the operating system in accordance with the security configuration settings based on DoD security configuration or implementation guidance, including STIGs, NSA configuration guides, CTOs, and DTMs.</fixtext></td>
 <td>The autofs daemon mounts and unmounts filesystems, such as user
@@ -42645,7 +42299,7 @@ Configuration settings are the set of parameters that can be changed in hardware
 to prevent automatic loading of the USB storage driver.
 
 To configure the system to prevent the <code>usb-storage</code>
-kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/usb-storage.conf</code>:
 <pre>install usb-storage /bin/true</pre>
 This will prevent the <code>modprobe</code> program from loading the <code>usb-storage</code>
 module, but will not prevent an administrator (or another program) from using the
@@ -42665,7 +42319,7 @@ $ grep -r usb-storage /etc/modprobe.conf /etc/modprobe.d
 to prevent automatic loading of the USB storage driver.
 
 To configure the system to prevent the usb-storage
-kernel module from being loaded, add the following line to a file in the directory /etc/modprobe.d:
+kernel module from being loaded, add the following line to the file /etc/modprobe.d/usb-storage.conf:
 install usb-storage /bin/true
 This will prevent the modprobe program from loading the usb-storage
 module, but will not prevent an administrator (or another program) from using the
@@ -42909,7 +42563,7 @@ run the command:
 $ ls -lL /etc/cron.allow
 If properly configured, the output should indicate the following group-owner:
 root
-      Is it the case that /etc/cron.allow has group owner root?
+      Is it the case that /etc/cron.allow does not have a group owner of root?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3905r375732_fix">Configure the operating system in accordance with the security configuration settings based on DoD security configuration or implementation guidance, including STIGs, NSA configuration guides, CTOs, and DTMs.</fixtext></td>
 <td>If /etc/cron.allow exists, it must be group-owned by root.
@@ -42942,7 +42596,7 @@ run the command:
 $ ls -lL /etc/cron.allow
 If properly configured, the output should indicate the following owner:
 root
-      Is it the case that /etc/cron.allow has owner root?
+      Is it the case that /etc/cron.allow does not have an owner of root?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3905r375732_fix">Configure the operating system in accordance with the security configuration settings based on DoD security configuration or implementation guidance, including STIGs, NSA configuration guides, CTOs, and DTMs.</fixtext></td>
 <td>If /etc/cron.allow exists, it must be owned by root.
@@ -44025,11 +43679,10 @@ add or correct the <code>UMASK</code> setting in <code>/etc/login.defs</code> to
 <td>Verify the operating system defines default permissions for all authenticated users in such a way that the user can only read and modify their own files. If it does not, this is a finding.</td>
 <td>Verify the UMASK setting is configured correctly in the /etc/login.defs file by
 running the following command:
-# grep -i "UMASK" /etc/login.defs
-All output must show the value of umask set as shown in the below:
-# grep -i "UMASK" /etc/login.defs
-umask 
-      Is it the case that the above command returns no output, or if the umask is configured incorrectly?
+$ sudo grep "UMASK" /etc/login.defs
+All output must show the value of UMASK set as shown in the below:
+UMASK 
+      Is it the case that the above command returns no output, or the umask is configured incorrectly?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3906r375735_fix">Configure the operating system to define default permissions for all authenticated users in such a way that the user can only read and modify their own files.</fixtext></td>
 <td>To ensure the default umask controlled by /etc/login.defs is set properly,
