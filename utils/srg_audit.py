@@ -5,7 +5,7 @@ import enum
 import os.path
 import sys
 
-from utils.create_srg_export import DisaStatus
+from utils.disa_utils import DisaStatus
 
 try:
     import ssg.constants
