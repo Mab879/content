@@ -424,6 +424,23 @@ def get_requirement(control: ssg.controls.Control, rule_obj: ssg.build_yaml.Rule
         return control.title()
 
 
+def set_status(control, row):
+    if control.status is not None:
+        row['Status'] = DisaStatus.from_string(control.status)
+    else:
+        row['Status'] = DisaStatus.AUTOMATED
+
+
+def get_check(control, product, root_path, rule_object):
+    ocil_var = handle_variables(rule_object.ocil, control.variables, root_path,
+                                product)
+    ocil_clause_var = handle_variables(rule_object.ocil_clause, control.variables,
+                                       root_path, product)
+    check = f'{ocil_var}\n\n' \
+            f'If {ocil_clause_var}, then this is a finding.'
+    return check
+
+
 def handle_control(product: str, control: ssg.controls.Control, env_yaml: ssg.environment,
                    rule_json: dict, srgs: dict, used_rules: list, root_path: str) -> list:
 
@@ -438,23 +455,14 @@ def handle_control(product: str, control: ssg.controls.Control, env_yaml: ssg.en
                 row['Requirement'] = get_requirement(control.title, rule_object)
                 row['Vul Discussion'] = handle_variables(rule_object.rationale, control.variables,
                                                          root_path, product)
-                ocil_var = handle_variables(rule_object.ocil, control.variables, root_path,
-                                            product)
-                ocil_clause_var = handle_variables(rule_object.ocil_clause, control.variables,
-                                                   root_path, product)
-                row['Check'] = f'{ocil_var}\n\n' \
-                               f'If {ocil_clause_var}, then this is a finding.'
+                row['Check'] = get_check(control, product, root_path, rule_object)
                 row['Fix'] = handle_variables(rule_object.fixtext, control.variables, root_path,
                                               product)
                 row['STIGID'] = rule_object.identifiers.get('cce', "")
-                if control.status is not None:
-                    row['Status'] = DisaStatus.from_string(control.status)
-                else:
-                    row['Status'] = DisaStatus.AUTOMATED
+                set_status(control, row)
                 used_rules.append(selection)
                 rows.append(row)
         return rows
-
     else:
         return [no_selections_row(control, srgs)]
 
