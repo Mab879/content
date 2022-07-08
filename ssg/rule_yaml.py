@@ -143,8 +143,9 @@ def get_yaml_contents(rule_obj):
 
     yaml_file = get_rule_dir_yaml(rule_obj['dir'])
     if not os.path.exists(yaml_file):
-        raise ValueError("Error: yaml file does not exist for rule_id:%s" %
+        print("Error: yaml file does not exist for rule_id:%s" %
                          rule_obj['id'], file=sys.stderr)
+        raise ValueError()
 
     yaml_contents = read_file_list(yaml_file)
 
@@ -168,8 +169,9 @@ def get_section_lines(file_path, file_contents, key_name):
     section = find_section_lines(file_contents, key_name)
 
     if len(section) > 1:
-        raise ValueError("Multiple instances (%d) of %s in %s; refusing to modify file." %
+        print("Multiple instances (%d) of %s in %s; refusing to modify file." %
                          (len(section), key_name, file_path), file=sys.stderr)
+        raise ValueError()
 
     elif len(section) == 1:
         return section[0]
