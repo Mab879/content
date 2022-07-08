@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import argparse
 import os
 import json
@@ -41,19 +42,12 @@ def parse_args() -> argparse.Namespace:
 
 def main():
     args = parse_args()
-    show_stoppers = list()
-    major_changes = list()
-    minor_changes = list()
-    no_changes = list()
-    idk = list()
 
     workbook = load_workbook(args.file)
     sheet = workbook[args.sheet]
-    cce_dict = dict()
     product = 'rhel9'
     product_dir = os.path.join(args.root, "products", product)
     product_yaml_path = os.path.join(product_dir, "product.yml")
-    env_yaml = ssg.environment.open_environment(args.build_config_yaml, str(product_yaml_path))
 
     with open(args.cce, 'r') as f:
         cce_dict = json.load(f)
