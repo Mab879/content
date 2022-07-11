@@ -43,7 +43,7 @@ references:
 
 
 ocil: |
-    {{{ ocil_sshd_option(default="no", option="LogLevel", value="VERBOSE" }}}
+    {{{ ocil_sshd_option(default="no", option="LogLevel", value="VERBOSE") }}}
 
 ocil_clause: 'a value of "VERBOSE" is not returned, the line is commented out, or is missing'
 
