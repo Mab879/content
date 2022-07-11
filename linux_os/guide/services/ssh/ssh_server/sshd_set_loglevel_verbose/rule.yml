@@ -41,9 +41,14 @@ references:
     stigid@sle12: SLES-12-030110
     stigid@sle15: SLES-15-010150
 
-{{{ complete_ocil_entry_sshd_option(default="no", option="LogLevel", value="VERBOSE") }}}
+
+ocil: |
+    {{{ ocil_sshd_option(default="no", option="LogLevel", value="VERBOSE" }}}
+
+ocil_clause: 'a value of "VERBOSE" is not returned, the line is commented out, or is missing'
 
 fixtext: |-
+    Configure {{{ full_name }}} logs SSH connection attempts and failures to the server.
     {{{ fixtext_sshd_lineinfile('LogLevel', 'VERBOSE', False) }}}
 
 srg_requirement: |-
