@@ -58,7 +58,6 @@ selections:
     # sshd
     - sshd_use_directory_configuration
     - sshd_disable_root_login
-    - sshd_enable_strictmodes
     - disable_host_auth
     - sshd_disable_empty_passwords
     - sshd_disable_kerb_auth
@@ -71,34 +70,11 @@ selections:
     # Time Server
     - chronyd_client_only
 
-    ### Network Settings
-    - sysctl_net_ipv6_conf_all_accept_ra
-    - sysctl_net_ipv6_conf_default_accept_ra
-    - sysctl_net_ipv4_conf_all_accept_redirects
-    - sysctl_net_ipv4_conf_default_accept_redirects
-    - sysctl_net_ipv6_conf_all_accept_redirects
-    - sysctl_net_ipv6_conf_default_accept_redirects
-    - sysctl_net_ipv4_conf_all_accept_source_route
-    - sysctl_net_ipv4_conf_default_accept_source_route
-    - sysctl_net_ipv6_conf_all_accept_source_route
-    - sysctl_net_ipv6_conf_default_accept_source_route
-    - sysctl_net_ipv4_conf_all_secure_redirects
-    - sysctl_net_ipv4_conf_default_secure_redirects
-    - sysctl_net_ipv4_conf_all_send_redirects
-    - sysctl_net_ipv4_conf_default_send_redirects
-    - sysctl_net_ipv4_conf_all_log_martians
-    - sysctl_net_ipv4_conf_default_log_martians
-    - sysctl_net_ipv4_conf_all_rp_filter
-    - sysctl_net_ipv4_conf_default_rp_filter
-    - sysctl_net_ipv4_icmp_ignore_bogus_error_responses
-    - sysctl_net_ipv4_icmp_echo_ignore_broadcasts
-    - sysctl_net_ipv4_ip_forward
-    - sysctl_net_ipv4_tcp_syncookies
-
     ### systemd
     - disable_ctrlaltdel_reboot
     - disable_ctrlaltdel_burstaction
     - service_debug-shell_disabled
+    - grub2_systemd_debug-shell_argument_absent
 
     ### umask
     - var_accounts_user_umask=027
@@ -170,9 +146,6 @@ selections:
     - package_openssh-server_installed
     - package_openssh-clients_installed
     - package_policycoreutils-python-utils_installed
-    - package_rsyslog_installed
-    - package_rsyslog-gnutls_installed
-    - package_audispd-plugins_installed
     - package_chrony_installed
     - package_gnutls-utils_installed
 
@@ -235,8 +208,6 @@ selections:
 
     ## Configure Minimum Password Length to 12 Characters
     ## IA-5 (1)(a) / FMT_MOF_EXT.1
-    - var_accounts_password_minlen_login_defs=12
-    - accounts_password_minlen_login_defs
     - var_password_pam_minlen=12
     - accounts_password_pam_minlen
 
@@ -275,7 +246,7 @@ selections:
     ## Disable Unauthenticated Login (such as Guest Accounts)
     ## FIA_UAU.1
     - require_singleuser_auth
-    - grub2_disable_interactive_boot
+    - grub2_disable_recovery
     - grub2_uefi_password
     - no_empty_passwords
 
@@ -361,20 +332,35 @@ selections:
     - audit_basic_configuration
     - audit_immutable_login_uids
     - audit_create_failed
+    - audit_create_failed_aarch64
     - audit_create_success
+    - audit_create_success_aarch64
     - audit_modify_failed
+    - audit_modify_failed_aarch64
     - audit_modify_success
+    - audit_modify_success_aarch64
     - audit_access_failed
+    - audit_access_failed_aarch64
     - audit_access_success
     - audit_access_success.severity=info
     - audit_access_success.role=unscored
+    - audit_access_success_aarch64
+    - audit_access_success_aarch64.severity=info
+    - audit_access_success_aarch64.role=unscored
     - audit_delete_failed
+    - audit_delete_failed_aarch64
     - audit_delete_success
+    - audit_delete_success_aarch64
     - audit_perm_change_failed
+    - audit_perm_change_failed_aarch64
     - audit_perm_change_success
+    - audit_perm_change_success_aarch64
     - audit_owner_change_failed
+    - audit_owner_change_failed_aarch64
     - audit_owner_change_success
+    - audit_owner_change_success_aarch64
     - audit_ospp_general
+    - audit_ospp_general_aarch64
     - audit_module_load
 
     ## Enable Automatic Software Updates
@@ -388,10 +374,6 @@ selections:
     # Enable dnf-automatic Timer
     - timer_dnf-automatic_enabled
 
-    # Configure TLS for remote logging
-    - rsyslog_remote_tls
-    - rsyslog_remote_tls_cacert
-
     # set ssh client rekey limit
     - ssh_client_rekey_limit
     - var_ssh_client_rekey_limit_size=1G
@@ -404,3 +386,4 @@ selections:
     - zipl_audit_backlog_limit_argument
     - zipl_init_on_alloc_argument
     - zipl_page_alloc_shuffle_argument
+    - zipl_systemd_debug-shell_argument_absent

@@ -30,6 +30,9 @@ rationale: |-
 
 severity: medium
 
+platforms:
+    - not aarch64_arch
+
 identifiers:
     cce@rhel8: CCE-82832-7
     cce@rhel9: CCE-83681-7

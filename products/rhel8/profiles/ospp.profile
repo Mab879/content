@@ -264,8 +264,6 @@ selections:
 
     ## Configure Minimum Password Length to 12 Characters
     ## IA-5 (1)(a) / FMT_MOF_EXT.1
-    - var_accounts_password_minlen_login_defs=12
-    - accounts_password_minlen_login_defs
     - var_password_pam_minlen=12
     - accounts_password_pam_minlen
 
@@ -392,18 +390,31 @@ selections:
     - audit_basic_configuration
     - audit_immutable_login_uids
     - audit_create_failed
+    - audit_create_failed_aarch64
     - audit_create_success
+    - audit_create_success_aarch64
     - audit_modify_failed
+    - audit_modify_failed_aarch64
     - audit_modify_success
+    - audit_modify_success_aarch64
     - audit_access_failed
+    - audit_access_failed_aarch64
     - audit_access_success
+    - audit_access_success_aarch64
     - audit_delete_failed
+    - audit_delete_failed_aarch64
     - audit_delete_success
+    - audit_delete_success_aarch64
     - audit_perm_change_failed
+    - audit_perm_change_failed_aarch64
     - audit_perm_change_success
+    - audit_perm_change_success_aarch64
     - audit_owner_change_failed
+    - audit_owner_change_failed_aarch64
     - audit_owner_change_success
+    - audit_owner_change_success_aarch64
     - audit_ospp_general
+    - audit_ospp_general_aarch64
     - audit_module_load
 
     ## Enable Automatic Software Updates

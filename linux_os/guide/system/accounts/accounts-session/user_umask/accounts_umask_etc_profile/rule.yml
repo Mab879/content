@@ -19,11 +19,14 @@ identifiers:
     cce@rhel7: CCE-80204-1
     cce@rhel8: CCE-81035-8
     cce@rhel9: CCE-90828-5
+    cce@sle12: CCE-91531-4
+    cce@sle15: CCE-91216-2
 
 references:
     anssi: BP28(R35)
     cis-csc: '18'
     cis@alinux2: 5.4.4
+    cis@alinux3: 5.6.5
     cis@rhel7: 5.5.5
     cis@rhel8: 5.5.4
     cis@sle12: 5.5.5

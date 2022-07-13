@@ -41,7 +41,6 @@ selections:
     - var_password_pam_remember_control_flag=required
     - var_selinux_state=enforcing
     - var_selinux_policy_name=targeted
-    - var_accounts_password_minlen_login_defs=15
     - var_password_pam_unix_rounds=5000
     - var_password_pam_minlen=15
     - var_password_pam_ocredit=1
@@ -607,9 +606,6 @@ selections:
     # RHEL-08-020230
     - accounts_password_pam_minlen
 
-    # RHEL-08-020231
-    - accounts_password_minlen_login_defs
-
     # RHEL-08-020240
     - account_unique_id
 
@@ -672,7 +668,7 @@ selections:
     - auditd_data_retention_action_mail_acct
 
     # RHEL-08-030030
-    - postfix_client_configure_mail_alias
+    - postfix_client_configure_mail_alias_postmaster
 
     # RHEL-08-030040
     - auditd_data_disk_error_action
