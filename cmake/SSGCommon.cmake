@@ -107,7 +107,7 @@ macro(ssg_build_shorthand_xml PRODUCT)
         add_custom_command(
             OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/profiles"
             COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_CURRENT_BINARY_DIR}/profiles"
-            COMMAND env "PYTHONPATH=$ENV{PYTHONPATH}" "${PYTHON_EXECUTABLE}" "${SSG_BUILD_SCRIPTS}/compile_all.py" --resolved-base "${CMAKE_CURRENT_BINARY_DIR}" --controls-dir "${CMAKE_SOURCE_DIR}/controls" --build-config-yaml "${CMAKE_BINARY_DIR}/build_config.yml" --product-yaml "${CMAKE_CURRENT_SOURCE_DIR}/product.yml" --sce-metadata "${CMAKE_CURRENT_BINARY_DIR}/checks/sce/metadata.json"
+            COMMAND env "PYTHONPATH=$ENV{PYTHONPATH}" "${PYTHON_EXECUTABLE}" "${SSG_BUILD_SCRIPTS}/compile_all.py" --resolved-base "${CMAKE_CURRENT_BINARY_DIR}" --controls-dir "${CMAKE_SOURCE_DIR}/controls" --build-config-yaml "${CMAKE_BINARY_DIR}/build_config.yml" --product-yaml "${CMAKE_CURRENT_SOURCE_DIR}/product.yml" --sce-metadata "${CMAKE_CURRENT_BINARY_DIR}/checks_from_template/sce/metadata.json"
             DEPENDS generate-internal-${PRODUCT}-sce-metadata.json
             COMMENT "[${PRODUCT}-content] compiling everything"
         )
@@ -115,7 +115,7 @@ macro(ssg_build_shorthand_xml PRODUCT)
         add_custom_command(
             OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/profiles"
             COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_CURRENT_BINARY_DIR}/profiles"
-            COMMAND env "PYTHONPATH=$ENV{PYTHONPATH}" "${PYTHON_EXECUTABLE}" "${SSG_BUILD_SCRIPTS}/compile_all.py" --resolved-base "${CMAKE_CURRENT_BINARY_DIR}" --controls-dir "${CMAKE_SOURCE_DIR}/controls" --build-config-yaml "${CMAKE_BINARY_DIR}/build_config.yml" --product-yaml "${CMAKE_CURRENT_SOURCE_DIR}/product.yml" --sce-metadata "${CMAKE_CURRENT_BINARY_DIR}/checks/sce/metadata.json" --stig-references "${STIG_REFERENCE_FILE}"
+            COMMAND env "PYTHONPATH=$ENV{PYTHONPATH}" "${PYTHON_EXECUTABLE}" "${SSG_BUILD_SCRIPTS}/compile_all.py" --resolved-base "${CMAKE_CURRENT_BINARY_DIR}" --controls-dir "${CMAKE_SOURCE_DIR}/controls" --build-config-yaml "${CMAKE_BINARY_DIR}/build_config.yml" --product-yaml "${CMAKE_CURRENT_SOURCE_DIR}/product.yml" --sce-metadata "${CMAKE_CURRENT_BINARY_DIR}/checks_from_template/sce/metadata.json" --stig-references "${STIG_REFERENCE_FILE}"
             DEPENDS generate-internal-${PRODUCT}-sce-metadata.json
             COMMENT "[${PRODUCT}-content] compiling everything"
         )
@@ -145,7 +145,7 @@ endmacro()
 # Build all templated content using the YAML "template" key in this product's
 # rules. This includes OVAL, Bash, Ansible, and the like.
 macro(ssg_build_templated_content PRODUCT)
-    set(BUILD_CHECKS_DIR "${CMAKE_CURRENT_BINARY_DIR}/checks")
+    set(BUILD_CHECKS_DIR "${CMAKE_CURRENT_BINARY_DIR}/checks_from_template")
     set(BUILD_REMEDIATIONS_DIR "${CMAKE_CURRENT_BINARY_DIR}/fixes_from_templates")
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/templated-content-${PRODUCT}"
@@ -264,11 +264,11 @@ macro(ssg_build_remediations PRODUCT)
 endmacro()
 
 macro(ssg_build_oval_unlinked PRODUCT)
-    set(BUILD_CHECKS_DIR "${CMAKE_CURRENT_BINARY_DIR}/checks")
+    set(BUILD_CHECKS_DIR "${CMAKE_CURRENT_BINARY_DIR}/checks_from_template")
     set(OVAL_COMBINE_PATHS "${BUILD_CHECKS_DIR}/shared/oval" "${SSG_SHARED}/checks/oval" "${BUILD_CHECKS_DIR}/oval" "${CMAKE_CURRENT_SOURCE_DIR}/checks/oval")
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/oval-unlinked.xml"
-        COMMAND env "PYTHONPATH=$ENV{PYTHONPATH}" "${PYTHON_EXECUTABLE}" "${SSG_BUILD_SCRIPTS}/combine_ovals.py" --build-config-yaml "${CMAKE_BINARY_DIR}/build_config.yml" --product-yaml "${CMAKE_CURRENT_SOURCE_DIR}/product.yml" --output "${CMAKE_CURRENT_BINARY_DIR}/oval-unlinked.xml" ${OVAL_COMBINE_PATHS}
+        COMMAND env "PYTHONPATH=$ENV{PYTHONPATH}" "${PYTHON_EXECUTABLE}" "${SSG_BUILD_SCRIPTS}/combine_ovals.py" --build-config-yaml "${CMAKE_BINARY_DIR}/build_config.yml" --product-yaml "${CMAKE_CURRENT_SOURCE_DIR}/product.yml" --output "${CMAKE_CURRENT_BINARY_DIR}/oval-unlinked.xml" --build-ovals-dir "${CMAKE_CURRENT_BINARY_DIR}/checks/oval" ${OVAL_COMBINE_PATHS}
         COMMAND "${XMLLINT_EXECUTABLE}" --format --output "${CMAKE_CURRENT_BINARY_DIR}/oval-unlinked.xml" "${CMAKE_CURRENT_BINARY_DIR}/oval-unlinked.xml"
         DEPENDS generate-internal-templated-content-${PRODUCT}
         COMMENT "[${PRODUCT}-content] generating oval-unlinked.xml"
@@ -284,7 +284,7 @@ endmacro()
 # (without needing a separate XML or XSLT linking step) and also place
 # <complex-check /> elements as necessary.
 macro(ssg_build_sce PRODUCT)
-    set(BUILD_CHECKS_DIR "${CMAKE_CURRENT_BINARY_DIR}/checks")
+    set(BUILD_CHECKS_DIR "${CMAKE_CURRENT_BINARY_DIR}/checks_from_template")
     # Unlike build_oval_unlinked, here we're ignoring the existing checks from
     # templates and other places and we're merely appending/templating the
     # content from the rules directories. That's why we ignore BUILD_CHECKS_DIR
@@ -317,7 +317,7 @@ macro(ssg_build_sce PRODUCT)
     endif()
     add_custom_target(
         generate-internal-${PRODUCT}-sce-metadata.json
-        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/checks/sce/metadata.json"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/checks_from_template/sce/metadata.json"
     )
 endmacro()
 
@@ -527,11 +527,18 @@ macro(ssg_build_sds PRODUCT)
         )
     endif()
 
-    if("${PRODUCT}" MATCHES "rhel(7|8|9)")
-        add_test(
-            NAME "missing-cces-${PRODUCT}"
-            COMMAND env "PYTHONPATH=$ENV{PYTHONPATH}" "${PYTHON_EXECUTABLE}" "${CMAKE_SOURCE_DIR}/tests/missing_cces.py" "${CMAKE_BINARY_DIR}/ssg-${PRODUCT}-ds.xml"
-        )
+    if("${PRODUCT}" MATCHES "rhel(7|8|9)|sle(12|15)")
+        if("${PRODUCT}" MATCHES "sle(12|15)")
+            add_test(
+                NAME "missing-cces-${PRODUCT}"
+                COMMAND env "PYTHONPATH=$ENV{PYTHONPATH}" "${PYTHON_EXECUTABLE}" "${CMAKE_SOURCE_DIR}/tests/missing_cces.py" "${CMAKE_BINARY_DIR}/ssg-${PRODUCT}-ds.xml" "-p anssi,hipaa,pci,stig"
+                )
+        else()
+            add_test(
+                NAME "missing-cces-${PRODUCT}"
+                COMMAND env "PYTHONPATH=$ENV{PYTHONPATH}" "${PYTHON_EXECUTABLE}" "${CMAKE_SOURCE_DIR}/tests/missing_cces.py" "${CMAKE_BINARY_DIR}/ssg-${PRODUCT}-ds.xml"
+                )
+        endif()
         set_tests_properties("missing-cces-${PRODUCT}" PROPERTIES LABELS quick)
     endif()
 
@@ -1272,46 +1279,4 @@ macro(ssg_build_zipfile_target ZIPNAME)
         zipfile
         DEPENDS "${CMAKE_BINARY_DIR}/zipfile/${ZIPNAME}.zip"
     )
-endmacro()
-
-macro(ssg_build_vendor_zipfile ZIPNAME)
-    # When SCAP1.2 content is no longer built along with 1.3 content, remove the if below
-    if("${ZIPNAME}" MATCHES "SCAP-1.3")
-        set(SCAP_DS_VERSION_SUFFIX  "")
-    else()
-        set(SCAP_DS_VERSION_SUFFIX  "-1.2")
-    endif()
-
-    # Red Hat zipfile
-    add_custom_command(
-        OUTPUT "${CMAKE_BINARY_DIR}/vendor-zipfile/${ZIPNAME}-RedHat.zip"
-        COMMAND ${CMAKE_COMMAND} -E remove_directory "vendor-zipfile/"
-        COMMAND ${CMAKE_COMMAND} -E make_directory "vendor-zipfile/${ZIPNAME}"
-        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_SOURCE_DIR}/LICENSE" "vendor-zipfile/${ZIPNAME}"
-        COMMAND ${CMAKE_COMMAND} -DSOURCE="${CMAKE_BINARY_DIR}/ssg-rh*-ds${SCAP_DS_VERSION_SUFFIX}.xml" -DDEST="vendor-zipfile/${ZIPNAME}" -P "${CMAKE_SOURCE_DIR}/cmake/CopyFiles.cmake"
-        COMMAND ${CMAKE_COMMAND} -DSOURCE="${CMAKE_BINARY_DIR}/ssg-ocp*-ds${SCAP_DS_VERSION_SUFFIX}.xml" -DDEST="vendor-zipfile/${ZIPNAME}" -P "${CMAKE_SOURCE_DIR}/cmake/CopyFiles.cmake"
-        COMMAND ${CMAKE_COMMAND} -E make_directory "vendor-zipfile/${ZIPNAME}/bash"
-        COMMAND ${CMAKE_COMMAND} -DSOURCE="${CMAKE_BINARY_DIR}/bash/ssg-rh*.sh" -DDEST="vendor-zipfile/${ZIPNAME}/bash" -P "${CMAKE_SOURCE_DIR}/cmake/CopyFiles.cmake"
-        COMMAND ${CMAKE_COMMAND} -DSOURCE="${CMAKE_BINARY_DIR}/bash/ssg-ocp*.sh" -DDEST="vendor-zipfile/${ZIPNAME}/bash" -P "${CMAKE_SOURCE_DIR}/cmake/CopyFiles.cmake"
-        COMMAND ${CMAKE_COMMAND} -E make_directory "vendor-zipfile/${ZIPNAME}/ansible"
-        COMMAND ${CMAKE_COMMAND} -DSOURCE="${CMAKE_BINARY_DIR}/ansible/ssg-rh*.yml" -DDEST="vendor-zipfile/${ZIPNAME}/ansible" -P "${CMAKE_SOURCE_DIR}/cmake/CopyFiles.cmake"
-        COMMAND ${CMAKE_COMMAND} -DSOURCE="${CMAKE_BINARY_DIR}/ansible/ssg-ocp*.yml" -DDEST="vendor-zipfile/${ZIPNAME}/ansible" -P "${CMAKE_SOURCE_DIR}/cmake/CopyFiles.cmake"
-        COMMAND ${CMAKE_COMMAND} -E make_directory "vendor-zipfile/${ZIPNAME}/guides"
-        COMMAND ${CMAKE_COMMAND} -DSOURCE="${CMAKE_BINARY_DIR}/guides/ssg-rh*" -DDEST="vendor-zipfile/${ZIPNAME}/guides" -P "${CMAKE_SOURCE_DIR}/cmake/CopyFiles.cmake"
-        COMMAND ${CMAKE_COMMAND} -DSOURCE="${CMAKE_BINARY_DIR}/guides/ssg-ocp*" -DDEST="vendor-zipfile/${ZIPNAME}/guides" -P "${CMAKE_SOURCE_DIR}/cmake/CopyFiles.cmake"
-        COMMAND ${CMAKE_COMMAND} -E make_directory "vendor-zipfile/${ZIPNAME}/tables"
-        COMMAND ${CMAKE_COMMAND} -DSOURCE="${CMAKE_BINARY_DIR}/tables/table-rh*" -DDEST="vendor-zipfile/${ZIPNAME}/tables" -P "${CMAKE_SOURCE_DIR}/cmake/CopyFiles.cmake"
-        COMMAND ${CMAKE_COMMAND} -DSOURCE="${CMAKE_BINARY_DIR}/tables/table-ocp*" -DDEST="vendor-zipfile/${ZIPNAME}/tables" -P "${CMAKE_SOURCE_DIR}/cmake/CopyFiles.cmake"
-        COMMAND ${CMAKE_COMMAND} -E chdir "vendor-zipfile" ${CMAKE_COMMAND} -E tar "cvf" "${ZIPNAME}-RedHat.zip" --format=zip "${ZIPNAME}"
-        COMMENT "Building Red Hat zipfile at ${CMAKE_BINARY_DIR}/vendor-zipfile/${ZIPNAME}-RedHat.zip"
-        DEPENDS products/rhel7
-        DEPENDS products/rhel8
-        DEPENDS products/rhv4
-        )
-    add_custom_target(
-        redhat-zipfile
-        DEPENDS "${CMAKE_BINARY_DIR}/vendor-zipfile/${ZIPNAME}-RedHat.zip"
-    )
-    add_custom_target(vendor-zipfile)
-    add_dependencies(vendor-zipfile redhat-zipfile)
 endmacro()
