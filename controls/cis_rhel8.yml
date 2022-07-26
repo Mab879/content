@@ -821,18 +821,17 @@ controls:
       - postfix_network_listening_disabled
       - var_postfix_inet_interfaces=loopback-only
 
-  # NEEDS RULE
   - id: 2.2.18
     title: Ensure nfs-utils is not installed or the nfs-server service is masked (Automated)
     levels:
       - l1_server
       - l1_workstation
-    status: partial
+    status: automated
     rules:
-      - package_nfs-utils_removed
-      # Needs a rule to mask nfs-server
-    related_rules:
       - service_nfs_disabled
+    related_rules:
+      - package_nfs-utils_removed
+      # The nfs-utils package is required for systems with GUI or by some libvirt packages
 
   # NEEDS RULE
   - id: 2.2.19
@@ -1238,7 +1237,7 @@ controls:
       - l1_server
       - l1_workstation
     status: automated
-    rules:
+    related_rules:
       - package_iptables_installed
       - package_iptables-services_installed
 
@@ -1289,7 +1288,7 @@ controls:
       - l1_server
       - l1_workstation
     status: automated
-    rules:
+    related_rules:
       - set_iptables_default_rule
 
   # NEEDS RULE
@@ -1306,10 +1305,8 @@ controls:
       - l1_server
       - l1_workstation
     status: automated
-    rules:
-      - service_iptables_enabled
     related_rules:
-      - package_iptables-services_installed
+      - service_iptables_enabled
 
   # NEEDS RULE
   # https://github.com/ComplianceAsCode/content/issues/5258

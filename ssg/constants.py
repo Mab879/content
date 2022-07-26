@@ -269,8 +269,7 @@ MULTI_PLATFORM_LIST = ["rhel", "fedora", "rhv", "debian", "ubuntu",
                        "example", "eks", "alinux", "uos"]
 
 MULTI_PLATFORM_MAPPING = {
-    "multi_platform_alinux": ["alinux2"],
-    "multi_platform_alinux": ["alinux3"],
+    "multi_platform_alinux": ["alinux2", "alinux3"],
     "multi_platform_debian": ["debian9", "debian10", "debian11"],
     "multi_platform_example": ["example"],
     "multi_platform_eks": ["eks"],
@@ -287,14 +286,12 @@ MULTI_PLATFORM_MAPPING = {
 }
 
 RHEL_CENTOS_CPE_MAPPING = {
-    "cpe:/o:redhat:enterprise_linux:6": "cpe:/o:centos:centos:6",
     "cpe:/o:redhat:enterprise_linux:7": "cpe:/o:centos:centos:7",
     "cpe:/o:redhat:enterprise_linux:8": "cpe:/o:centos:centos:8",
     "cpe:/o:redhat:enterprise_linux:9": "cpe:/o:centos:centos:9",
 }
 
 RHEL_SL_CPE_MAPPING = {
-    "cpe:/o:redhat:enterprise_linux:6": "cpe:/o:scientificlinux:scientificlinux:6",
     "cpe:/o:redhat:enterprise_linux:7": "cpe:/o:scientificlinux:scientificlinux:7",
 }
 
