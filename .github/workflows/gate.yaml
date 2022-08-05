@@ -14,7 +14,7 @@ jobs:
       - name: Install Deps
         run: yum install -y cmake make openscap-utils PyYAML libxslt expat xml-common python-jinja2 python-setuptools
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Build
         run: |-
           ./build_product \
@@ -43,7 +43,7 @@ jobs:
       - name: Install Deps
         run: zypper install -y git cmake make openscap-utils python3-PyYAML bats python3-pytest python3-pytest-cov python3-Jinja2 python3-setuptools libxslt-tools libxml2-tools libexpat1 libexpat-devel libexpat1 expat ShellCheck
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Build
         run: ./build_product alinux2 alinux3 chromium fedora firefox fuse6 rhcos4 rhel7 rhel8 rhel9 sle12 sle15 ubuntu2004 uos20
       - name: Test
@@ -63,7 +63,7 @@ jobs:
       - name: Install deps python
         run: pip3 install ruamel.yaml yamlpath pyyaml==5.4.1
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Build
         env:
           ADDITIONAL_CMAKE_OPTIONS: "-DSSG_ANSIBLE_PLAYBOOKS_PER_RULE_ENABLED=ON"
@@ -82,7 +82,7 @@ jobs:
         with:
           apt-get: cmake ninja-build libopenscap8 libxml2-utils expat xsltproc python3-jinja2 python3-yaml python3-setuptools ansible-lint python3-github bats python3-pytest python3-pytest-cov shellcheck
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Build
         run: |-
           ./build_product \
@@ -115,7 +115,7 @@ jobs:
       - name: Install deps python
         run: pip install ruamel.yaml yamlpath
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Build
         run: |-
           ./build_product \
@@ -161,7 +161,7 @@ jobs:
       -   name: Install deps python
           run: pip install ruamel.yaml yamlpath
       -   name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
       -   name: Build
           run: |-
             ./build_product \
