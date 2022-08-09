@@ -54,7 +54,7 @@ jobs:
     name: Build, Test on Debian 10 (Container)
     runs-on: ubuntu-latest
     container:
-      image: debian:buster
+      image: debian:bullseye
     steps:
       - name: Update the package repository
         run: apt-get update
