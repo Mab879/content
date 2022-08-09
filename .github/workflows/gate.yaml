@@ -9,7 +9,7 @@ jobs:
     name: Build, Test on CentOS 7 (Container)
     runs-on: ubuntu-latest
     container:
-      image: centos:7
+      image: centos:8
     steps:
       - name: Install Deps
         run: yum install -y cmake make openscap-utils PyYAML libxslt expat xml-common python-jinja2 python-setuptools
