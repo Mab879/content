@@ -49,3 +49,12 @@ fixtext: |-
     {{{ fixtext_mount_option("/var/log", "noexec") }}}
 
 srg_requirement: '{{{ srg_requirement_mount_option("/var/log", "noexec") }}}'
+
+checktext: |-
+    Verify "/var/log" is mounted with the "noexec" option:
+
+    $ mount | grep /var/log
+
+    /dev/mapper/rhel-var-log on /var/log type xfs (rw,nodev,nosuid,noexec,seclabel)
+
+    If the "/var/log" file system is mounted without the "noexec" option, this is a finding.

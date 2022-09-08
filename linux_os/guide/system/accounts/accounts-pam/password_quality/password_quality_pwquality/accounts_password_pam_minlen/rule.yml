@@ -72,7 +72,8 @@ fixtext: |-
 
     minlen = {{{ xccdf_value("var_password_pam_minlen") }}}
 
-srg_requirement: '{{{ full_name }}} passwords must have a minimum of 15 characters.'
+srg_requirement: |-
+    {{{ full_name }}} passwords must be created with a minimum of 15 characters.
 
 platform: pam
 
@@ -81,3 +82,12 @@ template:
     vars:
         variable: minlen
         operation: greater than or equal
+
+checktext: |-
+    Verify that {{{ full_name }}} enforces a minimum 15-character password length with the following command:
+
+    $ grep minlen /etc/security/pwquality.conf
+
+    minlen = 15
+
+    If the command does not return a "minlen" value of "15" or greater, does not return a line, or the line is commented out, this is a finding.

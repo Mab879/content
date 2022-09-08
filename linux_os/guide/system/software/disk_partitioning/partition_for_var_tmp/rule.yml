@@ -41,9 +41,11 @@ references:
 
 {{{ complete_ocil_entry_separate_partition(part="/var/tmp") }}}
 
-fixtext: '{{{ fixtext_separate_partition(part="/var/tmp") }}}'
+fixtext: |-
+    Migrate the "/var/tmp" path onto a separate file system.
 
-srg_requirement: '{{{ srg_requirement_separate_partition("/var/tmp") }}}'
+srg_requirement: |-
+    {{{ full_name }}} must use a separate file system for /var/tmp.
 
 platform: machine
 
@@ -52,3 +54,11 @@ template:
     vars:
         mountpoint: /var/tmp
         min_size: 1073741824
+
+checktext: |-
+    Verify that a separate file system/partition has been created for  /var/tmp  with the following command:
+
+     $ mountpoint /var/tmp
+
+
+    If "/var/tmp is is not a mountpoint" is returned, then this is a finding.

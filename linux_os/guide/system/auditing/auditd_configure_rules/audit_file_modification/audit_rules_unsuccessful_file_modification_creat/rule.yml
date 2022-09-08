@@ -84,9 +84,18 @@ warnings:
         calls with others as identifying earlier in this guide is more efficient.
 
 fixtext: |-
-    {{{ fixtext_audit_rules_unsuccessful_file_modification("creat", ["ftruncate", "truncate", "open", "openat", "open_by_handle_at"]) | indent(4) }}}
+    Configure {{{ full_name }}} to generate an audit event for any successful/unsuccessful use of the "truncate", "ftruncate", "creat", "open", "openat", and "open_by_handle_at" system calls by adding or updating the following rules in the "/etc/audit/rules.d/audit.rules" file:
 
-srg_requirement: '{{{ srg_requirement_audit_unsuccessful_syscall("creat") | indent(4) }}}'
+    -a always,exit -F arch=b32 -S truncate,ftruncate,creat,open,openat,open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
+    -a always,exit -F arch=b64 -S truncate,ftruncate,creat,open,openat,open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
+
+    -a always,exit -F arch=b32 -S truncate,ftruncate,creat,open,openat,open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
+    -a always,exit -F arch=b64 -S truncate,ftruncate,creat,open,openat,open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
+
+    The audit daemon must be restarted for the changes to take effect.
+
+srg_requirement: |-
+    {{{ full_name }}} must audit all uses of the truncate, ftruncate, creat, open, openat, and open_by_handle_at system calls.
 
 template:
     name: audit_rules_unsuccessful_file_modification
@@ -99,3 +108,18 @@ template:
           - open
           - openat
           - open_by_handle_at
+
+checktext: |-
+    Verify that {{{ full_name }}} is configured to audit successful/unsuccessful attempts to use the "truncate", "ftruncate", "creat", "open", "openat", and "open_by_handle_at" system calls with the following command:
+
+    $ sudo auditctl -l | grep'open\|truncate\|creat'
+
+    -a always,exit -F arch=b32 -S truncate,ftruncate,creat,open,openat,open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
+    -a always,exit -F arch=b64 -S truncate,ftruncate,creat,open,openat,open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
+
+    -a always,exit -F arch=b32 -S truncate,ftruncate,creat,open,openat,open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
+    -a always,exit -F arch=b64 -S truncate,ftruncate,creat,open,openat,open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
+
+    If the output does not produce rules containing "-F exit=-EPERM", this is a finding.
+    If the output does not produce rules containing "-F exit=-EACCES", this is a finding.
+    If the command does not return an audit rule for "truncate", "ftruncate", "creat", "open", "openat", and "open_by_handle_at" or any of the lines returned are commented out, this is a finding.

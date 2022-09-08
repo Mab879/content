@@ -85,7 +85,19 @@ ocil: |-
 platform: machine
 
 fixtext: |-
-    Configure {{{ full_name }}} to terminate user sessions after {{{ xccdf_value("var_accounts_tmout") }}} seconds of inactivity.
+    Configure {{{ full_name }}} to terminate user sessions after 600 seconds of inactivity.
 
     Add or edit the following line in "/etc/profile.d/tmout.sh":
-    TMOUT={{{ xccdf_value("var_accounts_tmout") }}}
+
+     TMOUT=600
+
+checktext: |-
+    Run the following command to ensure the "TMOUT" value is configured for all users
+    on the system:
+
+     $ sudo grep TMOUT /etc/profile /etc/profile.d/*.sh
+
+    The output should return the following:
+     TMOUT=600
+
+    If value of TMOUT is not less than or equal to expected setting, then this is a finding.

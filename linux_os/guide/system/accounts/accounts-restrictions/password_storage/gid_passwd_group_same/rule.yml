@@ -48,8 +48,18 @@ ocil: |-
 
 fixtext: |-
     Configure the system so that all GIDs are referenced in <tt>/etc/passwd</tt> are defined in <tt>/etc/group</tt>.
-    
+
     Edit the file "/etc/passwd" and ensure that every user's GID is a valid GID.
 
-srg_requirement:
+srg_requirement: |-
+    All {{{ full_name }}} interactive users must have a primary group that exists.
   Users on {{{ full_name }}} must have a primary group that exists.
+
+checktext: |-
+    Verify that all {{{ full_name }}} interactive users have a valid Group ID (GID).
+
+    Check that the interactive users have a valid Group ID with the following command:
+
+    $ sudo pwck -qr
+
+    If the system has any interactive users with duplicate Group IDs, this is a finding.

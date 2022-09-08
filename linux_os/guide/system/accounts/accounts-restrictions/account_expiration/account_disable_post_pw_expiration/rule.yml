@@ -74,15 +74,26 @@ ocil: |-
     INACTIVE={{{ xccdf_value("var_account_disable_post_pw_expiration") }}}</pre>
 
 fixtext: |-
-    Configure {{{ full_name }}} to disable account identifiers after {{{ xccdf_value("var_account_disable_post_pw_expiration") }}} days of inactivity after the password expiration.
+    Configure {{{ full_name }}} to disable account identifiers after 35 days of inactivity after the password expiration.
 
     Run the following command to change the configuration for useradd:
 
-    $ sudo useradd -D -f {{{ xccdf_value("var_account_disable_post_pw_expiration") }}}
+    $ sudo useradd -D -f 35
 
-    A recommendation is {{{ xccdf_value("var_account_disable_post_pw_expiration") }}} days, but a lower value is acceptable.
-    The value "-1" will disable this feature, and "0" will disable the account immediately after the password expires.
+    A recommendation is 35 days, but a lower value is acceptable.
 
-srg_requirement: '{{{ full_name }}} account identifiers (individuals, groups, roles, and devices) must be disabled after 35 days of inactivity.'
+srg_requirement: |-
+    {{{ full_name }}} Must Disable Account Identifiers (Individuals, Groups, Roles, And Devices) After 35 Days Of Inactivity.
 
 platform: login_defs
+
+checktext: |-
+    Verify that {{{ full_name }}} account identifiers (individuals, groups, roles, and devices) are disabled after 35 days of inactivity with the following command:
+
+    Check the account inactivity value by performing the following command:
+
+    $ sudo grep -i inactive /etc/default/useradd
+
+    INACTIVE=35
+
+    If "INACTIVE" is set to "-1", a value greater than "35", or is commented out, this is a finding.

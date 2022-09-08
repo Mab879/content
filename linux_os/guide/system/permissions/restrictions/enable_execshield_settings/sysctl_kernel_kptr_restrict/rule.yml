@@ -78,5 +78,24 @@ template:
         datatype: int
 
 fixtext: |-
-    Configure {{{ full_name }}} to restrict exposed kernel pointer addresses access.
-    {{{ fixtext_sysctl("kernel.kptr_restrict", value=xccdf_value("sysctl_kernel_kptr_restrict_value")) | indent(4) }}}
+    Add or edit the following line in a system configuration file in the "/etc/sysctl.d/" directory:
+
+    kernel.kptr_restrict = 1
+
+    Reload settings from all system configuration files with the following command:
+
+    $ sudo sysctl --system
+
+checktext: |-
+    Verify the runtime status of the kernel.kptr_restrict kernel parameter with the following command:
+    $ sysctl kernel.kptr_restrict
+
+    kernel.kptr_restrict = 1
+
+    Verify the configuration of the kernel.kptr_restrict kernel parameter with the following command:
+
+    $ { /usr/lib/systemd/systemd-sysctl --cat-config; cat /etc/sysctl.conf; } | egrep -v '^(#|$)' | grep -F kernel.kptr_restrict | tail -1
+
+    kernel.kptr_restrict =1
+
+    If "kernel.kptr_restrict" is not set to "1" or is missing, this is a finding.

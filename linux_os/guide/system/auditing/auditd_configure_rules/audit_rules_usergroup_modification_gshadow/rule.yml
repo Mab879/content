@@ -80,11 +80,25 @@ ocil: |-
     If the command does not return a line, or the line is commented out, this is a finding.
 
 
-fixtext: '{{{ fixtext_audit_file_watch_rule("/etc/gshadow", "identity", "/etc/audit/rules.d/audit.rules") }}}'
+fixtext: |-
+    Configure {{{ full_name }}} to generate audit records for all account creations, modifications, disabling, and termination events that affect "/etc/gshadow".
+    Add or update the following file system rule to "/etc/audit/rules.d/audit.rules":
+    -w /etc/gshadow -p wa -k identity
+    The audit daemon must be restarted for the changes to take effect.
 
-srg_requirement: '{{{ srg_requirement_audit_file_watch_rule("/etc/gshadow") }}}'
+srg_requirement: |-
+     {{{ full_name }}} must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/gshadow.
 
 template:
     name: audit_rules_usergroup_modification
     vars:
         path: /etc/gshadow
+
+checktext: |-
+    Verify {{{ full_name }}} generates audit records for all account creations, modifications, disabling, and termination events that affect "/etc/gshadow" with the following command:
+
+    $ sudo auditctl -l | egrep '(/etc/gshadow)'
+
+    -w /etc/gshadow -p wa -k identity
+
+    If the command does not return a line, or the line is commented out, this is a finding.

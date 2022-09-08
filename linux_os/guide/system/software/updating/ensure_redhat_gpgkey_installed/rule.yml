@@ -70,3 +70,11 @@ ocil: |-
 fixtext: |-
     Install {{{ full_name }}} GPG key. Run the following command:
     $ sudo rpm --import "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release"
+
+checktext: |-
+    To ensure that the GPG key is installed, run:
+     $ rpm -q --queryformat "%{SUMMARY}\n" gpg-pubkey
+    The command should return the string below:
+     gpg(Red Hat, Inc. (release key 2)  <security@redhat.com>
+
+    If the Red Hat GPG Key is not installed, this is a finding.

@@ -59,9 +59,20 @@ ocil: |-
     <pre>card_drivers = {{{ xccdf_value("var_smartcard_drivers") }}};</pre>
 
 fixtext: |-
-    Edit "/etc/opensc.conf" and add or edit the following line:
+    Configure {{{ full_name }}} to load the cac driver.
 
-    card_drivers = {{{ xccdf_value("var_smartcard_drivers") }}};
+    Add, or modify the following line in the "/etc/opensc.conf" file:
+
+    card_drivers = cac;
 
 srg_requirement:
   {{{ full_name }}} must use the {{{ xccdf_value("var_smartcard_drivers") }}} smartcard driver.
+
+checktext: |-
+    Verify that RHEL loads the cac driver with the following command:
+
+    $ grep card_drivers /etc/opensc.conf
+
+    card_drivers = cac;
+
+    If "cac" is not listed as a card driver, or there is no line returned for "card_drivers", this is a finding.

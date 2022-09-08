@@ -52,9 +52,19 @@ references:
 
 {{{ complete_ocil_entry_sshd_option(default="yes", option="X11Forwarding", value="no") }}}
 
-fixtext: '{{{ fixtext_sshd_lineinfile("X11Forwarding", "no", "no") }}}'
+fixtext: |-
+    Configure the SSH daemon to not allow X11 forwarding.
 
-srg_requirement: '{{{ full_name }}} remote X connections for interactive users must be disabled unless to fulfill documented and validated mission requirements.'
+    Add the following line in "/etc/ssh/sshd_config", or uncomment the line and set the value to "yes":
+
+    X11forwarding no
+
+    The SSH service must be restarted for changes to take effect:
+
+    $ sudo systemctl restart sshd.service
+
+srg_requirement: |-
+    The {{{ full_name }}} SSH daemon must disable remote X connections for interactive users.
 
 template:
     name: sshd_lineinfile
@@ -63,3 +73,12 @@ template:
         rule_id: sshd_disable_x11_forwarding
         value: 'no'
         is_default_value: 'true'
+
+checktext: |-
+    Verify the SSH daemon does not allow X11Forwarding with the following command:
+
+    $ sudo grep -ir x11for  /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*
+
+    X11forwarding no
+
+    If the value is returned as "yes", the returned line is commented out, or no output is returned, and X11 forwarding is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.

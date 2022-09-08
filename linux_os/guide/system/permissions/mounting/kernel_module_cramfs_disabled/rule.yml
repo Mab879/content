@@ -50,11 +50,24 @@ references:
 
 {{{ complete_ocil_entry_module_disable(module="cramfs") }}}
 
-fixtext: '{{{ fixtext_kernel_module_disabled("cramfs") }}}'
+fixtext: |-
+    To configure the system to prevent the cramfs kernel module from being loaded, add the following line to the file /etc/modprobe.d/blacklist.conf (or create blacklist.conf if it does not exist):
 
-srg_requirement: '{{{ srg_requirement_kernel_module_disable("cramfs") }}}'
+    blacklist cramfs
+
+srg_requirement: |-
+    {{{ full_name }}} must disable mounting of cramfs.
 
 template:
     name: kernel_module_disabled
     vars:
         kernmodule: cramfs
+
+checktext: |-
+    Verify that {{{ full_name }}} disables the ability to load the cramfs kernel module with the following command:
+
+    $ sudo grep -r cramfs /etc/modprobe.conf /etc/modprobe.d/*
+
+    blacklist cramfs
+
+    If the command does not return any output, or the line is commented out, and use of cramfs is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.

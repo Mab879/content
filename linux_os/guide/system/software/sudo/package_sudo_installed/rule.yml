@@ -43,7 +43,8 @@ ocil: '{{{ ocil_package(package="sudo") }}}'
 fixtext: |-
     {{{ describe_package_install(package="sudo") }}}
 
-srg_requirement: '{{{ srg_requirement_package_installed("sudo") }}}'
+srg_requirement: |-
+    {{{ full_name }}} must have the sudo package installed.
 
 template:
     name: package_installed
@@ -51,3 +52,12 @@ template:
         pkgname: sudo
 
 platform: machine
+
+checktext: |-
+    Verify that {{{ full_name }}} sudo package is installed with the following command:
+
+    $ sudo dnf list --installed sudo
+
+    sudo.x86_64    1.9.5p2-7.el9
+
+    If the sudo package is not installed, this is a finding.

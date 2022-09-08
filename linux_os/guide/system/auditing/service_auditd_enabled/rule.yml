@@ -73,6 +73,8 @@ fixtext: |-
     {{{ fixtext_service_enabled("auditd") }}}
 
 {{% if 'ubuntu' not in product and 'debian' not in product %}}
+srg_requirement: |-
+    The {{{ full_name }}} audit service must be enabled.
 srg_requirement: '{{{ srg_requirement_service_enabled("audit") }}}'
 {{% else %}}
 srg_requirement: '{{{ srg_requirement_service_enabled("auditd") }}}'
@@ -92,3 +94,14 @@ template:
         packagename@ubuntu1604: auditd
         packagename@ubuntu1804: auditd
         packagename@ubuntu2004: auditd
+
+checktext: |-
+    Verify the audit service is configured to produce audit records with the following command:
+
+    $ systemctl status auditd.service
+
+    auditd.service - Security Auditing Service
+    Loaded:loaded (/usr/lib/systemd/system/auditd.service; enabled; vendor preset: enabled)
+    Active: active (running) since Tues 2022-05-24 12:56:56 EST; 4 weeks 0 days ago
+
+    If the audit service is not "active" and "running", this is a finding.

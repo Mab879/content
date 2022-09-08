@@ -54,9 +54,19 @@ ocil: |-
 fixtext: |-
     {{{ fixtext_service_enabled("firewalld") }}}
 
-srg_requirement: '{{{ srg_requirement_service_enabled("firewalld") }}}'
+srg_requirement: |-
+    The firewalld service on {{{ full_name }}} must be active.
 
 template:
     name: service_enabled
     vars:
         servicename: firewalld
+
+checktext: |-
+    Verify that "firewalld" is active with the following command:
+
+    $ systemctl is-active firewalld
+
+    active
+
+    If the firewalld service is not active, this is a finding.

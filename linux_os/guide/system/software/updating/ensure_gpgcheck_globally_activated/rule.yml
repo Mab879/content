@@ -86,8 +86,22 @@ platform: yum
 
 fixtext: |-
     Configure {{{ full_name }}} to always check package signatures before installation.
-    Add or update the following line in {{{ pkg_manager_config_file }}}:
+
+    Add or update the following line in the [main] section of the /etc/dnf/dnf.conf file:
+
     gpgcheck=1
 
 srg_requirement: |-
+    {{{ full_name }}} must prevent the installation of software, patches, service packs, device drivers, or operating system components from a repository without verification they have been digitally signed using a certificate that is issued by a Certificate Authority (CA) that is recognized and approved by the organization.
    {{{ full_name }}} must have GPG checking enabled in the {{{ pkg_manager }}} package manager.
+
+checktext: |-
+    Verify that dnf verifies the signature of packages from a repository prior to install with the following command:
+
+    $ grep gpgcheck /etc/dnf/dnf.conf
+
+    gpgcheck=1
+
+    If "gpgcheck" is not set to "1", or if the option is missing or commented out, ask the System Administrator how the certificates for patches and other operating system components are verified.
+
+    If there is no process to validate certificates that is approved by the organization, this is a finding.

@@ -49,9 +49,17 @@ ocil_clause: '{{{ ocil_clause_file_permissions(file="/etc/ssh/*.pub", perms="-rw
 ocil: |-
     {{{ ocil_file_permissions(file="/etc/ssh/*.pub", perms="-rw-r--r--") }}}
 
-fixtext: '{{{ fixtext_file_permissions(file="/etc/ssh/*_key.pub", mode="0600") }}}'
+fixtext: |-
+    Change the mode of public host key files under "/etc/ssh" to "0644" with the following command:
 
-srg_requirement: 'The {{{ full_name }}} SSH public host key files must have mode 0644 or less permissive.'
+    $ sudo chmod 0644 /etc/ssh/*key.pub
+
+    Restart the SSH daemon for the changes to take effect:
+
+    $ sudo systemctl restart sshd.service
+
+srg_requirement: |-
+    {{{ full_name }}} SSH public host key files must have mode 0644 or less permissive.
 
 template:
     name: file_permissions
@@ -60,3 +68,18 @@ template:
         missing_file_pass: 'true'
         file_regex: ^.*\.pub$
         filemode: '0644'
+
+checktext: |-
+    Verify the SSH public host key files have mode "0644" or less permissive with the following command:
+
+    Note: SSH public key files may be found in other directories on the system depending on the installation.
+
+    $ sudo stat -c "%a %n" /etc/ssh/*.pub
+
+    644 /etc/ssh/ssh_host_dsa_key.pub
+    644 /etc/ssh/ssh_host_ecdsa_key.pub
+    644 /etc/ssh/ssh_host_ed25519_key.pub
+    644 /etc/ssh/ssh_host_rsa_key.pub
+
+
+    If any key.pub file has a mode more permissive than "0644", this is a finding.

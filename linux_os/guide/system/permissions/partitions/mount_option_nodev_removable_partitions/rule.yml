@@ -59,7 +59,8 @@ ocil: |-
 fixtext: |-
     Configure the "/etc/fstab" to use the "nodev" option on file systems that are associated with removable media.
 
-srg_requirement: '{{{ full_name }}} must prevent special devices on file systems that are used with removable media.'
+srg_requirement: |-
+    {{{ full_name }}} Must Be Configured In Accordance With The Security Configuration Settings Based On Dod Security Configuration Or Implementation Guidance, Including Stigs, Nsa Configuration Guides, Ctos, And Dtms.
 
 template:
     name: mount_option_removable_partitions
@@ -67,3 +68,8 @@ template:
         mountoption: nodev
     backends:
         anaconda: 'off'
+
+checktext: |-
+
+
+    If , then this is a finding.

@@ -72,3 +72,22 @@ template:
     name: audit_rules_privileged_commands
     vars:
         path: /usr/bin/chage
+
+srg_requirement: |-
+    {{{ full_name }}} must audit all uses of the chage command.
+
+checktext: |-
+    Verify that {{{ full_name }}} is configured to audit the execution of the "chage" command with the following command:
+
+    $ sudo auditctl -l | grep chage
+
+    -a always,exit -F path=/usr/bin/chage -F perm=x -F auid>=1000 -F auid!=unset -k privileged-chage
+
+    If the command does not return a line, or the line is commented out, this is a finding.
+
+fixtext: |-
+    Configure {{{ full_name }}} to generate audit records upon successful/unsuccessful attempts to use the "chage" command by adding or updating the following rule in "/etc/audit/rules.d/audit.rules":
+
+    -a always,exit -F path=/usr/bin/chage -F perm=x -F auid>=1000 -F auid!=unset -k privileged-chage
+
+    The audit daemon must be restarted for the changes to take effect.

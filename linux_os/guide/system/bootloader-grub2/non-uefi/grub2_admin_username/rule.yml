@@ -25,7 +25,7 @@ description: |-
 rationale: |-
     Having a non-default grub superuser username makes password-guessing attacks less effective.
 
-severity: medium
+severity: high
 
 identifiers:
     cce@rhcos4: CCE-83582-7
@@ -77,13 +77,27 @@ platform: machine
 fixtext: |-
     Configure {{{ full_name }}} to have a unique username for the grub superuser account.
 
-    Edit the "/etc/grub.d/01_users" file and add or modify the following lines in the "### BEGIN /etc/grub.d/01_users ###" section:
+    Edit the "/etc/grub.d/01_users" file and add or modify the following lines inthe "### BEGIN /etc/grub.d/01_users ###" section:
 
     set superusers="superusers-account"
     export superusers
 
     Once the superuser account has been added, update the grub.cfg file by running:
 
-    $ sudo {{{ grub_command("update") }}}
+    $ sudo grubby --update-kernel=ALL'
 
+srg_requirement: |-
+    {{{ full_name }}} must require a unique superusers name upon booting into single-user and maintenance modes.
 srg_requirement: '{{{ full_name }}} systems booted with a BIOS must require a unique superusers name upon booting into single-user and maintenance modes.'
+
+checktext: |-
+    To verify the boot loader superuser account has been set, run the following
+    command:
+     sudo grep -A1 "superusers" /etc/grub2.cfg
+    The output should show the following:
+     set superusers=" superusers-account "
+    export superusers
+    where superusers-account is the actual account name different from common names like root,
+    admin, or administrator.
+
+    If superusers contains easily guessable username, this is a finding.

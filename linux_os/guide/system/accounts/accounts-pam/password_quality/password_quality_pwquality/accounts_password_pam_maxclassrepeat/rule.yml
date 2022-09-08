@@ -65,3 +65,12 @@ fixtext: |-
     maxclassrepeat = {{{ xccdf_value("var_password_pam_maxclassrepeat") }}}
 
 srg_requirement: '{{{ full_name }}} must require the maximum number of repeating characters of the same character class be limited to four when passwords are changed.'
+
+checktext: |-
+    Verify the value of the "maxclassrepeat" option in "/etc/security/pwquality.conf" with the following command:
+
+    $ grep maxclassrepeat /etc/security/pwquality.conf
+
+    maxclassrepeat = 4
+
+    If the value of "maxclassrepeat" is set to "0", more than "4" or is commented out, then this is a finding.

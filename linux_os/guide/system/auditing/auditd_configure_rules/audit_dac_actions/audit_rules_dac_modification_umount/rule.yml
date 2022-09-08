@@ -51,6 +51,17 @@ warnings:
         have been placed independent of other system calls. Grouping these system
         calls with others as identifying earlier in this guide is more efficient.
 
-fixtext: '{{{ fixtext_audit_rules(event="umount", key="perm_mod") }}}'
+fixtext: |-
+    Configure the audit system to generate an audit event for any successful/unsuccessful use of the "umount" system call by adding or updating the following rules in "/etc/audit/audit.rules" and adding the following rules to "/etc/audit/rules.d/perm_mod.rules" or updating the existing rules in files in the "/etc/audit/rules.d/" directory:
+
+    -a always,exit -F arch=b32 -S umount -F auid>=1000 -F auid!=unset -k perm_mod -a always,exit -F arch=b64 -S umount -F auid>=1000 -F auid!=unset -k perm_mod
+    The audit daemon must be restarted for the changes to take effect.
 
 srg_requirement: '{{{ srg_requirement_audit_syscall("umount") }}}'
+
+vuldiscussion: |-
+    Without establishing what type of events occurred, it would be difficult to establish, correlate, and investigate the events leading up to an outage or attack.
+
+    Audit record content that may be necessary to satisfy this requirement includes, for example, time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, filenames involved, and access control or flow control rules invoked.
+
+    Associating event types with detected events in the operating system audit logs provides a means of investigating an attack; recognizing resource utilization or capacity thresholds; or identifying an improperly configured operating system.

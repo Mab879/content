@@ -45,12 +45,23 @@ ocil: |-
     pointing to a log file.
 
 fixtext: |-
-    add or update the following lines to the "/etc/rsyslog.conf" file:
+    Add or update the following lines to the "/etc/rsyslog.conf" file:
 
     auth.*;authpriv.*;daemon.* /var/log/secure
 
-    The "rsyslog" service must be restarted for the changes to take effect. To restart the "rsyslog" service, run the following command:
+    The "rsyslog" service must be restarted for the changes to take effect with the following command:
 
     $ sudo systemctl restart rsyslog.service
 
 srg_requirement: 'All {{{ full_name }}} remote access methods must be monitored.'
+
+checktext: |-
+    Verify that {{{ full_name }}} monitors all remote access methods.
+
+    Check that remote access methods are being logged by running the following command:
+
+    $ grep -rE '(auth.\*|authpriv.\*|daemon.\*)' /etc/rsyslog.conf
+
+    /etc/rsyslog.conf:authpriv.*
+
+    If "auth.*", "authpriv.*" or "daemon.*" are not configured to be logged, this is a finding.

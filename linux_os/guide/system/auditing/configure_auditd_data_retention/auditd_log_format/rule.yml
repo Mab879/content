@@ -12,7 +12,7 @@ rationale: |-
     If option <tt>log_format</tt> isn't set to <tt>ENRICHED</tt>, the
     audit records will be stored in a format exactly as the kernel sends them.
 
-severity: medium
+severity: low
 
 identifiers:
     cce@rhcos4: CCE-82511-7
@@ -39,9 +39,14 @@ ocil: |-
     <pre>log_format = ENRICHED</pre>
 
 fixtext: |-
-    {{{ fixtext_audit_configuration(param="log_format", value="ENRICHED") | indent(4) }}}
+    Edit the /etc/audit/auditd.conf file and add or update the "log_format" option:
 
-srg_requirement: '{{{ full_name }}} must resolve audit information before writing to disk.'
+    log_format = ENRICHED
+
+    The audit daemon must be restarted for changes to take effect.
+
+srg_requirement: |-
+    {{{ full_name }}} must produce audit records containing information to establish the identity of any individual or process associated with the event.
 
 template:
     name: auditd_lineinfile
@@ -50,3 +55,12 @@ template:
         parameter: log_format
         rule_id: auditd_log_format
         value: ENRICHED
+
+checktext: |-
+    Verify that {{{ full_name }}} audit system is configured to resolve audit information before writing to disk, with the following command:
+
+    $ sudo grep log_format /etc/audit/auditd.conf
+
+    log_format = ENRICHED
+
+    If the "log_format" option is not "ENRICHED", or the line is commented out, this is a finding.

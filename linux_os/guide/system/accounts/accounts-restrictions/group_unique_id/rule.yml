@@ -45,3 +45,12 @@ srg_requirement:
 warnings:
     - general: |-
           Automatic remediation of this control is not available due to the unique requirements of each system.
+
+checktext: |-
+    Verify that {{{ full_name }}} contains no duplicate Group IDs (GID) for interactive users.
+
+    Check that the operating system contains no duplicate group names for interactive users by running the following command:
+
+     $  cut -d : -f 3 /etc/group | uniq -d
+
+    If the system has duplicate group ids, this is a finding.

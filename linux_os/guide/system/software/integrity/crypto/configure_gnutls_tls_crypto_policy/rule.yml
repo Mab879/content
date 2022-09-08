@@ -41,11 +41,27 @@ ocil: |-
     /etc/crypto-policies/back-ends/gnutls.config</pre> and verify that a match exists.
 
 fixtext: |-
-    Configure the {{{ full_name }}} GnuTLS library to use only DoD-approved encryption by adding the following line to "/etc/crypto-policies/back-ends/gnutls.config":
+    Configure the {{{ full_name }}} GnuTLS library to use only DoD-approved encryption with the following steps to enable FIPS mode:
 
-    +VERS-ALL:-VERS-DTLS0.9:-VERS-SSL3.0:-VERS-TLS1.0:-VERS-TLS1.1:-VERS-DTLS1.0
+    $ sudo fips-mode-setup --enable
 
     A reboot is required for the changes to take effect.
 
-srg_requirement:
+srg_requirement: |-
     {{{ full_name }}} must implement DoD-approved TLS encryption in the GnuTLS package.
+    {{{ full_name }}} must implement DoD-approved TLS encryption in the GnuTLS package.
+
+vuldiscussion: |-
+    Without cryptographic integrity protections, information can be altered by unauthorized users without detection.
+
+    Remote access (e.g., RDP) is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
+
+    Cryptographic mechanisms used for protecting the integrity of information include, for example, signed hash functions using asymmetric cryptography enabling distribution of the public key to verify the hash information while maintaining the confidentiality of the secret key used to generate the hash.
+
+checktext: |-
+    To verify if GnuTLS uses defined DoD-approved TLS Crypto Policy, run:
+
+     $ update-crypto-policies --show
+    FIPS
+
+    If the system wide crypto policy is not FIPS, this is a finding.

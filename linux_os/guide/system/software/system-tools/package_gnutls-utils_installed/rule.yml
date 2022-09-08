@@ -28,11 +28,24 @@ ocil_clause: 'the package is not installed'
 
 ocil: '{{{ ocil_package(package="gnutls-utils") }}}'
 
-fixtext: '{{{ fixtext_package_installed("gnutls-utils") }}}'
+fixtext: |-
+    The gnutls-utils package can be installed with the following command:
 
-srg_requirement: '{{{ srg_requirement_package_installed("gnutls-utils") }}}'
+    $ sudo dnf install gnutls-utils
+
+srg_requirement: |-
+    {{{ full_name }}} must have the gnutls-utils package installed.
 
 template:
     name: package_installed
     vars:
         pkgname: gnutls-utils
+
+checktext: |-
+    Verify that {{{ full_name }}} has the gnutls-utils package installed with the following command:
+
+    $ dnf list --installed gnutls-utils
+
+    gnutls-utils.x86_64        3.7.3-9.el9
+
+    If a gnutls-utils package is not installed, this is a finding.

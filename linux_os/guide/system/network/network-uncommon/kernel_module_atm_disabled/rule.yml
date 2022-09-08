@@ -32,11 +32,24 @@ references:
 
 {{{ complete_ocil_entry_module_disable(module="atm") }}}
 
-fixtext: '{{{ fixtext_kernel_module_disabled("atm") }}}'
+fixtext: |-
+    To configure the system to prevent the atm kernel module from being loaded, add the following line to the file  /etc/modprobe.d/atm.conf (or create atm.conf if it does not exist):
 
-srg_requirement: '{{{ srg_requirement_kernel_module_disable('atm') }}}'
+    blacklist atm
+
+srg_requirement: |-
+    {{{ full_name }}} must be configured to disable the Asynchronous Transfer Mode kernel module.
 
 template:
     name: kernel_module_disabled
     vars:
         kernmodule: atm
+
+checktext: |-
+    Verify that {{{ full_name }}} disables the ability to load the ATM kernel module with the following command:
+
+    $ sudo grep -r atm /etc/modprobe.conf /etc/modprobe.d/*
+
+    blacklist atm
+
+    If the command does not return any output, or the line is commented out, and use of ATM is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.

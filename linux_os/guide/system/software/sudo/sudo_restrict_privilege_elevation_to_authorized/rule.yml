@@ -46,9 +46,10 @@ ocil: |-
     <pre>$ sudo grep -PR '^\s*ALL\s+ALL\=\(ALL\:ALL\)\s+ALL\s*$' /etc/sudoers /etc/sudoers.d/*</pre>
 
 fixtext: |-
-    Remove the following entries from /etc/sudoers or any file in /etc/sudoers.d/*:
-    ALL ALL=(ALL) ALL
-    ALL ALL=(ALL:ALL) ALL
+    Remove the following entries from the /etc/sudoers file or configuration file under /etc/sudoers.d/:
+
+    ALL     ALL=(ALL) ALL
+    ALL     ALL=(ALL:ALL) ALL
 
 srg_requirement: '{{{ full_name }}} must restrict privilege elevation to authorized personnel.'
 
@@ -58,3 +59,12 @@ warnings:
 - general: |-
     This rule doesn't come with a remediation, as the exact requirement allows exceptions,
     and removing lines from the sudoers file can make the system non-administrable.
+
+checktext: |-
+    Verify {{{ full_name }}} restricst privilege elevation to authorized personnel with the following command:
+
+    $ sudo sh -c 'grep -iw ALL /etc/sudoers /etc/sudoers.d/*'
+
+    If the either of the following entries are returned, this is a finding:
+    ALL     ALL=(ALL) ALL
+    ALL     ALL=(ALL:ALL) ALL

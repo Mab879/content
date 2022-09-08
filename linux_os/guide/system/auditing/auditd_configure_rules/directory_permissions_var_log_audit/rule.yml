@@ -74,29 +74,28 @@ ocil: |-
     {{% endif %}}
 
 fixtext: |-
-    Configure the audit log directory to be protected from unauthorized read access by setting the correct permissive mode.
+    The audit daemon must be restarted for the changes to take effect.
+
+srg_requirement: |-
+    {{{ full_name }}} audit log directory must have a mode of 0750 or less permissive to prevent unauthorized read access.
+
+checktext: |-
+    Verify the audit log directories have a correct mode or less permissive mode.
 
     Find the location of the audit logs:
 
     $ sudo grep "^log_file" /etc/audit/auditd.conf
 
-    {{% if product in ["ol8", "rhel8"] %}}
-    Set the correct permissions mode by the following command:
-
-    $ sudo chmod 0700 [audit_log_directory]
-    {{% else %}}
     Find the group that owns audit logs:
 
     $ sudo grep "^log_group" /etc/audit/auditd.conf
 
-    If the log_group is "root" or is not set, the correct permissions are 0700, otherwise they are 0750.
+    Run the following command to check the mode of the system audit logs:
 
-    Set the correct permissions mode by the following command:
-
-    $ sudo chmod [correct_permissions] [audit_log_directory]
-    {{% endif %}}
+    $ sudo stat -c "%a %n" [audit_log_directory]
 
     Replace "[audit_log_directory]" to the correct audit log directory path, by default this location is "/var/log/audit".
 
-srg_requirement: |-
-    {{{ full_name }}} audit log directory must have a mode of 0750 or less permissive to prevent unauthorized read access.
+    If the log_group is "root" or is not set, the correct permissions are 0700, otherwise they are 0750.
+
+    If audit logs have a more permissive mode, then this is a finding.

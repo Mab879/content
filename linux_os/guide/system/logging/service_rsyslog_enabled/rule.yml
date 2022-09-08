@@ -48,11 +48,24 @@ ocil_clause: '{{{ ocil_clause_service_enabled(service="rsyslog") }}}'
 ocil: |-
     {{{ ocil_service_enabled(service="rsyslog") }}}
 
-fixtext: '{{{ fixtext_service_enabled("rsyslog") }}}'
+fixtext: |-
+    To enable the rsyslog service run the following command:
 
-srg_requirement: '{{{ srg_requirement_service_enabled("rsyslog") }}}'
+    $ sudo systemctl enable --now rsyslog
+
+srg_requirement: |-
+    The rsyslog service on {{{ full_name }}} must be active.
 
 template:
     name: service_enabled
     vars:
         servicename: rsyslog
+
+checktext: |-
+    Verify that "rsyslog" is active with the following command:
+
+    $ systemctl is-active rsyslog
+
+    active
+
+    If the rsyslog service is not active, this is a finding.

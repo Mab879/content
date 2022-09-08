@@ -48,7 +48,7 @@ ocil: '{{{ ocil_package(package="firewalld") }}}'
 fixtext: |-
     To install the "firewalld" package run the following command:
 
-    {{{ package_install("firewalld") }}}
+    $ sudo dnf install firewalld
 
 template:
     name: package_installed
@@ -57,3 +57,6 @@ template:
 
 srg_requirement:
     {{{ full_name }}} must have the firewalld package installed.
+
+checktext: |-
+    Run the following command to determine if the  firewalld  package is installed:$ sudo dnf list --installed firewalld firewalld.noarch1.0.0-4.el9If the firewall package is not installed, this is a finding.

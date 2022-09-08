@@ -74,3 +74,23 @@ ocil: |-
     functionality completely.
     If the option is set to a number greater than <tt>0</tt>, then the idle session will be disconnected after
     <tt>ClientAliveInterval * ClientAliveCountMax</tt> seconds.
+
+checktext: |-
+    Verify that the "ClientAliveCountMax" is set to "0" by performing the following command:
+
+    $ sudo grep -i countmax /etc/ssh/sshd_config
+
+    ClientAliveCountMax 0
+
+    If "ClientAliveCountMax" do not exist, is not set to a value of "0" in "/etc/ssh/sshd_config", or is commented out, this is a finding.
+
+fixtext: |-
+    Configure {{{ full_name }}} to automatically terminate all network connections associated with SSH traffic at the end of a session or after 10 minutes of inactivity.
+
+    Modify or append the following lines in the "/etc/ssh/sshd_config" file:
+
+    ClientAliveCountMax 0
+
+    In order for the changes to take effect, the SSH daemon must be restarted.
+
+    $ sudo systemctl restart sshd.service

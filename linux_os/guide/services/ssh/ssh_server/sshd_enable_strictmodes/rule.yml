@@ -50,7 +50,16 @@ references:
 
 {{{ complete_ocil_entry_sshd_option(default="yes", option="StrictModes", value="yes") }}}
 
-fixtext: '{{{ fixtext_sshd_lineinfile("StrictModes", "yes", "no") }}}'
+fixtext: |-
+    Configure the SSH daemon to to perform strict mode checking of home directory configuration files.
+
+    Add the following line in "/etc/ssh/sshd_config", or uncomment the line and set the value to "yes":
+
+    StrictModes yes
+
+    The SSH service must be restarted for changes to take effect:
+
+    $ sudo systemctl restart sshd.service
 
 srg_requirement: 'The {{{ full_name }}} SSH daemon must perform strict mode checking of home directory configuration files.'
 
@@ -61,3 +70,12 @@ template:
         rule_id: sshd_enable_strictmodes
         value: 'yes'
         is_default_value: 'true'
+
+checktext: |-
+    Verify the SSH daemon performs strict mode checking of home directory configuration files with the following command:
+
+    $ sudo grep -ir strictmodes  /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*
+
+    StrictModes yes
+
+    If the "StrictModes" keyword is set to "no", the returned line is commented out, or no output is returned, this is a finding.

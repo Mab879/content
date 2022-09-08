@@ -73,3 +73,22 @@ template:
     vars:
         path: /usr/sbin/unix_chkpwd
         path@sle15: /sbin/unix_chkpwd
+
+srg_requirement: |-
+    {{{ full_name }}} must audit all uses of the unix_chkpwd command.
+
+checktext: |-
+    Verify that {{{ full_name }}} is configured to audit the execution of the "unix_chkpwd" command with the following command:
+
+    $ sudo auditctl -l | grep unix_chkpwd
+
+    -a always,exit -F path=/usr/sbin/unix_chkpwd -F perm=x -F auid>=1000 -F auid!=unset -k privileged-unix-update
+
+    If the command does not return a line, or the line is commented out, this is a finding.
+
+fixtext: |-
+    Configure {{{ full_name }}} to generate audit records upon successful/unsuccessful attempts to use the "unix_chkpwd" command by adding or updating the following rule in "/etc/audit/rules.d/audit.rules":
+
+    -a always,exit -F path=/usr/sbin/unix_chkpwd -F perm=x -F auid>=1000 -F auid!=unset -k privileged-unix-update
+
+    The audit daemon must be restarted for the changes to take effect.

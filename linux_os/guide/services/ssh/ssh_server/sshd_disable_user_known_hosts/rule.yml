@@ -46,9 +46,19 @@ references:
 
 {{{ complete_ocil_entry_sshd_option(default="no", option="IgnoreUserKnownHosts", value="yes") }}}
 
-fixtext: '{{{ fixtext_sshd_lineinfile("IgnoreUserKnownHosts", "yes", "no") }}}'
+fixtext: |-
+    Configure the SSH daemon to not allow known hosts authentication.
 
-srg_requirement: 'The {{{ full_name }}} SSH daemon must not allow authentication using known host’s authentication.'
+    Add the following line in "/etc/ssh/sshd_config", or uncomment the line and set the value to "yes":
+
+    IgnoreUserKnownHosts yes
+
+    The SSH service must be restarted for changes to take effect:
+
+    $ sudo systemctl restart sshd.service
+
+srg_requirement: |-
+    The {{{ full_name }}} SSH daemon must not allow known hosts authentication.
 
 template:
     name: sshd_lineinfile
@@ -56,3 +66,12 @@ template:
         parameter: IgnoreUserKnownHosts
         rule_id: sshd_disable_user_known_hosts
         value: 'yes'
+
+checktext: |-
+    Verify the SSH daemon does not allow known hosts authentication with the following command:
+
+    $ sudo grep -ir ignoreuser  /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*
+
+    IgnoreUserKnownHosts yes
+
+    If the value is returned as "no", the returned line is commented out, or no output is returned, this is a finding.

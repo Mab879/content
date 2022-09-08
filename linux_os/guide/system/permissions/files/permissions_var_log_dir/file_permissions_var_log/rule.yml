@@ -36,6 +36,19 @@ template:
         filemode: '0755'
 
 fixtext: |-
-    {{{ fixtext_directory_permissions("/var/log", "0755") | indent(4) }}}
+    Configure the "/var/log" directory to a mode of "0755" by running the following command:
 
+    $ sudo chmod 0755 /var/log
+
+srg_requirement: |-
+    The {{{ full_name }}} /var/log directory must have mode 0755 or less permissive.
 srg_requirement: '{{{ srg_requirement_directory_permission("/var/log", "0755") }}}'
+
+checktext: |-
+    Verify that the "/var/log" directory has a mode of "0755" or less permissive with the following command:
+
+    $ ls -ld /var/log
+
+    drwxr-xr-x. 16 root root 4096 July 11 11:34 /var/log
+
+    If "/var/log" does not have a mode of "0755" or less permissive, this is a finding.

@@ -55,4 +55,6 @@ fixtext: |-
 
     $ sudo systemctl restart sshd.service
 
+srg_requirement: |-
+    {{{ full_name }}} Must Implement Dod-Approved Encryption To Protect The Confidentiality Of Remote Access Sessions.
 srg_requirement: '{{{ full_name }}} must force a frequent session key renegotiation for SSH connections to the server.'

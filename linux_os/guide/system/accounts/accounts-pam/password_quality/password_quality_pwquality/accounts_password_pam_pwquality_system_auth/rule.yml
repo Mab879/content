@@ -45,3 +45,11 @@ ocil: |-
     <pre>password    requisite                                    pam_pwquality.so</pre>
 
 platform: pam
+
+checktext: |-
+    To check if pam_pwhistory.so is enabled in system-auth, run the following command:
+     $ grep pam_pwquality /etc/pam.d/system-auth
+    The output should be similar to the following:
+     password requisite pam_pwquality.so
+
+    If pam_pwquality.so is not enabled in system-auth, then this is a finding.

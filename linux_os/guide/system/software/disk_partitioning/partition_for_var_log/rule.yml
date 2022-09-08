@@ -47,9 +47,11 @@ references:
 
 {{{ complete_ocil_entry_separate_partition(part="/var/log") }}}
 
-fixtext: '{{{ fixtext_separate_partition(part="/var/log") }}}'
+fixtext: |-
+    Migrate the "/var/log" path onto a separate file system.
 
-srg_requirement: '{{{ srg_requirement_separate_partition("/var/log") }}}'
+srg_requirement: |-
+    {{{ full_name }}} must use a separate file system for /var/log.
 
 platform: machine
 
@@ -63,3 +65,11 @@ template:
         mountpoint: /var/log
         min_size: 5368709120
 {{% endif %}}
+
+checktext: |-
+    Verify that a separate file system/partition has been created for  /var/log  with the following command:
+
+     $ mountpoint /var/log
+
+
+    If "/var/log is is not a mountpoint" is returned, then this is a finding.

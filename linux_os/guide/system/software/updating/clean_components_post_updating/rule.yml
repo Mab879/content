@@ -88,13 +88,14 @@ ocil: |-
 {{% if product in ['fedora'] or 'rhel' in product %}}
 fixtext: |-
     Configure {{{ full_name }}} to remove all software components after updated versions have been installed.
-    
+
     Edit the file {{{ pkg_manager_config_file }}} by adding or editing the following line:
 
     <pre>clean_requirements_on_remove=1</pre>
 {{% endif %}}
 
-srg_requirement: '{{{ pkg_manager }}} must remove all software components after updated versions have been installed on {{{ full_name }}}.'
+srg_requirement: |-
+    {{{ full_name }}} must remove all software components after updated versions have been installed.
 
 {{% if 'sle' in product %}}
 platform: zypper
@@ -102,3 +103,12 @@ platform: zypper
 {{% else %}}
 platform: yum
 {{% endif %}}
+
+checktext: |-
+    Verify {{{ full_name }}} removes all software components after updated versions have been installed with the following command:
+
+    $ grep clean /etc/dnf/dnf.conf
+
+    clean_requirements_on_remove=1
+
+    If "clean_requirements_on_remove" is not set to "1", this is a finding.

@@ -110,9 +110,34 @@ warnings:
         submits to this process.
 
 fixtext: |-
-    Configure {{{ full_name }}} to use system cryptography policy.
-    Run the following command:
+    Configure the operating system to implement FIPS mode with the following command
 
-    $ sudo update-crypto-policies --set {{{ xccdf_value("var_system_crypto_policy") }}}
+    $ sudo fips-mode-setup --enable
 
+    Reboot the system for the changes to take effect.
+
+srg_requirement: |-
+    {{{ full_name }}} must implement a system-wide encryption policy.
 srg_requirement: '{{{ full_name }}} must use {{{ xccdf_value("var_system_crypto_policy") }}} for the system cryptography policy.'
+
+vuldiscussion: |-
+    Privileged access contains control and configuration information and is particularly sensitive, so additional protections are necessary. This is maintained by using cryptographic mechanisms such as encryption to protect confidentiality.
+
+    Nonlocal maintenance and diagnostic activities are those activities conducted by individuals communicating through a network, either an external network (e.g., the Internet) or an internal network. Local maintenance and diagnostic activities are those activities carried out by individuals physically present at the information system or information system component and not communicating across a network connection.
+
+    This requirement applies to hardware/software diagnostic test equipment or tools. This requirement does not cover hardware/software components that may support information system maintenance, yet are a part of the system (e.g., the software implementing "ping," "ls," "ipconfig," or the hardware and software implementing the monitoring port of an Ethernet switch).
+
+    The operating system can meet this requirement through leveraging a cryptographic module.
+
+checktext: |-
+    Verify that the {{{ full_name }}} cryptography policy has been configured correctly with the following commands:
+
+    $ update-crypto-policies --show
+
+    FIPS
+
+    $ update-crypto-policies --is-applied
+
+    The configured policy is applied.
+
+    If the cryptography is not set to "FIPS" and is not applied, this is a finding.

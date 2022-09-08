@@ -53,3 +53,12 @@ fixtext: |-
     {{{ fixtext_mount_option("/var/tmp", "noexec") }}}
 
 srg_requirement: '{{{ srg_requirement_mount_option("/var/tmp", "noexec") }}}'
+
+checktext: |-
+    Verify "/var/tmp" is mounted with the "noexec" option:
+
+    $ mount | grep /var/tmp
+
+    /dev/mapper/rhel-var-tmp on /var/tmp type xfs (rw,nodev,nosuid,noexec,seclabel)
+
+    If the "/var/tmp" file system is mounted without the "noexec" option, this is a finding.

@@ -44,12 +44,25 @@ ocil_clause: '{{{ ocil_clause_file_group_owner(file="/etc/ssh/sshd_config", grou
 ocil: |-
     {{{ ocil_file_group_owner(file="/etc/ssh/sshd_config", group="root") }}}
 
-fixtext: '{{{ fixtext_file_group_owner(file="/etc/ssh/sshd_config", group="root") }}}'
+fixtext: |-
+    Configure the "/etc/ssh/sshd_config" file to be group-owned by root with the following command:
 
-srg_requirement: '{{{ srg_requirement_file_group_owner(file="/etc/ssh/sshd_config", group="root") }}}'
+    $ sudo chgrp root /etc/ssh/sshd_config
+
+srg_requirement: |-
+    The {{{ full_name }}} SSH server configuration file must be group-owned by root.
 
 template:
     name: file_groupowner
     vars:
         filepath: /etc/ssh/sshd_config
         filegid: '0'
+
+checktext: |-
+    Verify the group ownership of the "/etc/ssh/sshd_config" file with the following command:
+
+    $ ls -al /etc/ssh/sshd_config
+
+    rw-------. 1 root root 3669 Feb 22 11:34 /etc/ssh/sshd_config
+
+    If the "/etc/ssh/sshd_config" file does not have a group owner of "root", then this is a finding.

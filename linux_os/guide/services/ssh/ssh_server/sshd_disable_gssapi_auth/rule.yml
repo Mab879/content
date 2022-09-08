@@ -49,9 +49,18 @@ references:
 {{{ complete_ocil_entry_sshd_option(default="yes", option="GSSAPIAuthentication", value="no") }}}
 
 fixtext: |-
-    {{{ fixtext_sshd_lineinfile("GSSAPIAuthentication", "no") }}}
+    Configure the SSH daemon to not allow GSSAPI authentication.
 
-srg_requirement: 'The {{{ full_name }}} SSH daemon must not allow GSSAPI authentication, except to fulfill documented and validated mission requirements.'
+    Add the following line in "/etc/ssh/sshd_config", or uncomment the line and set the value to "no":
+
+    GSSAPIAuthentication no
+
+    The SSH service must be restarted for changes to take effect:
+
+    $ sudo systemctl restart sshd.service
+
+srg_requirement: |-
+    The {{{ full_name }}} SSH daemon must not allow GSSAPI authentication.
 
 template:
     name: sshd_lineinfile
@@ -60,3 +69,16 @@ template:
         rule_id: sshd_disable_gssapi_auth
         value: 'no'
         is_default_value: 'true'
+
+checktext: |-
+    Verify the SSH daemon does not allow GSSAPI authentication with the following command:
+
+    $ sudo grep -ir gssapiauth  /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*
+
+    GSSAPIAuthentication no
+
+    If the value is returned as "yes", the returned line is commented out, no output is returned, and the use of GSSAPI authentication has not been documented with the ISSO, this is a finding.
+
+    Fix Text: Configure the SSH daemon to not allow GSSAPI authentication.
+
+    If the required value is not set, then this is a finding.

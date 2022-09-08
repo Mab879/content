@@ -33,3 +33,6 @@ template:
     name: audit_rules_privileged_commands
     vars:
         path: /usr/sbin/shutdown
+
+srg_requirement: |-
+    Successful/unsuccessful uses of the shutdown command in {{{ full_name }}} must generate an audit record.

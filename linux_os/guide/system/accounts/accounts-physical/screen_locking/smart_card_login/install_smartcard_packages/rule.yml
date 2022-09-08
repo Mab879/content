@@ -79,6 +79,20 @@ template:
 {{% endif %}}
 
 fixtext: |-
-    {{{ describe_package_install(package=smartcard_packages | join) }}}
+    The openssl-pkcs11 package can be installed with the following command:
 
+    $ sudo dnf install openssl-pkcs11
+
+srg_requirement: |-
+    {{{ full_name }}} must have the openssl-pkcs11 package installed.
 srg_requirement: '{{{ full_name }}} must have the packages required for multifactor authentication installed.'
+
+checktext: |-
+    Verify that {{{ full_name }}} has the openssl-pkcs11 package installed with the following command:
+
+    $ sudo dnf list --installed openssl-pkcs11
+
+    openssl-pkcs.i686        0.4.11-7.el9
+    openssl-pkcs.x86_64        0.4.11-7.el9
+
+    If a openssl-pkcs11 package is not installed, this is a finding.

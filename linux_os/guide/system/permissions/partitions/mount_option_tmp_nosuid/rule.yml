@@ -61,3 +61,12 @@ fixtext: |-
     {{{ fixtext_mount_option("/tmp", "nosuid") }}}
 
 srg_requirement: '{{{ srg_requirement_mount_option("/tmp", "nosuid") }}}'
+
+checktext: |-
+    Verify "/tmp" is mounted with the "nosuid" option:
+
+    $ mount | grep /tmp
+
+    /dev/mapper/rhel-tmp on /tmp type xfs (rw,nodev,nosuid,noexec,seclabel)
+
+    If the "/tmp" file system is mounted without the "nosuid" option, this is a finding.

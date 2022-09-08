@@ -63,30 +63,11 @@ ocil: |-
     {{% endif %}}
 
 fixtext: |-
-    To configure {{{ full_name }}} to lock out accounts after a number of incorrect login attempts
-    using <tt>pam_faillock.so</tt>, first enable the feature using the following command:
-    {{% if product in ["rhel7"] %}}
-    $ sudo authconfig --enablefaillock --update
+    Configure {{{ full_name }}} to lock an account when three unsuccessful logon attempts occur.
 
-    Then modify the content of both <tt>/etc/pam.d/system-auth</tt> and
-    <tt>/etc/pam.d/password-auth</tt> as follows:
-    edit the deny parameter in the following line <tt>before</tt> the <tt>pam_unix.so</tt>
-    statement in the <tt>auth</tt> section, like this:
-    <pre>auth required pam_faillock.so preauth silent <tt>deny={{{ xccdf_value("var_accounts_passwords_pam_faillock_deny") }}}</tt> unlock_time={{{ xccdf_value("var_accounts_passwords_pam_faillock_unlock_time") }}} fail_interval={{{ xccdf_value("var_accounts_passwords_pam_faillock_fail_interval") }}}</pre>
+    Add/Modify the "/etc/security/faillock.conf" file to match the following line:
 
-    edit the deny parameter in the following line <tt>after</tt> the <tt>pam_unix.so</tt>
-    statement in the <tt>auth</tt> section, like this:
-    <pre>auth required pam_faillock.so authfail <tt>deny={{{ xccdf_value("var_accounts_passwords_pam_faillock_deny") }}}</tt> unlock_time={{{ xccdf_value("var_accounts_passwords_pam_faillock_unlock_time") }}} fail_interval={{{ xccdf_value("var_accounts_passwords_pam_faillock_fail_interval") }}}</pre>
-    {{% else %}}
-    $ sudo authselect enable-feature with-faillock
-
-    Then edit the <tt>/etc/security/faillock.conf</tt> file as follows:
-    add, uncomment or edit the following line:
-    <pre>deny = {{{ xccdf_value("var_accounts_passwords_pam_faillock_deny") }}}</pre>
-
-    add or uncomment the following line:
-    <pre>silent</pre>
-    {{% endif %}}
+    deny = 3
 
 platform: pam
 
@@ -102,3 +83,12 @@ warnings:
 
 srg_requirement: |-
     {{{ full_name }}} must automatically lock an account when three unsuccessful logon attempts occur.
+
+checktext: |-
+    Verify {{{ full_name }}} is configured to lock an account after three unsuccessful logon attempts with the command:
+
+    $ grep 'deny =' /etc/security/faillock.conf
+
+    deny = 3
+
+    If the "deny" option is not set to "3" or less (but not "0"), is missing or commented out, this is a finding.

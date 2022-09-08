@@ -38,7 +38,7 @@ ocil: |-
     $ sudo stat -c "%U %n" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/rsyslogd /sbin/augenrules
 
 fixtext: |-
-    Configure the audit tools to be owned by "root", by running the following command:
+    Configure the audit tools to have a mode of "0755"  by running the following command:
 
     $ sudo chmod 0755 [audit_tool]
 
@@ -59,3 +59,18 @@ template:
             - /sbin/augenrules
         filemode: '0755'
         missing_file_pass: 'true'
+
+checktext: |-
+    Verify the audit tools have a mode of "0755" or less with the following command:
+
+    $ stat -c "%a %n" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/rsyslogd /sbin/augenrules
+
+    755 /sbin/auditctl
+    755 /sbin/aureport
+    755 /sbin/ausearch
+    750 /sbin/autrace
+    755 /sbin/auditd
+    755 /sbin/rsyslogd
+    755 /sbin/augenrules
+
+    If any of the audit tool files have a mode more permissive than "0755", this is a finding.

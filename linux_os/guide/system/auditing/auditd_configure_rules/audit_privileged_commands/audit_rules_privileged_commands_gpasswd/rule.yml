@@ -73,3 +73,22 @@ template:
     name: audit_rules_privileged_commands
     vars:
         path: /usr/bin/gpasswd
+
+srg_requirement: |-
+    {{{ full_name }}} must audit all uses of the gpasswd command.
+
+checktext: |-
+    Verify that {{{ full_name }}} is configured to audit the execution of the "gpasswd" command with the following command:
+
+    $ sudo auditctl -l | grep gpasswd
+
+    -a always,exit -F path=/usr/bin/gpasswd -F perm=x -F auid>=1000 -F auid!=unset -k privileged-gpasswd
+
+    If the command does not return a line, or the line is commented out, this is a finding.
+
+fixtext: |-
+    Configure {{{ full_name }}} to generate audit records upon successful/unsuccessful attempts to use the "gpasswd" command by adding or updating the following rule in "/etc/audit/rules.d/audit.rules":
+
+    -a always,exit -F path=/usr/bin/gpasswd -F perm=x -F auid>=1000 -F auid!=unset -k privileged-gpasswd
+
+    The audit daemon must be restarted for the changes to take effect.

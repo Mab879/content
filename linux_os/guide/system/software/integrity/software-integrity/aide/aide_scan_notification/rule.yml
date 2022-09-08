@@ -63,16 +63,24 @@ ocil: |-
     <pre><sub idref="var_aide_scan_notification_email" /></pre>.
 
 fixtext: |-
-    Configure the file integrity tool to run automatically on the system at least weekly and to notify designated personnel if baseline configurations are changed in an unauthorized manner.
-    The AIDE tool can be configured to email designated personnel with the use of the cron system.
+    Configure the file integrity tool to run automatically on the system at least weekly and to notify designated personnel if baseline configurations are changed in an unauthorized manner.    The AIDE tool can be configured to email designated personnel with the use of the cron system.
 
-    The following example output is generic. It will set cron to run AIDE daily and to send email at the completion of the analysis.
+    The following example output is generic. It will set cron to run AIDE daily and to send email at the completion of the
 
     $ sudo more /etc/cron.daily/aide
 
     #!/bin/bash
-
     /usr/sbin/aide --check | /bin/mail -s "$HOSTNAME - Daily aide integrity check run" root@sysname.mil
 
 srg_requirement: |-
+    {{{ full_name }}} Must Shut Down The Information System, Restart The Information System, And/Or Notify The System Administrator When Anomalies In The Operation Of Any Security Functions Are Discovered.
     The {{{ full_name }}} file integrity tool must notify the system administrator when changes to the baseline configuration or anomalies in the operation of any security functions are discovered within an organizationally defined frequency.
+
+vuldiscussion: |-
+    If anomalies are not acted upon, security functions may fail to secure the system.
+
+    Security function is defined as the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Security functionality includes, but is not limited to, establishing system accounts, configuring access authorizations (i.e., permissions, privileges), setting events to be audited, and setting intrusion detection parameters.
+
+    Notifications provided by information systems include messages to local computer consoles, and/or hardware indications, such as lights.
+
+    This capability must take into account operational requirements for availability for selecting an appropriate response. The organization may choose to shut down or restart the information system upon security function anomaly detection.

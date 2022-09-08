@@ -31,8 +31,15 @@ references:
 {{{ complete_ocil_entry_sysctl_option_value(sysctl="kernel.perf_event_paranoid", value="2") }}}
 
 fixtext: |-
-    Configure {{{ full_name }}} to only allow root to do kernel profiling.
-    {{{ fixtext_sysctl(sysctl="kernel.perf_event_paranoid", value="2") | indent(4) }}}
+    Configure {{{ full_name }}} to prevent kernel profiling by unprivileged users.
+
+    Add or edit the following line in a system configuration file, in the "/etc/sysctl.d/" directory:
+
+    kernel.perf_event_paranoid = 2
+
+    Load settings from all system configuration files with the following command:
+
+    $ sudo sysctl --system
 
 srg_requirement: '{{{ full_name }}} must prevent kernel profiling by unprivileged users.'
 
@@ -44,3 +51,20 @@ template:
         sysctlvar: kernel.perf_event_paranoid
         sysctlval: '2'
         datatype: int
+
+checktext: |-
+    Verify {{{ full_name }}} is configured to prevent kernel profiling by unprivileged users with the following commands:
+
+    Check the status of the kernel.perf_event_paranoid kernel parameter.
+
+    $ sysctl kernel.perf_event_paranoid
+
+    kernel.perf_event_paranoid = 2
+
+    If "kernel.perf_event_paranoid" is not set to "2" or is missing, this is a finding.
+    Check that the configuration files are present to enable this kernel parameter.
+
+    $  {  sudo /usr/lib/systemd/systemd-sysctl --cat-config; cat /etc/sysctl.conf; } | egrep -v '^(#|$)' | grep -F kernel.perf_event_paranoid | tail -1
+    kernel.perf_event_paranoid = 2
+
+    If "kernel.perf_event_paranoid" is not set to "2" or is missing this is a finding.

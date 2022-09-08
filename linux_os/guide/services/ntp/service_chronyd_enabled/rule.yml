@@ -45,3 +45,11 @@ template:
     vars:
         servicename: chronyd
         packagename: chrony
+
+checktext: |-
+    Run the following command to determine the current status of the
+     chronyd service:
+     $ sudo systemctl is-active chronyd
+    If the service is running, it should return the following: active
+
+    If the chronyd process is not running, then this is a finding.

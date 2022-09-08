@@ -72,3 +72,22 @@ template:
     name: audit_rules_privileged_commands
     vars:
         path: /usr/bin/su
+
+srg_requirement: |-
+    {{{ full_name }}} must audit all uses of the su command.
+
+checktext: |-
+    Verify that {{{ full_name }}} is configured to audit the execution of the "su" command with the following command:
+
+    $ sudo auditctl -l | grep /usr/bin/su
+
+    -a always,exit -F path=/usr/bin/su -F perm=x -F auid>=1000 -F auid!=unset -k privileged-priv_change
+
+    If the command does not return a line, or the line is commented out, this is a finding.
+
+fixtext: |-
+    Configure {{{ full_name }}} to generate audit records upon successful/unsuccessful attempts to use the "su" command by adding or updating the following rule in "/etc/audit/rules.d/audit.rules":
+
+    -a always,exit -F path=/usr/bin/su -F perm=x -F auid>=1000 -F auid!=unset -k privileged-priv_change
+
+    The audit daemon must be restarted for the changes to take effect.

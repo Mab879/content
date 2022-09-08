@@ -59,7 +59,22 @@ platform: yum
 
 fixtext: |-
     Configure {{{ full_name }}} to always check package signatures before installation of local packages.
-    Add or update the following line in {{{ pkg_manager_config_file }}}:
+
+    Add or update the following line in the [main] section of the /etc/dnf/dnf.conf file:
+
     localpkg_gpgcheck=1
 
+srg_requirement: |-
+    {{{ full_name }}} must check the GPG sign of locally installed packages.
 srg_requirement: '{{{ full_name }}} package manage must check GPG signatures of local packages.'
+
+checktext: |-
+    Verify that dnf verifies the signature of local packages prior to install with the following command:
+
+    $ grep localpkg_gpgcheck /etc/dnf/dnf.conf
+
+    localpkg_gpgcheck=1
+
+    If "localpkg_gpgcheck" is not set to "1", or if the option is missing or commented out, ask the System Administrator how the certificates for patches and other operating system components are verified.
+
+    If there is no process to validate certificates for local packages that is approved by the organization, this is a finding.

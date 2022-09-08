@@ -48,3 +48,12 @@ fixtext: |-
     {{{ fixtext_mount_option("/var/log/audit", "nodev") }}}
 
 srg_requirement: '{{{ srg_requirement_mount_option("/var/log/audit", "nodev") }}}'
+
+checktext: |-
+    Verify "/var/log/audit" is mounted with the "nodev" option:
+
+    $ mount | grep /var/log/audit
+
+    /dev/mapper/rhel-var-log-audit on /var/log/audit type xfs (rw,nodev,nosuid,noexec,seclabel)
+
+    If the "/var/log/audit" file system is mounted without the "nodev" option, this is a finding.

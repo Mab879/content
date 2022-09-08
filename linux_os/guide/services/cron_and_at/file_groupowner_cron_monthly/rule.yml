@@ -43,7 +43,8 @@ ocil: |-
 
 fixtext: '{{{ fixtext_directory_group_owner(file="/etc/cron.monthly/", group="root") }}}'
 
-srg_requirement: '{{{ srg_requirement_directory_group_owner(file="/etc/cron.monthly", group="root") }}}'
+srg_requirement: |-
+    {{{ full_name }}} Must Be Configured In Accordance With The Security Configuration Settings Based On Dod Security Configuration Or Implementation Guidance, Including Stigs, Nsa Configuration Guides, Ctos, And Dtms.
 
 template:
     name: file_groupowner

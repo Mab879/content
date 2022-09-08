@@ -42,12 +42,32 @@ ocil_clause: '{{{ ocil_clause_file_group_owner(file="/etc/cron.daily", group="ro
 ocil: |-
     {{{ ocil_file_group_owner(file="/etc/cron.daily", group="root") }}}
 
-fixtext: '{{{ fixtext_directory_group_owner(file="/etc/cron.daily/", group="root") }}}'
+fixtext: |-
+    Configure any cron configuration not group-owned by root with the following command:
 
-srg_requirement: '{{{ srg_requirement_directory_group_owner(file="/etc/cron.daily", group="root") }}}'
+    $ sudo chgrp root [cron config file]
+
+srg_requirement: |-
+    {{{ full_name }}} cron configuration files directory must be group-owned by root.
 
 template:
     name: file_groupowner
     vars:
         filepath: /etc/cron.daily/
         filegid: '0'
+
+checktext: |-
+    To check the group ownership of all cron configuration files,
+    run the command:
+     $ sudo stat -c "%G %n" /etc/cron*
+    If properly configured, the output should indicate the following group-owner for all files:
+    root /etc/cron.d
+    root /etc/cron.daily
+    root /etc/cron.deny
+    root /etc/cron.hourly
+    root /etc/cron.monthly
+    root /etc/crontab
+    root /etc/cron.weekly
+
+
+    If any crontab is not group owned by group, this is a finding.

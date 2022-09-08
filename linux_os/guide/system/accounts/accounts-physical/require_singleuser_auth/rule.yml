@@ -92,15 +92,21 @@ ocil: |-
 platform: machine
 
 fixtext: |-
-    Configure {{{ full_name }}} to require authentication in single user mode.
+    Configure {{{ full_name }}} to require authentication for single-user mode.
 
-    Add or update the following line in "/usr/lib/systemd/system/rescue.service":
-    {{% if product in ["fedora", "ol8", "ol9", "rhel8", "rhel9", "sle12", "sle15"] -%}}
+    Add, or modify the following line in the "/usr/lib/systemd/system/rescue.service" file:
+
     ExecStart=-/usr/lib/systemd/systemd-sulogin-shell rescue
-    {{%- elif product in ["rhel7"] -%}}
-    ExecStart=-/bin/sh -c "/usr/sbin/sulogin; /usr/bin/systemctl --fail --no-block default"
-    {{%- else -%}}
-    ExecStart=-/bin/sh -c "/sbin/sulogin; /usr/bin/systemctl --fail --no-block default"
-    {{%- endif %}}
 
+srg_requirement: |-
+    {{{ full_name }}} must require authentication to access single-user mode.
 srg_requirement: '{{{ full_name }}} must require authentication upon booting into rescue mode.'
+
+checktext: |-
+    Verify that {{{ full_name }}} requires authentication for single-user mode with the following command:
+
+    $ grep sulogin /usr/lib/systemd/system/rescue.service
+
+    ExecStart=-/usr/lib/systemd/systemd-sulogin-shell rescue
+
+    If this line is not returned, or is commented out, this is a finding.

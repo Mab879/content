@@ -44,12 +44,25 @@ ocil_clause: '{{{ ocil_clause_file_permissions(file="/etc/ssh/sshd_config", perm
 ocil: |-
     {{{ ocil_file_permissions(file="/etc/ssh/sshd_config", perms="-rw-------") }}}
 
-fixtext: '{{{ fixtext_file_permissions(file="/etc/ssh/sshd_config", mode="0600") }}}'
+fixtext: |-
+    Configure the "/etc/ssh/sshd_config" permissions to be 0600 with the following command:
 
-srg_requirement: '{{{ srg_requirement_file_permission(file="/etc/ssh/sshd_config", mode="0600") }}}'
+    $ sudo chmod 0600 /etc/ssh/sshd_config
+
+srg_requirement: |-
+    The {{{ full_name }}} SSH server configuration file must have mode 0600 or less permissive.
 
 template:
     name: file_permissions
     vars:
         filepath: /etc/ssh/sshd_config
         filemode: '0600'
+
+checktext: |-
+    Verify the permissions of the "/etc/ssh/sshd_config" file with the following command:
+
+    $ ls -al /etc/ssh/sshd_config
+
+    rw-------. 1 root root 3669 Feb 22 11:34 /etc/ssh/sshd_config
+
+    If the "/etc/ssh/sshd_config" permissions are not 0600, then this is a finding.

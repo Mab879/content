@@ -64,3 +64,21 @@ fixtext: |-
 
 srg_requirement:
     {{{ full_name }}} must be configured to use TCP syncookies.
+
+checktext: |-
+    Verify {{{ full_name }}} is configured to use IPv4 TCP syncookies.
+
+    Check to see if syncookies are used with the following command:
+
+    Check the status of the kernel.perf_event_paranoid kernel parameter.
+
+    $ sysctl net.ipv4.tcp_syncookies
+
+    net.ipv4.tcp_syncookies = 1
+
+    Check that the configuration files are present to enable this kernel parameter.
+
+    $ {  sudo /usr/lib/systemd/systemd-sysctl --cat-config; cat /etc/sysctl.conf; } | egrep -v '^(#|$)' | grep -F net.ipv4.tcp_syncookies | tail -1
+    net.ipv4.tcp_syncookies = 1
+
+    If the network parameter "ipv4.tcp_syncookies" is not equal to "1" or nothing is returned, this is a finding.

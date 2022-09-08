@@ -34,9 +34,16 @@ ocil: |-
     <pre>write_logs = yes</pre>
 
 fixtext: |-
-    {{{ fixtext_audit_configuration(param="write_logs", value="yes") | indent(4) }}}
+    Configure the audit system to write log files to the disk.
 
-srg_requirement: '{{{ full_name }}} must write audit logs to disk.'
+    Edit the /etc/audit/auditd.conf file and add or update the "write_logs" option to "yes":
+
+    write_logs = yes
+
+    The audit daemon must be restarted for changes to take effect.
+
+srg_requirement: |-
+    {{{ full_name }}} must write audit records to disk.
 
 template:
     name: auditd_lineinfile
@@ -45,3 +52,12 @@ template:
         parameter: write_logs
         rule_id: auditd_write_logs
         value: 'yes'
+
+checktext: |-
+    Verify that the audit system is configured to write logs to the disk with the following command:
+
+    $ sudo grep write_logs /etc/audit/auditd.conf
+
+    write_logs = yes
+
+    If "write_logs" does not have a value of "yes", the line is commented out, or the line is missing, this is a finding.

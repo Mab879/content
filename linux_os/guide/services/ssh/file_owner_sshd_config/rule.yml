@@ -44,12 +44,25 @@ ocil_clause: '{{{ ocil_clause_file_owner(file="/etc/ssh/sshd_config", owner="roo
 ocil: |-
     {{{ ocil_file_owner(file="/etc/ssh/sshd_config", owner="root") }}}
 
-fixtext: '{{{ fixtext_file_owner(file="/etc/ssh/sshd_config", owner="root") }}}'
+fixtext: |-
+    Configure the "/etc/ssh/sshd_config" file to be owned by root with the following command:
 
-srg_requirement: '{{{ srg_requirement_file_owner(file="/etc/ssh/sshd_config", owner="root") }}}'
+    $ sudo chown root /etc/ssh/sshd_config
+
+srg_requirement: |-
+    The {{{ full_name }}} SSH server configuration file must be owned by root.
 
 template:
     name: file_owner
     vars:
         filepath: /etc/ssh/sshd_config
         fileuid: '0'
+
+checktext: |-
+    Verify the ownership of the "/etc/ssh/sshd_config" file with the following command:
+
+    $ ls -al /etc/ssh/sshd_config
+
+    rw-------. 1 root root 3669 Feb 22 11:34 /etc/ssh/sshd_config
+
+    If the "/etc/ssh/sshd_config" file does not have an owner of "root", then this is a finding.

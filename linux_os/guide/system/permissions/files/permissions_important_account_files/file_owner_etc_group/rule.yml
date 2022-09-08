@@ -43,12 +43,24 @@ ocil_clause: '{{{ ocil_clause_file_owner(file="/etc/group", owner="root") }}}'
 ocil: |-
     {{{ ocil_file_owner(file="/etc/group", owner="root") }}}
 
-fixtext: '{{{ fixtext_file_owner(file="/etc/group", owner="root") }}}'
+fixtext: |-
+    Change the owner of the file /etc/group to root by running the following command:
+    $ sudo chown root /etc/group
 
-srg_requirement: '{{{ srg_requirement_file_owner(file="/etc/group", owner="root") }}}'
+srg_requirement: |-
+    The {{{ full_name }}} /etc/group file must be owned by root.
 
 template:
     name: file_owner
     vars:
         filepath: /etc/group
         fileuid: '0'
+
+checktext: |-
+    To check the ownership of /etc/group ,
+    run the command:
+     $ sudo stat -c "%U %n" /etc/group
+    If properly configured, the output should indicate the following owner:
+     root /etc/group
+
+    If /etc/group does not have an owner of root, then this is a finding.

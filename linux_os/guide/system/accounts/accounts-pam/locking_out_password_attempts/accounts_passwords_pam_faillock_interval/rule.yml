@@ -55,33 +55,16 @@ ocil: |-
     {{% endif %}}
 
 fixtext: |-
-    To configure the fail_interval directive, first make sure the feature is enabled using the
-    following command:
-    {{% if product in ["rhel7"] %}}
-    $ sudo authconfig --enablefaillock --update
+    Configure {{{ full_name }}} to lock out the "root" account after a number of incorrect login attempts within 15 minutes using "pam_faillock.so", first enable the feature using the following command:
 
-    Then modify the content of both <tt>/etc/pam.d/system-auth</tt> and
-    <tt>/etc/pam.d/password-auth</tt> as follows:
-    edit the fail_interval parameter in the following line <tt>before</tt> the <tt>pam_unix.so</tt>
-    statement in the <tt>auth</tt> section, like this:
-    <pre>auth required pam_faillock.so preauth silent deny={{{ xccdf_value("var_accounts_passwords_pam_faillock_deny") }}} unlock_time={{{ xccdf_value("var_accounts_passwords_pam_faillock_unlock_time") }}} <tt>fail_interval={{{ xccdf_value("var_accounts_passwords_pam_faillock_fail_interval") }}}</tt></pre>
+    $ authselect enable-feature with-faillock
 
-    edit the deny parameter in the following line <tt>after</tt> the <tt>pam_unix.so</tt>
-    statement in the <tt>auth</tt> section, like this:
-    <pre>auth required pam_faillock.so authfail deny={{{ xccdf_value("var_accounts_passwords_pam_faillock_deny") }}} unlock_time={{{ xccdf_value("var_accounts_passwords_pam_faillock_unlock_time") }}} <tt>fail_interval={{{ xccdf_value("var_accounts_passwords_pam_faillock_fail_interval") }}}</tt></pre>
-    {{% else %}}
-    $ sudo authselect enable-feature with-faillock
+    Then edit the "/etc/security/faillock.conf" file as follows:
 
-    Then edit the <tt>/etc/security/faillock.conf</tt> file as follows:
-    add, uncomment or edit the following line:
-    <pre>fail_interval = {{{ xccdf_value("var_accounts_passwords_pam_faillock_fail_interval") }}}</pre>
-
-    add or uncomment the following line:
-    <pre>silent</pre>
-    {{% endif %}}
+    fail_interval = 900
 
 srg_requirement: |-
-    {{{ full_name }}} must automatically lock an account when three unsuccessful logon attempts occur within {{{ xccdf_value("var_accounts_passwords_pam_faillock_fail_interval") }}} seconds.
+    {{{ full_name }}} must automatically lock an account when three unsuccessful logon attempts occur during a 15-minute time period.
 
 platform: pam
 
@@ -94,3 +77,14 @@ warnings:
         be shown in the remediation report.
         If the system supports the <tt>/etc/security/faillock.conf</tt> file, the pam_faillock
         parameters should be defined in <tt>faillock.conf</tt> file.
+
+checktext: |-
+    Verify {{{ full_name }}} locks an account after three unsuccessful logon attempts within a period of 15 minutes with the following command:
+
+    Note: If the System Administrator demonstrates the use of an approved centralized account management method that locks an account after three unsuccessful logon attempts within a period of 15 minutes, this requirement is not applicable.
+
+    $ grep fail_interval /etc/security/faillock.conf
+
+    fail_interval = 900
+
+    If the "fail_interval" option is not set to "900" or less (but not "0"), the line is commented out, or the line is missing, this is a finding.

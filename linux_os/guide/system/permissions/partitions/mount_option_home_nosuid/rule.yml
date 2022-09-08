@@ -51,7 +51,8 @@ platform: machine
 fixtext: |-
     {{{ fixtext_mount_option("/home", "nosuid") }}}
 
-srg_requirement: '{{{ srg_requirement_mount_option("/home", "nosuid") }}}'
+srg_requirement: |-
+    {{{ full_name }}} must prevent files with the setuid and setgid bit set from being executed on file systems that contain user home directories.
 
 {{% if "ol" not in product %}}
 template:
@@ -78,3 +79,14 @@ template:
         mountoption: nosuid
 {{% endif %}}
 
+
+checktext: |-
+    Verify "/home" is mounted with the "nosuid" option with the following command:
+
+    Note: If a separate file system has not been created for the user home directories (user home directories are mounted under "/"), this is automatically a finding as the "nosuid" option cannot be used on the "/" system.
+
+    $ mount | grep /home
+
+    tmpfs on /home type tmpfs (rw,nodev,nosuid,noexec,seclabel)
+
+    If the "/home" file system is mounted without the "nosuid" option, this is a finding.

@@ -35,10 +35,12 @@ ocil_clause: '{{{ ocil_clause_file_permissions(file="/etc/passwd-", perms="-rw-r
 ocil: |-
     {{{ ocil_file_permissions(file="/etc/passwd-", perms="-rw-r--r--") }}}
 
-fixtext: '{{{ fixtext_file_permissions(file="/etc/passwd-", mode="0644") }}}'
+fixtext: |-
+    Change the permissions of the file "/etc/passwd-" to "0644" by running the following command:
+    $ sudo chmod 0644 /etc/passwd-
 
-srg_requirement: '{{{ srg_requirement_file_permission(file="/etc/passwd-", mode="0644") }}}'
-
+srg_requirement: |-
+    The {{{ full_name }}} /etc/passwd- file must have 0644 or less permissive to prevent unauthorized access.
 
 template:
     name: file_permissions
@@ -46,3 +48,12 @@ template:
         filepath: /etc/passwd-
         filemode: '0644'
         missing_file_pass: 'true'
+
+checktext: |-
+    To check the permissions of /etc/passwd- ,
+    run the command:
+     $ sudo stat -c "%a %n" /etc/passwd-
+    If properly configured, the output should indicate the following permissions:
+     644 /etc/passwd-
+
+    If /etc/passwd- does not have unix mode 644, then this is a finding.

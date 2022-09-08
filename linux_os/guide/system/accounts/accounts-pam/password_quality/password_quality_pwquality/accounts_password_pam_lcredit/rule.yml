@@ -82,3 +82,14 @@ template:
     vars:
         variable: lcredit
         operation: less than or equal
+
+checktext: |-
+    Verify that {{{ full_name }}} enforces password complexity by requiring that at least one lower-case character.
+
+    Check the value for "lcredit" with the following command:
+
+    $ sudo grep lcredit /etc/security/pwquality.conf /etc/security/pwquality.conf/*.conf
+
+    /etc/security/pwquality.conf:lcredit = -1
+
+    If the value of "lcredit" is a positive number or is commented out, this is a finding.

@@ -68,12 +68,22 @@ ocil: |-
     <pre>SELINUXTYPE={{{ xccdf_value("var_selinux_policy_name") }}}</pre>
 
 fixtext: |-
-    Configure {{{ full_name }}} to verify correct operation of security functions.
+    Configure {{{ full_name }}} to use the targetd SELINUX policy.
 
-    Edit the file <tt>/etc/selinux/config</tt> and add or modify the following line:
-    <pre>SELINUXTYPE={{{ xccdf_value("var_selinux_policy_name") }}}</pre>
+    Edit the file "/etc/selinux/config" and add or modify the following line:
+
+     SELINUXTYPE=targeted
 
     A reboot is required for the changes to take effect.
 
 srg_requirement: '{{{ full_name }}} must enable the SELinux targeted policy.'
 
+
+checktext: |-
+    Verify the SELINUX on {{{ full_name }}} is using the targeted policy with the following command:
+
+    $ sestatus | grep policy
+
+    Loaded policy name:             targeted
+
+    If the loaded policy name is not "targeted", this is a finding.

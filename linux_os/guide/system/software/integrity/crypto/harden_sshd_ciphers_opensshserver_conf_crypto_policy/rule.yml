@@ -62,3 +62,22 @@ warnings:
         party review by an accredited lab. While open source software is
         capable of meeting this, it does not meet FIPS-140 unless the vendor
         submits to this process.
+
+srg_requirement: |-
+    {{{ full_name }}} must implement DoD-approved encryption ciphers to protect the confidentiality of SSH server connections.
+
+checktext: |-
+    Verify the SSH server is configured to use only ciphers employing FIPS 140-3-approved algorithms with the following command:
+
+    $ sudo grep -i ciphers /etc/crypto-policies/back-ends/opensshserver.config
+
+    Ciphers aes256-ctr,aes192-ctr,aes128-ctr
+
+    If the cipher entries in the "opensshserver.config" file have any ciphers other than "aes256-ctr,aes192-ctr,aes128-ctr", the order differs from the example above, they are missing, or commented out, this is a finding.
+
+fixtext: |-
+    Configure the {{{ full_name }}} SSH server to use only ciphers employing FIPS 140-3-approved algorithms by updating the "/etc/crypto-policies/back-ends/opensshserver.config" file with the following line:
+
+    Ciphers=aes256-ctr,aes192-ctr,aes128-ctr
+
+    A reboot is required for the changes to take effect.

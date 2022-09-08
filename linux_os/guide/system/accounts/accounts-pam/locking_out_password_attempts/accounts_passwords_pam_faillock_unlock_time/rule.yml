@@ -64,36 +64,16 @@ ocil: |-
     It can also be <tt>0</tt> or <tt>never</tt>.
 
 fixtext: |-
-    To configure the system to lock out accounts during a specified time period after a number of
-    incorrect login attempts using <tt>pam_faillock.so</tt>, first make sure the feature is enabled
-    using the following command:
-    {{% if product in ["rhel7"] %}}
-    $ sudo authconfig --enablefaillock --update
+    Configure {{{ full_name }}} to lock an account until released by an administrator after three unsuccessful logon attempts with the command:
 
-    Then modify the content of both <tt>/etc/pam.d/system-auth</tt> and
-    <tt>/etc/pam.d/password-auth</tt> as follows:
-    edit the unlock_time parameter in the following line <tt>before</tt> the <tt>pam_unix.so</tt>
-    statement in the <tt>auth</tt> section, like this:
-    <pre>auth required pam_faillock.so preauth silent deny={{{ xccdf_value("var_accounts_passwords_pam_faillock_deny") }}} <tt>unlock_time={{{ xccdf_value("var_accounts_passwords_pam_faillock_unlock_time") }}}</tt> fail_interval={{{ xccdf_value("var_accounts_passwords_pam_faillock_fail_interval") }}}</pre>
+    $ authselect enable-feature with-faillock
 
-    edit the deny parameter in the following line <tt>after</tt> the <tt>pam_unix.so</tt>
-    statement in the <tt>auth</tt> section, like this:
-    <pre>auth required pam_faillock.so authfail deny={{{ xccdf_value("var_accounts_passwords_pam_faillock_deny") }}} <tt>unlock_time={{{ xccdf_value("var_accounts_passwords_pam_faillock_unlock_time") }}}</tt> fail_interval={{{ xccdf_value("var_accounts_passwords_pam_faillock_fail_interval") }}}</pre>
-    {{% else %}}
-    $ sudo authselect enable-feature with-faillock
+    Then edit the "/etc/security/faillock.conf" file as follows:
 
-    Then edit the <tt>/etc/security/faillock.conf</tt> file as follows:
-    add, uncomment or edit the following line:
-    <pre>unlock_time = {{{ xccdf_value("var_accounts_passwords_pam_faillock_unlock_time") }}}</pre>
-
-    add or uncomment the following line:
-    <pre>silent</pre>
-    {{% endif %}}
-    If <tt>unlock_time</tt> is set to <tt>0</tt>, manual intervention by an administrator is required
-    to unlock a user. This should be done using the <tt>faillock</tt> tool.
+    unlock_time = 0
 
 srg_requirement: |-
-    {{{ full_name }}} must automatically lock an account until the locked account is released by an administrator.
+    {{{ full_name }}} must maintain an account lock until the locked account is released by an administrator.
 
 platform: pam
 
@@ -114,3 +94,12 @@ warnings:
         be shown in the remediation report.
         If the system supports the <tt>/etc/security/faillock.conf</tt> file, the pam_faillock
         parameters should be defined in <tt>faillock.conf</tt> file.
+
+checktext: |-
+    Verify {{{ full_name }}} is configured to lock an account until released by an administrator after three unsuccessful logon attempts with the command:
+
+    $ grep 'unlock_time =' /etc/security/faillock.conf
+
+    unlock_time = 0
+
+    If the "unlock_time" option is not set to "0", the line is missing, or commented out, this is a finding.

@@ -42,11 +42,13 @@ ocil_clause: 'the audit package is not installed'
 ocil: '{{{ ocil_package("audit") }}}'
 
 fixtext: |-
-    Install the audit service (if the audit service is not already installed) with the following command:
+    Install the audit service package (if the audit service is not already installed) with the following command:
 
-    {{{ package_install("audit") }}}
+    $ sudo dnf install audit
 
 {{% if 'ubuntu' not in product and 'debian' not in product %}}
+srg_requirement: |-
+    The {{{ full_name }}} audit package must be installed.
 srg_requirement: '{{{ srg_requirement_package_installed("audit") }}}'
 {{% else %}}
 srg_requirement: '{{{ srg_requirement_package_installed("auditd") }}}'
@@ -62,3 +64,14 @@ template:
         pkgname@debian9: auditd
         pkgname@debian10: auditd
         pkgname@debian11: auditd
+
+checktext: |-
+    Verify that {{{ full_name }}} audit service package is installed.
+
+    Check that the audit service package is installed with the following command:
+
+    $ sudo dnf list --installed audit
+
+    audit-3.0.7-101.el9_0.2.x86_64
+
+    If the audit package is not installed, this is a finding.

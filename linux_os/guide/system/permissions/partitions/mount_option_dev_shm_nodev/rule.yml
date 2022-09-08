@@ -65,6 +65,15 @@ template:
 
 
 fixtext: |-
-    {{{ fixtext_mount_option("/dev/shm", "nodev") }}}
+    Modify "/etc/fstab" to use the "nodev" option on the "/dev/shm" file system.
 
 srg_requirement: '{{{ srg_requirement_mount_option("/dev/shm", "nodev") }}}'
+
+checktext: |-
+    Verify "/dev/shm" is mounted with the "nodev" option with the following command:
+
+    $ mount | grep /dev/shm
+
+    tmpfs on /dev/shm type tmpfs (rw,nodev,nosuid,noexec,seclabel)
+
+    If the /dev/shm file system is mounted without the "nodev" option, this is a finding.

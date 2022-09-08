@@ -43,8 +43,31 @@ template:
         arg_value: none
 
 fixtext: |-
-    {{{ describe_grub2_argument("vsyscall=none") | indent(4) }}}
+    Document the use of vsyscalls with the ISSO as an operational requirement or disable them with the following command:
+
+    $ sudo grubby --update-kernel=ALL --args="vsyscall=none"
+
+    Add or modify the following line in "/etc/default/grub" to ensure the configuration survives kernel updates:
+
+    GRUB_CMDLINE_LINUX="vsyscall=none"
 
 srg_requirement:
   {{{ full_name }}} must disable virtual syscalls.
 
+
+checktext: |-
+    Verify that GRUB 2 is configured to disable vsyscalls .
+
+    Check that the current GRUB 2 configuration disables vsyscalls with the following command:
+
+    $ sudo grubby --info=ALL | grep args | grep -v 'vsyscall=none'
+
+    If any output is returned, this is a finding.
+
+    Check that vsyscalls are disabled by default to persist in kernel updates with the following command:
+
+    $ sudo grep vsyscall /etc/default/grub
+
+    GRUB_CMDLINE_LINUX="vsyscall=none"
+
+    If "vsyscall" is not set to "none", is missing or commented out and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.

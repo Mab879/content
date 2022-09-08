@@ -33,11 +33,23 @@ ocil: |-
     {{{ ocil_service_enabled(service="fapolicyd") }}}
 
 fixtext: |-
-    {{{ fixtext_service_enabled("fapolicyd") }}}
+    Enable the fapolicyd with the following command:
 
-srg_requirement: '{{{ srg_requirement_service_enabled(service="fapolicyd") }}}'
+    $ systemctl enable --now fapolicyd
+
+srg_requirement: |-
+    The {{{ full_name }}} fapolicy module must be enabled.
 
 template:
     name: service_enabled
     vars:
         servicename: fapolicyd
+
+checktext: |-
+    Verify that {{{ full_name }}} fapolicyd is active with the following command:
+
+    $ systemctl is-active fapolicyd
+
+    active
+
+    If fapolicyd is not active, this is a finding.

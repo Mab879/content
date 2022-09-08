@@ -33,10 +33,16 @@ references:
 {{{ complete_ocil_entry_sysctl_option_value(sysctl="kernel.yama.ptrace_scope", value="1") }}}
 
 fixtext: |-
-    Configure {{{ full_name }}} to restrict usage of ptrace to descendant processes.
-    {{{ fixtext_sysctl(sysctl="kernel.yama.ptrace_scope", value="1") | indent(4) }}}
+    Configure {{{ full_name }}} to restrict usage of ptrace to descendant processes by adding the following line to a file, in the "/etc/sysctl.d" directory:
 
-srg_requirement: '{{{ full_name }}} must restrict usage of ptrace to descendant processes.'
+    kernel.yama.ptrace_scope = 1
+
+    The system configuration files need to be reloaded for the changes to take effect. To reload the contents of the files, run the following command:
+
+    $ sudo sysctl --system
+
+srg_requirement: |-
+    {{{ full_name }}} must restrict usage of ptrace to descendant  processes.
 
 platform: machine
 
@@ -46,3 +52,12 @@ template:
         sysctlvar: kernel.yama.ptrace_scope
         sysctlval: '1'
         datatype: int
+
+checktext: |-
+    Verify {{{ full_name }}} restricts usage of ptrace to descendant processes with the following commands:
+
+    $ sudo sysctl kernel.yama.ptrace_scope
+
+    kernel.yama.ptrace_scope = 1
+
+    If the returned line does not have a value of "1", or a line is not returned, this is a finding.

@@ -62,3 +62,14 @@ template:
     name: audit_rules_privileged_commands
     vars:
         path: /usr/sbin/restorecon
+
+srg_requirement: |-
+    {{{ full_name }}} Must Generate Audit Records When Successful/Unsuccessful Attempts To Modify Security Objects Occur.
+
+checktext: |-
+    To verify that execution of the command is being audited, run the following command:
+     $ sudo grep "path=/usr/sbin/restorecon" /etc/audit/audit.rules /etc/audit/rules.d/*
+    The output should return something similar to:
+     -a always,exit -F path=/usr/sbin/restorecon -F perm=x -F auid>=1000 -F auid!=unset -F key=privileged
+
+    If , then this is a finding.

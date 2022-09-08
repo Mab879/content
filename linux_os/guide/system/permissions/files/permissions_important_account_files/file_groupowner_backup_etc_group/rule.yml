@@ -34,9 +34,12 @@ ocil_clause: '{{{ ocil_clause_file_group_owner(file="/etc/group-", group="root")
 ocil: |-
     {{{ ocil_file_group_owner(file="/etc/group-", group="root") }}}
 
-fixtext: '{{{ fixtext_file_group_owner(file="/etc/group-", group="root") }}}'
+fixtext: |-
+    Change the group of the file /etc/group- to root by running the following command:
+    $ sudo chgrp root /etc/group-
 
-srg_requirement: '{{{ srg_requirement_file_group_owner(file="/etc/group-", group="root") }}}'
+srg_requirement: |-
+    The {{{ full_name }}} /etc/group- file must be group-owned by root.
 
 template:
     name: file_groupowner
@@ -44,3 +47,12 @@ template:
         filepath: /etc/group-
         filegid: '0'
         missing_file_pass: 'true'
+
+checktext: |-
+    To check the group ownership of /etc/group- ,
+    run the command:
+     $ sudo stat -c "%U %n" /etc/group-
+    If properly configured, the output should indicate the following group-owner:
+     root /etc/group-
+
+    If /etc/group- does not have a group owner of root, then this is a finding.

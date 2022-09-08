@@ -48,9 +48,12 @@ ocil_clause: '{{{ ocil_clause_file_group_owner(grub2_boot_path ~ "/grub.cfg", "r
 ocil: |-
     {{{ ocil_file_group_owner(file=grub2_boot_path ~ "/grub.cfg", group="root") }}}
 
-fixtext: '{{{ fixtext_file_group_owner(grub2_boot_path ~ "/grub.cfg", "root") }}}'
+fixtext: |-
+    Change the group of the file /boot/grub2/grub.cfg to root by running the following command:
+    $ sudo chgrp root /boot/grub2/grub.cfg
 
-srg_requirement: '{{{ srg_requirement_file_group_owner(grub2_boot_path ~ "/grub.cfg", "root") }}}'
+srg_requirement: |-
+    The {{{ full_name }}} /boot/grub2/grub.cfg file must be group-owned by root.
 
 platform: machine
 
@@ -59,3 +62,12 @@ template:
     vars:
         filepath: {{{ grub2_boot_path }}}/grub.cfg
         filegid: '0'
+
+checktext: |-
+    To check the group ownership of /boot/grub2/grub.cfg ,
+    run the command:
+     $ sudo stat -c "%G %n" /boot/grub2/grub.cfg
+    If properly configured, the output should indicate the following group-owner:
+     root /boot/grub2/grub.cfg
+
+    If /boot/grub2/grub.cfg does not have a group owner of root, then this is a finding.

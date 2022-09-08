@@ -80,3 +80,22 @@ template:
         path: /usr/libexec/openssh/ssh-keysign
         path@sle12: /usr/lib/ssh/ssh-keysign
         path@sle15: /usr/lib/ssh/ssh-keysign
+
+srg_requirement: |-
+    {{{ full_name }}} must audit all uses of the ssh-keysign command.
+
+checktext: |-
+    Verify that {{{ full_name }}} is configured to audit the execution of the "ssh-keysign" command with the following command:
+
+    $ sudo auditctl -l | grep ssh-keysign
+
+    -a always,exit -F path=/usr/libexec/openssh/ssh-keysign -F perm=x -F auid>=1000 -F auid!=unset -k privileged-ssh
+
+    If the command does not return a line, or the line is commented out, this is a finding.
+
+fixtext: |-
+    Configure {{{ full_name }}} to generate audit records upon successful/unsuccessful attempts to use the "ssh-keysign" command by adding or updating the following rule in "/etc/audit/rules.d/audit.rules":
+
+    -a always,exit -F path=/usr/libexec/openssh/ssh-keysign -F perm=x -F auid>=1000 -F auid!=unset -k privileged-ssh
+
+    The audit daemon must be restarted for the changes to take effect.

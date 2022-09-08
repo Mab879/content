@@ -46,14 +46,17 @@ ocil_clause: 'the package is not installed'
 ocil: '{{{ ocil_package(package="rsyslog") }}}'
 
 fixtext: |-
-    Configure {{{ full_name }}} to offload audit logs by installing the required packages with the following command:
+    The  rsyslogd  package can be installed with the following command:
 
-    {{{ describe_package_install(package="rsyslog") }}}
+    $ sudo dnf install rsyslogd
 
 srg_requirement: |-
-    {{{ full_name }}} must have the packages required for offloading audit logs installed.
+    {{{ full_name }}} must have the rsyslog package installed.
 
 template:
     name: package_installed
     vars:
         pkgname: rsyslog
+
+checktext: |-
+    Verify that {{{ full_name }}} has the rsyslogd package installed with the following command:$ sudo dnf list --installed rsyslogrsyslog.x86_64  8.2102.0-101.el9_0.1If the rsyslogd package is not installed, this is a finding.

@@ -35,6 +35,13 @@ template:
         pkgname: pcsc-lite
 
 fixtext: |-
-    {{{ fixtext_package_installed(package="pcsc-lite") | indent(4) }}}
+    The  pcsc-lite  package can be installed with the following command:
 
+    $ sudo dnf install pcsc-lite
+
+srg_requirement: |-
+    {{{ full_name }}} must have the pcsc-lite package installed.
 srg_requirement: '{{{ srg_requirement_package_installed("pcsc-lite") }}}'
+
+checktext: |-
+    Verify that {{{ full_name }}} has the pcsc-lite package installed with the following command:$sudo dnf list --installed pcsc-litepcsc-lite.x86_641.9.4-1.el9If a pcsc-lite package is not installed, this is a finding.

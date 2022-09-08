@@ -47,3 +47,10 @@ fixtext: |-
 
 srg_requirement:
     All {{{ full_name }}} world-writable directories must be owned by root, sys, bin, or an application user.
+
+checktext: |-
+    Verify that world writable directories are owned by root, a system account, or an application account with the following command. It will discover and print world-writable directories that are not owned by root.  Run it once for each local partition [PART]:
+
+    $ sudo find  PART  -xdev -type d -perm -0002 -uid +0 -print
+
+    If there is output, this is a finding.

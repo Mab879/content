@@ -31,6 +31,19 @@ template:
         filepath: /var/log/messages
         filegid: '0'
 fixtext: |-
-    {{{ describe_file_group_owner(file="/var/log/messages", group="root") }}}
+    Change the group owner of the "/var/log/messages" file to "root" by running the following command:
 
+    $ sudo chgrp root /var/log/messages
+
+srg_requirement: |-
+    The {{{ full_name }}} /var/log/messages file must be group-owned by root.
 srg_requirement: '{{{ srg_requirement_file_group_owner("/var/log/messages", group="root") }}}'
+
+checktext: |-
+    Verify the "/var/log/messages" file is group-owned by root with the following command:
+
+    $ls -la /var/log/messages
+
+    rw-------. 1 root root 564223 July 11 11:34 /var/log/messages
+
+    If "/var/log/messages" does not have a group owner of "root", this is a finding.

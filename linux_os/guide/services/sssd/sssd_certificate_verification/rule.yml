@@ -40,13 +40,13 @@ ocil: |-
     </pre>
 
 fixtext: |-
-    Configure the operating system to implement certificate status checking for multifactor authentication.
+    Configure {{{ full_name }}} to implement certificate status checking for multifactor authentication.
 
     Review the "/etc/sssd/conf.d/certificate_verification.conf" file to determine if the system is configured to prevent OCSP or certificate verification.
 
     Add the following line to the "/etc/sssd/conf.d/certificate_verification.conf" file:
 
-    certificate_verification = ocsp_dgst={{{ xccdf_value("var_sssd_certificate_verification_digest_function") }}}
+    certificate_verification = ocsp_dgst=sha512
 
     Set the correct ownership and permissions on the "/etc/sssd/conf.d/certificate_verification.conf" file by running these commands:
 
@@ -58,3 +58,12 @@ fixtext: |-
     $ sudo systemctl restart sssd.service
 
 srg_requirement: '{{{ full_name }}} must implement certificate status checking for multifactor authentication.'
+
+checktext: |-
+    Verify the operating system implements Online Certificate Status Protocol (OCSP) and is using the proper digest value on the system with the following command:
+
+    $ sudo grep certificate_verification /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf | grep -v "^#"
+
+    certificate_verification = ocsp_dgst=sha512
+
+    If the certificate_verification line is missing from the [sssd] section, or is missing "ocsp_dgst=sha512", ask the administrator to indicate what type of multifactor authentication is being utilized and how the system implements certificate status checking.  If there is no evidence of certificate status checking being used, this is a finding.

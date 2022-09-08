@@ -44,7 +44,18 @@ template:
         pkgname: policycoreutils
 
 fixtext: |-
-    {{{ describe_package_install(package="policycoreutils") }}}
+    The policycoreutils package can be installed with the following command:
+
+    $ sudo dnf install policycoreutils
 
 srg_requirement:
     {{{ full_name }}} must have policycoreutils package installed.
+
+checktext: |-
+    Verify {{{ full_name }}} has the policycoreutils package installed with the following command:
+
+    $ sudo dnf list --installed policycoreutils
+
+    policycoreutils.x86_64                                              3.3-6.el9_0
+
+    If the policycoreutils package is not installed, this is a finding.

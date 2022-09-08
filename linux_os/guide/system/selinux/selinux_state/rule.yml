@@ -17,7 +17,7 @@ rationale: |-
     prevent them from causing damage to the system or further elevating their
     privileges.
 
-severity: medium
+severity: high
 
 identifiers:
     cce@rhcos4: CCE-82531-5
@@ -71,3 +71,21 @@ fixtext: |-
 
 srg_requirement: |-
     {{{ full_name }}} must use a Linux Security Module configured to enforce limits on system services.
+
+checktext: |-
+    Ensure that {{{ full_name }}} verifies correct operation of security functions through the use of SELinux with the following command:
+
+    $ getenforce
+
+    Enforcing
+
+    If SELINUX is not set to "Enforcing", this is a finding.
+
+    Verify that SELinux is configued to be enforcing at boot.
+
+    grep "SELINUX=" /etc/selinux/config
+    # SELINUX= can take one of these three values:
+    # NOTE: In earlier Fedora kernel builds, SELINUX=disabled would also
+    SELINUX=enforcing
+
+    If SELINUX line is missing, commented out, or not set to "enforcing", this is a finding.

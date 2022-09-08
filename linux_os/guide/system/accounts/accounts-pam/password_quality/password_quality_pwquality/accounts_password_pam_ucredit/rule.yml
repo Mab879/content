@@ -70,7 +70,8 @@ fixtext: |-
 
     ucredit = {{{ xccdf_value("var_password_pam_ucredit") }}}
 
-srg_requirement: '{{{ full_name }}} must enforce password complexity by requiring that at least one uppercase character be used.'
+srg_requirement: |-
+    {{{ full_name }}} must enforce password complexity by requiring that at least one upper-case character be used.
 
 platform: pam
 
@@ -79,3 +80,14 @@ template:
     vars:
         variable: ucredit
         operation: less than or equal
+
+checktext: |-
+    Verify that {{{ full_name }}} enforces password complexity by requiring that at least one upper-case character.
+
+    Check the value for "ucredit" with the following command:
+
+    $ sudo grep ucredit /etc/security/pwquality.conf /etc/security/pwquality.conf/*.conf
+
+    ucredit = -1
+
+    If the value of "ucredit" is a positive number or is commented out, this is a finding.

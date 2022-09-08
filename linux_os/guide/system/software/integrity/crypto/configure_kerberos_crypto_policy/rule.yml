@@ -42,6 +42,17 @@ ocil: |-
 fixtext: |-
     Configure Kerberos to use system crypto policy.
     Create a symlink pointing to system crypto policy in the Kerberos configuration using the following command:
-    $ sudo ln -s /etc/crypto-policies/back-ends/krb5.config /etc/krb5.conf.d/crypto-policies
+    $ sudo ln -s /etc/crypto-policies/back-ends/krb5.config /usr/share/crypto-policies/FIPS/krb5.txt
 
+srg_requirement: |-
+    {{{ full_name }}} Must Use Mechanisms Meeting The Requirements Of Applicable Federal Laws, Executive Orders, Directives, Policies, Regulations, Standards, And Guidance For Authentication To A Cryptographic Module.
 srg_requirement: '{{{ full_name }}} must implement NIST FIPS-validated cryptography for the following: to provision digital signatures, to generate cryptographic hashes, and to protect data requiring data-at-rest protections in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, and standards.'
+
+checktext: |-
+    Check that the symlink exists and target the correct Kerberos crypto policy, with the following command:
+    file /etc/crypto-policies/back-ends/krb5.config
+
+    If command ouput shows the following line, Kerberos is configured to use the system-wide crypto policy.
+    /etc/crypto-policies/back-ends/krb5.config: symbolic link to /usr/share/crypto-policies/FIPS/krb5.txt
+
+    If the symlink does not exist or points to a different target, then this is a finding.

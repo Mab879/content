@@ -47,10 +47,21 @@ ocil: |-
     $ sudo grep CRYPTO_POLICY /etc/sysconfig/sshd
 
 fixtext: |-
-    Configure OpenSSH to not ignore the system wide cryptographic policy.
-    Run the following command:
+     Configure the {{{ full_name }}} SSH daemon to use system-wide crypto policies by commenting or removing the 'CRYPTO_POLICY=' line in /etc/sysconfig/sshd:
 
-    $ sudo sed -i "/^\s*CRYPTO_POLICY.*$/Id" /etc/sysconfig/sshd
+    # CRYPTO_POLICY=
+
+    A reboot is required for the changes to take effect.
 
 srg_requirement: |-
+    The {{{ full_name }}} SSH daemon must be configured to use system-wide crypto policies.
     {{{ full_name }}} must implement DoD-approved encryption in the OpenSSH package.
+
+checktext: |-
+    Verify that system-wide crypto policies are in effect:
+
+    $ sudo grep CRYPTO_POLICY /etc/sysconfig/sshd
+
+    # CRYPTO_POLICY=
+
+    If a "CRYPTO_POLICY" line is found and is uncommented, this is a finding.

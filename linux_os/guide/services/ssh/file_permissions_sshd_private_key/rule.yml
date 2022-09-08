@@ -64,6 +64,27 @@ ocil_clause: '{{{ ocil_clause_file_permissions(file="/etc/ssh/*_key", perms=perm
 ocil: |-
     {{{ ocil_file_permissions(file="/etc/ssh/*_key", perms=perms) }}}
 
-fixtext: '{{{ srg_requirement_file_permission(file="/etc/ssh/*_key", mode="0600") }}}'
+fixtext: |-
+    Configure the mode of SSH private host key files under "/etc/ssh" to "0600" with the following command:
 
+    $ sudo chmod 0600 /etc/ssh/ssh_host*key
+
+    Restart the SSH daemon for the changes to take effect:
+
+    $ sudo systemctl restart sshd.service
+
+srg_requirement: |-
+    {{{ full_name }}} SSH private host key files must have mode 0600 or less permissive.
 srg_requirement: 'The {{{ full_namne }}} SSH private host key files must have mode 0600 or less permissive.'
+
+checktext: |-
+    Verify the SSH private host key files have mode "0600" or less permissive with the following command:
+
+    $ ls -l /etc/ssh/*_key
+
+    600 /etc/ssh/ssh_host_dsa_key
+    600 /etc/ssh/ssh_host_ecdsa_key
+    600 /etc/ssh/ssh_host_ed25519_key
+    600 /etc/ssh/ssh_host_rsa_key
+
+    If any private host key file has a mode more permissive than "0600", this is a finding.

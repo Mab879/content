@@ -66,7 +66,13 @@ warnings:
 {{{ warning_ovirt_rule_notapplicable("RHV hosts require root access to be managed by RHV Manager") | indent(4) }}}
 
 fixtext: |-
-    {{{ fixtext_sshd_lineinfile("PermitRootLogin", "no", "no") }}}
+    To configure the system to prevent SSH users from logging on directly as root add or modify the following line in "/etc/ssh/sshd_config".
+
+     PermitRootLogin no
+
+    Restart the SSH daemon for the settings to take effect:
+
+    $ sudo systemctl restart sshd.service
 
 srg_requirement: '{{{ full_name }}} must not permit direct logons to the root account using remote access via SSH.'
 
@@ -76,3 +82,12 @@ template:
         parameter: PermitRootLogin
         rule_id: sshd_disable_root_login
         value: 'no'
+
+checktext: |-
+    Verify {{{ full_name }}} remote access using SSH prevents users from logging on directly as "root" with the following command:
+
+    $ sudo grep -i PermitRootLogin /etc/ssh/sshd_config
+
+    PermitRootLogin no
+
+    If the "PermitRootLogin" keyword is set to "yes", is missing, or is commented out, this is a finding.

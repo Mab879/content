@@ -61,10 +61,29 @@ ocil: |-
 fixtext: |-
     Remove all unapproved tunnels from the system, or document them with the ISSO.
 
-srg_requirement:
-  Any IPSec Tunnel Connections on {{{ full_name }}} must be approved.
+srg_requirement: |-
+    {{{ full_name }}} must not have unauthorized IP tunnels configured.
 
 warnings:
     - general: |-
         Automatic remediation of this control is not available due to the unique
         requirements of each system.
+
+checktext: |-
+    Verify that {{{ full_name }}} does not have unauthorized IP tunnels configured.
+
+    Check to see if the "IPSec" service is active with the following command"
+
+    $ systemctl status ipsec
+
+    ipsec.service - Internet Key Exchange (IKE) Protocol Daemon for IPsec
+    Loaded: loaded (/usr/lib/systemd/system/ipsec.service; disabled)
+    Active: inactive (dead)
+
+    If the "IPsec" service is active, check for configured IPsec connections ("conn"), with the following command:
+
+    $ grep -rni conn /etc/ipsec.conf /etc/ipsec.d/
+
+    Verify any returned results are documented with the ISSO.
+
+    If the IPSec tunnels are active and not approved, this is a finding.

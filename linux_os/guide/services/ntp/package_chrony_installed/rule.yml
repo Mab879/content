@@ -41,11 +41,24 @@ ocil_clause: 'the package is not installed'
 
 ocil: '{{{ ocil_package(package="chrony") }}}'
 
-fixtext: '{{{ describe_package_install(package="chrony") }}}'
+fixtext: |-
+    The chrony package can be installed with the following command:
 
-srg_requirement: '{{{ srg_requirement_package_installed("chrony") }}}'
+    $ sudo dnf install chrony
+
+srg_requirement: |-
+    {{{ full_name }}} must have the chrony package installed.
 
 template:
     name: package_installed
     vars:
         pkgname: chrony
+
+checktext: |-
+    Verify that {{{ full_name }}} has the chrony package installed with the following command:
+
+    $ sudo dnf list --installed chrony
+
+    chrony.x86_64                                                                4.1-3.el9
+
+    If the chrony package is not installed, this is a finding.

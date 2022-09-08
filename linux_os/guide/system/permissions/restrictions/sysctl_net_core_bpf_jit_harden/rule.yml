@@ -29,8 +29,13 @@ references:
 {{{ complete_ocil_entry_sysctl_option_value(sysctl="net.core.bpf_jit_harden", value="2") }}}
 
 fixtext: |-
-    Configure {{{ full_name }}}  to enable hardening for the BPF JIT compiler.
-    {{{ fixtext_sysctl(sysctl="net.core.bpf_jit_harden", value="2") | indent(4) }}}
+    Configure {{{ full_name }}} to enable hardening for the BPF JIT compiler by adding the following line to a file, in the "/etc/sysctl.d" directory:
+
+    net.core.bpf_jit_harden = 2
+
+    The system configuration files need to be reloaded for the changes to take effect. To reload the contents of the files, run the following command:
+
+    $ sudo sysctl --system
 
 srg_requirement: '{{{ full_name }}} must enable hardening for the Berkeley Packet Filter Just-in-time compiler.'
 
@@ -42,3 +47,12 @@ template:
         sysctlvar: net.core.bpf_jit_harden
         sysctlval: '2'
         datatype: int
+
+checktext: |-
+    Verify {{{ full_name }}} enables hardening for the BPF JIT with the following commands:
+
+    $ sudo sysctl net.core.bpf_jit_harden
+
+    net.core.bpf_jit_harden = 2
+
+    If the returned line does not have a value of "2", or a line is not returned, this is a finding.

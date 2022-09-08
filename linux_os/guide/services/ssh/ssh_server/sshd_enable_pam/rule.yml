@@ -45,6 +45,23 @@ template:
         value: 'yes'
 
 fixtext: |-
-    {{{ fixtext_sshd_lineinfile('UsePAM', 'yes') }}}
+    Configure the {{{ full_name }}} SSHD to use the UsePAM interface add or modify the following line in "/etc/ssh/sshd_config".
 
+    UsePAM yes
+
+    Restart the SSH daemon for the settings to take effect:
+
+    $ sudo systemctl restart sshd.service
+
+srg_requirement: |-
+    {{{ full_name }}} must enable the Pluggable Authenitcation Module interface for SSHD.
 srg_requirement: '{{{ full_name }}} must use strong authenticators in establishing nonlocal maintenance and diagnostic sessions.'
+
+checktext: |-
+    Verify the {{{ full_name }}} SSHD is configure to allow for the UsePAM interface with the following command:
+
+    $ sudo grep -i usepam /etc/ssh/sshd_config
+
+    UsePAM yes
+
+    If the "UsePAM" keyword is set to "no", is missing, or is commented out, this is a finding.

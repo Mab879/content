@@ -51,3 +51,12 @@ fixtext: |-
 srg_requirement: "All {{{ full_name }}} local interactive user accounts must be assigned a home directory upon creation."
 
 platform: login_defs
+
+checktext: |-
+    Verify all local interactive users on {{{ full_name }}} are assigned a home directory upon creation with the following command:
+
+    $ grep -i create_home /etc/login.defs
+
+    CREATE_HOME yes
+
+    If the value for "CREATE_HOME" parameter is not set to "yes", the line is missing, or the line is commented out, this is a finding.

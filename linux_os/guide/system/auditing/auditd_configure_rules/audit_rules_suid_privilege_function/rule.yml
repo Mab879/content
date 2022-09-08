@@ -92,22 +92,29 @@ ocil: |-
 fixtext: |-
     Configure {{{ full_name }}} to audit the execution of the "execve" system call.
 
-    Add or update the following rules to "/etc/audit/rules.d/audit.rules":
+    Add or update the following file system rules to "/etc/audit/rules.d/audit.rules":
 
-    {{% if product == "ol8" %}}
-    <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -k setuid</pre>
-    <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -k setuid</pre>
-    <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -k setgid</pre>
-    <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -k setgid</pre>
-    {{% else %}}
-    <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-    <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-    <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-    <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-    {{% endif %}}
+    -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k execpriv
+    -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k execpriv
+    -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k execpriv
+    -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k execpriv
 
     The audit daemon must be restarted for the changes to take effect.
 
 platform: machine
 
+srg_requirement: |-
+    The {{{ full_name }}} audit system must be configured to audit the execution of privileged functions and prevent all software from executing at higher privilege levels than users executing the software.
 srg_requirement: '{{{ full_name }}} must audit the execution of privileged functions.'
+
+checktext: |-
+    Verify that {{{ full_name }}} is configured to audit the execution of the "execve" system call with the following command:
+
+    $ sudo auditctl -l | grep execve
+
+    -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k execpriv
+    -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k execpriv
+    -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k execpriv
+    -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k execpriv
+
+    If the command does not return all lines, or the lines are commented out, this is a finding.

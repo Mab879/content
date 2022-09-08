@@ -71,3 +71,13 @@ fixtext: |-
      Upgrade to a supported version of {{{ full_name }}}.
 
 srg_requirement: '{{{ full_name }}} must be a vendor-supported release.'
+
+checktext: |-
+    Verify that the version or {{{ full_name }}} is vendor supported with the following command:
+
+    $ grep -i "red hat" /etc/redhat-release
+
+
+    Red Hat Enterprise Linux release 9.0 (Plow)
+
+    If the installed version of {{{ full_name }}} is not supported, this is a finding.

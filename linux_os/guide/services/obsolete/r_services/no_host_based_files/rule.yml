@@ -47,6 +47,15 @@ ocil: |-
 fixtext: |-
     Remove any found "shosts.equiv" files from the system.
 
-    $ sudo rm  /[path]/[to]/[file]/shosts.equiv
+    $ sudo rm /[path]/[to]/[file]/shosts.equiv
 
+srg_requirement: |-
+    There must be no shosts.equiv files on {{{ full_name }}}.
 srg_requirement: 'There must be no shosts.equiv files on {{{ full_name }}}'
+
+checktext: |-
+    Verify there are no "shosts.equiv" files on {{{ full_name }}} with the following command:
+
+    $ sudo find / -name shosts.equiv
+
+    If a "shosts.equiv" file is found, this is a finding.

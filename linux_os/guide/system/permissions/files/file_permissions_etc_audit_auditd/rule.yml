@@ -36,9 +36,11 @@ ocil: |-
     {{{ ocil_file_permissions(file="/etc/audit/auditd.conf", perms="-rw-r-----") }}}
 
 fixtext: |-
-    {{{ describe_file_permissions(file="/etc/audit/auditd.conf", perms="0640") }}}
+    To properly set the permissions of /etc/audit/auditd.conf , run the command:
+     $ sudo chmod 0640 /etc/audit/auditd.conf
 
-srg_requirement: '{{{ srg_requirement_file_permission(file="/etc/audit/auditd.conf", mode="0640")}}}'
+srg_requirement: |-
+    The {{{ full_name }}} /etc/audit/auditd.conf file must have 0640 or less permissive to prevent unauthorized access.
 
 template:
     name: file_permissions
@@ -46,3 +48,12 @@ template:
       filepath: /etc/audit/auditd.conf
       allow_stricter_permissions: "true"
       filemode: '0640'
+
+checktext: |-
+    To check the permissions of /etc/audit/auditd.conf ,
+    run the command:
+     $ sudo stat -c "%a %n" /etc/audit/auditd.conf
+    If properly configured, the output should indicate the following permissions:
+    640 /etc/audit/auditd.conf
+
+    If /etc/audit/auditd.conf does not have unix mode 0640, then this is a finding.

@@ -45,12 +45,13 @@ fixtext: |-
     Configure {{{ full_name }}} to disable the Bluetooth adapter when not in use.
 
     Create or modify the "/etc/modprobe.d/bluetooth.conf" file with the following line:
-    
-    install bluetooth /bin/true
-    
+
+    blacklist bluetooth
+
     Reboot the system for the settings to take effect.
 
-srg_requirement: '{{{ srg_requirement_kernel_module_disable('bluetooth') }}}'
+srg_requirement: |-
+    {{{ full_name }}} Bluetooth must be disabled.
 
 platform: machine
 
@@ -58,3 +59,11 @@ template:
     name: kernel_module_disabled
     vars:
         kernmodule: bluetooth
+
+checktext: |-
+    Verify that {{{ full_name }}} disables the ability to load the Bluetooth kernel module with the following command:
+
+    $ sudo grep -r bluetooth /etc/modprobe.conf /etc/modprobe.d/*
+
+    blacklist bluetooth
+    If the command does not return any output, or the line is commented out, and use of Bluetooth is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.

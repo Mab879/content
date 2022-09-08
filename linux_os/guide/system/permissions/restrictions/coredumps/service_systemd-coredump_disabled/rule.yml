@@ -43,12 +43,33 @@ ocil: |-
        Active: inactive (dead) ...
     </pre>
 
-fixtext: '{{{ fixtext_service_disabled("systemd-coredump") }}}'
+fixtext: |-
+    Configure the system to disable the systemd-coredump.socket with the following command:
 
-srg_requirement: '{{{ srg_requirement_service_disabled("systemd-coredump") }}}'
+    $ sudo systemctl mask --now systemd-coredump.socket
+
+    Created symlink /etc/systemd/system/systemd-coredump.socket -> /dev/null
+
+    Reload the daemon for this change to take effect.
+
+    $ sudo systemctl daemon-reload
+
+srg_requirement: |-
+    {{{ full_name }}} must disable acquiring, saving, and processing core dumps.
 
 template:
     name: service_disabled
     vars:
         servicename: systemd-coredump
         packagename: systemd
+
+checktext: |-
+    Verify {{{ full_name }}} is not configured to acquire, save, or process core dumps with the following command:
+
+    $ sudo systemctl status systemd-coredump.socket
+
+    systemd-coredump.socket
+    Loaded: masked (Reason: Unit systemd-coredump.socket is masked.)
+    Active: inactive (dead)
+
+    If the "systemd-coredump.socket" is loaded and not masked and the need for core dumps is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.

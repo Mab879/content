@@ -57,9 +57,13 @@ ocil_clause: '{{{ ocil_clause_file_permissions(file="/etc/shadow", perms=target_
 ocil: |-
     {{{ ocil_file_permissions(file="/etc/shadow", perms=target_perms) }}}
 
-fixtext: '{{{ fixtext_file_permissions(file="/etc/shadow", mode=target_perms_octal) }}}'
+fixtext: |-
+    Change the permissions of the file "/etc/shadow" to "0000" by running the following command:
+    $ sudo chmod 0000 /etc/shadow
 
 {{% if target_perms_octal == "0000" %}}
+srg_requirement: |-
+    The {{{ full_name }}} /etc/shadow file must have 0000 to prevent unauthorized access.
 srg_requirement: 'The {{{ full_name }}} /etc/shadow file must have a mode of 0000 to prevent unauthorized access.'
 {{% else %}}
 srg_requirement: '{{{ srg_requirement_file_permission(file="/etc/shadow", mode=target_perms_octal) }}}'
@@ -76,3 +80,12 @@ template:
         filemode@ubuntu1604: '0640'
         filemode@ubuntu1804: '0640'
         filemode@ubuntu2004: '0640'
+
+checktext: |-
+    To check the permissions of /etc/shadow ,
+    run the command:
+     $ sudo stat -c "%a %n" /etc/shadow
+    If properly configured, the output should indicate the following permissions:
+    000
+
+    If /etc/shadow does not have unix mode 000, then this is a finding.

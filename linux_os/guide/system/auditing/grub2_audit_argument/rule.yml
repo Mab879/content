@@ -16,7 +16,7 @@ rationale: |-
     this for all processes which launch after it does, adding the kernel argument
     ensures it is set for every process during boot.
 
-severity: medium
+severity: low
 
 identifiers:
     cce@rhel7: CCE-27212-0
@@ -67,7 +67,32 @@ template:
         arg_value: '1'
 
 fixtext: |-
-    {{{ describe_grub2_argument("audit=1") | indent(4) }}}
+    Enable auditing of processes that start prior to the audit daemon. with the following command:
+
+    $ sudo grubby --update-kernel=ALL --args="audit=1"
+
+    Add or modify the following line in "/etc/default/grub" to ensure the configuration survives kernel updates:
+
+    GRUB_CMDLINE_LINUX="audit=1"
 
 srg_requirement: |-
     {{{ full_name }}} must enable auditing of processes that start prior to the audit daemon.
+
+checktext: |-
+    Verify that GRUB 2 is configured to enable auditing of processes that start prior to the audit daemon with the following commands:
+
+    Check that the current GRUB 2 configuration enabled auditing:
+
+    $ sudo grubby --info=ALL | grep audit
+
+    args="ro crashkernel=auto resume=/dev/mapper/rhel-swap rd.lvm.lv=rhel/root rd.lvm.lv=rhel/swap rhgb quiet fips=1 audit=1 audit_backlog_limit=8192 pti=on
+
+    If "audit" is not set to "1" or is missing, this is a finding.
+
+    Check that auditing is enabled by default to persist in kernel updates:
+
+    $ sudo grep audit /etc/default/grub
+
+    GRUB_CMDLINE_LINUX="audit=1"
+
+    If "audit" is not set to "1", is missing, or is commented out, this is a finding.

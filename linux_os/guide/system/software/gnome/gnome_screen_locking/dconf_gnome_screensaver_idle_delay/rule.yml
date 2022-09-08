@@ -64,8 +64,33 @@ ocil: |-
     If properly configured, the output should be <tt>/org/gnome/desktop/session/idle-delay</tt>
 
 fixtext: |-
-    {{{ fixtext_dconf_ini_file("org/gnome/desktop/session", "idle-delay", "uint32 " ~ xccdf_value("inactivity_timeout_value")) }}}
+    Configure {{{ full_name }}} to initiate a screensaver after a 15-minute period of inactivity for graphical user interfaces.
+
+    Create a database to contain the system-wide screensaver settings (if it does not already exist) with the following command:
+
+    $ sudo touch /etc/dconf/db/local.d/00-screensaver
+
+    Edit /etc/dconf/db/local.d/00-screensaver and add or update the following lines:
+
+    [org/gnome/desktop/session]
+    # Set the lock time out to {{{ xccdf_value("inactivity_timeout_value") }}} seconds before the session is considered idle
+    idle-delay=uint32 {{{ xccdf_value("inactivity_timeout_value") }}}
+
+    Update the system databases:
+
+    $ sudo dconf update
 
 srg_requirement: '{{{ full_name }}} must automatically lock graphical user sessions after 15 minutes of inactivity.'
 
 platform: machine
+
+checktext: |-
+    Verify {{{ full_name }}} initiates a session lock after a 15-minute period of inactivity for graphical user interfaces with the following command:
+
+    Note: This requirement assumes the use of the RHEL 0 default graphical user interface, Gnome Shell. If the system does not have any graphical user interface installed, this requirement is Not Applicable.
+
+    $ sudo gsettings get org.gnome.desktop.session idle-delay
+
+    uint32 {{{ xccdf_value("inactivity_timeout_value") }}}
+
+    If "idle-delay" is set to "0" or a value greater than "{{{ xccdf_value("inactivity_timeout_value") }}}", this is a finding.

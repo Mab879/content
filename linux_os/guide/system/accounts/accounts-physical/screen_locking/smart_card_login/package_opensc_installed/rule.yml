@@ -57,15 +57,13 @@ template:
         pkgname@ubuntu2004: opensc-pkcs11
 
 fixtext: |-
-    {{% if 'ubuntu' not in product %}}
-    {{{ describe_package_install(package="opensc") }}}
-    {{% else %}}
-    {{{ describe_package_install(package="opensc-pkcs11") }}}
-    {{% endif %}}
+    The opensc package can be installed with the following command:
+
+    $ sudo dnf install opensc
 
 srg_requirement: |-
-    {{% if 'ubuntu' not in product %}}
-    {{{ srg_requirement_package_installed(package="opensc") | indent(4) }}}
-    {{% else %}}
-    {{{ srg_requirement_package_installed(package="opensc-pkcs11") | indent(4) }}}
+    {{{ full_name }}} must have the opensc package installed.
     {{% endif %}}
+
+checktext: |-
+    Verify that {{{ full_name }}} has the opensc package installed with the following command:$ sudo dnf list --installed openscopensc.x86_64  0.22.0-2.el9If the opensc package is not installed, this is a finding.

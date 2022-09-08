@@ -42,12 +42,25 @@ ocil_clause: '{{{ ocil_clause_file_group_owner(file="/etc/cron.d", group="root")
 ocil: |-
     {{{ ocil_file_group_owner(file="/etc/cron.d", group="root") }}}
 
-fixtext: '{{{ fixtext_directory_group_owner(file="/etc/cron.d/", group="root") }}}'
+fixtext: |-
+    Configure "/etc/cron.d" to be group-owned by root with the following command:
 
-srg_requirement: '{{{ srg_requirement_directory_group_owner(file="/etc/cron.d", group="root") }}}'
+    $ sudo chgrp root /etc/cron.d
+
+srg_requirement: |-
+    {{{ full_name }}} cron configuration file directory must be group-owned by root.
 
 template:
     name: file_groupowner
     vars:
         filepath: /etc/cron.d/
         filegid: '0'
+
+checktext: |-
+    Verify the group ownership of the "/etc/cron.d" directory with the following command:
+
+    $ ls -lLd /etc/cron.d
+
+    drwxr-xr-x. 2 root root 4096 July 11 11:34 /etc/cron.d
+
+    If the "/etc/cron.d" directory does not have a group owner of "root", then this is a finding.

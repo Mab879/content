@@ -46,14 +46,29 @@ ocil: |-
     The output should return an alias.
 
 fixtext: |-
-    Configure a valid email address as an alias for the root account.
+    Edit the aliases map file (by default /etc/aliases) used by Postfix and configure a root alias (using the user ISSO as an example):
 
-    Append the following line to "/etc/aliases":
+    root:    ISSO
 
-    root: {{{ xccdf_value("var_postfix_root_mail_alias") }}}
-
-    Then, run the following command:
+    and then update the aliases database with the command:
 
     $ sudo newaliases
 
+srg_requirement: |-
+    {{{ full_name }}} must have mail alises to notify the Information System Security Officer (ISSO) and System Administrator (SA) (at a minimum) in the event of an audit processing failure.
 srg_requirement: 'The {{{ full_name }}} Information System Security Officer (ISSO) and System Administrator (SA) (at a minimum) must have mail aliases to be notified of an audit processing failure.'
+
+checktext: |-
+    Find the list of alias maps used by the Postfix mail server for root.
+
+    Find the alias maps that are being used with the following command:
+
+    $ postconf alias_maps
+    alias_maps = hash:/etc/aliases
+
+    Query the Postfix alias maps for an alias for the root user with the following command:
+
+    $ postmap -q root hash:/etc/aliases
+    isso
+
+    If an alias is not set, then this is a finding.

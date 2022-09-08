@@ -31,12 +31,29 @@ ocil_clause: '{{{ ocil_clause_service_enabled("rngd") }}}'
 ocil: |-
     {{{ ocil_service_enabled(service="rngd") }}}
 
-fixtext: '{{{ fixtext_service_disabled("rngd") }}}'
+fixtext: |-
+    Install the rng-tools package with the following command:
 
-srg_requirement: '{{{ srg_requirement_service_disabled("rngd") }}}'
+    $ sudo dnf install rng-tools
+
+    Then enable the rngd service run the following command:
+
+    $ sudo systemctl enable --now rngd
+
+srg_requirement: |-
+    {{{ full_name }}} must enable the hardware random number generator entropy gatherer service.
 
 template:
     name: service_enabled
     vars:
         servicename: rngd
         packagename: rng-tools
+
+checktext: |-
+    Verify that {{{ full_name }}} has enabled the hardware random number generator entropy gatherer service with the following command:
+
+    $ systemctl is-active rngd
+
+    active
+
+    If the "rngd" service is not active, this is a finding.

@@ -33,12 +33,24 @@ references:
 
 {{{ complete_ocil_entry_package(package="quagga") }}}
 
-fixtext: '{{{ fixtext_package_removed("quagga") }}}'
+fixtext: |-
+    Remove the quagga package with the following command:
 
-srg_requirement: '{{{ srg_requirement_package_removed("quagga") }}}'
+    $ sudo dnf remove quagga
 
+srg_requirement: |-
+    {{{ full_name }}} must not have the quagga package installed.
 
 template:
     name: package_removed
     vars:
         pkgname: quagga
+
+checktext: |-
+    Verify that the quagga package is not installed with the following command:
+
+    $ sudo dnf list --installed quagga
+
+    Error: No matching Packages to list
+
+    If the quagga package is installed, and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.

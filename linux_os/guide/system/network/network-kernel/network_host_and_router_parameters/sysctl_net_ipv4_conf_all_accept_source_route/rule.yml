@@ -57,13 +57,40 @@ references:
 {{{ complete_ocil_entry_sysctl_option_value(sysctl="net.ipv4.conf.all.accept_source_route", value="0") }}}
 
 fixtext: |-
-    Configure {{{ full_name }}} to not forward IPv4 source-routed packets.
-    {{{ fixtext_sysctl(sysctl="net.ipv4.conf.all.accept_source_route", value="0") | indent(4) }}}
+    Configure {{{ full_name }}} to ignore IPv4 source-routed packets.
 
-srg_requirement: '{{{ full_name }}} must not forward IPv4 source-routed packets.'
+    Add or edit the following line in a single system configuration file, in the "/etc/sysctl.d/" directory:
+
+    net.ipv4.conf.all.accept_source_route = 0
+
+    Load settings from all system configuration files with the following command:
+
+    $ sudo sysctl --system
+
+srg_requirement: |-
+    {{{ full_name }}} must not forward Internet Protocol version 4 (IPv4) source-routed packets.
 
 template:
     name: sysctl
     vars:
         sysctlvar: net.ipv4.conf.all.accept_source_route
         datatype: int
+
+checktext: |-
+    Verify {{{ full_name }}} will not accept IPv4 source-routed packets.
+
+    Check the value of the all "accept_source_route" variables with the following command:
+
+    $ sudo sysctl net.ipv4.conf.all.accept_source_route
+
+    net.ipv4.conf.all.accept_source_route = 0
+
+    If the returned line does not have a value of "0", a line is not returned, or the line is commented out, this is a finding.
+
+    Check that the configuration files are present to enable this network parameter.
+
+    $ { /usr/lib/systemd/systemd-sysctl --cat-config; cat /etc/sysctl.conf; } | egrep -v '^(#|$)' | grep -F net.ipv4.conf.all.accept_source_route | tail -1
+
+    net.ipv4.conf.all.accept_source_route = 0
+
+    If "net.ipv4.conf.all.accept_source_route" is not set to "0" or is missing, this is a finding.

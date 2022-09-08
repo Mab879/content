@@ -44,7 +44,13 @@ references:
 {{{ complete_ocil_entry_sshd_option(default="no", option="LogLevel", value="VERBOSE") }}}
 
 fixtext: |-
-    {{{ fixtext_sshd_lineinfile('LogLevel', 'VERBOSE', False) }}}
+    Configure {{{ full_name }}} to log connection attempts add or modify the following line in "/etc/ssh/sshd_config".
+
+    LogLevel VERBOSE
+
+    Restart the SSH daemon for the settings to take effect:
+
+    $ sudo systemctl restart sshd.service
 
 srg_requirement: |-
     {{{ full_name }}} must log SSH connection attempts and failures to the server.
@@ -55,3 +61,12 @@ template:
         parameter: LogLevel
         rule_id: sshd_set_loglevel_verbose
         value: VERBOSE
+
+checktext: |-
+    Verify {{{ full_name }}} logs SSH connection attempts and failures to the server.
+
+    Check what the SSH daemon's "LogLevel" option is set to with the following command:
+
+    $ sudo grep -i LogLevel /etc/ssh/sshd_config
+
+    If a value of "VERBOSE" is not returned, the line is commented out, or is missing, this is a finding.

@@ -78,9 +78,18 @@ warnings:
         calls with others as identifying earlier in this guide is more efficient.
 
 fixtext: |-
-    {{{ fixtext_audit_rules_dac_modification_chmod("chmod") | indent(4) }}}
+    Configure {{{ full_name }}} to generate audit records upon successful/unsuccessful attempts to use the "chmod", "fchmod", and "fchmodat" syscalls.
 
-srg_requirement: '{{{ srg_requirement_audit_syscall("chmod") }}}'
+    Add or update the following rules in "/etc/audit/rules.d/audit.rules":
+
+    -a always,exit -F arch=b32 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=unset -k perm_mod
+
+    -a always,exit -F arch=b64 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=unset -k perm_mod
+
+    The audit daemon must be restarted for the changes to take effect.
+
+srg_requirement: |-
+     {{{ full_name }}} must audit all uses of the chmod, fchmod, and fchmodat syscalls.
 
 template:
     name: audit_rules_dac_modification
@@ -90,3 +99,13 @@ template:
           - chmod
           - fchmod
           - fchmodat
+
+checktext: |-
+    Verify that {{{ full_name }}} is configured to audit the execution of the "chmod", "fchmod", and "fchmodat" syscalls with the following command:
+
+    $ sudo auditctl -l | grep chmod
+
+    -a always,exit -F arch=b32 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=unset -k perm_mod
+    -a always,exit -F arch=b64 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=unset -k perm_mod
+
+    If both the "b32" and "b64" audit rules are not defined for the "chmod", "fchmod", and "fchmodat" syscalls, this is a finding.

@@ -37,8 +37,20 @@ ocil: |-
     The output should be empty.
 
 fixtext: |-
-    Edit the file "/etc/shells" and remove any line that ends in "tmux".
+    Configure {{{ full_name }}} to prevent users from disabling the tmux terminal multiplexer by editing the "/etc/shells" configuration file to remove any instances of tmux.
 
 platform: machine
 
 srg_requirement: '{{{ full_name }}} must prevent users from disabling session control mechanisms.'
+
+vuldiscussion: |-
+    Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
+
+    Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Non-privileged users are individuals that do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from non-privileged users.
+
+checktext: |-
+    Verify {{{ full_name }}} prevents users from disabling the tmux terminal multiplexer with the following command:
+
+    $ grep -i tmux /etc/shells
+
+    If any output is produced, this is a finding.

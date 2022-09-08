@@ -44,6 +44,19 @@ template:
         filegid@ubuntu2004: '110'
 
 fixtext: |-
-    {{{ describe_file_group_owner(file="/var/log", group=gid) }}}
+    Configure the group owner of the directory "/var/log" to "root" by running the following command:
 
+    $ sudo chgrp root /var/log
+
+srg_requirement: |-
+    The {{{ full_name }}} /var/log directory must be group-owned by root.
 srg_requirement: '{{{ srg_requirement_directory_group_owner("/var/log", group=gid) }}}'
+
+checktext: |-
+    Verify the "/var/log" directory is group-owned by root with the following command:
+
+    $ls -ld /var/log
+
+    drwxr-xr-x. 16 root root 4096 July 11 11:34 /var/log
+
+    If "/var/log" does not have a group owner of "root", this is a finding.

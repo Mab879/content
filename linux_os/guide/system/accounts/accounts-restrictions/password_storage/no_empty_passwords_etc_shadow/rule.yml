@@ -52,9 +52,9 @@ fixtext: |-
     Configure all accounts on {{{ full_name }}} to have a password or lock
     the account with the following commands:
     Perform a password reset:
-    <pre>$ sudo passwd [username]</pre>
+     $ sudo passwd [username]
     Lock an account:
-    <pre>$ sudo passwd -l [username]</pre>
+     $ sudo passwd -l [username]
 
 srg_requirement: '{{{ full_name }}} must have no accounts with blank or null passwords.'
 

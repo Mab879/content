@@ -47,12 +47,24 @@ ocil_clause: '{{{ ocil_clause_file_permissions(file="/etc/group", perms="-rw-r--
 ocil: |-
     {{{ ocil_file_permissions(file="/etc/group", perms="-rw-r--r--") }}}
 
-fixtext: '{{{ fixtext_file_permissions(file="/etc/group", mode="0644") }}}'
+fixtext: |-
+    Change the permissions of the file "/etc/group" to "0644" by running the following command:
+    $ sudo chmod 0644 /etc/group
 
-srg_requirement: '{{{ srg_requirement_file_permission(file="/etc/group", mode="0644") }}}'
+srg_requirement: |-
+    The {{{ full_name }}} /etc/group file must have 0644 or less permissive to prevent unauthorized access.
 
 template:
     name: file_permissions
     vars:
         filepath: /etc/group
         filemode: '0644'
+
+checktext: |-
+    To check the permissions of /etc/group ,
+    run the command:
+     $ sudo stat -c "%a %n" /etc/group
+    If properly configured, the output should indicate the following permissions:
+    644 /etc/group
+
+    If /etc/group does not have unix mode 644, then this is a finding.

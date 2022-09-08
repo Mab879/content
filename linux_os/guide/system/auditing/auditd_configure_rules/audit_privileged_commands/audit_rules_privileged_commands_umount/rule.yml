@@ -70,3 +70,14 @@ template:
     name: audit_rules_privileged_commands
     vars:
         path: /usr/bin/umount
+
+srg_requirement: |-
+    {{{ full_name }}} Must Generate Audit Records For Privileged Activities Or Other System-Level Access.
+
+checktext: |-
+    To verify that auditing of privileged command use is configured, run the
+    following command:
+     $ sudo grep umount /etc/audit/audit.rules /etc/audit/rules.d/*
+    It should return a relevant line in the audit rules.
+
+    If it is not the case, then this is a finding.

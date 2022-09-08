@@ -45,3 +45,12 @@ fixtext: |-
     {{{ fixtext_mount_option("/var", "nodev") }}}
 
 srg_requirement: '{{{ srg_requirement_mount_option("/var", "nodev") }}}'
+
+checktext: |-
+    Verify "/var" is mounted with the "nodev" option:
+
+    $ mount | grep /var
+
+    /dev/mapper/rhel-var on /var type xfs (rw,nodev,nosuid,noexec,seclabel)
+
+    If the "/var" file system is mounted without the "nodev" option, this is a finding.

@@ -76,9 +76,23 @@ ocil: |-
 platform: pam
 
 fixtext: |-
-    Configure {{{ full_name }}} to allow at most {{{ xccdf_value("var_password_pam_retry") }}} password prompts per-session.
-    Add or edit the following line in "/etc/security/pwquality.conf":
+    Configure {{{ full_name }}} to limit the "pwquality" retry option to 3.
 
-    retry={{{ xccdf_value("var_password_pam_retry") }}}
+    Add the following line to the "/etc/pam.d/system-auth" file (or modify the line to have the required value):
 
+    password required pam_pwquality.so retry=3
+
+srg_requirement: |-
+    {{{ full_name }}} must ensure the password complexity module in the system-auth file is configured for three retries or less.
 srg_requirement: '{{{ full_name }}} must ensure the password complexity module is configured for three retries or less.'
+
+checktext: |-
+    Verify {{{ full_name }}} is configured to limit the "pwquality" retry option to 3.
+
+    Check for the use of the "pwquality" retry option in the system-auth file with the following command:
+
+    $ cat /etc/pam.d/system-auth | grep pam_pwquality
+
+    password required pam_pwquality.so retry=3
+
+    If the value of "retry" is set to "0" or greater than "3", or is missing, this is a finding.

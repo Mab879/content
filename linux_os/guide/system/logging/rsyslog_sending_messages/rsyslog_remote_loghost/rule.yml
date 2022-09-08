@@ -86,11 +86,12 @@ ocil: |-
     <pre> *.* :omrelp:<i>{{{ xccdf_value("rsyslog_remote_loghost_address") }}}</i></pre>
 
 fixtext: |-
-    Configure {{{ full_name }}} to off-load audit records onto a different system or media from the system being audited by specifying the remote logging server in "/etc/rsyslog.conf" or "/etc/rsyslog.d/[customfile].conf" with the name or IP address of the log aggregation server.
+    Configure {{{ full_name }}} to off-load audit records onto a different system or media from the system being audited via TCP using rsyslog by specifying the remote logging server in "/etc/rsyslog.conf"" or "/etc/rsyslog.d/[customfile].conf" with the name or IP address of the log aggregation server.
 
     *.* @@[remoteloggingserver]:[port]"
 
-srg_requirement: 'The {{{ full_name }}} audit records must be off-loaded onto a different system or storage media from the system being audited.'
+srg_requirement: |-
+    {{{ full_name }}} must be configured to forward audit records via TCP to a different system or media from the system being audited via rsyslog.
 
 warnings:
     - functionality: |-
@@ -108,3 +109,14 @@ warnings:
         $ActionQueueSaveOnShutdown on
         $ActionResumeRetryCount -1
         </pre>
+
+checktext: |-
+    Verify that {{{ full_name }}} audit system off-loads audit records onto a different system or media from the system being audited via rsyslog using TCP with the following command:
+
+    $ sudo grep @@ /etc/rsyslog.conf /etc/rsyslog.d/*.conf
+
+    /etc/rsyslog.conf:*.* @@[remoteloggingserver]:[port]
+
+    If a remote server is not configured, or the line is commented out, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or media.
+
+    If there is no evidence that the audit logs are being off-loaded to another system or media, this is a finding.

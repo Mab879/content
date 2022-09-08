@@ -54,23 +54,27 @@ template:
 #do not remove this comment, it stops Jinja from including more blank lines to the variable
 
 fixtext: |-
-    Configure {{{ full_name }}} kernel to prevent modification of login UIDs once they are set.
+    Configure {{{ full_name }}} auditing to prevent modification of login UIDs once they are set by adding the following line to /etc/audit/rules.d/audit.rules:
 
-    Make sure the file "/etc/audit/rules.d/11-loginuid.rules" contains the following content:
 
-    <pre>--loginuid-immutable</pre>
+    --loginuid-immutable
 
-    If the file doesn't exist, it can be copied from <tt>/usr/share/audit/sample-rules</tt>
-    using the next command
 
-    <pre>
-    cp /usr/share/audit/sample-rules/11-loginuid.rules /etc/audit/rules.d/
-    </pre>
-
-    Then, run the following commands:
-
-    $ sudo chmod o-rwx "/etc/audit/rules.d/11-loginuid.rules"
-    $ sudo augenrules --load
+    The audit daemon must be restarted for the changes to take effect.
 
 srg_requirement: |-
     {{{ full_name }}} audit system must protect logon UIDs from unauthorized change.
+
+vuldiscussion: |-
+    Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
+
+    Audit records can be generated from various components within the information system (e.g., module or policy filter).
+
+checktext: |-
+    Verify the audit system prevents unauthorized changes to logon UIDs with the following command:
+
+    $ sudo grep -i immutable /etc/audit/audit.rules
+
+    --loginuid-immutable
+
+    If the "--loginuid-immutable" option is not returned in the "/etc/audit/audit.rules", or the line is commented out, this is a finding.

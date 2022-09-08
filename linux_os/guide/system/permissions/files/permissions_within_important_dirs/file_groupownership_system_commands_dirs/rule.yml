@@ -66,3 +66,10 @@ fixtext: |-
 
 srg_requirement:
     {{{ full_name }}} system commands must be group-owned by root or a system account.
+
+checktext: |-
+    Verify the system commands contained in the following directories are group-owned by "root", or a required system account, with the following command:
+
+    $ sudo find -L /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin ! -group root -exec ls -l {} \;
+
+    If any system commands are returned and is not group-owned by a required system account, this is a finding.

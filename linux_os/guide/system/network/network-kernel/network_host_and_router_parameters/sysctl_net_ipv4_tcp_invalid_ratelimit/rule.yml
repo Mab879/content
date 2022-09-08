@@ -63,8 +63,22 @@ template:
         datatype: int
 
 fixtext: |-
-    Configure {{{ full_name }}} to limit the maximal rate for sending duplicate acknowledgments.
+    Configure "nftables" to be the default "firewallbackend" for "firewalld" by adding or editing the following line in "etc/firewalld/firewalld.conf":
 
-    {{{ fixtext_sysctl("net.ipv4.tcp_invalid_ratelimit", xccdf_value("sysctl_net_ipv4_tcp_invalid_ratelimit_value")) | indent(4) }}}
+    FirewallBackend=nftables
 
+    Establish rate-limiting rules based on organization-defined types of DoS attacks on impacted network interfaces.
+
+srg_requirement: |-
+    {{{ full_name }}} must protect against or limit the effects of Denial of Service (DoS) attacks by ensuring rate-limiting measures on impacted network interfaces are implemented.
 srg_requirement: '{{{ full_name }}} must protect against or limit the effects of Denial of Service (DoS) attacks by validating the operating system is implementing rate-limiting measures on impacted network interfaces.'
+
+checktext: |-
+    Verify "nftables" is configured to allow rate limits on any connection to the system with the following command:
+
+    $ sudo grep -i firewallbackend /etc/firewalld/firewalld.conf
+
+    # FirewallBackend
+    FirewallBackend=nftables
+
+    If the "nftables" is not set as the "FirewallBackend" default, this is a finding.

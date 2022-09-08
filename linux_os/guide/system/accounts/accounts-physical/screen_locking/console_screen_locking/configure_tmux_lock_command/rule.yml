@@ -49,14 +49,19 @@ ocil: |-
     <pre>$ sudo ls -al /etc/tmux.conf
 
 fixtext: |-
-    Add the following line to the file "/etc/tmux.conf":
+    Configure {{{ full_name }}} to allow a user to initiate a sessions lock by adding the following line to the file "/etc/tmux.conf":
 
-    <pre>set -g lock-command vlock</pre>
-
-    Then, ensure a correct mode of /etc/tmux.conf using this command:
-
-    $ sudo chmod 0644 /etc/tmux.conf
+     set -g lock-command vlock
 
 srg_requirement: '{{{ full_name }}} must enable a user session lock until that user re-establishes access using established identification and authentication procedures for command line sessions.'
 
 platform: machine
+
+checktext: |-
+    Verify {{{ full_name }}} enables the user to initiate a session lock with the following command:
+
+    $ grep lock-command /etc/tmux.conf
+
+    set -g lock-command vlock
+
+    If the "lock-command" is not set in the global settings to call "vlock", this is a finding.

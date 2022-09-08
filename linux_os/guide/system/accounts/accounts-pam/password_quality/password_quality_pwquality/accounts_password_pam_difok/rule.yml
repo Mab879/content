@@ -77,3 +77,12 @@ fixtext: |-
     difok = {{{ xccdf_value("var_password_pam_difok") }}}
 
 srg_requirement: '{{{ full_name }}} must require the change of at least 8 characters when passwords are changed.'
+
+checktext: |-
+    Verify the value of the "difok" option in "/etc/security/pwquality.conf" with the following command:
+
+    $ sudo grep difok /etc/security/pwquality.conf
+
+    difok = 8
+
+    If the value of "difok" is set to less than "8", or is commented out, this is a finding.

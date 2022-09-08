@@ -47,10 +47,24 @@ ocil: |-
     <pre>umask {{{ xccdf_value("var_accounts_user_umask") }}}</pre>
 
 fixtext: |-
-    Configure the {{{ full_name }}} to define default permissions for all authenticated users in such a way that the user can only read and modify their own files.
+    Configure {{{ full_name }}} to define default permissions for all authenticated users using the c shell.
 
-    Add or edit the lines for the "umask" parameter in the "/etc/csh.cshrc" files to "{{{ xccdf_value("var_accounts_user_umask") }}}":
+    Add or edit the lines for the "umask" parameter in the "/etc/csh.cshrc" file to "077":
 
-    umask {{{ xccdf_value("var_accounts_user_umask") }}}
+    umask 077
 
+srg_requirement: |-
+    {{{ full_name }}} must define default permissions for the c shell.
 srg_requirement: '{{{ full_name }}} must define default permissions for logon and non-logon shells.'
+
+checktext: |-
+    Verify the "umask" setting is configured correctly in the "/etc/csh.cshrc" file with the following command:
+
+    Note: If the value of the "umask" parameter is set to "000" "/etc/csh.cshrc" file, the Severity is raised to a CAT I.
+
+    $ grep umask /etc/csh.cshrc
+
+    umask 077
+    umask 077
+
+    If the value for the "umask" parameter is not "077", or the "umask" parameter is missing or is commented out, this is a finding.

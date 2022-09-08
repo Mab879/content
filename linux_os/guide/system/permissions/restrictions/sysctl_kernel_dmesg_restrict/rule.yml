@@ -33,8 +33,15 @@ references:
 {{{ complete_ocil_entry_sysctl_option_value(sysctl="kernel.dmesg_restrict", value="1") }}}
 
 fixtext: |-
-    Configure {{{ full_name }}} to restrict access to the dmesg bus.
-    {{{ fixtext_sysctl("kernel.dmesg_restrict", "1") | indent(4) }}}
+    Configure {{{ full_name }}} to restrict access to the kernel message buffer.
+
+    Add or edit the following line in a system configuration file, in the "/etc/sysctl.d/" directory:
+
+    kernel.dmesg_restrict = 1
+
+    Load settings from all system configuration files with the following command:
+
+    $ sudo sysctl --system
 
 srg_requirement: '{{{ full_name }}} must restrict access to the kernel message buffer.'
 
@@ -46,3 +53,21 @@ template:
         sysctlvar: kernel.dmesg_restrict
         sysctlval: '1'
         datatype: int
+
+checktext: |-
+    Verify {{{ full_name }}} is configured to restrict access to the kernel message buffer with the following commands:
+
+    Check the status of the kernel.dmesg_restrict kernel parameter.
+
+    $ sysctl kernel.dmesg_restrict
+
+    kernel.dmesg_restrict = 1
+
+    If "kernel.dmesg_restrict" is not set to "1" or is missing, this is a finding.
+
+    Check that the configuration files are present to enable this kernel parameter.
+
+    $  {  sudo /usr/lib/systemd/systemd-sysctl --cat-config; cat /etc/sysctl.conf; } | egrep -v '^(#|$)' | grep -F kernel.dmesg_restrict | tail -1
+    kernel.dmesg_restrict = 1
+
+    If "kernel.dmesg_restrict" is not set to "1" or is missing this is a finding.

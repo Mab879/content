@@ -48,4 +48,15 @@ template:
 fixtext: |-
     {{{ fixtext_service_enabled("pcscd") }}}
 
+srg_requirement: |-
+    The pcscd service on {{{ full_name }}} must be active.
 srg_requirement: '{{{ srg_requirement_service_enabled("pcscd") }}}'
+
+checktext: |-
+    Verify that the "pcscd" service is active with the following command:
+
+    $ systemctl is-active pcscd
+
+    active
+
+    If the pcscdservice is not active, this is a finding.

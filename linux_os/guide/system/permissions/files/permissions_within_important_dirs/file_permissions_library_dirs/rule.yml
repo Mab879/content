@@ -73,5 +73,13 @@ fixtext: |-
 
     $ sudo chmod 755 [FILE]
 
-srg_requirement:
+srg_requirement: |-
+    {{{ full_name }}} library files must have mode 755 or less permissive.
     {{{ full_name }}} library directories must have mode 755 or less permissive.
+
+checktext: |-
+    Verify the system-wide shared library files contained in the following directories have mode "755" or less permissive with the following command:
+
+    $ sudo find -L /lib /lib64 /usr/lib /usr/lib64 -perm /022 -type f -exec ls -l {} \;
+
+    If any system-wide shared library file is found to be group-writable or world-writable, this is a finding.

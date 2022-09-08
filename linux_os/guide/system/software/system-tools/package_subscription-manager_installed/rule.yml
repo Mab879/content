@@ -45,4 +45,15 @@ template:
 fixtext: |-
     {{{ describe_package_install(package="subscription-manager") }}}
 
+srg_requirement: |-
+    The {{{ full_name }}} subscription-manager package must be installed.
 srg_requirement: '{{{ srg_requirement_package_installed("subscription-manager") }}}'
+
+checktext: |-
+    Verify that {{{ full_name }}} subscription-manager package is installed with the following command:
+
+    $ sudo dnf list --installed subscription-manager
+
+    subscription-manager.x86_64         1.29.26-3.el9_0
+
+    If the subscription-manager package is not installed, this is a finding.

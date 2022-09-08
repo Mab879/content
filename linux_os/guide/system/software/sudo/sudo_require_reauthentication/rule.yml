@@ -61,3 +61,14 @@ fixtext: |-
     Defaults timestamp_timeout={{{ xccdf_value("var_sudo_timestamp_timeout") }}}
 
 srg_requirement: '{{{ full_name }}} must require re-authentication when using the "sudo" command.'
+
+checktext: |-
+    Verify {{{ full_name }}} requires re-authentication when using the "sudo" command to elevate privileges with the following command:
+
+    $ sudo grep -i 'timestamp_timeout' /etc/sudoers /etc/sudoers.d/*
+
+    /etc/sudoers:Defaults timestamp_timeout=0
+
+    If results are returned from more than one file location, this is a finding.
+
+    If "timestamp_timeout" is set to a negative number, is commented out, or no results are returned, this is a finding.

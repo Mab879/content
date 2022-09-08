@@ -42,3 +42,11 @@ template:
         servicename: systemd-journald
         packagename: systemd
 
+
+checktext: |-
+    Run the following command to determine the current status of the
+     systemd-journald service:
+     $ sudo systemctl is-active systemd-journald
+    If the service is running, it should return the following: active
+
+    If the systemd-journald service is not running, then this is a finding.

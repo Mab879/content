@@ -66,14 +66,25 @@ ocil: |-
     ENCRYPT_METHOD SHA512
 
 {{% if product in ['rhel9'] -%}}
+srg_requirement: |-
+    {{{ full_name }}} must be configured to use the shadow file to store only encrypted representations of passwords.
 srg_requirement: 'The {{{ full_name }}} pam_unix.so module must be configured in the system-auth file to use a FIPS 140-3 approved cryptographic hashing algorithm for system authentication.'
 {{%- endif %}}
 
 platform: login_defs
 
 fixtext: |-
-    Configure {{{ full_name }}} to encrypt all stored passwords.
+    Configure {{{ full_name }}} to store only SHA512 encrypted representations of passwords.
 
     Add or update the following line in the "/etc/login.defs" file:
 
     ENCRYPT_METHOD SHA512
+
+checktext: |-
+    Verify the system's shadow file is configured to store only encrypted representations of passwords. with a hash value of SHA512 with the following command:
+
+    # grep -i encrypt_method /etc/login.defs
+
+    ENCRYPT_METHOD SHA512
+
+    If "ENCRYPT_METHOD" does not have a value of "SHA512", or the line is commented out, this is a finding.

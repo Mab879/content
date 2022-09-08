@@ -26,11 +26,24 @@ references:
 
 {{{ complete_ocil_entry_package(package="iprutils") }}}
 
-fixtext: '{{{ fixtext_package_removed("iprutils") }}}'
+fixtext: |-
+    Remove the iprutils package with the following command:
 
-srg_requirement: '{{{ srg_requirement_package_removed("iprutils") }}}'
+    $ sudo dnf remove iprutils
+
+srg_requirement: |-
+    {{{ full_name }}} must not have the iprutils package installed.
 
 template:
     name: package_removed
     vars:
         pkgname: iprutils
+
+checktext: |-
+    Verify that the iprutils package is not installed with the following command:
+
+    $ sudo dnf list --installed iprutils
+
+    Error: No matching Packages to list
+
+    If the iprutils package is installed and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.

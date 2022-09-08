@@ -42,8 +42,19 @@ ocil: |-
     <pre>/etc/rsyslog.conf:$DefaultNetstreamDriver gtls</pre>
 
 fixtext: |-
-    Configure the operating system to encrypt off-loaded audit records by setting the following options in "/etc/rsyslog.conf" or "/etc/rsyslog.d/[customfile].conf":
+    Configure {{{ full_name }}} to use the gtls driver to encrypt off-loaded audit records by setting the following options in "/etc/rsyslog.conf" or "/etc/rsyslog.d/[customfile].conf":
 
     $DefaultNetstreamDriver gtls
 
+srg_requirement: |-
+    {{{ full_name }}} must encrypt via the gtls driver the transfer of audit records off-loaded onto a different system or media from the system being audited via rsyslog.
 srg_requirement: '{{{ full_name }}} must encrypt the transfer of audit records off-loaded onto a different system or media from the system being audited.'
+
+checktext: |-
+    Verify {{{ full_name }}} uses the gtls driver to encrypt audit records off-loaded onto a different system or media from the system being audited with the following command:
+
+    $ sudo grep -i '$DefaultNetstreamDriver' /etc/rsyslog.conf /etc/rsyslog.d/*.conf
+
+    /etc/rsyslog.conf:$DefaultNetstreamDriver gtls
+
+    If the value of the "$DefaultNetstreamDriver" option is not set to "gtls" or the line is commented out, this is a finding.

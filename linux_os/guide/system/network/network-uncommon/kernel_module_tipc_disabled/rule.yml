@@ -47,11 +47,24 @@ references:
 
 {{{ complete_ocil_entry_module_disable(module="tipc") }}}
 
-fixtext: '{{{ fixtext_kernel_module_disabled("tipc") }}}'
+fixtext: |-
+    To configure the system to prevent the tipc kernel module from being loaded, add the following line to the file  /etc/modprobe.d/tipc.conf (or create tipc.conf if it does not exist):
 
-srg_requirement: '{{{ srg_requirement_kernel_module_disable('tipc') }}}'
+    blacklist tipc
+
+srg_requirement: |-
+    {{{ full_name }}} must disable the Transparent Inter Process Communication (TIPC) kernel module.
 
 template:
     name: kernel_module_disabled
     vars:
         kernmodule: tipc
+
+checktext: |-
+    Verify that {{{ full_name }}} disables the ability to load the tipc kernel module with the following command:
+
+    $ sudo grep -r tipc /etc/modprobe.conf /etc/modprobe.d/*
+
+    blacklist tipc
+
+    If the command does not return any output, or the line is commented out, and use of tipc is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.

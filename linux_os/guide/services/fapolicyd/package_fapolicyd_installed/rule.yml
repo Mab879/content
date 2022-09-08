@@ -30,11 +30,23 @@ ocil_clause: 'the fapolicyd package is not installed'
 ocil: '{{{ ocil_package(package="fapolicyd") }}}'
 
 fixtext: |-
-    {{{ fixtext_package_installed("fapolicyd") | indent(4) }}}
+    The fapolicyd package can be installed with the following command:
 
-srg_requirement: '{{{ srg_requirement_package_installed("fapolicyd") }}}'
+    $ sudo dnf install fapolicyd
+
+srg_requirement: |-
+    The {{{ full_name }}} fapolicy module must be installed.
 
 template:
     name: package_installed
     vars:
         pkgname: fapolicyd
+
+checktext: |-
+    Verify that {{{ full_name }}} fapolicyd package is installed with the following command:
+
+    $ sudo dnf list --installed fapolicyd
+
+    fapolicyd.x86_64      1.1-103.el9_0
+
+    If the fapolicyd package is not installed, this is a finding.

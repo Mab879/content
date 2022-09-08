@@ -41,6 +41,20 @@ template:
         servicename: usbguard
 
 fixtext: |-
-    {{{ fixtext_service_enabled("usbguard") }}}
+    To enable the USBGuard service run the following command:
 
+    $ sudo systemctl enable --now usbguard
+
+srg_requirement: |-
+    {{{ full_name }}} must have the USBGuard package enabled.
 srg_requirement: '{{{ srg_requirement_service_enabled("usbguard") }}}'
+
+checktext: |-
+    Verify {{{ full_name }}} has USBGuard enabled with the following command:
+
+    $ systemctl is-active usbguard
+
+    active
+
+    If usbguard is not active, ask the SA to indicate how unauthorized peripherals are being blocked.
+    If there is no evidence that unauthorized peripherals are being blocked before establishing a connection, this is a finding.

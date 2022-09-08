@@ -34,17 +34,32 @@ references:
     nist-csf: PR.AC-3,PR.MA-2,PR.PT-4
     pcidss: Req-4.1
     srg: SRG-OS-000480-GPOS-00227,SRG-OS-000120-GPOS-00061
-    
+
 ocil_clause: 'the package is not installed'
 
 ocil: '{{{ ocil_package(package="libreswan") }}}'
 
-fixtext: '{{{ fixtext_package_installed("libreswan") }}}'
+fixtext: |-
+    Install the libreswan service (if it is not already installed) with the following command:
 
-srg_requirement: '{{{ srg_requirement_package_installed("libreswan") }}}'
+    $ sudo dnf install libreswan
+
+srg_requirement: |-
+    The {{{ full_name }}} libreswan package must be installed.
 
 template:
     name: package_installed
     vars:
         pkgname: libreswan
 
+
+checktext: |-
+    Verify that {{{ full_name }}} libreswan service package is installed.
+
+    Check that the libreswan service package is installed with the following command:
+
+    $ dnf list --installed libreswan
+
+    libreswan.x86_64     4.6-3.el9
+
+    If the libreswan package is not installed, this is a finding.

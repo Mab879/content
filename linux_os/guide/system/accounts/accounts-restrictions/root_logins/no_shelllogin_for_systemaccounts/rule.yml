@@ -71,9 +71,25 @@ fixtext: |-
 
     $ sudo usermod --shell /sbin/nologin nobody
 
-srg_requirement: '{{{ full_name }}} system accounts must not have have login shell.'
+    Do not perform the steps in this section on the root account. Doing so mightcause the system to become inaccessible.
+
+srg_requirement: |-
+    {{{ full_name }}} Must Be Configured In Accordance With The Security Configuration Settings Based On Dod Security Configuration Or Implementation Guidance, Including Stigs, Nsa Configuration Guides, Ctos, And Dtms.
 
 warnings:
     - functionality: |-
         Do not perform the steps in this section on the root account. Doing so might
         cause the system to become inaccessible.
+
+checktext: |-
+    To obtain a listing of all users, their UIDs, and their shells, run the
+    command:
+
+    $ awk -F: '{print $1 ":" $3 ":" $7}' /etc/passwd
+
+    Identify the system accounts from this listing. These will primarily be the accounts
+    with UID numbers less than UID_MIN, other than root. Value of the UID_MIN
+    directive is set in /etc/login.defs configuration file. In the default
+    configuration UID_MIN is set to 1000.
+
+    If any system account (other than root) has a login shell, then this is a finding.

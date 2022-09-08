@@ -28,12 +28,24 @@ ocil_clause: 'the package is not installed'
 
 ocil: '{{{ ocil_package(package="rng-tools") }}}'
 
-fixtext: '{{{ fixtext_package_installed("rng-tools") }}}'
+fixtext: |-
+    The rng-tools package can be installed with the following command:
 
-srg_requirement: '{{{ srg_requirement_package_installed("rng-tools") }}}'
+    $ sudo dnf install rng-tools
 
+srg_requirement: |-
+    {{{ full_name }}} must have the rng-tools package installed.
 
 template:
     name: package_installed
     vars:
         pkgname: rng-tools
+
+checktext: |-
+    Verify that {{{ full_name }}} has the rng-tools package installed with the following command:
+
+    $ dnf list --installed rng-tools
+
+    rng-tools.x86_64        6.14-2.git.b2b7934e.el9
+
+    If a rng-tools package is not installed, this is a finding.

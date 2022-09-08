@@ -66,16 +66,26 @@ ocil: |-
     <pre>$ rpm -Va --noconfig | awk '$1 ~ /..5/ &amp;&amp; $2 != "c"'</pre>
 
 fixtext: |-
-    Run the following command to determine which package owns the file:
+    Given output from the check command, identify the package that provides the output and reinstall it. The following trimmed example output shows a package that has failed verification, been identified, and been reinstalled:
 
-    $ rpm -qf [FILE]
+    $ rpm -Va --noconfig | awk '$1 ~ /..5/ && $2 != "c"'
+    S.5....T.    /usr/bin/znew
+    $ sudo dnf provides /usr/bin/znew
+    [...]
+    gzip-1.10-8.el9.x86_64 : The GNU data compression program
+    [...]
+    $ sudo dnf reinstall gzip
+    [...]
+    $ rpm -Va --noconfig | awk '$1 ~ /..5/ && $2 != "c"'
+    [no output]
 
-    The package can be reinstalled from a repository using the command:
-
-    $ sudo {{{ pkg_manager }}} reinstall [PACKAGE]
-
-    Alternatively, the package can be reinstalled from trusted media using the command:
-
-    $ sudo rpm -Uvh [PATH TO RPM]
-
+srg_requirement: |-
+    {{{ full_name }}} Must Be Configured In Accordance With The Security Configuration Settings Based On Dod Security Configuration Or Implementation Guidance, Including Stigs, Nsa Configuration Guides, Ctos, And Dtms.
 srg_requirement: '{{{ full_name }}} must be configured so that the cryptographic hash of system files and commands matches vendor values.'
+
+checktext: |-
+    The following command will list which files on the system
+    have file hashes different from what is expected by the RPM database.
+     $ rpm -Va --noconfig | awk '$1 ~ /..5/ && $2 != "c"'
+
+    If there is output, then this is a finding.

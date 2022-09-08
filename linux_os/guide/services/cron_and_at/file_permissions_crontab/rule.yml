@@ -42,12 +42,25 @@ ocil_clause: '{{{ ocil_clause_file_permissions(file="/etc/crontab", perms="-rw--
 ocil: |-
     {{{ ocil_file_permissions(file="/etc/crontab", perms="-rw-------") }}}
 
-fixtext: '{{{ fixtext_file_permissions(file="/etc/cron.weekly/", mode="0600") }}}'
+fixtext: |-
+    Configure the {{{ full_name }}} file /etc/crontab with mode 600.
 
-srg_requirement: '{{{ srg_requirement_file_permission(file="/etc/cron.weekly", mode="0600") }}}'
+    chmod 0600 /etc/crontab
+
+srg_requirement: |-
+    The {{{ full_name }}} file must have mode 0600 /etc/crontab.
 
 template:
     name: file_permissions
     vars:
         filepath: /etc/crontab
         filemode: '0600'
+
+checktext: |-
+    To check the permissions of  /etc/crontab ,
+    run the command:
+     $ stat -c "%a %n" /etc/crontab
+    If properly configured, the output should indicate the following permissions:
+    644
+
+    If /etc/crontab does not have unix mode 644 then this is a finding.

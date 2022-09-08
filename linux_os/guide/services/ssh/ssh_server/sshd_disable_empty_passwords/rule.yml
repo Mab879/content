@@ -65,9 +65,16 @@ references:
 {{{ complete_ocil_entry_sshd_option(default="yes", option="PermitEmptyPasswords", value="no") }}}
 
 fixtext: |-
-    {{{ fixtext_sshd_lineinfile("PermitEmptyPasswords", "no") }}}
+    To configure the system to prevent SSH users from logging on with blank passwords edit the following line in "etc/ssh/sshd_config":
 
-srg_requirement: 'The {{{ full_name }}} SSH daemon must not allow accounts configured with blank or null passwords.'
+    PermitEmptyPasswords no
+
+    Restart the SSH daemon for the settings to take effect:
+
+    $ sudo systemctl restart sshd.service
+
+srg_requirement: |-
+    {{{ full_name }}} SSHD must not allow blank passwords.
 
 template:
     name: sshd_lineinfile
@@ -76,3 +83,28 @@ template:
         rule_id: sshd_disable_empty_passwords
         value: 'no'
         is_default_value: 'true'
+
+vuldiscussion: |-
+    To assure accountability and prevent unauthenticated access, non-privileged users must utilize multifactor authentication to prevent potential misuse and compromise of the system.
+
+    Multifactor authentication uses two or more factors to achieve authentication.
+
+    Factors include:
+    1) Something you know (e.g., password/PIN);
+    2) Something you have (e.g., cryptographic identification device, token); and
+    3) Something you are (e.g., biometric).
+
+    A non-privileged account is any information system account with authorizations of a non-privileged user.
+
+    Network access is any access to an application by a user (or process acting on behalf of a user) where said access is obtained through a network connection.
+
+    The DoD CAC with DoD-approved PKI is an example of multifactor authentication.
+
+checktext: |-
+    Verify {{{ full_name }}} remote access using SSH prevents logging on with a blank password with the following command:
+
+    $ sudo grep -i PermitEmptyPasswords /etc/ssh/sshd_config
+
+    PermitEmptyPassword no
+
+    If the "PermitEmptyPassword" keyword is set to "yes", is missing, or is commented out, this is a finding

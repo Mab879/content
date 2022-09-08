@@ -46,7 +46,7 @@ ocil: |-
     root /sbin/augenrules
 
 fixtext: |-
-    Configure the audit tools to be owned by "root", by running the following command:
+    Configure the audit tools to be owned by "root" by running the following command:
 
     $ sudo chown root [audit_tool]
 
@@ -67,3 +67,18 @@ template:
             - /sbin/augenrules
         fileuid: '0'
         missing_file_pass: 'true'
+
+checktext: |-
+    Verify the audit tools are owned by "root" with the following command:
+
+    $ sudo stat -c "%U %n" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/rsyslogd /sbin/augenrules
+
+    root /sbin/auditctl
+    root /sbin/aureport
+    root /sbin/ausearch
+    root /sbin/autrace
+    root /sbin/auditd
+    root /sbin/rsyslogd
+    root /sbin/augenrules
+
+    If any audit tools do not have an owner of "root", this is a finding.

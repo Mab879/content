@@ -80,3 +80,14 @@ fixtext: |-
 
 srg_requirement:
     A sticky bit must be set on all {{{ full_name }}} public directories to prevent unauthorized and unintended information transferred via shared system resources.
+
+checktext: |-
+    Verify that all world-writable directories have the sticky bit set.
+
+    Check to see that all world-writable directories have the sticky bit set by running the following command:
+
+    $ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2>/dev/null
+
+    drwxrwxrwt 7 root root 4096 Jul 26 11:19 /tmp
+
+    If any of the returned directories are world-writable and do not have the sticky bit set, this is a finding.

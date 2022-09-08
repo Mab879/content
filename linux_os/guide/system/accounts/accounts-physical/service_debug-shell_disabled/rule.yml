@@ -46,9 +46,14 @@ ocil_clause: |-
 ocil: |-
     {{{ ocil_service_disabled(service="debug-shell") }}}
 
-fixtext: '{{{ srg_requirement_service_disabled("debug-shell") }}}'
+fixtext: |-
+    Configure {{{ full_name }}} to mask the debug-shell systemd service with the following command:
 
-srg_requirement: '{{{ srg_requirement_service_disabled("debug-shell") }}}'
+    $ sudo systemctl disable --now debug-shell.target
+    $ sudo systemctl mask --now debug-shell.target
+
+srg_requirement: |-
+    The {{{ full_name }}} debug-shell systemd service must be disabled.
 
 platform: machine
 
@@ -57,3 +62,14 @@ template:
     vars:
         servicename: debug-shell
         packagename: systemd
+
+checktext: |-
+    Verify {{{ full_name }}} is configured to mask the debug-shell systemd service with the following command:
+
+    $ sudo systemctl status debug-shell.service
+
+    debug-shell.service
+    Loaded: masked (Reason: Unit debug-shell.service is masked.)
+    Active: inactive (dead)
+
+    If the "debug-shell.service" is loaded and not masked, this is a finding.

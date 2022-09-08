@@ -52,11 +52,26 @@ ocil: |-
     -a always,exit -F path=/usr/bin/chacl -F perm=x -F auid&gt;={{{ auid }}} -F auid!=unset -F key=perm_mod
 
 fixtext: |-
-    {{{ fixtext_audit_rules_command("chacl", "/usr/bin/chacl", "perm_mod") | indent(4) }}}
+    Configure {{{ full_name }}} to generate audit records upon successful/unsuccessful attempts to use the "chacl" command by adding or updating the following rule in "/etc/audit/rules.d/audit.rules":
 
-srg_requirement: '{{{ srg_requirement_audit_syscall("chacl") }}}'
+    -a always,exit -F path=/usr/bin/chacl -F perm=x -F auid>=1000 -F auid!=unset -k perm_mod
+
+    The audit daemon must be restarted for the changes to take effect.
+
+srg_requirement: |-
+    {{{ full_name }}} must audit all uses of the chacl command.
 
 template:
     name: audit_rules_privileged_commands
     vars:
         path: /usr/bin/chacl
+
+checktext: |-
+    Verify that {{{ full_name }}} is configured to audit the execution of the "chacl" command with the following command:
+
+    $ sudo auditctl -l | grep chacl
+
+    -a always,exit -F path=/usr/bin/chacl -F perm=x -F auid>=1000 -F auid!=unset -k perm_mod
+
+    If the command does not return a line, or the line is commented out, this is a finding.
+    If , this is a finding.

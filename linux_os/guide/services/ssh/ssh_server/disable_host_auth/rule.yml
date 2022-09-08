@@ -59,9 +59,16 @@ references:
 {{{ complete_ocil_entry_sshd_option(default="yes", option="HostbasedAuthentication", value="no") }}}
 
 fixtext: |-
-    {{{ fixtext_sshd_lineinfile("HostbasedAuthentication", "no") }}}
+    To configure {{{ full_name }}} to not allow a non-certificate trusted host SSH logon to the system add or modify the following line in "/etc/ssh/sshd_config".
 
-srg_requirement: '{{{ full_name }}}  must not allow a non-certificate trusted host SSH logon to the system.'
+    HostbasedAuthentication no
+
+    Restart the SSH daemon for the settings to take effect:
+
+    $ sudo systemctl restart sshd.service
+
+srg_requirement: |-
+    {{{ full_name }}} must not allow a non-certificate trusted host SSH logon to the system.
 
 template:
     name: sshd_lineinfile
@@ -70,3 +77,14 @@ template:
         rule_id: disable_host_auth
         value: 'no'
         is_default_value: 'true'
+
+checktext: |-
+    Verify the operating system does not allow a non-certificate trusted host SSH logon to the system with the following command:
+
+    $ sudo grep -i hostbasedauthentication /etc/ssh/sshd_config
+
+    HostbasedAuthentication no
+
+    If the "HostbasedAuthentication" keyword is not set to "no", is missing, or is commented out, this is a finding.
+
+    If the required value is not set, this is a finding.

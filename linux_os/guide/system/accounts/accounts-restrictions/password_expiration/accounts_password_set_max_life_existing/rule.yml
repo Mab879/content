@@ -53,7 +53,16 @@ ocil: |-
 fixtext: |-
     Configure non-compliant accounts to enforce a 60-day maximum password lifetime restriction.
 
-    chage -M {{{ xccdf_value("var_accounts_maximum_age_login_defs") }}} [user]
+    passwd -x 60 [user]
 
 srg_requirement: |-
     {{{ full_name }}} user account passwords must have a 60-day maximum password lifetime restriction.
+
+checktext: |-
+    Check whether the maximum time period for existing passwords is restricted to 60 days with the following commands:
+
+    $ sudo awk -F: '$5 > 60 {print $1 "" "" $5}' /etc/shadow
+
+    $ sudo awk -F: '$5 <= 0 {print $1 "" "" $5}' /etc/shadow
+
+    If any results are returned that are not associated with a system account, this is a finding.

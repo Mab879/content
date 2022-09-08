@@ -55,3 +55,12 @@ fixtext: |-
     FAIL_DELAY {{{ xccdf_value("var_accounts_fail_delay") }}}
 
 srg_requirement: '{{{ full_name }}} must enforce a delay of at least four seconds between logon prompts following a failed logon attempt.'
+
+checktext: |-
+    Verify {{{ full_name }}} enforces a delay of at least four seconds between console logon prompts following a failed logon attempt with the following command:
+
+    $ grep -i fail_delay /etc/login.defs
+
+    FAIL_DELAY 4
+
+    If the value of "FAIL_DELAY" is not set to "4" or greater, or the line is commented out, this is a finding.

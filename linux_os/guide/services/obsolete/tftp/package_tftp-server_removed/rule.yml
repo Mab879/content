@@ -43,11 +43,22 @@ references:
 
 {{{ complete_ocil_entry_package(package="tftp-server") }}}
 
-fixtext: '{{{ fixtext_package_removed("tftp-server") }}}'
+fixtext: |-
+    The tftp package can be removed with the following command:
 
-srg_requirement: 'The Trivial File Transfer Protocol (TFTP) server package must not be installed if not required for {{{ full_name }}} operational support.'
+    $ sudo dnf remove tftp
+
+srg_requirement: |-
+    {{{ full_name }}} must not have a Trivial File Transfer Protocol (TFTP) server package installed.
 
 template:
     name: package_removed
     vars:
         pkgname: tftp-server
+
+checktext: |-
+    Verify that {{{ full_name }}} does not have a tftp server package installed with the following command:
+
+    $ sudo dnf list --installed | grep tftp
+
+    If a tftp package is installed, this is a finding.

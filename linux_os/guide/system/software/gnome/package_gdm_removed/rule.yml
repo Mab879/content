@@ -57,9 +57,13 @@ ocil: |-
     <pre>dpkg-query: no packages found matching gdm3</pre>
 {{% endif %}}
 
-fixtext: '{{{ fixtext_package_removed("gdm") }}}'
+fixtext: |-
+    Remove the gdm  package with the following command:
 
-srg_requirement: '{{{ srg_requirement_package_removed("gdm") }}}'
+    $ sudo dnf remove gdm
+
+srg_requirement: |-
+    {{{ full_name }}} must not have the gdm  package installed.
 
 template:
     name: package_removed
@@ -68,3 +72,12 @@ template:
         pkgname@ubuntu1604: gdm3
         pkgname@ubuntu1804: gdm3
         pkgname@ubuntu2004: gdm3
+
+checktext: |-
+    Verify that the gdm package is not installed with the following command:
+
+    $ dnf list --installed gdm
+
+    Error: No matching Packages to list
+
+    If the gdm  package is installed, this is a finding.

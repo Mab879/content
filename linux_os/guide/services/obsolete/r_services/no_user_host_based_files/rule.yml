@@ -49,4 +49,13 @@ fixtext: |-
 
     $ sudo rm /[path]/[to]/[file]/.shosts
 
+srg_requirement: |-
+    There must be no .shosts files on the {{{ full_name }}}.
 srg_requirement: 'There must be no .shosts files on {{{ full_name }}}.'
+
+checktext: |-
+    Verify there are no ".shosts" files on {{{ full_name }}} with the following command:
+
+    $ sudo find / -name .shosts
+
+    If a ".shosts" file is found, this is a finding.

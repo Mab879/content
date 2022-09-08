@@ -52,10 +52,11 @@ references:
 
 {{{ complete_ocil_entry_separate_partition(part="/var") }}}
 
-fixtext: '{{{ fixtext_separate_partition(part="/var") }}}'
+fixtext: |-
+    Migrate the "/var" path onto a separate file system.
 
-srg_requirement: '{{{ srg_requirement_separate_partition("/var") }}}'
-
+srg_requirement: |-
+    {{{ full_name }}} must use a separate file system for /var.
 
 platform: machine
 
@@ -64,3 +65,11 @@ template:
     vars:
         mountpoint: /var
         min_size: 3221225472
+
+checktext: |-
+    Verify that a separate file system/partition has been created for  /var  with the following command:
+
+     $ mountpoint /var
+
+
+    If "/var is is not a mountpoint" is returned, then this is a finding.

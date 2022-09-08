@@ -66,6 +66,21 @@ template:
         path: /var/log/tallylog
 
 fixtext: |-
-    {{{ fixtext_audit_file_watch_rule("/var/log/tallylog", "logins", "/etc/audit/rules.d/audit.rules") | indent(4) }}}
+    Configure {{{ full_name }}} to generate audit records for all account creations, modifications, disabling, and termination events that affect "/var/log/tallylog".
 
+    Add or update the following file system rule to "/etc/audit/rules.d/audit.rules":
+
+    -w /var/log/tallylog -p wa -k logins
+
+    The audit daemon must be restarted for the changes to take effect.
+
+srg_requirement: |-
+     {{{ full_name }}} must generate audit records for all account creations, modifications, disabling, and termination events that affect /var/log/tallylog.
 srg_requirement: '{{{ srg_requirement_audit_file_watch_rule("/var/log/tallylog") }}}'
+
+checktext: |-
+    Verify {{{ full_name }}} generates audit records for all account creations, modifications, disabling, and termination events that affect "/var/log/tallylog" with the following command:
+
+     $ sudo auditctl -l | grep "watch=/var/log/tallylog\|-w /var/log/tallylog"
+
+    If there is no output, this is a finding.

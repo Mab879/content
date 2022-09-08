@@ -34,6 +34,19 @@ template:
         fileuid: '0'
 
 fixtext: |-
-   {{{ describe_file_owner(file="/var/log", owner="root") }}}
+    Configure the owner of the directory "/var/log" to "root" by running the following command:
 
+    $ sudo chown root /var/log
+
+srg_requirement: |-
+    The {{{ full_name }}} /var/log directory must be owned by root.
 srg_requirement: '{{{ srg_requirement_directory_owner("/var/log", owner="root") }}}'
+
+checktext: |-
+    Verify the "/var/log" directory is owned by root with the following command:
+
+    $ls -ld /var/log
+
+    drwxr-xr-x. 16 root root 4096 July 11 11:34 /var/log
+
+    If "/var/log" does not have an owner of "root", this is a finding.

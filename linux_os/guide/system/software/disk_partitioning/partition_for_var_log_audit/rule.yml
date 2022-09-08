@@ -58,9 +58,11 @@ references:
 
 {{{ complete_ocil_entry_separate_partition(part="/var/log/audit") }}}
 
-fixtext: '{{{ fixtext_separate_partition(part="/var/log/audit") }}}'
+fixtext: |-
+    Migrate the system audit data path onto a separate file system.
 
-srg_requirement: '{{{ srg_requirement_separate_partition("/var/log/audit") }}}'
+srg_requirement: |-
+    {{{ full_name }}} must use a separate file system for the system audit data path.
 
 platform: machine
 
@@ -74,3 +76,14 @@ template:
         mountpoint: /var/log/audit
         min_size: 10737418240
 {{% endif %}}
+
+checktext: |-
+    Verify that a separate file system/partition has been created for the system audit data path with the following command:
+
+    Note: /var/log/audit is used as the example as it is a common location.
+
+    $ mount | grep /var/log/audit
+
+    UUID=2efb2979-45ac-82d7-0ae632d11f51 on /var/log/home type xfs  (rw,realtime,seclabel,attr2,inode64)
+
+    If no line is returned, this is a finding.

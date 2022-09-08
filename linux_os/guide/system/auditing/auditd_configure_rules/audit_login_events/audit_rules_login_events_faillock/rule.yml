@@ -74,6 +74,23 @@ template:
         path: {{{ faillock_path }}}
 
 fixtext: |-
-    {{{ fixtext_audit_file_watch_rule(faillock_path, "logins", "/etc/audit/rules.d/audit.rules") | indent(4) }}}
+    Configure {{{ full_name }}} to generate audit records for all account creations, modifications, disabling, and termination events that affect "/var/run/faillock".
 
+    Add or update the following file system rule to "/etc/audit/rules.d/audit.rules":
+
+    -w /var/run/faillock -p wa -k logins
+
+    The audit daemon must be restarted for the changes to take effect.
+
+srg_requirement: |-
+     {{{ full_name }}} must generate audit records for all account creations, modifications, disabling, and termination events that affect /var/run/faillock.
 srg_requirement: '{{{ srg_requirement_audit_file_watch_rule(faillock_path) }}}'
+
+checktext: |-
+    Verify {{{ full_name }}} generates audit records for all account creations, modifications, disabling, and termination events that affect "/var/run/faillock" with the following command:
+
+    $ sudo auditctl -l | grep var/run/faillock
+
+    -w /var/run/faillock -p wa -k logins
+
+    If the command does not return a line, or the line is commented out, this is a finding.

@@ -84,3 +84,11 @@ template:
     value: "0"
   backends:
     kubernetes: "off"
+
+srg_requirement: |-
+    {{{ full_name }}} Must Terminate All Network Connections Associated With A Communications Session At The End Of The Session, Or As Follows: For In-Band Management Sessions (Privileged Sessions), The Session Must Be Terminated After 10 Minutes Of Inactivity; And For User Sessions (Non-Privileged Session), The Session Must Be Terminated After 15 Minutes Of Inactivity, Except To Fulfill Documented And Validated Mission Requirements.
+
+vuldiscussion: |-
+    Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element.
+
+    Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level, and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.

@@ -53,11 +53,17 @@ ocil_clause: 'the package is not installed'
 ocil: '{{{ ocil_package(package="aide") }}}'
 
 fixtext: |-
-    {{{ describe_package_install("aide") }}}
+    The aide package can be installed with the following command:
 
-srg_requirement: '{{{ srg_requirement_package_installed("aide") }}}'
+    $ sudo dnf install aide
+
+srg_requirement: |-
+    {{{ full_name }}} must have the aide package installed.
 
 template:
     name: package_installed
     vars:
         pkgname: aide
+
+checktext: |-
+    Verify that {{{ full_name }}} has the aide package installed with the following command:$sudo dnf list --installed aideaide.x86_640.16.100.el9If the aide package is not installed, this is a finding.

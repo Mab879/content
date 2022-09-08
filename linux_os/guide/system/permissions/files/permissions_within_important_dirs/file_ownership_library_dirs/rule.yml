@@ -77,3 +77,10 @@ fixtext: |-
 
 srg_requirement:
     {{{ full_name }}} library files must be owned by root.
+
+checktext: |-
+    Verify the system-wide shared library files are owned by "root" with the following command:
+
+    $ sudo find -L /lib /lib64 /usr/lib /usr/lib64 ! -user root -exec ls -l {} \;
+
+    If any system wide shared library file is not owned by root, this is a finding.

@@ -55,7 +55,7 @@ references:
 {{{ complete_ocil_entry_sshd_option(default="no", option="Banner", value="/etc/issue") }}}
 
 fixtext: |-
-    Configure {{{ full_name }}} to display the Standard Mandatory DoD Notice and Consent Banner before granting access to the system via the ssh.
+    Configure {{{ full_name }}} to display the Standard Mandatory DoD Notice and Consent Banner before granting access to the system via ssh.
 
     Edit the "/etc/ssh/sshd_config" file to uncomment the banner keyword and configure it to point to a file that will contain the logon banner (this file may be named differently or be in a different location if using a version of SSH that is provided by a third-party vendor).
     An example configuration line is:
@@ -70,3 +70,16 @@ template:
         parameter: Banner
         rule_id: sshd_enable_warning_banner
         value: /etc/issue
+
+checktext: |-
+    Verify any ssh connection to the operating system displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the system.
+
+    Check for the location of the banner file being used with the following command:
+
+    $ sudo grep -i banner /etc/ssh/sshd_config
+
+    banner /etc/issue
+
+    This command will return the banner keyword and the name of the file that contains the ssh banner (in this case "/etc/issue").
+
+    If the line is commented out, this is a finding.
