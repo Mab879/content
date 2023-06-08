@@ -12,3 +12,4 @@ pandas
 mypy
 lxml
 pycompliance
+compliance-trestle
