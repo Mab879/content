@@ -1,0 +1,421 @@
+controls:
+    -   title: Audit and Accountability
+        id: au
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: au-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Event Logging
+                id: au-2
+                status: pending
+                controls:
+                    -   title: Compilation of Audit Records from Multiple Sources
+                        id: au-2.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Selection of Audit Events by Component
+                        id: au-2.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Reviews and Updates
+                        id: au-2.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Privileged Functions
+                        id: au-2.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Content of Audit Records
+                id: au-3
+                status: pending
+                controls:
+                    -   title: Additional Audit Information
+                        id: au-3.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Centralized Management of Planned Audit Record Content
+                        id: au-3.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Limit Personally Identifiable Information Elements
+                        id: au-3.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Audit Log Storage Capacity
+                id: au-4
+                status: pending
+                controls:
+                    -   title: Transfer to Alternate Storage
+                        id: au-4.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Response to Audit Logging Process Failures
+                id: au-5
+                status: pending
+                controls:
+                    -   title: Storage Capacity Warning
+                        id: au-5.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Real-time Alerts
+                        id: au-5.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Configurable Traffic Volume Thresholds
+                        id: au-5.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Shutdown on Failure
+                        id: au-5.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Alternate Audit Logging Capability
+                        id: au-5.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Audit Record Review, Analysis, and Reporting
+                id: au-6
+                status: pending
+                controls:
+                    -   title: Automated Process Integration
+                        id: au-6.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Security Alerts
+                        id: au-6.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Correlate Audit Record Repositories
+                        id: au-6.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Central Review and Analysis
+                        id: au-6.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Integrated Analysis of Audit Records
+                        id: au-6.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Correlation with Physical Monitoring
+                        id: au-6.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Permitted Actions
+                        id: au-6.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Full Text Analysis of Privileged Commands
+                        id: au-6.8
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Correlation with Information from Nontechnical Sources
+                        id: au-6.9
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Audit Level Adjustment
+                        id: au-6.10
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Audit Record Reduction and Report Generation
+                id: au-7
+                status: pending
+                controls:
+                    -   title: Automatic Processing
+                        id: au-7.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automatic Sort and Search
+                        id: au-7.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Time Stamps
+                id: au-8
+                status: pending
+                controls:
+                    -   title: Synchronization with Authoritative Time Source
+                        id: au-8.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Secondary Authoritative Time Source
+                        id: au-8.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Protection of Audit Information
+                id: au-9
+                status: pending
+                controls:
+                    -   title: Hardware Write-once Media
+                        id: au-9.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Store on Separate Physical Systems or Components
+                        id: au-9.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Cryptographic Protection
+                        id: au-9.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Access by Subset of Privileged Users
+                        id: au-9.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Dual Authorization
+                        id: au-9.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Read-only Access
+                        id: au-9.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Store on Component with Different Operating System
+                        id: au-9.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Non-repudiation
+                id: au-10
+                status: pending
+                controls:
+                    -   title: Association of Identities
+                        id: au-10.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Validate Binding of Information Producer Identity
+                        id: au-10.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Chain of Custody
+                        id: au-10.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Validate Binding of Information Reviewer Identity
+                        id: au-10.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Digital Signatures
+                        id: au-10.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Audit Record Retention
+                id: au-11
+                status: pending
+                controls:
+                    -   title: Long-term Retrieval Capability
+                        id: au-11.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Audit Record Generation
+                id: au-12
+                status: pending
+                controls:
+                    -   title: System-wide and Time-correlated Audit Trail
+                        id: au-12.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Standardized Formats
+                        id: au-12.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Changes by Authorized Individuals
+                        id: au-12.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Query Parameter Audits of Personally Identifiable Information
+                        id: au-12.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Monitoring for Information Disclosure
+                id: au-13
+                status: pending
+                controls:
+                    -   title: Use of Automated Tools
+                        id: au-13.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Review of Monitored Sites
+                        id: au-13.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Unauthorized Replication of Information
+                        id: au-13.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Session Audit
+                id: au-14
+                status: pending
+                controls:
+                    -   title: System Start-up
+                        id: au-14.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Capture and Record Content
+                        id: au-14.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Remote Viewing and Listening
+                        id: au-14.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Alternate Audit Logging Capability
+                id: au-15
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Cross-organizational Audit Logging
+                id: au-16
+                status: pending
+                controls:
+                    -   title: Identity Preservation
+                        id: au-16.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Sharing of Audit Information
+                        id: au-16.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Disassociability
+                        id: au-16.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+        levels:
+            - base

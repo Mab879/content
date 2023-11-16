@@ -1,0 +1,979 @@
+controls:
+    -   title: System and Communications Protection
+        id: sc
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: sc-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Separation of System and User Functionality
+                id: sc-2
+                status: pending
+                controls:
+                    -   title: Interfaces for Non-privileged Users
+                        id: sc-2.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Disassociability
+                        id: sc-2.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Security Function Isolation
+                id: sc-3
+                status: pending
+                controls:
+                    -   title: Hardware Separation
+                        id: sc-3.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Access and Flow Control Functions
+                        id: sc-3.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Minimize Nonsecurity Functionality
+                        id: sc-3.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Module Coupling and Cohesiveness
+                        id: sc-3.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Layered Structures
+                        id: sc-3.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Information in Shared System Resources
+                id: sc-4
+                status: pending
+                controls:
+                    -   title: Security Levels
+                        id: sc-4.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Multilevel or Periods Processing
+                        id: sc-4.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Denial-of-service Protection
+                id: sc-5
+                status: pending
+                controls:
+                    -   title: Restrict Ability to Attack Other Systems
+                        id: sc-5.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Capacity, Bandwidth, and Redundancy
+                        id: sc-5.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Detection and Monitoring
+                        id: sc-5.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Resource Availability
+                id: sc-6
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Boundary Protection
+                id: sc-7
+                status: pending
+                controls:
+                    -   title: Physically Separated Subnetworks
+                        id: sc-7.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Public Access
+                        id: sc-7.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Access Points
+                        id: sc-7.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: External Telecommunications Services
+                        id: sc-7.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: "Deny by Default \u2014 Allow by Exception"
+                        id: sc-7.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Response to Recognized Failures
+                        id: sc-7.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Split Tunneling for Remote Devices
+                        id: sc-7.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Route Traffic to Authenticated Proxy Servers
+                        id: sc-7.8
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Restrict Threatening Outgoing Communications Traffic
+                        id: sc-7.9
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Prevent Exfiltration
+                        id: sc-7.10
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Restrict Incoming Communications Traffic
+                        id: sc-7.11
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Host-based Protection
+                        id: sc-7.12
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Isolation of Security Tools, Mechanisms, and Support Components
+                        id: sc-7.13
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Protect Against Unauthorized Physical Connections
+                        id: sc-7.14
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Networked Privileged Accesses
+                        id: sc-7.15
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Prevent Discovery of System Components
+                        id: sc-7.16
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Enforcement of Protocol Formats
+                        id: sc-7.17
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Fail Secure
+                        id: sc-7.18
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Block Communication from Non-organizationally Configured Hosts
+                        id: sc-7.19
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Dynamic Isolation and Segregation
+                        id: sc-7.20
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Isolation of System Components
+                        id: sc-7.21
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Separate Subnets for Connecting to Different Security Domains
+                        id: sc-7.22
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Disable Sender Feedback on Protocol Validation Failure
+                        id: sc-7.23
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Personally Identifiable Information
+                        id: sc-7.24
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Unclassified National Security System Connections
+                        id: sc-7.25
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Classified National Security System Connections
+                        id: sc-7.26
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Unclassified Non-national Security System Connections
+                        id: sc-7.27
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Connections to Public Networks
+                        id: sc-7.28
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Separate Subnets to Isolate Functions
+                        id: sc-7.29
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Transmission Confidentiality and Integrity
+                id: sc-8
+                status: pending
+                controls:
+                    -   title: Cryptographic Protection
+                        id: sc-8.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Pre- and Post-transmission Handling
+                        id: sc-8.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Cryptographic Protection for Message Externals
+                        id: sc-8.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Conceal or Randomize Communications
+                        id: sc-8.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Protected Distribution System
+                        id: sc-8.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Transmission Confidentiality
+                id: sc-9
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Network Disconnect
+                id: sc-10
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Trusted Path
+                id: sc-11
+                status: pending
+                controls:
+                    -   title: Irrefutable Communications Path
+                        id: sc-11.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Cryptographic Key Establishment and Management
+                id: sc-12
+                status: pending
+                controls:
+                    -   title: Availability
+                        id: sc-12.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Symmetric Keys
+                        id: sc-12.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Asymmetric Keys
+                        id: sc-12.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: PKI Certificates
+                        id: sc-12.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: PKI Certificates / Hardware Tokens
+                        id: sc-12.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Physical Control of Keys
+                        id: sc-12.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Cryptographic Protection
+                id: sc-13
+                status: pending
+                controls:
+                    -   title: FIPS-validated Cryptography
+                        id: sc-13.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: NSA-approved Cryptography
+                        id: sc-13.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Individuals Without Formal Access Approvals
+                        id: sc-13.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Digital Signatures
+                        id: sc-13.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Public Access Protections
+                id: sc-14
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Collaborative Computing Devices and Applications
+                id: sc-15
+                status: pending
+                controls:
+                    -   title: Physical or Logical Disconnect
+                        id: sc-15.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Blocking Inbound and Outbound Communications Traffic
+                        id: sc-15.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Disabling and Removal in Secure Work Areas
+                        id: sc-15.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Explicitly Indicate Current Participants
+                        id: sc-15.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Transmission of Security and Privacy Attributes
+                id: sc-16
+                status: pending
+                controls:
+                    -   title: Integrity Verification
+                        id: sc-16.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Anti-spoofing Mechanisms
+                        id: sc-16.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Cryptographic Binding
+                        id: sc-16.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Public Key Infrastructure Certificates
+                id: sc-17
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Mobile Code
+                id: sc-18
+                status: pending
+                controls:
+                    -   title: Identify Unacceptable Code and Take Corrective Actions
+                        id: sc-18.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Acquisition, Development, and Use
+                        id: sc-18.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Prevent Downloading and Execution
+                        id: sc-18.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Prevent Automatic Execution
+                        id: sc-18.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Allow Execution Only in Confined Environments
+                        id: sc-18.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Voice Over Internet Protocol
+                id: sc-19
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Secure Name/Address Resolution Service (Authoritative Source)
+                id: sc-20
+                status: pending
+                controls:
+                    -   title: Child Subspaces
+                        id: sc-20.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Data Origin and Integrity
+                        id: sc-20.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Secure Name/Address Resolution Service (Recursive or Caching Resolver)
+                id: sc-21
+                status: pending
+                controls:
+                    -   title: Data Origin and Integrity
+                        id: sc-21.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Architecture and Provisioning for Name/Address Resolution Service
+                id: sc-22
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Session Authenticity
+                id: sc-23
+                status: pending
+                controls:
+                    -   title: Invalidate Session Identifiers at Logout
+                        id: sc-23.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: User-initiated Logouts and Message Displays
+                        id: sc-23.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Unique System-generated Session Identifiers
+                        id: sc-23.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Unique Session Identifiers with Randomization
+                        id: sc-23.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Allowed Certificate Authorities
+                        id: sc-23.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Fail in Known State
+                id: sc-24
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Thin Nodes
+                id: sc-25
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Decoys
+                id: sc-26
+                status: pending
+                controls:
+                    -   title: Detection of Malicious Code
+                        id: sc-26.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Platform-independent Applications
+                id: sc-27
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Protection of Information at Rest
+                id: sc-28
+                status: pending
+                controls:
+                    -   title: Cryptographic Protection
+                        id: sc-28.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Offline Storage
+                        id: sc-28.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Cryptographic Keys
+                        id: sc-28.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Heterogeneity
+                id: sc-29
+                status: pending
+                controls:
+                    -   title: Virtualization Techniques
+                        id: sc-29.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Concealment and Misdirection
+                id: sc-30
+                status: pending
+                controls:
+                    -   title: Virtualization Techniques
+                        id: sc-30.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Randomness
+                        id: sc-30.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Change Processing and Storage Locations
+                        id: sc-30.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Misleading Information
+                        id: sc-30.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Concealment of System Components
+                        id: sc-30.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Covert Channel Analysis
+                id: sc-31
+                status: pending
+                controls:
+                    -   title: Test Covert Channels for Exploitability
+                        id: sc-31.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Maximum Bandwidth
+                        id: sc-31.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Measure Bandwidth in Operational Environments
+                        id: sc-31.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: System Partitioning
+                id: sc-32
+                status: pending
+                controls:
+                    -   title: Separate Physical Domains for Privileged Functions
+                        id: sc-32.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Transmission Preparation Integrity
+                id: sc-33
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Non-modifiable Executable Programs
+                id: sc-34
+                status: pending
+                controls:
+                    -   title: No Writable Storage
+                        id: sc-34.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Integrity Protection on Read-only Media
+                        id: sc-34.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Hardware-based Protection
+                        id: sc-34.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: External Malicious Code Identification
+                id: sc-35
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Distributed Processing and Storage
+                id: sc-36
+                status: pending
+                controls:
+                    -   title: Polling Techniques
+                        id: sc-36.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Synchronization
+                        id: sc-36.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Out-of-band Channels
+                id: sc-37
+                status: pending
+                controls:
+                    -   title: Ensure Delivery and Transmission
+                        id: sc-37.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Operations Security
+                id: sc-38
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Process Isolation
+                id: sc-39
+                status: pending
+                controls:
+                    -   title: Hardware Separation
+                        id: sc-39.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Separate Execution Domain Per Thread
+                        id: sc-39.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Wireless Link Protection
+                id: sc-40
+                status: pending
+                controls:
+                    -   title: Electromagnetic Interference
+                        id: sc-40.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Reduce Detection Potential
+                        id: sc-40.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Imitative or Manipulative Communications Deception
+                        id: sc-40.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Signal Parameter Identification
+                        id: sc-40.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Port and I/O Device Access
+                id: sc-41
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Sensor Capability and Data
+                id: sc-42
+                status: pending
+                controls:
+                    -   title: Reporting to Authorized Individuals or Roles
+                        id: sc-42.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Authorized Use
+                        id: sc-42.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Prohibit Use of Devices
+                        id: sc-42.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Notice of Collection
+                        id: sc-42.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Collection Minimization
+                        id: sc-42.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Usage Restrictions
+                id: sc-43
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Detonation Chambers
+                id: sc-44
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: System Time Synchronization
+                id: sc-45
+                status: pending
+                controls:
+                    -   title: Synchronization with Authoritative Time Source
+                        id: sc-45.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Secondary Authoritative Time Source
+                        id: sc-45.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Cross Domain Policy Enforcement
+                id: sc-46
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Alternate Communications Paths
+                id: sc-47
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Sensor Relocation
+                id: sc-48
+                status: pending
+                controls:
+                    -   title: Dynamic Relocation of Sensors or Monitoring Capabilities
+                        id: sc-48.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Hardware-enforced Separation and Policy Enforcement
+                id: sc-49
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Software-enforced Separation and Policy Enforcement
+                id: sc-50
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Hardware-based Protection
+                id: sc-51
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+        levels:
+            - base

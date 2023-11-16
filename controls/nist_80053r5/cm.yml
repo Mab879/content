@@ -1,0 +1,403 @@
+controls:
+    -   title: Configuration Management
+        id: cm
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: cm-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Baseline Configuration
+                id: cm-2
+                status: pending
+                controls:
+                    -   title: Reviews and Updates
+                        id: cm-2.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automation Support for Accuracy and Currency
+                        id: cm-2.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Retention of Previous Configurations
+                        id: cm-2.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Unauthorized Software
+                        id: cm-2.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Authorized Software
+                        id: cm-2.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Development and Test Environments
+                        id: cm-2.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Configure Systems and Components for High-risk Areas
+                        id: cm-2.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Configuration Change Control
+                id: cm-3
+                status: pending
+                controls:
+                    -   title: Automated Documentation, Notification, and Prohibition of Changes
+                        id: cm-3.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Testing, Validation, and Documentation of Changes
+                        id: cm-3.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Change Implementation
+                        id: cm-3.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Security and Privacy Representatives
+                        id: cm-3.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Security Response
+                        id: cm-3.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Cryptography Management
+                        id: cm-3.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Review System Changes
+                        id: cm-3.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Prevent or Restrict Configuration Changes
+                        id: cm-3.8
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Impact Analyses
+                id: cm-4
+                status: pending
+                controls:
+                    -   title: Separate Test Environments
+                        id: cm-4.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Verification of Controls
+                        id: cm-4.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Access Restrictions for Change
+                id: cm-5
+                status: pending
+                controls:
+                    -   title: Automated Access Enforcement and Audit Records
+                        id: cm-5.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Review System Changes
+                        id: cm-5.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Signed Components
+                        id: cm-5.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Dual Authorization
+                        id: cm-5.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Privilege Limitation for Production and Operation
+                        id: cm-5.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Limit Library Privileges
+                        id: cm-5.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automatic Implementation of Security Safeguards
+                        id: cm-5.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Configuration Settings
+                id: cm-6
+                status: pending
+                controls:
+                    -   title: Automated Management, Application, and Verification
+                        id: cm-6.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Respond to Unauthorized Changes
+                        id: cm-6.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Unauthorized Change Detection
+                        id: cm-6.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Conformance Demonstration
+                        id: cm-6.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Least Functionality
+                id: cm-7
+                status: pending
+                controls:
+                    -   title: Periodic Review
+                        id: cm-7.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Prevent Program Execution
+                        id: cm-7.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Registration Compliance
+                        id: cm-7.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: "Unauthorized Software \u2014 Deny-by-exception"
+                        id: cm-7.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: "Authorized Software \u2014 Allow-by-exception"
+                        id: cm-7.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Confined Environments with Limited Privileges
+                        id: cm-7.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Code Execution in Protected Environments
+                        id: cm-7.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Binary or Machine Executable Code
+                        id: cm-7.8
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Prohibiting The Use of Unauthorized Hardware
+                        id: cm-7.9
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: System Component Inventory
+                id: cm-8
+                status: pending
+                controls:
+                    -   title: Updates During Installation and Removal
+                        id: cm-8.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Maintenance
+                        id: cm-8.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Unauthorized Component Detection
+                        id: cm-8.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Accountability Information
+                        id: cm-8.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: No Duplicate Accounting of Components
+                        id: cm-8.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Assessed Configurations and Approved Deviations
+                        id: cm-8.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Centralized Repository
+                        id: cm-8.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Location Tracking
+                        id: cm-8.8
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Assignment of Components to Systems
+                        id: cm-8.9
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Configuration Management Plan
+                id: cm-9
+                status: pending
+                controls:
+                    -   title: Assignment of Responsibility
+                        id: cm-9.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Software Usage Restrictions
+                id: cm-10
+                status: pending
+                controls:
+                    -   title: Open-source Software
+                        id: cm-10.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: User-installed Software
+                id: cm-11
+                status: pending
+                controls:
+                    -   title: Alerts for Unauthorized Installations
+                        id: cm-11.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Software Installation with Privileged Status
+                        id: cm-11.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Enforcement and Monitoring
+                        id: cm-11.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Information Location
+                id: cm-12
+                status: pending
+                controls:
+                    -   title: Automated Tools to Support Information Location
+                        id: cm-12.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Data Action Mapping
+                id: cm-13
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Signed Components
+                id: cm-14
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+        levels:
+            - base

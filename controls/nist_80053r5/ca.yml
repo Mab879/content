@@ -1,0 +1,199 @@
+controls:
+    -   title: Assessment, Authorization, and Monitoring
+        id: ca
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: ca-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Control Assessments
+                id: ca-2
+                status: pending
+                controls:
+                    -   title: Independent Assessors
+                        id: ca-2.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Specialized Assessments
+                        id: ca-2.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Leveraging Results from External Organizations
+                        id: ca-2.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Information Exchange
+                id: ca-3
+                status: pending
+                controls:
+                    -   title: Unclassified National Security System Connections
+                        id: ca-3.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Classified National Security System Connections
+                        id: ca-3.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Unclassified Non-national Security System Connections
+                        id: ca-3.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Connections to Public Networks
+                        id: ca-3.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Restrictions on External System Connections
+                        id: ca-3.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Transfer Authorizations
+                        id: ca-3.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Transitive Information Exchanges
+                        id: ca-3.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Security Certification
+                id: ca-4
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Plan of Action and Milestones
+                id: ca-5
+                status: pending
+                controls:
+                    -   title: Automation Support for Accuracy and Currency
+                        id: ca-5.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Authorization
+                id: ca-6
+                status: pending
+                controls:
+                    -   title: "Joint Authorization \u2014 Intra-organization"
+                        id: ca-6.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: "Joint Authorization \u2014 Inter-organization"
+                        id: ca-6.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Continuous Monitoring
+                id: ca-7
+                status: pending
+                controls:
+                    -   title: Independent Assessment
+                        id: ca-7.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Types of Assessments
+                        id: ca-7.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Trend Analyses
+                        id: ca-7.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Risk Monitoring
+                        id: ca-7.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Consistency Analysis
+                        id: ca-7.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automation Support for Monitoring
+                        id: ca-7.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Penetration Testing
+                id: ca-8
+                status: pending
+                controls:
+                    -   title: Independent Penetration Testing Agent or Team
+                        id: ca-8.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Red Team Exercises
+                        id: ca-8.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Facility Penetration Testing
+                        id: ca-8.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Internal System Connections
+                id: ca-9
+                status: pending
+                controls:
+                    -   title: Compliance Checks
+                        id: ca-9.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+        levels:
+            - base

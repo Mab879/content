@@ -1,0 +1,133 @@
+controls:
+    -   title: Personally Identifiable Information Processing and Transparency
+        id: pt
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: pt-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Authority to Process Personally Identifiable Information
+                id: pt-2
+                status: pending
+                controls:
+                    -   title: Data Tagging
+                        id: pt-2.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automation
+                        id: pt-2.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Personally Identifiable Information Processing Purposes
+                id: pt-3
+                status: pending
+                controls:
+                    -   title: Data Tagging
+                        id: pt-3.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automation
+                        id: pt-3.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Consent
+                id: pt-4
+                status: pending
+                controls:
+                    -   title: Tailored Consent
+                        id: pt-4.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Just-in-time Consent
+                        id: pt-4.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Revocation
+                        id: pt-4.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Privacy Notice
+                id: pt-5
+                status: pending
+                controls:
+                    -   title: Just-in-time Notice
+                        id: pt-5.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Privacy Act Statements
+                        id: pt-5.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: System of Records Notice
+                id: pt-6
+                status: pending
+                controls:
+                    -   title: Routine Uses
+                        id: pt-6.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Exemption Rules
+                        id: pt-6.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Specific Categories of Personally Identifiable Information
+                id: pt-7
+                status: pending
+                controls:
+                    -   title: Social Security Numbers
+                        id: pt-7.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: First Amendment Information
+                        id: pt-7.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Computer Matching Requirements
+                id: pt-8
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+        levels:
+            - base

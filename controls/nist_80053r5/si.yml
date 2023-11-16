@@ -1,0 +1,716 @@
+controls:
+    -   title: System and Information Integrity
+        id: si
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: si-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Flaw Remediation
+                id: si-2
+                status: pending
+                controls:
+                    -   title: Central Management
+                        id: si-2.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Flaw Remediation Status
+                        id: si-2.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Time to Remediate Flaws and Benchmarks for Corrective Actions
+                        id: si-2.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Patch Management Tools
+                        id: si-2.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automatic Software and Firmware Updates
+                        id: si-2.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Removal of Previous Versions of Software and Firmware
+                        id: si-2.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Malicious Code Protection
+                id: si-3
+                status: pending
+                controls:
+                    -   title: Central Management
+                        id: si-3.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automatic Updates
+                        id: si-3.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Non-privileged Users
+                        id: si-3.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Updates Only by Privileged Users
+                        id: si-3.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Portable Storage Devices
+                        id: si-3.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Testing and Verification
+                        id: si-3.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Nonsignature-based Detection
+                        id: si-3.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Detect Unauthorized Commands
+                        id: si-3.8
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Authenticate Remote Commands
+                        id: si-3.9
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Malicious Code Analysis
+                        id: si-3.10
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: System Monitoring
+                id: si-4
+                status: pending
+                controls:
+                    -   title: System-wide Intrusion Detection System
+                        id: si-4.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Tools and Mechanisms for Real-time Analysis
+                        id: si-4.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Tool and Mechanism Integration
+                        id: si-4.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Inbound and Outbound Communications Traffic
+                        id: si-4.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: System-generated Alerts
+                        id: si-4.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Restrict Non-privileged Users
+                        id: si-4.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Response to Suspicious Events
+                        id: si-4.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Protection of Monitoring Information
+                        id: si-4.8
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Testing of Monitoring Tools and Mechanisms
+                        id: si-4.9
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Visibility of Encrypted Communications
+                        id: si-4.10
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Analyze Communications Traffic Anomalies
+                        id: si-4.11
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Organization-generated Alerts
+                        id: si-4.12
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Analyze Traffic and Event Patterns
+                        id: si-4.13
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Wireless Intrusion Detection
+                        id: si-4.14
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Wireless to Wireline Communications
+                        id: si-4.15
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Correlate Monitoring Information
+                        id: si-4.16
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Integrated Situational Awareness
+                        id: si-4.17
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Analyze Traffic and Covert Exfiltration
+                        id: si-4.18
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Risk for Individuals
+                        id: si-4.19
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Privileged Users
+                        id: si-4.20
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Probationary Periods
+                        id: si-4.21
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Unauthorized Network Services
+                        id: si-4.22
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Host-based Devices
+                        id: si-4.23
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Indicators of Compromise
+                        id: si-4.24
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Optimize Network Traffic Analysis
+                        id: si-4.25
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Security Alerts, Advisories, and Directives
+                id: si-5
+                status: pending
+                controls:
+                    -   title: Automated Alerts and Advisories
+                        id: si-5.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Security and Privacy Function Verification
+                id: si-6
+                status: pending
+                controls:
+                    -   title: Notification of Failed Security Tests
+                        id: si-6.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automation Support for Distributed Testing
+                        id: si-6.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Report Verification Results
+                        id: si-6.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Software, Firmware, and Information Integrity
+                id: si-7
+                status: pending
+                controls:
+                    -   title: Integrity Checks
+                        id: si-7.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Notifications of Integrity Violations
+                        id: si-7.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Centrally Managed Integrity Tools
+                        id: si-7.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Tamper-evident Packaging
+                        id: si-7.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Response to Integrity Violations
+                        id: si-7.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Cryptographic Protection
+                        id: si-7.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Integration of Detection and Response
+                        id: si-7.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Auditing Capability for Significant Events
+                        id: si-7.8
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Verify Boot Process
+                        id: si-7.9
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Protection of Boot Firmware
+                        id: si-7.10
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Confined Environments with Limited Privileges
+                        id: si-7.11
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Integrity Verification
+                        id: si-7.12
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Code Execution in Protected Environments
+                        id: si-7.13
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Binary or Machine Executable Code
+                        id: si-7.14
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Code Authentication
+                        id: si-7.15
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Time Limit on Process Execution Without Supervision
+                        id: si-7.16
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Runtime Application Self-protection
+                        id: si-7.17
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Spam Protection
+                id: si-8
+                status: pending
+                controls:
+                    -   title: Central Management
+                        id: si-8.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automatic Updates
+                        id: si-8.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Continuous Learning Capability
+                        id: si-8.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Information Input Restrictions
+                id: si-9
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Information Input Validation
+                id: si-10
+                status: pending
+                controls:
+                    -   title: Manual Override Capability
+                        id: si-10.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Review and Resolve Errors
+                        id: si-10.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Predictable Behavior
+                        id: si-10.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Timing Interactions
+                        id: si-10.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Restrict Inputs to Trusted Sources and Approved Formats
+                        id: si-10.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Injection Prevention
+                        id: si-10.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Error Handling
+                id: si-11
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Information Management and Retention
+                id: si-12
+                status: pending
+                controls:
+                    -   title: Limit Personally Identifiable Information Elements
+                        id: si-12.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Minimize Personally Identifiable Information in Testing, Training, and
+                            Research
+                        id: si-12.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Information Disposal
+                        id: si-12.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Predictable Failure Prevention
+                id: si-13
+                status: pending
+                controls:
+                    -   title: Transferring Component Responsibilities
+                        id: si-13.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Time Limit on Process Execution Without Supervision
+                        id: si-13.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Manual Transfer Between Components
+                        id: si-13.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Standby Component Installation and Notification
+                        id: si-13.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Failover Capability
+                        id: si-13.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Non-persistence
+                id: si-14
+                status: pending
+                controls:
+                    -   title: Refresh from Trusted Sources
+                        id: si-14.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Non-persistent Information
+                        id: si-14.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Non-persistent Connectivity
+                        id: si-14.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Information Output Filtering
+                id: si-15
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Memory Protection
+                id: si-16
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Fail-safe Procedures
+                id: si-17
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Personally Identifiable Information Quality Operations
+                id: si-18
+                status: pending
+                controls:
+                    -   title: Automation Support
+                        id: si-18.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Data Tags
+                        id: si-18.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Collection
+                        id: si-18.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Individual Requests
+                        id: si-18.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Notice of Correction or Deletion
+                        id: si-18.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: De-identification
+                id: si-19
+                status: pending
+                controls:
+                    -   title: Collection
+                        id: si-19.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Archiving
+                        id: si-19.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Release
+                        id: si-19.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Removal, Masking, Encryption, Hashing, or Replacement of Direct Identifiers
+                        id: si-19.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Statistical Disclosure Control
+                        id: si-19.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Differential Privacy
+                        id: si-19.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Validated Algorithms and Software
+                        id: si-19.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Motivated Intruder
+                        id: si-19.8
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Tainting
+                id: si-20
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Information Refresh
+                id: si-21
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Information Diversity
+                id: si-22
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Information Fragmentation
+                id: si-23
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+        levels:
+            - base

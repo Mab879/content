@@ -1,0 +1,115 @@
+controls:
+    -   title: Personnel Security
+        id: ps
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: ps-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Position Risk Designation
+                id: ps-2
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Personnel Screening
+                id: ps-3
+                status: pending
+                controls:
+                    -   title: Classified Information
+                        id: ps-3.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Formal Indoctrination
+                        id: ps-3.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Information Requiring Special Protective Measures
+                        id: ps-3.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Citizenship Requirements
+                        id: ps-3.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Personnel Termination
+                id: ps-4
+                status: pending
+                controls:
+                    -   title: Post-employment Requirements
+                        id: ps-4.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Actions
+                        id: ps-4.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Personnel Transfer
+                id: ps-5
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Access Agreements
+                id: ps-6
+                status: pending
+                controls:
+                    -   title: Information Requiring Special Protection
+                        id: ps-6.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Classified Information Requiring Special Protection
+                        id: ps-6.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Post-employment Requirements
+                        id: ps-6.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: External Personnel Security
+                id: ps-7
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Personnel Sanctions
+                id: ps-8
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Position Descriptions
+                id: ps-9
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+        levels:
+            - base

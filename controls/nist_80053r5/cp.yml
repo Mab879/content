@@ -1,0 +1,343 @@
+controls:
+    -   title: Contingency Planning
+        id: cp
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: cp-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Contingency Plan
+                id: cp-2
+                status: pending
+                controls:
+                    -   title: Coordinate with Related Plans
+                        id: cp-2.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Capacity Planning
+                        id: cp-2.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Resume Mission and Business Functions
+                        id: cp-2.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Resume All Mission and Business Functions
+                        id: cp-2.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Continue Mission and Business Functions
+                        id: cp-2.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Alternate Processing and Storage Sites
+                        id: cp-2.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Coordinate with External Service Providers
+                        id: cp-2.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Identify Critical Assets
+                        id: cp-2.8
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Contingency Training
+                id: cp-3
+                status: pending
+                controls:
+                    -   title: Simulated Events
+                        id: cp-3.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Mechanisms Used in Training Environments
+                        id: cp-3.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Contingency Plan Testing
+                id: cp-4
+                status: pending
+                controls:
+                    -   title: Coordinate with Related Plans
+                        id: cp-4.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Alternate Processing Site
+                        id: cp-4.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Testing
+                        id: cp-4.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Full Recovery and Reconstitution
+                        id: cp-4.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Self-challenge
+                        id: cp-4.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Contingency Plan Update
+                id: cp-5
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Alternate Storage Site
+                id: cp-6
+                status: pending
+                controls:
+                    -   title: Separation from Primary Site
+                        id: cp-6.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Recovery Time and Recovery Point Objectives
+                        id: cp-6.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Accessibility
+                        id: cp-6.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Alternate Processing Site
+                id: cp-7
+                status: pending
+                controls:
+                    -   title: Separation from Primary Site
+                        id: cp-7.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Accessibility
+                        id: cp-7.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Priority of Service
+                        id: cp-7.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Preparation for Use
+                        id: cp-7.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Equivalent Information Security Safeguards
+                        id: cp-7.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Inability to Return to Primary Site
+                        id: cp-7.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Telecommunications Services
+                id: cp-8
+                status: pending
+                controls:
+                    -   title: Priority of Service Provisions
+                        id: cp-8.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Single Points of Failure
+                        id: cp-8.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Separation of Primary and Alternate Providers
+                        id: cp-8.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Provider Contingency Plan
+                        id: cp-8.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Alternate Telecommunication Service Testing
+                        id: cp-8.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: System Backup
+                id: cp-9
+                status: pending
+                controls:
+                    -   title: Testing for Reliability and Integrity
+                        id: cp-9.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Test Restoration Using Sampling
+                        id: cp-9.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Separate Storage for Critical Information
+                        id: cp-9.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Protection from Unauthorized Modification
+                        id: cp-9.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Transfer to Alternate Storage Site
+                        id: cp-9.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Redundant Secondary System
+                        id: cp-9.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Dual Authorization for Deletion or Destruction
+                        id: cp-9.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Cryptographic Protection
+                        id: cp-9.8
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: System Recovery and Reconstitution
+                id: cp-10
+                status: pending
+                controls:
+                    -   title: Contingency Plan Testing
+                        id: cp-10.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Transaction Recovery
+                        id: cp-10.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Compensating Security Controls
+                        id: cp-10.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Restore Within Time Period
+                        id: cp-10.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Failover Capability
+                        id: cp-10.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Component Protection
+                        id: cp-10.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Alternate Communications Protocols
+                id: cp-11
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Safe Mode
+                id: cp-12
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Alternative Security Mechanisms
+                id: cp-13
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+        levels:
+            - base

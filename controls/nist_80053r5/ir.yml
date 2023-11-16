@@ -1,0 +1,259 @@
+controls:
+    -   title: Incident Response
+        id: ir
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: ir-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Incident Response Training
+                id: ir-2
+                status: pending
+                controls:
+                    -   title: Simulated Events
+                        id: ir-2.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Training Environments
+                        id: ir-2.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Breach
+                        id: ir-2.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Incident Response Testing
+                id: ir-3
+                status: pending
+                controls:
+                    -   title: Automated Testing
+                        id: ir-3.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Coordination with Related Plans
+                        id: ir-3.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Continuous Improvement
+                        id: ir-3.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Incident Handling
+                id: ir-4
+                status: pending
+                controls:
+                    -   title: Automated Incident Handling Processes
+                        id: ir-4.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Dynamic Reconfiguration
+                        id: ir-4.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Continuity of Operations
+                        id: ir-4.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Information Correlation
+                        id: ir-4.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automatic Disabling of System
+                        id: ir-4.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Insider Threats
+                        id: ir-4.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: "Insider Threats \u2014 Intra-organization Coordination"
+                        id: ir-4.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Correlation with External Organizations
+                        id: ir-4.8
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Dynamic Response Capability
+                        id: ir-4.9
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Supply Chain Coordination
+                        id: ir-4.10
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Integrated Incident Response Team
+                        id: ir-4.11
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Malicious Code and Forensic Analysis
+                        id: ir-4.12
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Behavior Analysis
+                        id: ir-4.13
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Security Operations Center
+                        id: ir-4.14
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Public Relations and Reputation Repair
+                        id: ir-4.15
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Incident Monitoring
+                id: ir-5
+                status: pending
+                controls:
+                    -   title: Automated Tracking, Data Collection, and Analysis
+                        id: ir-5.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Incident Reporting
+                id: ir-6
+                status: pending
+                controls:
+                    -   title: Automated Reporting
+                        id: ir-6.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Vulnerabilities Related to Incidents
+                        id: ir-6.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Supply Chain Coordination
+                        id: ir-6.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Incident Response Assistance
+                id: ir-7
+                status: pending
+                controls:
+                    -   title: Automation Support for Availability of Information and Support
+                        id: ir-7.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Coordination with External Providers
+                        id: ir-7.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Incident Response Plan
+                id: ir-8
+                status: pending
+                controls:
+                    -   title: Breaches
+                        id: ir-8.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Information Spillage Response
+                id: ir-9
+                status: pending
+                controls:
+                    -   title: Responsible Personnel
+                        id: ir-9.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Training
+                        id: ir-9.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Post-spill Operations
+                        id: ir-9.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Exposure to Unauthorized Personnel
+                        id: ir-9.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Integrated Information Security Analysis Team
+                id: ir-10
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+        levels:
+            - base

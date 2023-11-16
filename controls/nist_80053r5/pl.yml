@@ -1,0 +1,109 @@
+controls:
+    -   title: Planning
+        id: pl
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: pl-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: System Security and Privacy Plans
+                id: pl-2
+                status: pending
+                controls:
+                    -   title: Concept of Operations
+                        id: pl-2.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Functional Architecture
+                        id: pl-2.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Plan and Coordinate with Other Organizational Entities
+                        id: pl-2.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: System Security Plan Update
+                id: pl-3
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Rules of Behavior
+                id: pl-4
+                status: pending
+                controls:
+                    -   title: Social Media and External Site/Application Usage Restrictions
+                        id: pl-4.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Privacy Impact Assessment
+                id: pl-5
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Security-related Activity Planning
+                id: pl-6
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Concept of Operations
+                id: pl-7
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Security and Privacy Architectures
+                id: pl-8
+                status: pending
+                controls:
+                    -   title: Defense in Depth
+                        id: pl-8.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Supplier Diversity
+                        id: pl-8.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Central Management
+                id: pl-9
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Baseline Selection
+                id: pl-10
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Baseline Tailoring
+                id: pl-11
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+        levels:
+            - base

@@ -1,0 +1,361 @@
+controls:
+    -   title: Physical and Environmental Protection
+        id: pe
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: pe-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Physical Access Authorizations
+                id: pe-2
+                status: pending
+                controls:
+                    -   title: Access by Position or Role
+                        id: pe-2.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Two Forms of Identification
+                        id: pe-2.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Restrict Unescorted Access
+                        id: pe-2.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Physical Access Control
+                id: pe-3
+                status: pending
+                controls:
+                    -   title: System Access
+                        id: pe-3.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Facility and Systems
+                        id: pe-3.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Continuous Guards
+                        id: pe-3.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Lockable Casings
+                        id: pe-3.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Tamper Protection
+                        id: pe-3.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Facility Penetration Testing
+                        id: pe-3.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Physical Barriers
+                        id: pe-3.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Access Control Vestibules
+                        id: pe-3.8
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Access Control for Transmission
+                id: pe-4
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Access Control for Output Devices
+                id: pe-5
+                status: pending
+                controls:
+                    -   title: Access to Output by Authorized Individuals
+                        id: pe-5.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Link to Individual Identity
+                        id: pe-5.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Marking Output Devices
+                        id: pe-5.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Monitoring Physical Access
+                id: pe-6
+                status: pending
+                controls:
+                    -   title: Intrusion Alarms and Surveillance Equipment
+                        id: pe-6.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Intrusion Recognition and Responses
+                        id: pe-6.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Video Surveillance
+                        id: pe-6.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Monitoring Physical Access to Systems
+                        id: pe-6.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Visitor Control
+                id: pe-7
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Visitor Access Records
+                id: pe-8
+                status: pending
+                controls:
+                    -   title: Automated Records Maintenance and Review
+                        id: pe-8.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Physical Access Records
+                        id: pe-8.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Limit Personally Identifiable Information Elements
+                        id: pe-8.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Power Equipment and Cabling
+                id: pe-9
+                status: pending
+                controls:
+                    -   title: Redundant Cabling
+                        id: pe-9.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automatic Voltage Controls
+                        id: pe-9.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Emergency Shutoff
+                id: pe-10
+                status: pending
+                controls:
+                    -   title: Accidental and Unauthorized Activation
+                        id: pe-10.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Emergency Power
+                id: pe-11
+                status: pending
+                controls:
+                    -   title: "Alternate Power Supply \u2014 Minimal Operational Capability"
+                        id: pe-11.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: "Alternate Power Supply \u2014 Self-contained"
+                        id: pe-11.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Emergency Lighting
+                id: pe-12
+                status: pending
+                controls:
+                    -   title: Essential Mission and Business Functions
+                        id: pe-12.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Fire Protection
+                id: pe-13
+                status: pending
+                controls:
+                    -   title: "Detection Systems \u2014 Automatic Activation and Notification"
+                        id: pe-13.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: "Suppression Systems \u2014 Automatic Activation and Notification"
+                        id: pe-13.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automatic Fire Suppression
+                        id: pe-13.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Inspections
+                        id: pe-13.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Environmental Controls
+                id: pe-14
+                status: pending
+                controls:
+                    -   title: Automatic Controls
+                        id: pe-14.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Monitoring with Alarms and Notifications
+                        id: pe-14.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Water Damage Protection
+                id: pe-15
+                status: pending
+                controls:
+                    -   title: Automation Support
+                        id: pe-15.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Delivery and Removal
+                id: pe-16
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Alternate Work Site
+                id: pe-17
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Location of System Components
+                id: pe-18
+                status: pending
+                controls:
+                    -   title: Facility Site
+                        id: pe-18.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Information Leakage
+                id: pe-19
+                status: pending
+                controls:
+                    -   title: National Emissions Policies and Procedures
+                        id: pe-19.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Asset Monitoring and Tracking
+                id: pe-20
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Electromagnetic Pulse Protection
+                id: pe-21
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Component Marking
+                id: pe-22
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Facility Location
+                id: pe-23
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+        levels:
+            - base

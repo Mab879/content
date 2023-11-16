@@ -1,0 +1,163 @@
+controls:
+    -   title: Risk Assessment
+        id: ra
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: ra-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Security Categorization
+                id: ra-2
+                status: pending
+                controls:
+                    -   title: Impact-level Prioritization
+                        id: ra-2.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Risk Assessment
+                id: ra-3
+                status: pending
+                controls:
+                    -   title: Supply Chain Risk Assessment
+                        id: ra-3.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Use of All-source Intelligence
+                        id: ra-3.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Dynamic Threat Awareness
+                        id: ra-3.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Predictive Cyber Analytics
+                        id: ra-3.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Risk Assessment Update
+                id: ra-4
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Vulnerability Monitoring and Scanning
+                id: ra-5
+                status: pending
+                controls:
+                    -   title: Update Tool Capability
+                        id: ra-5.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Update Vulnerabilities to Be Scanned
+                        id: ra-5.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Breadth and Depth of Coverage
+                        id: ra-5.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Discoverable Information
+                        id: ra-5.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Privileged Access
+                        id: ra-5.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Trend Analyses
+                        id: ra-5.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Detection and Notification of Unauthorized Components
+                        id: ra-5.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Review Historic Audit Logs
+                        id: ra-5.8
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Penetration Testing and Analyses
+                        id: ra-5.9
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Correlate Scanning Information
+                        id: ra-5.10
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Public Disclosure Program
+                        id: ra-5.11
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Technical Surveillance Countermeasures Survey
+                id: ra-6
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Risk Response
+                id: ra-7
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Privacy Impact Assessments
+                id: ra-8
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Criticality Analysis
+                id: ra-9
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Threat Hunting
+                id: ra-10
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+        levels:
+            - base

@@ -1,0 +1,109 @@
+controls:
+    -   title: Awareness and Training
+        id: at
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: at-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Literacy Training and Awareness
+                id: at-2
+                status: pending
+                controls:
+                    -   title: Practical Exercises
+                        id: at-2.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Insider Threat
+                        id: at-2.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Social Engineering and Mining
+                        id: at-2.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Suspicious Communications and Anomalous System Behavior
+                        id: at-2.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Advanced Persistent Threat
+                        id: at-2.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Cyber Threat Environment
+                        id: at-2.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Role-based Training
+                id: at-3
+                status: pending
+                controls:
+                    -   title: Environmental Controls
+                        id: at-3.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Physical Security Controls
+                        id: at-3.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Practical Exercises
+                        id: at-3.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Suspicious Communications and Anomalous System Behavior
+                        id: at-3.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Processing Personally Identifiable Information
+                        id: at-3.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Training Records
+                id: at-4
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Contacts with Security Groups and Associations
+                id: at-5
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Training Feedback
+                id: at-6
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+        levels:
+            - base

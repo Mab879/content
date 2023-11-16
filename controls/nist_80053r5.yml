@@ -1,0 +1,7 @@
+id: nist_80053r5
+title: "Electronic Version of NIST SP 800-53 Rev 5 Controls and SP 800-53A Rev 5 Assessment Procedures"
+policy: "NIST SP 800-53 Rev 5"
+levels:
+- id: base
+version: '5.1.1'
+source: 'https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json'

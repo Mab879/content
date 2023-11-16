@@ -1,0 +1,169 @@
+controls:
+    -   title: Supply Chain Risk Management
+        id: sr
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: sr-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Supply Chain Risk Management Plan
+                id: sr-2
+                status: pending
+                controls:
+                    -   title: Establish SCRM Team
+                        id: sr-2.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Supply Chain Controls and Processes
+                id: sr-3
+                status: pending
+                controls:
+                    -   title: Diverse Supply Base
+                        id: sr-3.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Limitation of Harm
+                        id: sr-3.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Sub-tier Flow Down
+                        id: sr-3.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Provenance
+                id: sr-4
+                status: pending
+                controls:
+                    -   title: Identity
+                        id: sr-4.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Track and Trace
+                        id: sr-4.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Validate as Genuine and Not Altered
+                        id: sr-4.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: "Supply Chain Integrity \u2014 Pedigree"
+                        id: sr-4.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Acquisition Strategies, Tools, and Methods
+                id: sr-5
+                status: pending
+                controls:
+                    -   title: Adequate Supply
+                        id: sr-5.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Assessments Prior to Selection, Acceptance, Modification, or Update
+                        id: sr-5.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Supplier Assessments and Reviews
+                id: sr-6
+                status: pending
+                controls:
+                    -   title: Testing and Analysis
+                        id: sr-6.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Supply Chain Operations Security
+                id: sr-7
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Notification Agreements
+                id: sr-8
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Tamper Resistance and Detection
+                id: sr-9
+                status: pending
+                controls:
+                    -   title: Multiple Stages of System Development Life Cycle
+                        id: sr-9.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Inspection of Systems or Components
+                id: sr-10
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Component Authenticity
+                id: sr-11
+                status: pending
+                controls:
+                    -   title: Anti-counterfeit Training
+                        id: sr-11.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Configuration Control for Component Service and Repair
+                        id: sr-11.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Anti-counterfeit Scanning
+                        id: sr-11.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Component Disposal
+                id: sr-12
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+        levels:
+            - base

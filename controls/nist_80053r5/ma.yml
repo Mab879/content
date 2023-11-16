@@ -1,0 +1,187 @@
+controls:
+    -   title: Maintenance
+        id: ma
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: ma-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Controlled Maintenance
+                id: ma-2
+                status: pending
+                controls:
+                    -   title: Record Content
+                        id: ma-2.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Maintenance Activities
+                        id: ma-2.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Maintenance Tools
+                id: ma-3
+                status: pending
+                controls:
+                    -   title: Inspect Tools
+                        id: ma-3.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Inspect Media
+                        id: ma-3.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Prevent Unauthorized Removal
+                        id: ma-3.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Restricted Tool Use
+                        id: ma-3.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Execution with Privilege
+                        id: ma-3.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Software Updates and Patches
+                        id: ma-3.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Nonlocal Maintenance
+                id: ma-4
+                status: pending
+                controls:
+                    -   title: Logging and Review
+                        id: ma-4.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Document Nonlocal Maintenance
+                        id: ma-4.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Comparable Security and Sanitization
+                        id: ma-4.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Authentication and Separation of Maintenance Sessions
+                        id: ma-4.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Approvals and Notifications
+                        id: ma-4.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Cryptographic Protection
+                        id: ma-4.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Disconnect Verification
+                        id: ma-4.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Maintenance Personnel
+                id: ma-5
+                status: pending
+                controls:
+                    -   title: Individuals Without Appropriate Access
+                        id: ma-5.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Security Clearances for Classified Systems
+                        id: ma-5.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Citizenship Requirements for Classified Systems
+                        id: ma-5.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Foreign Nationals
+                        id: ma-5.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Non-system Maintenance
+                        id: ma-5.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Timely Maintenance
+                id: ma-6
+                status: pending
+                controls:
+                    -   title: Preventive Maintenance
+                        id: ma-6.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Predictive Maintenance
+                        id: ma-6.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Support for Predictive Maintenance
+                        id: ma-6.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Field Maintenance
+                id: ma-7
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+        levels:
+            - base

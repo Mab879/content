@@ -1,0 +1,187 @@
+controls:
+    -   title: Media Protection
+        id: mp
+        status: pending
+        controls:
+            -   title: Policy and Procedures
+                id: mp-1
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Media Access
+                id: mp-2
+                status: pending
+                controls:
+                    -   title: Automated Restricted Access
+                        id: mp-2.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Cryptographic Protection
+                        id: mp-2.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Media Marking
+                id: mp-3
+                status: pending
+                controls: [ ]
+                levels:
+                    - base
+            -   title: Media Storage
+                id: mp-4
+                status: pending
+                controls:
+                    -   title: Cryptographic Protection
+                        id: mp-4.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Automated Restricted Access
+                        id: mp-4.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Media Transport
+                id: mp-5
+                status: pending
+                controls:
+                    -   title: Protection Outside of Controlled Areas
+                        id: mp-5.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Documentation of Activities
+                        id: mp-5.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Custodians
+                        id: mp-5.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Cryptographic Protection
+                        id: mp-5.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Media Sanitization
+                id: mp-6
+                status: pending
+                controls:
+                    -   title: Review, Approve, Track, Document, and Verify
+                        id: mp-6.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Equipment Testing
+                        id: mp-6.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Nondestructive Techniques
+                        id: mp-6.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Controlled Unclassified Information
+                        id: mp-6.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Classified Information
+                        id: mp-6.5
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Media Destruction
+                        id: mp-6.6
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Dual Authorization
+                        id: mp-6.7
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Remote Purging or Wiping of Information
+                        id: mp-6.8
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Media Use
+                id: mp-7
+                status: pending
+                controls:
+                    -   title: Prohibit Use Without Owner
+                        id: mp-7.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Prohibit Use of Sanitization-resistant Media
+                        id: mp-7.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+            -   title: Media Downgrading
+                id: mp-8
+                status: pending
+                controls:
+                    -   title: Documentation of Process
+                        id: mp-8.1
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Equipment Testing
+                        id: mp-8.2
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Controlled Unclassified Information
+                        id: mp-8.3
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                    -   title: Classified Information
+                        id: mp-8.4
+                        status: pending
+                        controls: [ ]
+                        levels:
+                            - base
+                levels:
+                    - base
+        levels:
+            - base
