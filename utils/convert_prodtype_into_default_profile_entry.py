@@ -42,12 +42,8 @@ def get_rules(product, product_path, env):
         print(f"Loading rules from '{guide_path}'...", end=""),
         GUIDE_RULES[guide_path] = {}
         for rule_id, rule_dir in collect_rule_ids_and_dirs(guide_path):
-            try:
-                rule_file, rule_yaml = handle_rule_yaml(env, rule_dir)
-                GUIDE_RULES[guide_path][rule_yaml.id_] = rule_yaml
-            except ssg.yaml.DocumentationNotComplete:
-                # Happens on non-debug build when a rule is "documentation-incomplete"
-                continue
+            rule_file, rule_yaml = handle_rule_yaml(env, rule_dir)
+            GUIDE_RULES[guide_path][rule_yaml.id_] = rule_yaml
         print(len(GUIDE_RULES[guide_path]))
     return GUIDE_RULES[guide_path]
 
@@ -112,9 +108,7 @@ def select_rules_in_default_profile(product, profiles_root, prof_def_sel):
     if len(prof_def_sel) == 0:
         return
 
-    prefix = (f"documentation_complete: true\n"
-              f"\n"
-              f"hidden: true\n"
+    prefix = (f"hidden: true\n"
               f"\n"
               f"title: Default Profile for {product['full_name']}\n"
               f"\n"
@@ -152,10 +146,7 @@ def main():
         profile_paths = ssg.products.get_profile_files_from_root(env, product)
         all_sels = set()
         for profile_path in profile_paths:
-            try:
-                profile = ssg.build_yaml.ProfileWithInlinePolicies.from_yaml(profile_path, env, product_cpes)
-            except ssg.yaml.DocumentationNotComplete:
-                continue
+            profile = ssg.build_yaml.ProfileWithInlinePolicies.from_yaml(profile_path, env, product_cpes)
             if profile.id_ == 'default':
                 # Whatever is there — we are going to overwrite it
                 continue

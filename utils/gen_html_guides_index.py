@@ -30,9 +30,6 @@ def get_data(ssg_root):
         for profile_file in profiles_dir.glob("*.profile"):
             with open(profile_file, "r") as g:
                 profile_yaml = yaml.full_load(g)
-            documentation_complete = profile_yaml["documentation_complete"]
-            if not documentation_complete:
-                continue
             profile_id = profile_file.stem
             profile_title = profile_yaml["title"]
             profile = Profile(id=profile_id, title=profile_title)

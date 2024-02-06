@@ -90,13 +90,8 @@ def get_implemented_stigs(args):
 
     known_rules = dict()
     for rule in platform_rules:
-        try:
-            rule_obj = handle_rule_yaml(args, rule['id'],
-                                        rule['dir'], rule['guide'], env_yaml)
-        except ssg.yaml.DocumentationNotComplete:
-            sys.stderr.write('Rule %s throw DocumentationNotComplete' % rule['id'])
-            # Happens on non-debug build when a rule is "documentation-incomplete"
-            continue
+        rule_obj = handle_rule_yaml(args, rule['id'],
+                                    rule['dir'], rule['guide'], env_yaml)
 
         if args.reference in rule_obj['references'].keys():
             refs = rule_obj['references'][args.reference]

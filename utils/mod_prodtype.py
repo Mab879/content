@@ -54,18 +54,6 @@ def add_products(rule_obj, products, silent=False):
     prodtype_section = ssg.rule_yaml.get_section_lines(yaml_file, yaml_contents, 'prodtype')
 
     if not prodtype_section:
-        new_prodtype = sorted(set(products))
-        new_prodtype_str = ','.join(new_prodtype)
-
-        doc_complete_section = ssg.rule_yaml.get_section_lines(yaml_file, yaml_contents,
-                                                               'documentation_complete')
-        if not doc_complete_section:
-            print("Cannot modify empty prodtype with missing documentation_complete... "
-                  "Are you sure this is a rule file? %s" % yaml_file, file=sys.stderr)
-            sys.exit(1)
-
-        start_line = doc_complete_section[1]+1
-
         if not silent:
             print("Current prodtype is empty, not adding the new prodtype.")
     else:

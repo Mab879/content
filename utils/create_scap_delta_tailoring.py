@@ -105,14 +105,8 @@ get_platform_rules.__annotations__ = {'product': str, 'json_path': str, 'resolve
 def _open_rule_obj(resolved_rules_dir, rule, product, env_yaml):
     if resolved_rules_dir:
         return rule
-    try:
-        rule_obj = handle_rule_yaml(
-            product, rule['id'], rule['dir'], rule['guide'], env_yaml)
-    except ssg.yaml.DocumentationNotComplete:
-        msg = 'Rule %s throw DocumentationNotComplete' % rule['id']
-        sys.stderr.write(msg)
-        # Happens on non-debug build when a rule is "documentation-incomplete"
-        return None
+    rule_obj = handle_rule_yaml(
+        product, rule['id'], rule['dir'], rule['guide'], env_yaml)
     return rule_obj
 
 

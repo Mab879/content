@@ -278,14 +278,6 @@ def get_product_context(product_id=None):
         product.read_properties_from_directory(product_properties_path)
         product_yaml.update(product)
 
-    # We could run into a DocumentationNotComplete error when loading a
-    # rule's YAML contents. However, because the test suite isn't executed
-    # in the context of a particular build (though, ideally it would be
-    # linked), we may not know exactly whether the top-level rule/profile
-    # we're testing is actually completed. Thus, forcibly set the required
-    # property to bypass this error.
-    product_yaml['cmake_build_type'] = 'Debug'
-
     # Set the Jinja processing environment to Test Suite,
     # this allows Jinja macros to behave differently in a content build time and in a test time.
     product_yaml['SSG_TEST_SUITE_ENV'] = True

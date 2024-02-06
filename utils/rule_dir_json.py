@@ -194,13 +194,8 @@ def main():
 
     known_rules = {}
     for rule_id, rule_dir, guide_dir, given_products in all_rule_dirs:
-        try:
-            rule_obj = handle_rule_yaml(given_products, product_yamls, rule_id,
-                                        rule_dir, guide_dir)
-        except ssg.yaml.DocumentationNotComplete:
-            # Happens on non-debug build when a rule is "documentation-incomplete"
-            continue
-
+        rule_obj = handle_rule_yaml(given_products, product_yamls, rule_id,
+                                    rule_dir, guide_dir)
         rule_obj['ovals'], oval_products = handle_ovals(given_products, product_yamls, rule_obj)
         rule_obj['remediations'], r_products = handle_remediations(given_products, product_yamls,
                                                                    rule_obj)

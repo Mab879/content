@@ -106,9 +106,7 @@ def set_template_vars(value, template_vars):
         key, value = var.strip().split(":")
         template_vars[key.strip()] = value.strip()
 
-PROFILE_TEMPLATE = ('''documentation_complete: true
-
-title: 'Test Profile for {RULE_NAME}'
+PROFILE_TEMPLATE = ('''title: 'Test Profile for {RULE_NAME}'
 
 platform: ocp4
 
@@ -169,7 +167,6 @@ def which(program):
 
 def create_base_rule(args, url=None, node_rule=False):
     rule_yaml = dict()
-    rule_yaml['documentation_complete'] = True
     rule_yaml['title'] = args.title
     if node_rule:
         rule_yaml['platform'] = 'ocp4-node'

@@ -215,7 +215,6 @@ class RuleGenerator(Generator):
                 LiteralUnicode(control.remediation)
         )
         output = {
-            'documentation_complete': False,
             'prodtype': self.product_type,
             'title': LiteralUnicode(control.title),
             'description': description,
