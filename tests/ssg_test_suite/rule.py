@@ -11,7 +11,6 @@ import os
 import os.path
 import re
 import shutil
-import subprocess
 import tempfile
 
 from ssg.constants import OSCAP_PROFILE, OSCAP_PROFILE_ALL_ID, OSCAP_RULE
