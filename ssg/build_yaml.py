@@ -39,7 +39,7 @@ from .rules import get_rule_dir_yaml, is_rule_dir
 from .rule_yaml import parse_prodtype
 
 from .cce import is_cce_format_valid, is_cce_value_valid
-from .yaml import DocumentationNotComplete, open_and_macro_expand
+from .yaml import open_and_macro_expand
 from .utils import required_key, mkdir_p
 
 from .xml import ElementTree as ET, register_namespaces, parse_file
@@ -332,8 +332,6 @@ class Benchmark(XCCDFEntity):
             try:
                 new_profile = ProfileWithInlinePolicies.from_yaml(
                     dir_item_path, env_yaml, product_cpes)
-            except DocumentationNotComplete:
-                continue
             except Exception as exc:
                 msg = ("Error building profile from '{fname}': '{error}'"
                        .format(fname=dir_item_path, error=str(exc)))
@@ -1437,12 +1435,9 @@ class BuildLoader(DirectoryLoader):
 
     def _process_rules(self):
         for rule_yaml in self.rule_files:
-            try:
-                rule = Rule.from_yaml(
-                    rule_yaml, self.env_yaml, self.product_cpes, self.sce_metadata)
-            except DocumentationNotComplete:
-                # Happens on non-debug build when a rule is "documentation-incomplete"
-                continue
+            rule = Rule.from_yaml(
+                rule_yaml, self.env_yaml, self.product_cpes, self.sce_metadata)
+
             if not self._process_rule(rule):
                 continue
 

@@ -9,7 +9,7 @@ from copy import deepcopy
 from ssg.yaml import yaml_Dumper
 
 from ..xml import ElementTree as ET, add_xhtml_namespace
-from ..yaml import DocumentationNotComplete, open_and_macro_expand
+from ..yaml import open_and_macro_expand
 from ..shims import unicode_func
 
 from ..constants import (
@@ -272,8 +272,6 @@ class XCCDFEntity(object):
 
         try:
             data_dict = cls.parse_yaml_into_processed_dict(yaml_file, local_env_yaml, product_cpes)
-        except DocumentationNotComplete as exc:
-            raise
         except Exception as exc:
             msg = (
                 "Error loading a {class_name} from {filename}: {error}"
@@ -299,9 +297,8 @@ class XCCDFEntity(object):
             del data["id_"]
         return data
 
-    def dump_yaml(self, file_name, documentation_complete=True):
+    def dump_yaml(self, file_name):
         to_dump = self.represent_as_dict()
-        to_dump["documentation_complete"] = documentation_complete
         with open(file_name, "w+") as f:
             dump_yaml_preferably_in_original_order(to_dump, f)
 

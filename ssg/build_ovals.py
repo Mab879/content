@@ -4,7 +4,7 @@ import logging
 from . import utils, products
 from .rules import get_rule_dir_ovals, find_rule_dirs_in_paths
 from .oval_object_model import OVALDocument
-from .build_yaml import Rule, DocumentationNotComplete
+from .build_yaml import Rule
 from .jinja import process_file_with_macros
 from .rule_yaml import parse_prodtype
 from .id_translate import IDTranslator
@@ -102,10 +102,8 @@ class OVALBuilder:
             self._process_directory(directory, from_benchmark)
 
     def _process_directory(self, directory, from_benchmark):
-        try:
-            context = self._get_context(directory, from_benchmark)
-        except DocumentationNotComplete:
-            return
+        context = self._get_context(directory, from_benchmark)
+
         for file_path in self._get_list_of_oval_files(directory, from_benchmark):
             self._process_oval_file(file_path, from_benchmark, context)
 

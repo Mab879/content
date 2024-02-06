@@ -5,7 +5,7 @@ import os
 import os.path
 import json
 
-from .build_yaml import Rule, DocumentationNotComplete
+from .build_yaml import Rule
 from .constants import (
     MULTI_PLATFORM_LIST, OSCAP_VALUE, datastream_namespace,
     xlink_namespace, XCCDF12_NS, SCE_SYSTEM
@@ -126,13 +126,7 @@ def checks(env_yaml, yaml_path, sce_dirs, template_builder, output):
         rule_id = get_rule_dir_id(_dir_path)
 
         rule_path = os.path.join(_dir_path, "rule.yml")
-        try:
-            rule = Rule.from_yaml(rule_path, env_yaml)
-        except DocumentationNotComplete:
-            # Happens on non-debug builds when a rule isn't yet completed. We
-            # don't want to build the SCE check for this rule yet so skip it
-            # and move on.
-            continue
+        rule = Rule.from_yaml(rule_path, env_yaml)
 
         prodtypes = parse_prodtype(rule.prodtype)
         if prodtypes and 'all' not in prodtypes and product not in prodtypes:

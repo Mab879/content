@@ -291,11 +291,8 @@ class Builder(object):
     def build_all_rules(self):
         for rule_file in sorted(os.listdir(self.resolved_rules_dir)):
             rule_path = os.path.join(self.resolved_rules_dir, rule_file)
-            try:
-                rule = ssg.build_yaml.Rule.from_yaml(rule_path, self.env_yaml, self.product_cpes)
-            except ssg.build_yaml.DocumentationNotComplete:
-                # Happens on non-debug build when a rule is "documentation-incomplete"
-                continue
+            rule = ssg.build_yaml.Rule.from_yaml(rule_path, self.env_yaml, self.product_cpes)
+
             if rule.is_templated():
                 self.build_rule(rule)
 

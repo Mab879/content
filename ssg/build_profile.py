@@ -20,7 +20,6 @@ from .constants import ssg_version_uri
 from .constants import stig_ns, cis_ns, generic_stig_ns, hipaa_ns, anssi_ns
 from .constants import ospp_ns, cui_ns, xslt_ns
 from .constants import OSCAP_PROFILE
-from .yaml import DocumentationNotComplete
 console_width = 80
 
 
@@ -33,10 +32,7 @@ def make_name_to_profile_mapping(profile_files, env_yaml, product_cpes):
         except Exception as exc:
             msg = "Not building profile from {fname}: {err}".format(
                 fname=f, err=str(exc))
-            if not isinstance(exc, DocumentationNotComplete):
-                raise
-            else:
-                print(msg, file=sys.stderr)
+            print(msg, file=sys.stderr)
     return name_to_profile
 
 
