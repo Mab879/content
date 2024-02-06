@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Verify Group Who Owns Backup passwd File'
 
 description: '{{{ describe_file_group_owner(file="/etc/passwd-", group="root") }}}'

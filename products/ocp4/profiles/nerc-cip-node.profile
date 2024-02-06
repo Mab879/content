@@ -1,5 +1,3 @@
-documentation_complete: true
-
 metadata:
     SMEs:
         - JAORMX
@@ -12,7 +10,7 @@ reference: https://www.nerc.com/pa/Stand/AlignRep/One%20Stop%20Shop.xlsx
 
 title: >-
   North American Electric Reliability Corporation (NERC) Critical Infrastructure
-  Protection (CIP) cybersecurity standards profile for the 
+  Protection (CIP) cybersecurity standards profile for the
   Red Hat OpenShift Container Platform - Node level
 
 description: |-

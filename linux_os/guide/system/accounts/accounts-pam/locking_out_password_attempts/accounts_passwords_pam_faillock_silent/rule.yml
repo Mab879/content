@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Do Not Show System Messages When Unsuccessful Logon Attempts Occur'
 
@@ -44,7 +42,7 @@ fixtext: |-
     To configure the system to prevent messages from being shown when three unsuccessful logon
     attempts occur using <tt>pam_faillock.so</tt>, first enable the faillock feature using the
     following command:
-    
+
     $ sudo authselect enable-feature with-faillock
 
     Then edit the <tt>/etc/security/faillock.conf</tt> file as follows:

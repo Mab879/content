@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Enable audit Service'
 
 description: |-
@@ -21,7 +19,7 @@ rationale: |-
     Associating event types with detected events in the operating system
     audit logs provides a means of investigating an attack, recognizing
     resource utilization or capacity thresholds, or identifying an
-    improperly configured operating system.  
+    improperly configured operating system.
 
 severity: high
 
@@ -51,7 +49,7 @@ ocil: |-
 #  integer: 1
 #fix: |
 #  To enable the audit service, run the following command:
-# 
+#
 #  [source,bash]
 #  ----
 #  /bin/launchctl load -w /System/Library/LaunchDaemons/com.apple.auditd.plist

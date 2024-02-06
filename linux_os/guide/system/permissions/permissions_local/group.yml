@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: |-
     Verify Permissions on Important Files and
     Directories Are Configured in /etc/permissions.local

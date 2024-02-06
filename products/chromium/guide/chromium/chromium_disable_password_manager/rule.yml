@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Disable Chromium Password Manager'
 
 description: "Chromium Password Manager allows the saving and using of passwords in Chromium. This\nshould be disabled by setting <tt>PasswordManagerEnabled</tt> to <tt>false</tt> in \nthe Chromium policy file."

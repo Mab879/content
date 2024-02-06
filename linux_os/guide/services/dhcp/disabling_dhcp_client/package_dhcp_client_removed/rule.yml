@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Uninstall DHCP Client Package'
 
@@ -9,7 +7,7 @@ description: |-
     {{{ describe_package_remove(package="dhcp-client") }}}
 
 rationale: |-
-    Removing the DHCP client is necessary when the system works 
+    Removing the DHCP client is necessary when the system works
     or will work in a static network environment. In this case
     the system has/will have a static IP address assigned.
 

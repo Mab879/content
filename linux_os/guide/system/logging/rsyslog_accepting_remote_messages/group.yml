@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Configure rsyslogd to Accept Remote Messages If Acting as a Log Server'
 
 description: |-

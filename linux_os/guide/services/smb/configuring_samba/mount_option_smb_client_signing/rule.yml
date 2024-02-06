@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Require Client SMB Packet Signing, if using mount.cifs'
 

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Kube scheduler config file path'
 
 description: 'Kube scheduler config file path'

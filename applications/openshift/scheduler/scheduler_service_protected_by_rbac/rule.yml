@@ -1,4 +1,3 @@
-documentation_complete: true
 title: |-
   Verify that the scheduler API service is protected by RBAC
 description: 'Do not bind the scheduler service to non-loopback insecure addresses.'

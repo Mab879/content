@@ -1,5 +1,3 @@
-documentation_complete: true # switch to true when rule is ready to be enabled
-
 title: Configure Polyinstantiation of /tmp Directories
 
 description: |-

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the telepathy_tcp_connect_generic_network_ports SELinux Boolean'
 

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 metadata:
     version: 4.2.1
 

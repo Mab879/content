@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'ANSSI-BP-028 (enhanced)'
 
 description: |-
@@ -21,7 +19,7 @@ selections:
   - '!selinux_state'
   - '!audit_rules_mac_modification'
   - apparmor_configured
-  - all_apparmor_profiles_enforced 
+  - all_apparmor_profiles_enforced
   - grub2_enable_apparmor
   - package_apparmor_installed
   - package_pam_apparmor_installed

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 metadata:
     SMEs:
         - shaneboulden
@@ -17,8 +15,8 @@ description: |-
   that align to the Australian Cyber Security Centre (ACSC) Information Security Manual (ISM)
   with the applicability marking of OFFICIAL.
 
-  The ISM uses a risk-based approach to cyber security. This profile provides a guide to aligning 
-  Red Hat Enterprise Linux security controls with the ISM, which can be used to select controls 
+  The ISM uses a risk-based approach to cyber security. This profile provides a guide to aligning
+  Red Hat Enterprise Linux security controls with the ISM, which can be used to select controls
   specific to an organisation's security posture and risk profile.
 
   A copy of the ISM can be found at the ACSC website:
@@ -85,7 +83,7 @@ selections:
   - accounts_password_pam_minlen
 
   ## Centralised logging facility
-  ## Identifiers 1405 / 0988 
+  ## Identifiers 1405 / 0988
   - rsyslog_cron_logging
   - rsyslog_files_groupownership
   - rsyslog_files_ownership
@@ -113,7 +111,7 @@ selections:
   ## Identifiers 1552 / 1277
 
   ## Network design and configuration
-  ## Identifiers 1055 / 1311 
+  ## Identifiers 1055 / 1311
   - network_nmcli_permissions
   - service_snmpd_disabled
   - snmpd_use_newer_protocol
@@ -123,8 +121,8 @@ selections:
   - wireless_disable_interfaces
 
   ## ASD Approved Cryptographic Algorithms
-  ## Identifiers 0471 / 0472 / 0473 / 0474 / 0475 / 0476 / 0477 / 
-  ## 0479 / 0480 / 0481 / 0489 / 0497 / 0994 / 0998 / 1001 /  1139 / 
+  ## Identifiers 0471 / 0472 / 0473 / 0474 / 0475 / 0476 / 0477 /
+  ## 0479 / 0480 / 0481 / 0489 / 0497 / 0994 / 0998 / 1001 /  1139 /
   ## 1372 / 1373 / 1374 / 1375
   - enable_fips_mode
   - var_system_crypto_policy=fips

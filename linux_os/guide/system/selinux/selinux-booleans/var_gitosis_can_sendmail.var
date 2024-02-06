@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'gitosis_can_sendmail SELinux Boolean'
 
 description: |-

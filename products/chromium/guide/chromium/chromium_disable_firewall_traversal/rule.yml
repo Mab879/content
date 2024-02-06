@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Disable Chromium''s Ability to Traverse Firewalls'
 
 description: "Chromium has the ability to bypass and ignore the system firewall. This\nability should be disabled. To disable this setting, set \n<tt>RemoteAccessHostFirewallTraversal</tt> to <tt>false</tt> in the \nChromium policy file."

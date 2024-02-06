@@ -1,5 +1,3 @@
-documentation_complete: true
-
 hidden: true
 
 title: Default Profile for UnionTech OS Server 20

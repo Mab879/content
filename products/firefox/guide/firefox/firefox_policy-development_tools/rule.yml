@@ -1,12 +1,10 @@
-documentation_complete: true
-
 
 title: 'Disable Firefox Development Tools'
 
 description: |-
-    Firefox provides development tools which identify detailed information 
-    about the browser and its configuration. These details are often also 
-    recorded into a log file, giving an attacker the ability to capture 
+    Firefox provides development tools which identify detailed information
+    about the browser and its configuration. These details are often also
+    recorded into a log file, giving an attacker the ability to capture
     detailed information about the system.
     This can be disabled by setting <tt>DisableDeveloperTools</tt> to
     <tt>true</tt> in <tt>policies.json</tt>

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'mplayer_execstack SELinux Boolean'
 
 description: |-

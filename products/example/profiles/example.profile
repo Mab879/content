@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Sample Security Profile for Linux-like OSes'
 
 description: |-

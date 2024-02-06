@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Security Profile of Oracle Linux 7 for SAP'
 
 description: |-

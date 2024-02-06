@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the xdm_write_home SELinux Boolean'
 

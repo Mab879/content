@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Uninstall the ntpdate package'
 
 description: 'ntpdate is a historical ntp synchronization client for unixes. It sould be uninstalled.'

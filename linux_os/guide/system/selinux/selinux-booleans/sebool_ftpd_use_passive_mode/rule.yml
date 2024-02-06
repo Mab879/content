@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the ftpd_use_passive_mode SELinux Boolean'
 

@@ -1,12 +1,10 @@
-documentation_complete: true
-
 
 title: 'Disable D-Bus IPC Service (messagebus)'
 
 description: |-
     D-Bus provides an IPC mechanism used by a growing list of programs, such as
     those used for Gnome, Bluetooth, and Avahi. Due to these dependencies,
-    disabling D-Bus may not be practical for many systems. 
+    disabling D-Bus may not be practical for many systems.
     {{{ describe_service_disable(service="messagebus") }}}
 
 rationale: |-
@@ -16,7 +14,7 @@ rationale: |-
     impractical for any system which needs to provide
     a graphical login session.
 
-severity: low 
+severity: low
 
 identifiers:
     cce@rhel7: CCE-80260-3

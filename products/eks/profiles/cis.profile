@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'CIS Amazon Elastic Kubernetes Service Benchmark - Platform'
 
 platform: eks

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Warn on W+X mappings found at boot'
 

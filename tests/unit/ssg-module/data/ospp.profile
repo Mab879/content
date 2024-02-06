@@ -27,4 +27,3 @@ platforms: !!set {}
 cpe_names: !!set {}
 platform: null
 filter_rules: ''
-documentation_complete: true

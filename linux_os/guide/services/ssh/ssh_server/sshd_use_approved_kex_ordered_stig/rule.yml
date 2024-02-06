@@ -14,8 +14,6 @@
              ",diffie-hellman-group-exchange-sha256"  %}}
 {{% endif %}}
 
-documentation_complete: true
-
 
 title: 'Use Only FIPS 140-2 Validated Key Exchange Algorithms'
 

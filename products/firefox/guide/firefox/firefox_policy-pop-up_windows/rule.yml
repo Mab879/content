@@ -1,12 +1,10 @@
-documentation_complete: true
-
 
 title: 'Enable Firefox Pop-up Blocker'
 
 description: |-
     The pop-up blocker can be enabled by setting
     <tt>Default</tt> key under <tt>PopupBlocking</tt> to <tt>true</tt> in <tt>policies.json</tt>.
-    <tt>Allowed</tt> may be set to a list of sites allowed to use popups. 
+    <tt>Allowed</tt> may be set to a list of sites allowed to use popups.
 
 rationale: |-
     Popup windows may be used to launch an attack within a new browser window

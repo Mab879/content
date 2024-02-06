@@ -10,7 +10,6 @@ description: 'This profile contains configuration checks for Red Hat Enterprise 
 
 
     https://www.cyber.gov.au/publications/essential-eight-in-linux-environments'
-documentation_complete: true
 selections:
 - accounts_no_uid_except_zero
 - audit_rules_dac_modification_chmod

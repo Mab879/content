@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Enable DoS Protections in SuSEfirewall2'
 
@@ -8,7 +6,7 @@ description: |-
     {{{ describe_service_enable(service="SuSEfirewall2") }}}
 
     Verify "SuSEfirewall2" is configured to protect the SUSE operating system
-    against or limit the effects of DoS attacks. 
+    against or limit the effects of DoS attacks.
 
     Run the following command:
 

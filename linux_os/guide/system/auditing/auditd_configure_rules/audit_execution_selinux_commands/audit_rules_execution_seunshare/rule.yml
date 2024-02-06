@@ -3,8 +3,6 @@
 {{%- endif %}}
 
 
-documentation_complete: true
-
 
 title: 'Record Any Attempts to Run seunshare'
 

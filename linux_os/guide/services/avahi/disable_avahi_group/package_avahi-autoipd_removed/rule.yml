@@ -1,16 +1,14 @@
-documentation_complete: true
-
 
 title: 'Uninstall avahi-autoipd Server Package'
 
 description: |-
-    If the system does not need to have an Avahi server which implements 
+    If the system does not need to have an Avahi server which implements
     the DNS Service Discovery and Multicast DNS protocols,
     the avahi-autoipd and avahi packages can be uninstalled.
 
 rationale: |-
-    Automatic discovery of network services is not normally required for 
-    system functionality. It is recommended to remove this package to reduce 
+    Automatic discovery of network services is not normally required for
+    system functionality. It is recommended to remove this package to reduce
     the potential attack surface.
 
 severity: medium
@@ -21,7 +19,7 @@ identifiers:
     cce@rhel9: CCE-86516-2
     cce@sle12: CCE-92310-2
     cce@sle15: CCE-92465-4
-    
+
 references:
     cis-csc: 11,14,3,9
     cis@sle12: 2.2.3

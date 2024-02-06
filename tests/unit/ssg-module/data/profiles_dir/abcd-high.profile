@@ -1,5 +1,4 @@
- 
-documentation_complete: true
+
 title: ABCD High for Red Hat Enterprise Linux 8
 description: >-
   This profile contains configuration checks that align to

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'OSPP - Protection Profile for General Purpose Operating Systems'
 
 description: |-

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the domain_kernel_load_modules SELinux Boolean'
 

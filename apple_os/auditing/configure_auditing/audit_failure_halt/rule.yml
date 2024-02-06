@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: "Shutdown System When Auditing Failures Occur"
 
 description: |-
@@ -7,7 +5,7 @@ description: |-
     failure unless availability is an overriding concern.
 
 rationale: |-
-    The audit service should shut down the computer if it 
+    The audit service should shut down the computer if it
     is unable to audit system events. Once audit failure
     occurs, user and system activity is no longer recorded
     and malicious activity could go undetected. Audit

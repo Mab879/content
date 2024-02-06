@@ -497,4 +497,3 @@ platform: null
 filter_rules: ''
 policies: []
 title: DISA STIG for Red Hat Enterprise Linux 8
-documentation_complete: true

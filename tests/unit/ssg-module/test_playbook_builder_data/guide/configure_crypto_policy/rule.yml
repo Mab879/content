@@ -1,5 +1,3 @@
-documentation_complete: true
-
 prodtype: fedora,ol8,rhcos4,rhel8,rhel9,rhv4
 
 title: 'Configure System Cryptography Policy'
@@ -85,7 +83,7 @@ ocil: |-
 
 fixtext: |-
     Configure {{{ full_name }}} to implement approved encryption.
-    
+
     update-crypto-policies --set {{{ xccdf_value("var_system_crypto_policy") }}}
 
 srg_requirement: '{{{ full_name }}} must use the {{{ xccdf_value("var_system_crypto_policy") }}} crypto policy.'

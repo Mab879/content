@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Disable Metrics Reporting'
 
 description: "Whenever Chromium crashes, it sends its usage and crash-related data to Google.\nThis should be disabled by setting <tt>MetricsReportingEnabled</tt> to \n<tt>false</tt> in the Chromium policy file."

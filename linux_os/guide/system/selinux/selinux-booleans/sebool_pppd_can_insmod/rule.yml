@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the pppd_can_insmod SELinux Boolean'
 

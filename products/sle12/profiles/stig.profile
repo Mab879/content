@@ -1,5 +1,3 @@
-documentation_complete: true
-
 metadata:
     version: V2R12
     SMEs:

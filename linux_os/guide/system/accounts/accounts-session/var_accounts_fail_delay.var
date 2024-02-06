@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Maximum login attempts delay'
 
 description: 'Maximum time in seconds between fail login attempts before re-prompting.'

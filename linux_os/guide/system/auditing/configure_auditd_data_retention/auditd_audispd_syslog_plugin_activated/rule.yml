@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Configure auditd to use audispd''s syslog plugin'
 
 description: |-

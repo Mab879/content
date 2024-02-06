@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Verify that local System.map file (if exists) is readable only by root'
 
 description: |-

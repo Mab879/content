@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the xen_use_nfs SELinux Boolean'
 

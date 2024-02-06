@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Disable Search Suggestion'
 
 description: "Chromium tries to guess what users are searching for when users enter\nsearch data in the search Omnibox. This should be disabled by \nsetting <tt>SearchSuggestEnabled</tt> to <tt>false</tt> in the Chromium \npolicy file."

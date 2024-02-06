@@ -1,5 +1,3 @@
-documentation_complete: True
-
 reference: https://www.hhs.gov/hipaa/for-professionals/index.html
 
 title: 'Health Insurance Portability and Accountability Act (HIPAA)'

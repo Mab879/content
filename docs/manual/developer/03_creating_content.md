@@ -462,8 +462,6 @@ EOF
 8. Create a draft profile under `profiles` directory called `standard.profile`:
 ```
 cat << EOF >  $NEW_PRODUCT/profiles/standard.profile
-documentation_complete: true
-
 title: 'Standard System Security Profile for $FULL_NAME'
 
 description: |-
@@ -1114,7 +1112,6 @@ has the form `policy_id:control_id[:level_id]`, where `level_id` is optional.
 ```
 $ cat rhel8/profiles/abcd-desktop.profile
 
-documentation_complete: true
 title: ABCD Desktop for Red Hat Enterprise Linux 8
 description: |-
   This profile contains configuration checks that align to
@@ -1138,7 +1135,6 @@ means that all controls will be selected. Let's show how it will be easier:
 ```
 $ cat rhel8/profiles/abcd-high.profile
 
-documentation_complete: true
 title: ABCD High for Red Hat Enterprise Linux 8
 description: |-
   This profile contains configuration checks that align to
@@ -1175,7 +1171,6 @@ Example of a compiled profile:
 ```
 $ cat build/rhel8/profiles/abcd-desktop.profile
 
-documentation_complete: true
 title: ABCD Desktop for Red Hat Enterprise Linux 8
 description: |-
   This profile contains configuration checks that align to

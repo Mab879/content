@@ -12,8 +12,6 @@
 {{%- set control = "[default=1]" %}}
 {{%- endif %}}
 
-documentation_complete: true
-
 title: 'Ensure PAM Displays Last Logon/Access Notification'
 
 description: |-

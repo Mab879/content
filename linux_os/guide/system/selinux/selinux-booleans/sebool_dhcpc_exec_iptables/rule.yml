@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the dhcpc_exec_iptables SELinux Boolean'
 

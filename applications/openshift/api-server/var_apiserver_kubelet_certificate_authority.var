@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'OpenShift Kube APIServer kubelet certificate authority'
 
 description: 'OpenShift Kube APIServer kubelet certificate authority'

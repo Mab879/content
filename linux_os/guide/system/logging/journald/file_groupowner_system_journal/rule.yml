@@ -1,12 +1,10 @@
-documentation_complete: true
-
 
 title: 'Verify Group Who Owns the system journal'
 
 description: '{{{ describe_file_group_owner(file="/var/log/journal/.*/system.journal", group="systemd-journal") }}}'
 
 rationale: |-
-  RHCOS must protect system journal file from any type of unauthorized access by setting file group ownership. 
+  RHCOS must protect system journal file from any type of unauthorized access by setting file group ownership.
 
 identifiers:
   cce@rhcos4: CCE-86221-9

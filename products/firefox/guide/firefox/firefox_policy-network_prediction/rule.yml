@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable Firefox network prediction'
 
@@ -10,7 +8,7 @@ description: |-
 
 rationale: |-
     With network prediction enabled, URL requests are made without user consent.
-    Browsers should always make a direct DNS request with prefetching. 
+    Browsers should always make a direct DNS request with prefetching.
 
 severity: medium
 

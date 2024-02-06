@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'PCI-DSS v3.2.1 Control Baseline Draft for Oracle Linux 7'
 
 description: 'Ensures PCI-DSS v3.2.1 related security configuration settings are applied.'

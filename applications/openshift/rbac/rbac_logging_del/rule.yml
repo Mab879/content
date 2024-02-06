@@ -1,10 +1,8 @@
-documentation_complete: true
-
 
 title: 'Ensure that the ClusterLogging and ClusterLoggingForwarder resources are protected from unauthorized deletion'
 
 description: |-
-    The ClusterLogging and ClusterLoggingForwarder Custom Resources provide 
+    The ClusterLogging and ClusterLoggingForwarder Custom Resources provide
     a way to configure the logging forwarding subsystem and delete access to it
     should be restricted to as-needed basis.
 

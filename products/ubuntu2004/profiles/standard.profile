@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Standard System Security Profile for Ubuntu 20.04'
 
 description: |-

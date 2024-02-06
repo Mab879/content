@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Disable Use of Cleartext Passwords'
 
 description: "Chromium allows users to import and store passwords in cleartext. This should be \ndisabled by setting <tt>PasswordManagerAllowShowPasswords</tt> to <tt>false</tt>\nin the Chromium policy file."

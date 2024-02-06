@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Configure Kubelet to use secure TLS version'
 
 description: 'TLS versions available for configuring Kubelet, excluding insecure versions'

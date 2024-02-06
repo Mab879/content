@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Configure Kubelet EvictionHard Image FS Available'
 
 description: 'Image FS Available for the EvictionHard threshold to trigger.'

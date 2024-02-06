@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'NIST National Checklist Program Security Guide'
 
 description: |-

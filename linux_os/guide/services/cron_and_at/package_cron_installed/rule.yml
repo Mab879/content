@@ -4,8 +4,6 @@
 {{% set package_name = "cron" %}}
 {{% endif %}}
 
-documentation_complete: true
-
 title: 'Install the cron service'
 
 description: 'The Cron service should be installed.'

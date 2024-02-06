@@ -1,5 +1,3 @@
-documentation_complete: true
-
 hidden: true
 
 title: Default Profile for Red Hat Virtualization 4

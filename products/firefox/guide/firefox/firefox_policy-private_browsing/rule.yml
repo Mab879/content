@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Firefox private browsing must be disabled.'
 
@@ -26,6 +24,6 @@ ocil: |-
 template:
     name: firefox_policy-setting
     vars:
-        name: Disable Private Browsing feature 
+        name: Disable Private Browsing feature
         policies:
           - {path: "policies", parameter: "DisablePrivateBrowsing", value: true}

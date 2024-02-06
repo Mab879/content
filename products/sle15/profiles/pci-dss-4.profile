@@ -1,5 +1,3 @@
-documentation_complete: true
-
 metadata:
     SMEs:
         - abergmann
@@ -16,10 +14,10 @@ selections:
     -  ensure_pam_wheel_group_empty
     -  sshd_strong_kex=pcidss
     -  sshd_approved_macs=cis_sle15
-    -  sshd_approved_ciphers=cis_sle15 
+    -  sshd_approved_ciphers=cis_sle15
     -  var_multiple_time_servers=suse
-    -  var_multiple_time_pools=suse      
-# Exclude from PCI DISS profile all rules related to ntp and timesyncd and keep only 
+    -  var_multiple_time_pools=suse
+# Exclude from PCI DISS profile all rules related to ntp and timesyncd and keep only
 # rules related to chrony
     - '!ntpd_specify_multiple_servers'
     - '!ntpd_specify_remote_server'

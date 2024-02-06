@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'DRAFT - ANSSI-BP-028 (high)'
 
 description: |-

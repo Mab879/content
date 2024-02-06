@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Configure CA certificate for rsyslog remote logging'
 
@@ -43,4 +41,4 @@ ocil: |-
 
 warnings:
     - general: |-
-        Automatic remediation is not available as each organization has unique requirements. 
+        Automatic remediation is not available as each organization has unique requirements.

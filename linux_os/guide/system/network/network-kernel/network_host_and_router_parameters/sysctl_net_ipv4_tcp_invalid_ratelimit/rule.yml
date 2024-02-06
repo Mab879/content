@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Configure Kernel to Rate Limit Sending of Duplicate TCP Acknowledgments'
 

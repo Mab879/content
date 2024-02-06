@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Install the ntp service'
 
 description: 'The ntpd service should be installed.'

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Ensure the Chromium Policy Configuration File Exists'
 
 description: "Chromium can be configured with numerous policies and settings. These\nsettings can be set so that a user is unable to edit or change them.\nTo prevent users from setting or changing Chromium settings, a \n<tt>JavaScript Object Notation (JSON)</tt> file (contains the <tt>.json</tt>\nextension) must exist in <tt>/etc/chromium/policies/managed</tt>.\n<br /><br />\n<ul><li>Refer to https://www.chromium.org/administrators/policy-list-3 for\na list of currently supported Chromium policies.</li></ul>\n<ul><li>Refer to https://www.chromium.org/administrators/policy_templates for\npre-created Chromium <tt>JSON</tt> policy files.</li></ul>\n<br />"

@@ -1,11 +1,9 @@
-documentation_complete: true
-
 
 title: 'Disable anacron Service'
 
 description: |-
     The <tt>cronie-anacron</tt> package, which provides <tt>anacron</tt>
-    functionality, is installed by default. 
+    functionality, is installed by default.
     {{{ describe_package_remove(package="cronie-anacron") }}}
 
 rationale: |-

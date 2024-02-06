@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'CIS Ubuntu 20.04 Level 1 Server Benchmark'
 
 description: |-

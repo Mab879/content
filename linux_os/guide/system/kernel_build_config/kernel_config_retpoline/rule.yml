@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Avoid speculative indirect branches in kernel'
 
 description: |-

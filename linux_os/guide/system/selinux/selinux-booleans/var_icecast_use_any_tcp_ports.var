@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'icecast_use_any_tcp_ports SELinux Boolean'
 
 description: |-

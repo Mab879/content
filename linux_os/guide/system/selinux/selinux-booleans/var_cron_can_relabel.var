@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'cron_can_relabel SELinux Boolean'
 
 description: |-

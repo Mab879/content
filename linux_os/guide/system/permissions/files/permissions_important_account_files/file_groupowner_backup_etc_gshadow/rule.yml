@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Verify Group Who Owns Backup gshadow File'
 
 {{% if "ubuntu" in product or "debian" in product %}}

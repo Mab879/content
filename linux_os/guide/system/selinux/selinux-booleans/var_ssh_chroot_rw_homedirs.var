@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'ssh_chroot_rw_homedirs SELinux Boolean'
 
 description: |-

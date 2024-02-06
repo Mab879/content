@@ -4,8 +4,6 @@
   {{%- set auditd_conf_path = audisp_conf_path + "/auditd.conf" %}}
 {{%- endif %}}
 
-documentation_complete: true
-
 title: Appropriate Action Must be Setup When the Internal Audit Event Queue is Full
 
 description: |-

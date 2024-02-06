@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Verify {{{ grub2_boot_path }}}/grub.cfg User Ownership'
 

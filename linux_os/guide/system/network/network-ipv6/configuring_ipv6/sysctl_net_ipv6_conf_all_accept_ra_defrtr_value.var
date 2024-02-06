@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: net.ipv6.conf.all.accept_ra_defrtr
 
 description: 'Accept default router in router advertisements?'

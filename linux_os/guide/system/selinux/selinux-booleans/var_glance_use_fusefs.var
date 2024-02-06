@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'glance_use_fusefs SELinux Boolean'
 
 description: |-

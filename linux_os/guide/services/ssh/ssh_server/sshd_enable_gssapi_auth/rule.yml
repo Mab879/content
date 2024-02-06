@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Enable GSSAPI Authentication'
 
 description: |-
@@ -15,9 +13,9 @@ rationale: |-
     to the system's Kerberos implementation. Vulnerabilities in the system's
     Kerberos implementations may be subject to exploitation.
 
-    For enterprises, Kerberos is often enabled and used with GSSAPI for 
+    For enterprises, Kerberos is often enabled and used with GSSAPI for
     centralized user account management which may necessitate enabling of
-    GSSAPI functionality in SSH. 
+    GSSAPI functionality in SSH.
 
 severity: medium
 

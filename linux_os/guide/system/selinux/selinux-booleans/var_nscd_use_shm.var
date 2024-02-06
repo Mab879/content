@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'nscd_use_shm SELinux Boolean'
 
 description: |-

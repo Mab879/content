@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'CIS Ubuntu 22.04 Level 1 Workstation Benchmark'
 
 description: |-

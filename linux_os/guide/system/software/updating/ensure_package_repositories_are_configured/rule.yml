@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Ensure package manager repositories are configured'
 
@@ -24,7 +22,7 @@ references:
 ocil_clause: 'Your package manager repositories are not configured according to site policy'
 
 ocil: |-
-    To verify repositories are configured correctly run the following command: 
+    To verify repositories are configured correctly run the following command:
     <pre>$ sudo zypper repos</pre>
-    If your package manager repositories are not configured correctly, you have to 
-    configure them according to site policy.  
+    If your package manager repositories are not configured correctly, you have to
+    configure them according to site policy.

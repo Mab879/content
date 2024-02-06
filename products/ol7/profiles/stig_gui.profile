@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'DISA STIG with GUI for Oracle Linux 7'
 
 description: |-

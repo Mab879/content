@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'SNMP read-write community string'
 
 description: "Specify the SNMP community string used for read-write access."

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Uninstall tcpd Package'
 
@@ -7,15 +5,15 @@ description: |-
     {{{ describe_package_remove(package="tcpd") }}}
 
 rationale: |-
-    Administrators can use TCP wrapper library and daemon for host 
-    control over network services. In these implementations, 
+    Administrators can use TCP wrapper library and daemon for host
+    control over network services. In these implementations,
     <tt>xinetd</tt> runs <tt>tcpd</tt> program, which first looks
-    at the incomming connection as well as the access control lists 
+    at the incomming connection as well as the access control lists
     in the /etc/hosts.allow and /etc/hosts.deny files.
     Removing the <tt>xinetd</tt> package decreases the risk of the
-    xinetd service's accidental (or intentional) activation. The 
+    xinetd service's accidental (or intentional) activation. The
     removal of <tt>tcpd</tt> package will support this protective
-    measure in addition.  
+    measure in addition.
 
 severity: low
 

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Only Allow Authorized Network Services in SuSEfirewall2'
 
@@ -16,7 +14,7 @@ description: |-
 
     Ask the System Administrator for the site or program PPSM Component Local
     Services Assessment (Component Local Services Assessment (CLSA). Verify the
-    services allowed by the firewall match the PPSM CLSA. 
+    services allowed by the firewall match the PPSM CLSA.
 
 rationale: |-
     To prevent unauthorized connection of devices, unauthorized transfer of
@@ -54,18 +52,18 @@ ocil: |-
     {{{ ocil_package(package="SuSEfirewall2") }}}
     {{{ ocil_service_enabled(service="SuSEfirewall2") }}}
 
-    Check the firewall configuration for any unnecessary or prohibited 
-    functions, ports, protocols, and/or services by running the following 
+    Check the firewall configuration for any unnecessary or prohibited
+    functions, ports, protocols, and/or services by running the following
     command:
 
     <pre># grep ^FW_ /etc/sysconfig/SuSEfirewall2
     FW_SERVICES_ACCEPT_EXT="0/0,tcp,22,,hitcount=3,blockseconds=60,recentname=ssh"</pre>
 
-    Ask the System Administrator for the site or program PPSM Component Local 
+    Ask the System Administrator for the site or program PPSM Component Local
     Services Assessment (Component Local Services Assessment (CLSA). Verify the     services allowed by the firewall match the PPSM CLSA.
 
-    If there are any additional ports, protocols, or services that are not 
+    If there are any additional ports, protocols, or services that are not
     included in the PPSM CLSA, this is a finding.
 
-    If there are any ports, protocols, or services that are prohibited by the 
+    If there are any ports, protocols, or services that are prohibited by the
     PPSM CAL, this is a finding.

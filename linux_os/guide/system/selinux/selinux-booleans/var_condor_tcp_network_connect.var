@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'condor_tcp_network_connect SELinux Boolean'
 
 description: |-

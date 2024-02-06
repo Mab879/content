@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 platform: {{{ product }}}-node
 
@@ -31,7 +29,7 @@ description: |-
   vm.overcommit_memory=1
   vm.panic_on_oom=0
   </pre>
-  
+
   <p>
   The these need to be enabled via MachineConfig since they need to be
   available as soon as the node starts and before the Kubelet does.
@@ -58,7 +56,7 @@ description: |-
           path: /etc/sysctl.d/90-kubelet.conf
           overwrite: true
   </pre>
-  
+
   <p>
   This will need to be done for each relevant <tt>MachineConfigPool</tt>
   in the cluster.
@@ -67,7 +65,7 @@ description: |-
   <p>
   After enabling this and after the changes have successfully rolled out
   to the whole cluster, it will now be possible to set the
-  <tt>protectKernelDefaults</tt> parameter. 
+  <tt>protectKernelDefaults</tt> parameter.
   </p>
 
   <p>
@@ -96,7 +94,7 @@ ocil: |-
   The output should return <tt>true</tt>.
 
 #identifiers:
-#   cce@ocp4: 
+#   cce@ocp4:
 
 references:
   nerc-cip: CIP-003-8 R6,CIP-004-6 R3,CIP-007-3 R6.1

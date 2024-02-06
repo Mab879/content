@@ -10,4 +10,3 @@ bash_conditional: '[ ! -f /.dockerenv ] && [ ! -f /run/.containerenv ]'
 ansible_conditional: ansible_virtualization_type not in ["docker", "lxc", "openvz",
     "podman", "container"]
 definition_location: ''
-documentation_complete: true

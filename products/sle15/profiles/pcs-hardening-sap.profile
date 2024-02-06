@@ -1,11 +1,9 @@
-documentation_complete: true
-
 metadata:
     version: V1R4
     SMEs:
         - esampson
 
-reference: 
+reference:
 
 title: 'Hardening for Public Cloud Image of SUSE Linux Enterprise Server (SLES) for SAP Applications 15'
 

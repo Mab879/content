@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'logwatch_can_network_connect_mail SELinux Boolean'
 
 description: |-

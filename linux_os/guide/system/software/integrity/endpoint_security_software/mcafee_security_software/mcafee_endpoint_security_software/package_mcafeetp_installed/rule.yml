@@ -4,8 +4,6 @@
 {{% set pkg='McAfeeTP' %}}
 {{% endif %}}
 
-documentation_complete: true
-
 
 title: 'Install McAfee Endpoint Security for Linux (ENSL)'
 

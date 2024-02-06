@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Standard System Security Profile for Ubuntu 16.04'
 
 description: |-

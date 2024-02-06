@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Do not allow usercopy whitelist violations to fallback to object size'
 

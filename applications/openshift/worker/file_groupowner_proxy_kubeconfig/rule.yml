@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 platform: ocp4-on-sdn
 
@@ -12,7 +10,7 @@ description: |-
   points to that configuration using the <tt>--proxy-config</tt> command line option.
   Run:
   <pre> oc get -nopenshift-sdn ds sdn -ojson | jq -r '.spec.template.spec.containers[] | select(.name == "sdn")'</pre>
-  and ensure the <tt>--proxy-config</tt> parameter points to 
+  and ensure the <tt>--proxy-config</tt> parameter points to
   <tt>/config/kube-proxy-config.yaml</tt> and that the <tt>config</tt> mount point is
   mounted from the <tt>sdn-config</tt> ConfigMap.
 

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 # package is unlikely to appear on a RHEL9 system, don't extend to RHEL10
 
 title: 'Disable Apache Qpid (qpidd)'

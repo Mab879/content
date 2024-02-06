@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the tftp_home_dir SELinux Boolean'
 

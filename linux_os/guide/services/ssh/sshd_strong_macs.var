@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'SSH Strong MACs by FIPS'
 
 description: "Specify the FIPS approved MACs (Message Authentication Code) algorithms\n\tthat are used for data integrity protection by the SSH server."

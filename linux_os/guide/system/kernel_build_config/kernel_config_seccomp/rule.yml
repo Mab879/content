@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Enable seccomp to safely compute untrusted bytecode'
 
 description: |-

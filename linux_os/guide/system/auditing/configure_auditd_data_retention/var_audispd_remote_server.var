@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Remote server for audispd to send audit records'
 
 description: |-

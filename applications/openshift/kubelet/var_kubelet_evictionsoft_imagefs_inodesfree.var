@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Configure Kubelet EvictionSoft Image FS inodes Free'
 
 description: 'Image FS inodes Free for the EvictionSoft threshold to trigger.'

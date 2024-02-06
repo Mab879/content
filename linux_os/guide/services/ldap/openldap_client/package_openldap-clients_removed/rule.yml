@@ -6,8 +6,6 @@
 {{% set package_name = "openldap-clients" %}}
 {{% endif %}}
 
-documentation_complete: true
-
 
 title: 'Ensure LDAP client is not installed'
 

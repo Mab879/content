@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'prosody_bind_http_port SELinux Boolean'
 
 description: |-

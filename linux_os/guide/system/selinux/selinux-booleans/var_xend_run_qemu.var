@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'xend_run_qemu SELinux Boolean'
 
 description: |-

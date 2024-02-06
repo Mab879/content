@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Upstream STIG for Google Chromium'
 
 description: |-

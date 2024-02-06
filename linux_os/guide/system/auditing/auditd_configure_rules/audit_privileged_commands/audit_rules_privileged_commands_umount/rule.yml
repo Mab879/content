@@ -2,8 +2,6 @@
   {{%- set perm_x="-F perm=x " %}}
 {{%- endif %}}
 
-documentation_complete: true
-
 
 title: 'Ensure auditd Collects Information on the Use of Privileged Commands - umount'
 

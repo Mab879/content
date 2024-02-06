@@ -69,4 +69,3 @@ platforms: !!set
 inherited_platforms: !!set {}
 cpe_platform_names: !!set
     machine: null
-documentation_complete: true

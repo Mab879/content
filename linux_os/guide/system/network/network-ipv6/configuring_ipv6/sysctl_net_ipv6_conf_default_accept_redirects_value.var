@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: net.ipv6.conf.default.accept_redirects
 
 description: 'Toggle ICMP Redirect Acceptance By Default'

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Enable Public Key Authentication'
 
 description: |-
@@ -17,7 +15,7 @@ rationale: |-
     privileged functions is greatly increased. Multifactor authentication
     requires using two or more factors to achieve authentication.
     A privileged account is defined as an information system account with
-    authorizations of a privileged user. 
+    authorizations of a privileged user.
     The DoD CAC with DoD-approved PKI is an example of multifactor
     authentication.
 

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'selinuxuser_mysql_connect_enabled SELinux Boolean'
 
 description: |-

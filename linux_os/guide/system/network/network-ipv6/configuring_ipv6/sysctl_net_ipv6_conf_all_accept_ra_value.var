@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: net.ipv6.conf.all.accept_ra
 
 description: 'Accept all router advertisements?'

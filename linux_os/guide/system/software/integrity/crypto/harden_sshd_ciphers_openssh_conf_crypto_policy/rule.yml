@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Configure SSH Client to Use FIPS 140-2 Validated Ciphers: openssh.config'
 

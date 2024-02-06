@@ -1,5 +1,3 @@
-documentation_complete: true
-
 # potentially obsolete, rsh-server is not available in RHEL9
 
 title: 'Disable rlogin Service'

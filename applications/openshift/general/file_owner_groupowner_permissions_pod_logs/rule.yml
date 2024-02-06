@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Kubernetes Pod Logs Must Be Owned and Group Owned By Root and have permissions 755'
 

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'CIS Ubuntu 18.04 LTS Benchmark'
 
 description: |-

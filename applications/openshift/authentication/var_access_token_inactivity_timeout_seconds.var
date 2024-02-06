@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'OAuth Clients Token Inactivity Timeout'
 
 description: 'Enter OAuth Clients Token Inactivity Timeout in Seconds'

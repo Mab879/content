@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'rsync_full_access SELinux Boolean'
 
 description: |-

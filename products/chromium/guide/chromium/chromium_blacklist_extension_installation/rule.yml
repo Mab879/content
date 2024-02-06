@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Disable All Extensions by Default'
 
 description: "Extensions are developed by third party sources and are designed to extend \nGoogle Chromium's functionality. As an extension can be made by anyone, all extensions\nshould be blacklisted from installation by default. To blacklist all extensions, set the \n<tt>ExtensionInstallBlacklist</tt> to <tt>*</tt> in the Chromium policy file."

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Profile for ANSSI DAT-NT28 Restrictive Level'
 
 description: 'This profile contains items for GNU/Linux installations exposed to unauthenticated flows or multiple sources.'

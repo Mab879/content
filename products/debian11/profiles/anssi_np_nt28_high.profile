@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Profile for ANSSI DAT-NT28 High (Enforced) Level'
 
 description: 'This profile contains items for GNU/Linux installations storing sensitive information that can be accessible

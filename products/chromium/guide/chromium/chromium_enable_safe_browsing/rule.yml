@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Enable the Safe Browsing Feature'
 
 description: "Chromium has the capability to check URLs for known malware and phishing \nassociated with websites through the Safe Browsing Feature. This can be \nenabled by setting <tt>SafeBrowsingEnabled</tt> to <tt>true</tt> in the Chromium\npolicy file."

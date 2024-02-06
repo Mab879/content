@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Ensure PAM password complexity module is enabled in password-auth'
 

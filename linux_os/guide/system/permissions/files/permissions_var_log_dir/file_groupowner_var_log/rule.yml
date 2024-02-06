@@ -5,8 +5,6 @@
 {{% endif %}}
 
 
-documentation_complete: true
-
 title: 'Verify Group Who Owns /var/log Directory'
 
 description: '{{{ describe_file_group_owner(file="/var/log", group=gid) }}}'

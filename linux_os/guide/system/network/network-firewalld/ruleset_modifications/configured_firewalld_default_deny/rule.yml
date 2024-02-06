@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Firewalld Must Employ a Deny-all, Allow-by-exception Policy for Allowing Connections to Other Systems'
 
@@ -32,38 +30,38 @@ ocil: |-
     Verify "firewalld" is configured to employ a deny-all, allow-by-exception policy for allowing connections to other systems with the following commands:
 
     $ sudo firewall-cmd --state
-    
+
     running
-    
+
     $ sudo firewall-cmd --get-active-zones
-    
+
     [custom]
     interfaces: ens33
-    
+
     $ sudo firewall-cmd --info-zone=[custom] | grep target
-    
+
     target: DROP
 
 fixtext: |-
     Configure the "firewalld" daemon to employ a deny-all, allow-by-exception with the following commands:
 
     $ sudo firewall-cmd --permanent --new-zone=[custom]
-    
+
     $ sudo cp /usr/lib/firewalld/zones/drop.xml /etc/firewalld/zones/[custom].xml
-    
+
     This will provide a clean configuration file to work with that employs a deny-all approach. Note: Add the exceptions that are required for mission functionality and update the short title in the xml file to match the [custom] zone name.
-    
+
     Reload the firewall rules to make the new [custom] zone available to load:
     $ sudo firewall-cmd --reload
-    
+
     Set the default zone to the new [custom] zone:
     $ sudo firewall-cmd --set-default-zone=[custom]
-    
+
     Note: This is a runtime and permanent change.
     Add any interfaces to the new [custom] zone:
     $ sudo firewall-cmd --permanent --zone=[custom] --change-interface=ens33
-    
+
     Reload the firewall rules for changes to take effect:
-    $ sudo firewall-cmd --reload 
+    $ sudo firewall-cmd --reload
 
 srg_requirement: 'A {{{ full_name }}} firewall must employ a deny-all, allow-by-exception policy for allowing connections to other systems.'

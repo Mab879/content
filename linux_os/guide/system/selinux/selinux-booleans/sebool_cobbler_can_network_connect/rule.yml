@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the cobbler_can_network_connect SELinux Boolean'
 

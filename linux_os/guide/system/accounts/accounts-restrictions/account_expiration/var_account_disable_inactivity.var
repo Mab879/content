@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'number of days after the last login of the user when the user will be locked out'
 
 description: |-

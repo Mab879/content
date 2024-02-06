@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the virt_rw_qemu_ga_data SELinux Boolean'
 

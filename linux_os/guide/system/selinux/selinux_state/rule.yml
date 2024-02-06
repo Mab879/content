@@ -1,5 +1,3 @@
-documentation_complete: true
-
 # This rule is applicable even to non-selinux platforms, as the selinux_state is leveraged
 # by rules that deal with technologies that conflict with SELinux
 

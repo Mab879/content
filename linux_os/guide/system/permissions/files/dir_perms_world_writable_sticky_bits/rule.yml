@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Verify that All World-Writable Directories Have Sticky Bits Set'
 
 description: |-

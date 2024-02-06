@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'SSH MaxStartups setting'
 
 description: 'Configure parameters for maximum concurrent unauthenticated connections to the SSH daemon.'

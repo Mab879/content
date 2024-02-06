@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Disable All Plugins by Default'
 
 description: "Plugins are developed internally or by third party sources and are designed to extend\nGoogle Chromium's functionality. All plugins should be blacklisted from \ninstallation by default. To blacklist all plugins set <tt>DisabledPlugins</tt>\nto <tt>*</tt> in the Chromium policy file."

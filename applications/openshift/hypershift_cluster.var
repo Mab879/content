@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'HyperShift Cluster Name'
 
 description: |-
@@ -13,4 +11,4 @@ operator: equals
 interactive: false
 
 options:
-    default: 
+    default:

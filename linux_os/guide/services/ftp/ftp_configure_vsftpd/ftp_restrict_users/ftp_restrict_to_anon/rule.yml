@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Restrict Access to Anonymous Users if Possible'
 
@@ -14,7 +12,7 @@ description: |-
     this section to secure these logins as much as possible.
 
 rationale: |-
-        The use of non-anonymous FTP logins is strongly discouraged. Since SSH clients 
+        The use of non-anonymous FTP logins is strongly discouraged. Since SSH clients
         and servers are widely available, and since SSH provides support for a transfer
         mode which resembles FTP in user interface, there is no good reason to allow
         password-based FTP access.'

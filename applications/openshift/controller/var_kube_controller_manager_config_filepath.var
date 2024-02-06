@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Kube controller manager config filepath'
 
 description: 'Kube controller manager config filepath'

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the xserver_clients_write_xshm SELinux Boolean'
 

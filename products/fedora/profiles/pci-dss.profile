@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'PCI-DSS v3.2.1 Control Baseline for Fedora'
 
 description: |-

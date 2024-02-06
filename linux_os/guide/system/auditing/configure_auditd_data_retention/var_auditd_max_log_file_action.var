@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Action for auditd to take when log files reach their maximum size'
 
 description: |-

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Type of hostname to record the audit event'
 
 description: 'Type of hostname to record the audit event'

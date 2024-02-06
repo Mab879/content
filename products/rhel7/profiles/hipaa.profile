@@ -1,5 +1,3 @@
-documentation_complete: True
-
 metadata:
     SMEs:
         - jjaswanson4

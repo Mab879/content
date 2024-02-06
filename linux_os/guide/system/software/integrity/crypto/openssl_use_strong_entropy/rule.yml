@@ -1,5 +1,3 @@
-documentation_complete: true
-
 # TODO: The plan is not to need this for RHEL>=8.4
 
 title: 'OpenSSL uses strong entropy source'

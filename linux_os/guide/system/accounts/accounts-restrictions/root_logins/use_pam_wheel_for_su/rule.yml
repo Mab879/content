@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Enforce usage of pam_wheel for su authentication'
 

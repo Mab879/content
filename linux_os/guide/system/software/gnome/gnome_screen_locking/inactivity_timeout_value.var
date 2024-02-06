@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Screensaver Inactivity timeout'
 
 description: 'Choose allowed duration (in seconds) of inactive graphical sessions'

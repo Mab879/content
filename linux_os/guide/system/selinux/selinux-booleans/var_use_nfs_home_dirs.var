@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'use_nfs_home_dirs SELinux Boolean'
 
 description: |-

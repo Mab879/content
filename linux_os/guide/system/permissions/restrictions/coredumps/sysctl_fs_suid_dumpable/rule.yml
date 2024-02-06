@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Disable Core Dumps for SUID programs'
 
 description: '{{{ describe_sysctl_option_value(sysctl="fs.suid_dumpable", value="0") }}}'

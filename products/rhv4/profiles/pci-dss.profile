@@ -1,5 +1,3 @@
-documentation_complete: true
-
 metadata:
     version: 3.2.1
     SMEs:

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'VPP - Protection Profile for Virtualization v. 1.0 for Red Hat Virtualization'
 
 description: |-

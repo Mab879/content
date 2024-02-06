@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the irc_use_any_tcp_ports SELinux Boolean'
 

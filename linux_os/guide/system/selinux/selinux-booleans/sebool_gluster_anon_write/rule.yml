@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the gluster_anon_write SELinux Boolean'
 

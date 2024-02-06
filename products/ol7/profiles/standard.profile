@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Standard System Security Profile for Oracle Linux 7'
 
 description: |-

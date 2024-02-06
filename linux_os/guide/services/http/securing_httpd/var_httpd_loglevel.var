@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'HTTPD Log Level'
 
 description: 'The setting for LogLevel in /etc/httpd/conf/httpd.conf'

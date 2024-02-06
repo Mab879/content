@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'DRAFT - Protection Profile for General Purpose Operating Systems'
 
 description: |-

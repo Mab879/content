@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Verify User Who Owns Backup group File'
 
 description: '{{{ describe_file_owner(file="/etc/group-", owner="root") }}}'

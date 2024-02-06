@@ -311,4 +311,3 @@ policies:
 - pcidss_4
 title: PCI-DSS v4.0 Control Baseline for Red Hat Enterprise Linux 8
 definition_location: /home/mburket/Developer/ComplianceAsCode/content/products/rhel8/profiles/pci-dss.profile
-documentation_complete: true

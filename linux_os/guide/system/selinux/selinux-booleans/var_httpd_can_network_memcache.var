@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'httpd_can_network_memcache SELinux Boolean'
 
 description: |-

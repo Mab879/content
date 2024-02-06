@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'SSSD ssh_known_hosts_timeout option'
 
 description: |-

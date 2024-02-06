@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'User Initialization Files Must Not Run World-Writable Programs'
 

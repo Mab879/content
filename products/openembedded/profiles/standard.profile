@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Sample Security Profile for OpenEmbedded Distros'
 
 description: |-

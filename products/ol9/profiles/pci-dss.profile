@@ -1,5 +1,3 @@
-documentation_complete: true
-
 reference: https://www.pcisecuritystandards.org/documents/PCI_DSS_v3-2-1.pdf
 
 title: 'PCI-DSS v3.2.1 Control Baseline for Oracle Linux 9'

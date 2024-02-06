@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'number of days after a password expires until the account is permanently disabled'
 
 description: 'The number of days to wait after a password expires, until the account will be permanently disabled.'

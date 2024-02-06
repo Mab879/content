@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Verify that system commands files are group owned by root or a system account'
 

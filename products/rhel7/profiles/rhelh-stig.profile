@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'RHV hardening based on STIG for Red Hat Enterprise Linux 7'
 
 description: |-

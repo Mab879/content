@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Disable Popups'
 
 description: "Chromium allows you to manage whether or not unwanted pop-up windows appear.\nTo disable pop-ups, set <tt>DefaultPopupsSetting</tt> to <tt>2</tt> \nin the Chromium policy file."

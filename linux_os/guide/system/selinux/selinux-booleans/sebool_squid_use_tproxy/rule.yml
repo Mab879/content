@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the squid_use_tproxy SELinux Boolean'
 

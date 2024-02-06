@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Configure Kubelet EvictionSoft NodeFS Available'
 
 description: 'Node FS Available for the EvictionSoft threshold to trigger.'

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'DRAFT - BSI APP.4.4. and SYS.1.6'
 
 description: |-

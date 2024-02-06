@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'kerberos_enabled SELinux Boolean'
 
 description: |-

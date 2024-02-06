@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the use_samba_home_dirs SELinux Boolean'
 

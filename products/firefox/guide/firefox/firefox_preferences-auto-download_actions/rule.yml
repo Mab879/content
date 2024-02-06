@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable auto-download for proscribed MIME types.'
 
@@ -22,7 +20,7 @@ ocil: |-
     To verify that any proscribed file types are configured for automatic download,
     type "about:preferences" into the search bar,  then
     type "Applications" in the Find bar in the upper-right corner.
-    If any of the following file extensions are listed and the Action item associated with it 
+    If any of the following file extensions are listed and the Action item associated with it
     is an application that does or can execute the code, this is a finding.
     If the entry exists and the "Action" is "Save File" or "Always Ask", this is not a finding.
     <ul>

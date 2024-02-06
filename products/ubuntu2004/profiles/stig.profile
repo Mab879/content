@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Canonical Ubuntu 20.04 LTS Security Technical Implementation Guide (STIG) V1R9'
 
 description: |-

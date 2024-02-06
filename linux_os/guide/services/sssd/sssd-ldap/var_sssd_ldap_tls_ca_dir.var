@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'SSSD LDAP Backend Client CA Certificate Location'
 
 description: 'Path of a directory that contains Certificate Authority certificates.'

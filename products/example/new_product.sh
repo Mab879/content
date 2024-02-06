@@ -53,8 +53,6 @@ reference_uris:
 EOF
 
 cat << EOF >> $NEW_PRODUCT/profiles/standard.profile
-documentation_complete: true
-
 title: 'Standard System Security Profile for $FULL_NAME'
 
 description: |-
@@ -85,7 +83,7 @@ cat << EOF >> $NEW_PRODUCT/transforms/constants.xslt
 </xsl:stylesheet>
 EOF
 
-cat << EOF >> $NEW_PRODUCT/transforms/table-style.xslt 
+cat << EOF >> $NEW_PRODUCT/transforms/table-style.xslt
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:import href="../../../shared/transforms/shared_table-style.xslt"/>

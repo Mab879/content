@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Enable the httpd_graceful_shutdown SELinux Boolean'
 

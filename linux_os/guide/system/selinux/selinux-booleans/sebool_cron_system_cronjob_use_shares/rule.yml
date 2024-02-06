@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the cron_system_cronjob_use_shares SELinux Boolean'
 

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'nfs_export_all_ro SELinux Boolean'
 
 description: |-

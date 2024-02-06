@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'xdm_bind_vnc_tcp_port SELinux Boolean'
 
 description: |-

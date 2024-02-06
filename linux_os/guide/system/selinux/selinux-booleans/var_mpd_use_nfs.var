@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'mpd_use_nfs SELinux Boolean'
 
 description: |-

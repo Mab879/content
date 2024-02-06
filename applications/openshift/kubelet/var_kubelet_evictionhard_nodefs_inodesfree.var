@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Configure Kubelet EvictionHard Node FS inodes Free'
 
 description: 'Node FS inodes Free for the EvictionHard threshold to trigger.'

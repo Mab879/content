@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Verify Permissions on SSH Server Private *_key Key Files'
 
 {{% set dedicated_ssh_groupname = groups.get("dedicated_ssh_keyowner", {}).get("name") %}}

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'An SELinux Context must be configured for the pam_faillock.so records directory'
 

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Configure the root Account lock for Failed Password Attempts via pam_tally2'
 

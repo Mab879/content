@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Verify Permissions on cron.hourly'
 
@@ -18,7 +16,7 @@ identifiers:
     cce@rhel8: CCE-82230-4
     cce@rhel9: CCE-84173-4
     cce@sle12: CCE-91668-4
-    cce@sle15: CCE-91300-4    
+    cce@sle15: CCE-91300-4
 
 references:
     cis-csc: 12,13,14,15,16,18,3,5

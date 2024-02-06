@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'postgresql_can_rsync SELinux Boolean'
 
 description: |-

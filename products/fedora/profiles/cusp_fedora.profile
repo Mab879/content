@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'CUSP - Common User Security Profile for Fedora Workstation'
 
 description: |-

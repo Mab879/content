@@ -1,11 +1,9 @@
-documentation_complete: true
-
 
 title: 'Add noexec Option to /boot'
 
 description: |-
     The <tt>noexec</tt> mount option can be used to prevent binaries from being
-    executed out of <tt>/boot</tt>. 
+    executed out of <tt>/boot</tt>.
     {{{ describe_mount(option="noexec", part="/boot") }}}
 
 rationale: |-

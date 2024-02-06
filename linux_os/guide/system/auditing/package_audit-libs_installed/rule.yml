@@ -1,10 +1,8 @@
 {{% if product in ["sle12","sle15"] %}}
 {{% set package_name = "libaudit1" %}}
-{{% else %}} 
+{{% else %}}
 {{% set package_name = "audit-libs" %}}
 {{% endif %}}
-
-documentation_complete: true
 
 title: 'Ensure the {{{ package_name }}} package as a part of audit Subsystem is Installed'
 

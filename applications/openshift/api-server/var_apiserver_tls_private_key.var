@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'OpenShift Kube APIServer TLS private key'
 
 description: 'OpenShift Kube APIServer TLS private key'

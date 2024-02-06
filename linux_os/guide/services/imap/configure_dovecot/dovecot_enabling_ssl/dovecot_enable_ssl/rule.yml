@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Enable the SSL flag in /etc/dovecot.conf'
 
@@ -11,7 +9,7 @@ description: |-
     <pre>ssl = yes</pre>
 
 rationale: |-
-    SSL encrypt network traffic between the Dovecot server and its clients 
+    SSL encrypt network traffic between the Dovecot server and its clients
     protecting user credentials, mail as it is downloaded, and clients may use
     SSL certificates to authenticate the server, preventing another system from
     impersonating the server.

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Action for audispd to take when network fails'
 
 description: 'The setting for network_failure_action in /etc/audisp/audisp-remote.conf'

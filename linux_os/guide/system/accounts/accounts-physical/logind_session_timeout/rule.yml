@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: "Configure Logind to terminate idle sessions after certain time of inactivity"
 

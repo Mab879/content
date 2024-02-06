@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'samba_domain_controller SELinux Boolean'
 
 description: |-

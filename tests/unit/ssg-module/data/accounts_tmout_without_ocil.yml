@@ -66,4 +66,3 @@ cpe_platform_names: !!set
 inherited_cpe_platform_names: !!set {}
 bash_conditional: null
 fixes: {}
-documentation_complete: true

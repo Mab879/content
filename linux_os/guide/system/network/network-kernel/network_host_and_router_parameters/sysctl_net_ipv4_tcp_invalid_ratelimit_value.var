@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: net.ipv4.tcp_invalid_ratelimit
 
 description: |-

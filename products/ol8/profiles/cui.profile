@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)'
 
 description: |-

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'daemons_enable_cluster_mode SELinux Boolean'
 
 description: |-

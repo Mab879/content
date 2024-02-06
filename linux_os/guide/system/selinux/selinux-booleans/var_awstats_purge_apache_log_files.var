@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'awstats_purge_apache_log_files SELinux Boolean'
 
 description: |-

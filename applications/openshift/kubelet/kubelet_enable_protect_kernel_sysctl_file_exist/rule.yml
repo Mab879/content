@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 platform: ocp4-node
 
@@ -11,7 +9,7 @@ description: |-
   </p>
 
   <p>
-  Before enabling kernel parameter overwritten protection default, 
+  Before enabling kernel parameter overwritten protection default,
   it's important and necessary to first create a <tt>MachineConfig</tt>
   object that persist the required sysctl's. The required sysctl's are the following:
   </p>
@@ -24,7 +22,7 @@ description: |-
   vm.overcommit_memory=1
   vm.panic_on_oom=0
   </pre>
-  
+
   <p>
   The these need to be enabled via MachineConfig since they need to be
   available as soon as the node starts and before the Kubelet does.
@@ -51,7 +49,7 @@ description: |-
           path: /etc/sysctl.d/90-kubelet.conf
           overwrite: true
   </pre>
-  
+
   <p>
   This will need to be done for each relevant <tt>MachineConfigPool</tt>
   in the cluster.
@@ -82,7 +80,7 @@ ocil: |-
   The output should return <tt>Exists</tt>.
 
 #identifiers:
-#   cce@ocp4: 
+#   cce@ocp4:
 
 references:
   nerc-cip: CIP-003-8 R6,CIP-004-6 R3,CIP-007-3 R6.1

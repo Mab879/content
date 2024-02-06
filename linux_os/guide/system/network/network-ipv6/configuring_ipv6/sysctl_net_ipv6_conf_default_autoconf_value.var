@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: net.ipv6.conf.default.autoconf
 
 description: Enable auto configuration on IPv6 interfaces

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'NIST 800-53 Moderate-Impact Baseline for Apple macOS 10.15 Catalina'
 
 description: |-

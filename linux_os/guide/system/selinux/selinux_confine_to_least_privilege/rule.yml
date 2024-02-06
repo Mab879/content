@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Confine SELinux Users To Roles That Conform To Least Privilege'
 

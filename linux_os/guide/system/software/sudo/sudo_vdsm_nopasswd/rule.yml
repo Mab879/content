@@ -1,8 +1,6 @@
-documentation_complete: true
-
 title: 'Only the VDSM User Can Use sudo NOPASSWD'
 
-description: 
+description:
     The sudo <tt>NOPASSWD</tt> tag, when specified, allows a user to execute commands using
     sudo without having to authenticate. Only the <tt>vdsm</tt> user should have this
     capability in any sudo configuration snippets in <tt>/etc/sudoers.d/</tt>.

@@ -2,8 +2,6 @@
   {{%- set perm_x="-F perm=x " %}}
 {{%- endif %}}
 
-documentation_complete: true
-
 
 title: 'Record Any Attempts to Run restorecon'
 

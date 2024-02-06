@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Verify that system commands directories are group owned by root'
 
@@ -37,7 +35,7 @@ references:
     stigid@ubuntu2004: UBTU-20-010425
 
 ocil_clause: 'any of these directories are not owned by root group'
- 
+
 ocil: |-
     System commands are stored in the following directories:
     <pre>/bin

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the httpd_can_connect_ftp SELinux Boolean'
 

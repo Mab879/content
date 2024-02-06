@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Verify User Who Owns Backup shadow File'
 
 {{% if "ubuntu" in product or "debian" in product or "sle" in product %}}

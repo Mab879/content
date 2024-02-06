@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'pcp_bind_all_unreserved_ports SELinux Boolean'
 
 description: |-

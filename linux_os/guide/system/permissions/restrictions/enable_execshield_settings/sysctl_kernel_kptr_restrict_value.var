@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: kernel.kptr_restrict
 
 description: 'Configure exposition of kernel pointer addresses '

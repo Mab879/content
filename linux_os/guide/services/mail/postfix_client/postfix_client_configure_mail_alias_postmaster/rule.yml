@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Configure System to Forward All Mail From Postmaster to The Root Account'
 
 description: |-
@@ -14,7 +12,7 @@ rationale: |-
     process audit logs as required. Without this notification, the security personnel may be
     unaware of an impending failure of the audit capability, and system operation may be adversely
     affected.
-    
+
     Audit processing failures include software/hardware errors, failures in the audit capturing
     mechanisms, and audit storage capacity being reached or exceeded.
 

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Enable the spamd_enable_home_dirs SELinux Boolean'
 

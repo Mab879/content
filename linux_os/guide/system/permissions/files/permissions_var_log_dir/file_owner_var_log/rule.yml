@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Verify User Who Owns /var/log Directory'
 
 description: '{{{ describe_file_owner(file="/var/log", owner="root") }}}'

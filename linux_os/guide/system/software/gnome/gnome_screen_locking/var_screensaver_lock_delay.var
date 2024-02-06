@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Screensaver Lock Delay'
 
 description: 'Choose allowed duration (in seconds) after a screensaver becomes active before displaying an authentication prompt'

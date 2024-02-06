@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Configure Systemd Timesyncd Servers'
 
@@ -23,7 +21,7 @@ platform: package[systemd]
 
 identifiers:
     cce@sle12: CCE-92374-8
-    cce@sle15: CCE-92538-8 
+    cce@sle15: CCE-92538-8
 
 references:
     anssi: BP28(R43)

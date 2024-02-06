@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Detect stack corruption on calls to schedule()'
 

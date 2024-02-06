@@ -1,5 +1,3 @@
-documentation_complete: true
-
 metadata:
     SMEs:
         - shaneboulden
@@ -39,7 +37,7 @@ selections:
 
   ### Admin privileges
   - accounts_no_uid_except_zero
-  
+
   ### Audit
   - service_auditd_enabled
   - var_auditd_flush=incremental_async

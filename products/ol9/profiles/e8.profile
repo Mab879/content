@@ -1,5 +1,3 @@
-documentation_complete: true
-
 reference: https://www.cyber.gov.au/acsc/view-all-content/publications/hardening-linux-workstations-and-servers
 
 title: 'Australian Cyber Security Centre (ACSC) Essential Eight'

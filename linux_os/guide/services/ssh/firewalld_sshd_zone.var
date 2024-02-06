@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'SSH enabled firewalld zone'
 
 description: 'Specify firewalld zone to enable SSH service. This value is used only for remediation purposes.'

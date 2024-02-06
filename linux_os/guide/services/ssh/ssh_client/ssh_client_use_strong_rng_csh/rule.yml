@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'SSH client uses strong entropy to seed (for CSH like shells)'
 

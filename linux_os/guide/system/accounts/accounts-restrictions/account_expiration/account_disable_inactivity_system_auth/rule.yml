@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Set Account Expiration Following Inactivity in system-auth'
 
@@ -8,7 +6,7 @@ description: |-
     {{{ xccdf_value("var_account_disable_inactivity") }}} or less days of inactivity by
     checking the account inactivity value with the following command:
     <pre>grep 'inactive\|pam_unix' /etc/pam.d/password-auth | grep -w auth
-    
+
     auth required pam_lastlog.so inactive=35
     auth sufficient pam_unix.so</pre>
     The line with the inactive parameter should be placed before <tt>pam_unix.so</tt> module as in

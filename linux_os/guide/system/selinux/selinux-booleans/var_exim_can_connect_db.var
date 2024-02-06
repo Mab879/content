@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'exim_can_connect_db SELinux Boolean'
 
 description: |-

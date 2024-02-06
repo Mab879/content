@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Configure Certificate Directives for LDAP Use of TLS'
 
@@ -9,7 +7,7 @@ description: |-
     <tt>/etc/pki/tls/CA/cacert.pem</tt>. Configure LDAP to enforce TLS use and
     to trust certificates signed by that CA. First, edit the file
     <tt>/etc/nslcd.conf</tt>, and add or correct either of the following lines:
-    <pre>tls_cacertdir /etc/pki/tls/CA</pre> or 
+    <pre>tls_cacertdir /etc/pki/tls/CA</pre> or
     <pre>tls_cacertfile /etc/pki/tls/CA/cacert.pem</pre>
     Then review the LDAP server and ensure TLS has been configured.
 

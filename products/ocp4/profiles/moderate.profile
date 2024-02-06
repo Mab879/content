@@ -1,5 +1,3 @@
-documentation_complete: true
-
 metadata:
     version: Revision 4
     SMEs:

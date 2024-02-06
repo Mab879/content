@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Enable rsyslog to Accept Messages via UDP, if Acting As Log Server'
 
 description: |-

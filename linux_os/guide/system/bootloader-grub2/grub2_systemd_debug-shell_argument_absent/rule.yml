@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Ensure debug-shell service is not enabled during boot'
 
 description: |-

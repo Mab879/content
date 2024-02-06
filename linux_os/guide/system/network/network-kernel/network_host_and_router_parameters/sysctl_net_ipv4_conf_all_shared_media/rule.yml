@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Configure Sending and Accepting Shared Media Redirects for All IPv4 Interfaces'
 
 description: '{{{ describe_sysctl_option_value(sysctl="net.ipv4.conf.all.shared_media", value=xccdf_value("sysctl_net_ipv4_conf_all_shared_media_value")) }}}'

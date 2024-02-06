@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'SSH Max Keep Alive Count'
 
 description: 'Specify the maximum number of idle message counts before session is terminated.'

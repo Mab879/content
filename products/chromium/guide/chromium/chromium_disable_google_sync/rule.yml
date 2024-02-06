@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Disable Data Synchronization to Google'
 
 description: '<tt>SyncDisabled</tt> to <tt>true</tt> in the Chromium policy file.'

@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Postfix relayhost'
 
 description: 'Specify the host all outbound email should be routed into.'

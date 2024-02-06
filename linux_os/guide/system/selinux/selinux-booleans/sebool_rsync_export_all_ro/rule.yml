@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'Disable the rsync_export_all_ro SELinux Boolean'
 

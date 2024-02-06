@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'named_tcp_bind_http_port SELinux Boolean'
 
 description: |-

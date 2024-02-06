@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Postfix Network Interfaces'
 
 description: 'The setting for inet_interfaces in /etc/postfix/main.cf'

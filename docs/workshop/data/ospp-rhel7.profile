@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'United States Government Configuration Baseline'
 
 description: |-

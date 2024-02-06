@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'Standard System Security Profile for Alibaba Cloud Linux 2'
 
 description: |-

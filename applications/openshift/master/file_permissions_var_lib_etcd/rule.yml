@@ -1,5 +1,3 @@
-documentation_complete: true
-
 
 title: 'The OpenShift etcd Data Directory Must Have Mode 0700'
 

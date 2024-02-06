@@ -1,5 +1,3 @@
-documentation_complete: true
-
 title: 'daemon umask'
 
 description: 'Enter umask for daemons'

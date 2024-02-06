@@ -267,4 +267,3 @@ cpe_names: !!set {}
 platform: null
 filter_rules: ''
 title: Protection Profile for General Purpose Operating Systems
-documentation_complete: true

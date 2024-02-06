@@ -4,8 +4,6 @@
 {{% set pkg='rsync' %}}
 {{% endif %}}
 
-documentation_complete: true
-
 
 title: 'Uninstall rsync Package'
 

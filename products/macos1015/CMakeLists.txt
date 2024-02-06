@@ -14,8 +14,7 @@ ssg_build_html_ref_tables("${PRODUCT}" "table-${PRODUCT}-{ref_id}refs" "nist")
 #ssg_build_html_profile_table("table-${PRODUCT}-nistrefs-stig" "${PRODUCT}" "stig" "nist")
 ssg_build_html_profile_table("table-${PRODUCT}-nistrefs-moderate" "${PRODUCT}" "moderate" "nist")
 
-# Uncomment when anssi profiles are marked documentation_complete: true
-#ssg_build_html_profile_table("table-${PRODUCT}-anssirefs-bp28_minimal" "${PRODUCT}" "anssi_bp28_minimal" "anssi")
+# Uncomment when anssi profiles are marked #ssg_build_html_profile_table("table-${PRODUCT}-anssirefs-bp28_minimal" "${PRODUCT}" "anssi_bp28_minimal" "anssi")
 #ssg_build_html_profile_table("table-${PRODUCT}-anssirefs-bp28_enhanced" "${PRODUCT}" "anssi_bp28_enhanced" "anssi")
 #ssg_build_html_profile_table("table-${PRODUCT}-anssirefs-bp28_intermediary" "${PRODUCT}" "anssi_bp28_intermediary" "anssi")
 #ssg_build_html_profile_table("table-${PRODUCT}-anssirefs-bp28_high" "${PRODUCT}" "anssi_bp28_high" "anssi")
