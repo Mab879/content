@@ -1,5 +1,5 @@
 policy: NIST
-title: Configuration Recommendations for the Red Hat CoreOs 4 Linux system
+title: Configuration Recommendations for the Red Hat CoreOs 4 Linux System
 id: nist_rhcos4
 version: Revision 4
 source: https://www.fedramp.gov/assets/resources/documents/FedRAMP_Security_Controls_Baseline.xlsx
@@ -1834,7 +1834,7 @@ controls:
   status: automated
   notes: |-
     The network capabilities should be disabled by default.
-  rules: 
+  rules:
   - wireless_disable_in_bios
   - kernel_module_bluetooth_disabled
   - service_bluetooth_disabled
