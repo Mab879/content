@@ -19,3 +19,4 @@ for hash_option in "${HASHING_ALGORITHMS_OPTIONS[@]}"; do
     fi
   fi
 done
+echo "Test"
